@@ -5411,30 +5411,808 @@ tuples: `
 </h1>
 
 <div class="subtitle">
-    Store multiple values in an immutable collection.
+    Store ordered and unchangeable collections of values in Python.
 </div>
 
 <div class="divider"></div>
 
 
+<h2>
+    What is a Tuple?
+</h2>
+
 <p>
-    A tuple is an ordered collection that cannot be
-    changed after it has been created.
+    A <b>tuple</b> is a collection used to store multiple values
+    in a single variable. Tuples are ordered and allow duplicate
+    values.
+</p>
+
+<p>
+    The main difference between a list and a tuple is that a tuple
+    is <b>immutable</b>. This means that once a tuple is created,
+    its elements cannot be changed, added, or removed.
 </p>
 
 
-${codeBlock(`colors = ("Red", "Green", "Blue")
+<h2>
+    Creating a Tuple
+</h2>
 
-print(colors[1])`, "Python")}
+<p>
+    Tuples are generally created using parentheses <b>()</b>.
+</p>
 
+${codeBlock(`numbers = (10, 20, 30, 40, 50)
+
+print(numbers)`, "Python")}
 
 <div class="output-title">
     Output
 </div>
 
 <div class="output">
-Green
+(10, 20, 30, 40, 50)
 </div>
+
+
+<h2>
+    Tuple with Different Data Types
+</h2>
+
+<p>
+    A tuple can contain values of different data types.
+</p>
+
+${codeBlock(`student = ("Rahul", 20, 85.5, True)
+
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+('Rahul', 20, 85.5, True)
+</div>
+
+
+<h2>
+    Creating an Empty Tuple
+</h2>
+
+<p>
+    An empty tuple is created using empty parentheses.
+</p>
+
+${codeBlock(`numbers = ()
+
+print(numbers)
+print(type(numbers))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+()<br>
+&lt;class 'tuple'&gt;
+</div>
+
+
+<h2>
+    Single Element Tuple
+</h2>
+
+<p>
+    To create a tuple containing only one element, a comma is
+    required after the element.
+</p>
+
+${codeBlock(`number = (10,)
+
+print(number)
+print(type(number))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(10,)<br>
+&lt;class 'tuple'&gt;
+</div>
+
+<p>
+    Without the comma, Python treats the value as a normal value
+    rather than a tuple.
+</p>
+
+${codeBlock(`number = (10)
+
+print(type(number))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+&lt;class 'int'&gt;
+</div>
+
+
+<h2>
+    Tuple Without Parentheses
+</h2>
+
+<p>
+    Parentheses are optional in many tuple assignments. This is
+    called <b>tuple packing</b>.
+</p>
+
+${codeBlock(`numbers = 10, 20, 30
+
+print(numbers)
+print(type(numbers))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(10, 20, 30)<br>
+&lt;class 'tuple'&gt;
+</div>
+
+
+<h2>
+    Accessing Tuple Elements
+</h2>
+
+<p>
+    Tuple elements can be accessed using their index. Like lists,
+    tuple indexing starts from <b>0</b>.
+</p>
+
+${codeBlock(`fruits = ("Apple", "Banana", "Mango")
+
+print(fruits[0])
+print(fruits[1])
+print(fruits[2])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Apple<br>
+Banana<br>
+Mango
+</div>
+
+
+<h2>
+    Negative Indexing
+</h2>
+
+<p>
+    Tuples support negative indexing. The last element has an
+    index of <b>-1</b>.
+</p>
+
+${codeBlock(`fruits = ("Apple", "Banana", "Mango")
+
+print(fruits[-1])
+print(fruits[-2])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Mango<br>
+Banana
+</div>
+
+
+<h2>
+    Tuple Slicing
+</h2>
+
+<p>
+    Slicing is used to extract a portion of a tuple.
+</p>
+
+<h3>
+    Syntax
+</h3>
+
+${codeBlock(`tuple[start : stop : step]`, "Python")}
+
+
+<h3>
+    Example
+</h3>
+
+${codeBlock(`numbers = (10, 20, 30, 40, 50)
+
+print(numbers[1:4])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(20, 30, 40)
+</div>
+
+
+<h3>
+    Slicing from the Beginning
+</h3>
+
+${codeBlock(`numbers = (10, 20, 30, 40, 50)
+
+print(numbers[:3])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(10, 20, 30)
+</div>
+
+
+<h3>
+    Slicing to the End
+</h3>
+
+${codeBlock(`numbers = (10, 20, 30, 40, 50)
+
+print(numbers[2:])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(30, 40, 50)
+</div>
+
+
+<h2>
+    Tuple is Immutable
+</h2>
+
+<p>
+    Tuples cannot be modified after they are created. You cannot
+    change an existing element of a tuple.
+</p>
+
+${codeBlock(`numbers = (10, 20, 30)
+
+numbers[0] = 100
+
+print(numbers)`, "Python")}
+
+<p>
+    The above code produces a <b>TypeError</b> because tuple
+    elements cannot be changed.
+</p>
+
+
+<h2>
+    Finding the Length of a Tuple
+</h2>
+
+<p>
+    The <b>len()</b> function returns the number of elements
+    in a tuple.
+</p>
+
+${codeBlock(`numbers = (10, 20, 30, 40, 50)
+
+print(len(numbers))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+5
+</div>
+
+
+<h2>
+    Checking if an Element Exists
+</h2>
+
+<p>
+    The <b>in</b> operator can be used to check whether an element
+    exists inside a tuple.
+</p>
+
+${codeBlock(`fruits = ("Apple", "Banana", "Mango")
+
+print("Mango" in fruits)
+print("Orange" in fruits)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+False
+</div>
+
+
+<h2>
+    Looping Through a Tuple
+</h2>
+
+<p>
+    A <b>for loop</b> can be used to access each element of a tuple.
+</p>
+
+${codeBlock(`fruits = ("Apple", "Banana", "Mango")
+
+for fruit in fruits:
+    print(fruit)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Apple<br>
+Banana<br>
+Mango
+</div>
+
+
+<h2>
+    Tuple Methods
+</h2>
+
+<p>
+    Since tuples are immutable, they have fewer methods than lists.
+    The two commonly used tuple methods are <b>count()</b> and
+    <b>index()</b>.
+</p>
+
+
+<h3>
+    count()
+</h3>
+
+<p>
+    The <b>count()</b> method returns the number of times a value
+    appears in a tuple.
+</p>
+
+${codeBlock(`numbers = (10, 20, 10, 30, 10)
+
+print(numbers.count(10))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+3
+</div>
+
+
+<h3>
+    index()
+</h3>
+
+<p>
+    The <b>index()</b> method returns the index of the first
+    occurrence of a specified value.
+</p>
+
+${codeBlock(`fruits = ("Apple", "Banana", "Mango")
+
+print(fruits.index("Mango"))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+2
+</div>
+
+
+<h2>
+    Joining Tuples
+</h2>
+
+<p>
+    The <b>+</b> operator can be used to combine two tuples.
+</p>
+
+${codeBlock(`tuple1 = (10, 20, 30)
+tuple2 = (40, 50, 60)
+
+result = tuple1 + tuple2
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(10, 20, 30, 40, 50, 60)
+</div>
+
+
+<h2>
+    Repeating a Tuple
+</h2>
+
+<p>
+    The <b>*</b> operator can be used to repeat the elements
+    of a tuple.
+</p>
+
+${codeBlock(`numbers = (1, 2, 3)
+
+result = numbers * 3
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(1, 2, 3, 1, 2, 3, 1, 2, 3)
+</div>
+
+
+<h2>
+    Tuple Packing
+</h2>
+
+<p>
+    Assigning multiple values to a single tuple is called
+    <b>tuple packing</b>.
+</p>
+
+${codeBlock(`student = "Rahul", 20, "Python"
+
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+('Rahul', 20, 'Python')
+</div>
+
+
+<h2>
+    Tuple Unpacking
+</h2>
+
+<p>
+    Tuple unpacking allows us to assign the values of a tuple
+    to multiple variables.
+</p>
+
+${codeBlock(`student = ("Rahul", 20, "Python")
+
+name, age, course = student
+
+print(name)
+print(age)
+print(course)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+20<br>
+Python
+</div>
+
+
+<h2>
+    Using * in Tuple Unpacking
+</h2>
+
+<p>
+    The <b>*</b> operator can collect multiple remaining values
+    during tuple unpacking.
+</p>
+
+${codeBlock(`numbers = (10, 20, 30, 40, 50)
+
+first, *middle, last = numbers
+
+print(first)
+print(middle)
+print(last)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+10<br>
+[20, 30, 40]<br>
+50
+</div>
+
+
+<h2>
+    Nested Tuples
+</h2>
+
+<p>
+    A tuple can contain other tuples. Such a structure is called
+    a <b>nested tuple</b>.
+</p>
+
+${codeBlock(`students = (
+    ("Rahul", 20),
+    ("Amit", 21),
+    ("Neha", 19)
+)
+
+print(students[0])
+print(students[0][0])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+('Rahul', 20)<br>
+Rahul
+</div>
+
+
+<h2>
+    Tuple Containing a List
+</h2>
+
+<p>
+    Although a tuple itself is immutable, it can contain mutable
+    objects such as lists. The list inside the tuple can still
+    be modified.
+</p>
+
+${codeBlock(`data = ("Rahul", [80, 90, 85])
+
+data[1][0] = 95
+
+print(data)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+('Rahul', [95, 90, 85])
+</div>
+
+<p>
+    The tuple structure itself has not changed. Only the list
+    stored inside the tuple was modified.
+</p>
+
+
+<h2>
+    Converting a List into a Tuple
+</h2>
+
+<p>
+    The <b>tuple()</b> function can be used to convert another
+    iterable, such as a list, into a tuple.
+</p>
+
+${codeBlock(`numbers = [10, 20, 30]
+
+result = tuple(numbers)
+
+print(result)
+print(type(result))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(10, 20, 30)<br>
+&lt;class 'tuple'&gt;
+</div>
+
+
+<h2>
+    Converting a Tuple into a List
+</h2>
+
+<p>
+    The <b>list()</b> function can be used to convert a tuple
+    into a list.
+</p>
+
+${codeBlock(`numbers = (10, 20, 30)
+
+result = list(numbers)
+
+print(result)
+print(type(result))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[10, 20, 30]<br>
+&lt;class 'list'&gt;
+</div>
+
+
+<h2>
+    Useful Functions with Tuples
+</h2>
+
+<table>
+    <tr>
+        <th>Function</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>len()</td>
+        <td>Returns the number of elements.</td>
+    </tr>
+    <tr>
+        <td>max()</td>
+        <td>Returns the largest value.</td>
+    </tr>
+    <tr>
+        <td>min()</td>
+        <td>Returns the smallest value.</td>
+    </tr>
+    <tr>
+        <td>sum()</td>
+        <td>Returns the sum of numeric elements.</td>
+    </tr>
+    <tr>
+        <td>sorted()</td>
+        <td>Returns a sorted list from the tuple.</td>
+    </tr>
+</table>
+
+
+<h3>
+    Example
+</h3>
+
+${codeBlock(`numbers = (10, 20, 30, 40, 50)
+
+print(len(numbers))
+print(max(numbers))
+print(min(numbers))
+print(sum(numbers))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+5<br>
+50<br>
+10<br>
+150
+</div>
+
+
+<h2>
+    Tuple vs List
+</h2>
+
+<table>
+    <tr>
+        <th>Tuple</th>
+        <th>List</th>
+    </tr>
+    <tr>
+        <td>Usually created using ()</td>
+        <td>Created using []</td>
+    </tr>
+    <tr>
+        <td>Immutable</td>
+        <td>Mutable</td>
+    </tr>
+    <tr>
+        <td>Fewer methods</td>
+        <td>More methods</td>
+    </tr>
+    <tr>
+        <td>Suitable for fixed data</td>
+        <td>Suitable for changeable data</td>
+    </tr>
+    <tr>
+        <td>Allows duplicate values</td>
+        <td>Allows duplicate values</td>
+    </tr>
+    <tr>
+        <td>Supports indexing</td>
+        <td>Supports indexing</td>
+    </tr>
+</table>
+
+
+<h2>
+    When to Use a Tuple?
+</h2>
+
+<p>
+    Tuples are useful when you have a collection of values that
+    should not be changed during the execution of the program.
+</p>
+
+<p>
+    For example, coordinates, fixed configuration values, and
+    records containing related information can be stored using
+    tuples.
+</p>
+
+${codeBlock(`coordinates = (19.0760, 72.8777)
+
+print("Latitude:", coordinates[0])
+print("Longitude:", coordinates[1])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Latitude: 19.076<br>
+Longitude: 72.8777
+</div>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Tuples are created using parentheses <b>()</b>.</li>
+    <li>Tuples are ordered collections.</li>
+    <li>Tuple indexing starts from <b>0</b>.</li>
+    <li>Negative indexing is supported.</li>
+    <li>Tuples are immutable.</li>
+    <li>Tuples allow duplicate values.</li>
+    <li>A tuple can contain different data types.</li>
+    <li>A single-element tuple requires a comma.</li>
+    <li>Tuples support slicing.</li>
+    <li>The main tuple methods are <b>count()</b> and <b>index()</b>.</li>
+    <li>Tuples support packing and unpacking.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    A tuple is an ordered and immutable collection used to store
+    multiple values. Tuples support indexing, slicing, looping,
+    packing, unpacking, and several useful operations. Because
+    tuples cannot be modified after creation, they are useful for
+    storing data that should remain fixed.
+</p>
 
 `,
 
