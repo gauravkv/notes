@@ -3938,23 +3938,80 @@ functions: `
 </h1>
 
 <div class="subtitle">
-    Create reusable blocks of code.
+    Create reusable blocks of code to perform specific tasks.
 </div>
 
 <div class="divider"></div>
 
 
+<h2>
+    What is a Function?
+</h2>
+
 <p>
-    A function is a reusable block of code designed
-    to perform a particular task.
+    A function is a reusable block of code designed to perform
+    a specific task. Functions help make programs organized,
+    readable, and easier to maintain.
+</p>
+
+<p>
+    Instead of writing the same code repeatedly, we can define
+    it once inside a function and call it whenever required.
 </p>
 
 
+<h2>
+    Creating a Function
+</h2>
+
+<p>
+    In Python, a function is created using the <b>def</b> keyword,
+    followed by the function name and parentheses.
+</p>
+
+<h3>
+    Syntax
+</h3>
+
+${codeBlock(`def function_name():
+    # code to execute`, "Python")}
+
+
+<h2>
+    Example
+</h2>
+
+${codeBlock(`def greet():
+    print("Hello, welcome to Python!")
+
+greet()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello, welcome to Python!
+</div>
+
+<p>
+    The function is defined using <b>def</b> and is executed
+    when we call it using its name followed by parentheses.
+</p>
+
+
+<h2>
+    Function with Parameters
+</h2>
+
+<p>
+    Parameters allow us to pass data to a function.
+</p>
+
 ${codeBlock(`def greet(name):
-    return "Hello " + name
+    print("Hello", name)
 
-print(greet("Rahul"))`, "Python")}
-
+greet("Rahul")`, "Python")}
 
 <div class="output-title">
     Output
@@ -3963,6 +4020,94 @@ print(greet("Rahul"))`, "Python")}
 <div class="output">
 Hello Rahul
 </div>
+
+
+<h2>
+    Multiple Parameters
+</h2>
+
+<p>
+    A function can accept multiple parameters.
+</p>
+
+${codeBlock(`def add(a, b):
+    print(a + b)
+
+add(10, 20)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30
+</div>
+
+
+<h2>
+    Return Value
+</h2>
+
+<p>
+    A function can return a result using the <b>return</b>
+    statement. The returned value can then be stored in a
+    variable or used in another expression.
+</p>
+
+${codeBlock(`def add(a, b):
+    return a + b
+
+result = add(10, 20)
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30
+</div>
+
+
+<h2>
+    Why Use Functions?
+</h2>
+
+<ul>
+    <li>Functions reduce code repetition.</li>
+    <li>They make programs easier to understand.</li>
+    <li>They make code reusable.</li>
+    <li>They make debugging and maintenance easier.</li>
+    <li>Large programs can be divided into smaller tasks.</li>
+</ul>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Use <b>def</b> to define a function.</li>
+    <li>A function runs when it is called.</li>
+    <li>Parameters receive values passed to a function.</li>
+    <li>Arguments are the actual values passed during the function call.</li>
+    <li>Use <b>return</b> to send a value back from a function.</li>
+    <li>Function code must be properly indented.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Functions are reusable blocks of code that perform specific
+    tasks. They help reduce repetition and make Python programs
+    more organized and easier to maintain. Functions can accept
+    parameters and can return values using the <b>return</b>
+    statement.
+</p>
 
 `,
 
