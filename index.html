@@ -2349,41 +2349,635 @@ print(result)`, "Python")}
 ===================================================== */
 
 conditions: `
-
 <h1>
     Conditional Statements
 </h1>
 
 <div class="subtitle">
-    Execute different code based on conditions.
+    Make decisions and control the flow of a Python program.
 </div>
 
 <div class="divider"></div>
 
 
+<h2>
+    What is a Conditional Statement?
+</h2>
+
 <p>
-    Conditional statements allow a program to make
-    decisions. The most commonly used statements are
-    <strong>if</strong>, <strong>elif</strong> and
-    <strong>else</strong>.
+    Conditional statements are used to make decisions in a Python
+    program. They allow a program to execute different blocks of
+    code depending on whether a condition is <b>True</b> or
+    <b>False</b>.
 </p>
 
+<p>
+    Conditional statements are commonly used with comparison and
+    logical operators.
+</p>
 
-${codeBlock(`age = 18
+${codeBlock(`age = 20
 
 if age >= 18:
-    print("Eligible to vote")
-else:
-    print("Not eligible to vote")`, "Python")}
-
+    print("You are eligible to vote.")`, "Python")}
 
 <div class="output-title">
     Output
 </div>
 
 <div class="output">
-Eligible to vote
+You are eligible to vote.
 </div>
+
+
+<h2>
+    Types of Conditional Statements
+</h2>
+
+<p>
+    Python provides several ways to implement conditions:
+</p>
+
+<ul>
+    <li>if statement</li>
+    <li>if-else statement</li>
+    <li>if-elif-else statement</li>
+    <li>Nested if statement</li>
+    <li>Conditional Expression (Ternary Operator)</li>
+</ul>
+
+
+<h2>
+    1. if Statement
+</h2>
+
+<p>
+    The <b>if</b> statement is used to execute a block of code
+    only when a specified condition is <b>True</b>.
+</p>
+
+<p>
+    If the condition is False, the code inside the if block is
+    skipped.
+</p>
+
+<h3>
+    Syntax
+</h3>
+
+${codeBlock(`if condition:
+    # code to execute`, "Python")}
+
+
+<h3>
+    Example
+</h3>
+
+${codeBlock(`age = 20
+
+if age >= 18:
+    print("You are an adult.")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+You are an adult.
+</div>
+
+
+<h3>
+    Example with a False Condition
+</h3>
+
+${codeBlock(`age = 15
+
+if age >= 18:
+    print("You are an adult.")
+
+print("Program completed.")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Program completed.
+</div>
+
+<p>
+    Since <b>age >= 18</b> is False, the statement inside the
+    if block is not executed.
+</p>
+
+
+<h2>
+    Indentation in if Statement
+</h2>
+
+<p>
+    Python uses <b>indentation</b> to define a block of code.
+    Statements that belong to an if statement must be indented.
+</p>
+
+${codeBlock(`age = 20
+
+if age >= 18:
+    print("Eligible")
+    print("You can vote.")`, "Python")}
+
+<p>
+    Usually, four spaces are used for indentation in Python.
+    Incorrect indentation can result in an <b>IndentationError</b>.
+</p>
+
+
+<h2>
+    2. if-else Statement
+</h2>
+
+<p>
+    The <b>if-else</b> statement is used when there are two possible
+    outcomes. If the condition is True, the if block executes.
+    Otherwise, the else block executes.
+</p>
+
+<h3>
+    Syntax
+</h3>
+
+${codeBlock(`if condition:
+    # code when condition is True
+else:
+    # code when condition is False`, "Python")}
+
+
+<h3>
+    Example
+</h3>
+
+${codeBlock(`age = 16
+
+if age >= 18:
+    print("You can vote.")
+else:
+    print("You cannot vote.")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+You cannot vote.
+</div>
+
+
+<h3>
+    Even or Odd Example
+</h3>
+
+<p>
+    The modulus operator <b>%</b> can be used to determine whether
+    a number is even or odd.
+</p>
+
+${codeBlock(`number = 7
+
+if number % 2 == 0:
+    print("Even number")
+else:
+    print("Odd number")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Odd number
+</div>
+
+
+<h2>
+    3. if-elif-else Statement
+</h2>
+
+<p>
+    The <b>if-elif-else</b> statement is used when there are
+    multiple conditions to check.
+</p>
+
+<p>
+    Python checks the conditions from top to bottom. As soon as
+    it finds a True condition, its block is executed and the
+    remaining conditions are skipped.
+</p>
+
+<h3>
+    Syntax
+</h3>
+
+${codeBlock(`if condition1:
+    # code
+elif condition2:
+    # code
+elif condition3:
+    # code
+else:
+    # code`, "Python")}
+
+
+<h3>
+    Example
+</h3>
+
+${codeBlock(`marks = 75
+
+if marks >= 90:
+    print("Grade A+")
+elif marks >= 80:
+    print("Grade A")
+elif marks >= 70:
+    print("Grade B")
+elif marks >= 60:
+    print("Grade C")
+else:
+    print("Fail")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Grade B
+</div>
+
+
+<h2>
+    Multiple Conditions
+</h2>
+
+<p>
+    You can use logical operators such as <b>and</b>, <b>or</b>,
+    and <b>not</b> to combine multiple conditions.
+</p>
+
+<h3>
+    Using and
+</h3>
+
+${codeBlock(`age = 25
+
+if age >= 18 and age <= 60:
+    print("Eligible")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Eligible
+</div>
+
+
+<h3>
+    Using or
+</h3>
+
+${codeBlock(`day = "Sunday"
+
+if day == "Saturday" or day == "Sunday":
+    print("Weekend")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Weekend
+</div>
+
+
+<h3>
+    Using not
+</h3>
+
+${codeBlock(`is_raining = False
+
+if not is_raining:
+    print("You can go outside.")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+You can go outside.
+</div>
+
+
+<h2>
+    4. Nested if Statement
+</h2>
+
+<p>
+    An <b>if statement inside another if statement</b> is called
+    a nested if statement.
+</p>
+
+<p>
+    Nested conditions are useful when one condition needs to be
+    checked only after another condition is satisfied.
+</p>
+
+<h3>
+    Example
+</h3>
+
+${codeBlock(`age = 20
+has_id = True
+
+if age >= 18:
+    if has_id:
+        print("You are allowed to enter.")
+    else:
+        print("ID is required.")
+else:
+    print("You are underage.")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+You are allowed to enter.
+</div>
+
+
+<h2>
+    Nested if with Multiple Levels
+</h2>
+
+${codeBlock(`username = "admin"
+password = "1234"
+
+if username == "admin":
+    if password == "1234":
+        print("Login successful.")
+    else:
+        print("Incorrect password.")
+else:
+    print("Invalid username.")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Login successful.
+</div>
+
+
+<h2>
+    5. Conditional Expression
+</h2>
+
+<p>
+    Python provides a short way of writing a simple if-else
+    statement called a <b>conditional expression</b>.
+    It is also commonly called the <b>ternary operator</b>.
+</p>
+
+<h3>
+    Syntax
+</h3>
+
+${codeBlock(`value_if_true if condition else value_if_false`, "Python")}
+
+
+<h3>
+    Example
+</h3>
+
+${codeBlock(`age = 20
+
+result = "Adult" if age >= 18 else "Minor"
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Adult
+</div>
+
+
+<h2>
+    Comparing Strings
+</h2>
+
+<p>
+    Conditional statements can also be used to compare strings.
+</p>
+
+${codeBlock(`password = "python123"
+
+if password == "python123":
+    print("Correct password")
+else:
+    print("Incorrect password")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Correct password
+</div>
+
+
+<h2>
+    Checking Membership with Conditions
+</h2>
+
+<p>
+    The <b>in</b> operator can be used inside a condition to check
+    whether a value exists in a collection.
+</p>
+
+${codeBlock(`fruits = ["apple", "banana", "mango"]
+
+if "mango" in fruits:
+    print("Mango is available.")
+else:
+    print("Mango is not available.")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Mango is available.
+</div>
+
+
+<h2>
+    Checking Multiple Ranges
+</h2>
+
+<p>
+    Python allows you to write chained comparisons. This can make
+    range checking shorter and easier to read.
+</p>
+
+${codeBlock(`age = 25
+
+if 18 <= age <= 60:
+    print("Age is between 18 and 60.")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Age is between 18 and 60.
+</div>
+
+
+<h2>
+    Using pass with Conditions
+</h2>
+
+<p>
+    Sometimes you may want to create a conditional block but do
+    not want to execute any code yet. In such cases, Python
+    provides the <b>pass</b> statement.
+</p>
+
+${codeBlock(`age = 20
+
+if age >= 18:
+    pass
+else:
+    print("Underage")`, "Python")}
+
+<p>
+    The <b>pass</b> statement does nothing. It is commonly used
+    as a placeholder when writing code that will be completed later.
+</p>
+
+
+<h2>
+    Truthy and Falsy Values
+</h2>
+
+<p>
+    Python does not always require a comparison such as
+    <b>value == True</b>. Values can be directly used in a condition.
+</p>
+
+<p>
+    Some values are considered <b>Falsy</b>, such as:
+</p>
+
+<ul>
+    <li>False</li>
+    <li>None</li>
+    <li>0</li>
+    <li>0.0</li>
+    <li>Empty string ""</li>
+    <li>Empty list []</li>
+    <li>Empty tuple ()</li>
+    <li>Empty dictionary {}</li>
+    <li>Empty set set()</li>
+</ul>
+
+<p>
+    Most other values are considered <b>Truthy</b>.
+</p>
+
+${codeBlock(`name = ""
+
+if name:
+    print("Name is available.")
+else:
+    print("Name is empty.")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Name is empty.
+</div>
+
+
+<h2>
+    Practical Example
+</h2>
+
+<p>
+    The following example uses conditional statements to calculate
+    a student's result based on marks.
+</p>
+
+${codeBlock(`marks = 82
+
+if marks >= 90:
+    grade = "A+"
+elif marks >= 80:
+    grade = "A"
+elif marks >= 70:
+    grade = "B"
+elif marks >= 60:
+    grade = "C"
+elif marks >= 40:
+    grade = "D"
+else:
+    grade = "F"
+
+print("Grade:", grade)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Grade: A
+</div>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Use <b>if</b> to check a condition.</li>
+    <li>Use <b>else</b> when there are two possible outcomes.</li>
+    <li>Use <b>elif</b> to check multiple conditions.</li>
+    <li>Python uses indentation to define code blocks.</li>
+    <li>A condition normally produces a Boolean result: True or False.</li>
+    <li>Use <b>and</b>, <b>or</b>, and <b>not</b> to combine conditions.</li>
+    <li>A nested if is an if statement placed inside another if statement.</li>
+    <li>Use a conditional expression for simple one-line if-else logic.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Conditional statements allow Python programs to make decisions
+    based on different conditions. The <b>if</b> statement handles
+    a single condition, <b>if-else</b> handles two possible outcomes,
+    and <b>if-elif-else</b> handles multiple conditions. Nested if
+    statements can be used when conditions depend on other conditions,
+    while conditional expressions provide a short way to write simple
+    if-else statements.
+</p>
 
 `,
 
