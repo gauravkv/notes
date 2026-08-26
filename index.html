@@ -2993,25 +2993,315 @@ loops: `
 </h1>
 
 <div class="subtitle">
-    Repeat a block of code multiple times.
+    Repeat a block of code multiple times using Python loops.
 </div>
 
 <div class="divider"></div>
 
 
 <h2>
-    For Loop
+    What is a Loop?
 </h2>
 
 <p>
-    A for loop is used to iterate over a sequence
-    such as a list, string or range.
+    A loop is used to execute a block of code repeatedly.
+    Instead of writing the same code multiple times, we can
+    use a loop to repeat the code automatically.
+</p>
+
+<p>
+    Loops are especially useful when working with collections,
+    processing data, displaying repeated output, and performing
+    repetitive calculations.
+</p>
+
+${codeBlock(`for i in range(5):
+    print("Hello")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello<br>
+Hello<br>
+Hello<br>
+Hello<br>
+Hello
+</div>
+
+
+<h2>
+    Types of Loops in Python
+</h2>
+
+<p>
+    Python mainly provides two types of loops:
+</p>
+
+<ul>
+    <li><b>for loop</b> – Used to iterate over a sequence or collection.</li>
+    <li><b>while loop</b> – Used to repeat code while a condition is True.</li>
+</ul>
+
+<p>
+    Python also provides loop control statements such as
+    <b>break</b>, <b>continue</b>, and <b>pass</b>.
 </p>
 
 
-${codeBlock(`for i in range(1, 6):
+<h2>
+    1. for Loop
+</h2>
+
+<p>
+    A <b>for loop</b> is used to iterate over a sequence such as
+    a list, tuple, string, set, dictionary, or range of numbers.
+</p>
+
+<h3>
+    Syntax
+</h3>
+
+${codeBlock(`for variable in sequence:
+    # code to execute`, "Python")}
+
+
+<h3>
+    Simple Example
+</h3>
+
+${codeBlock(`for i in range(5):
     print(i)`, "Python")}
 
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+0<br>
+1<br>
+2<br>
+3<br>
+4
+</div>
+
+<p>
+    Here, <b>i</b> takes each value from the range one by one.
+</p>
+
+
+<h2>
+    Using for Loop with a List
+</h2>
+
+<p>
+    A for loop can be used to access each item of a list.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana", "Mango"]
+
+for fruit in fruits:
+    print(fruit)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Apple<br>
+Banana<br>
+Mango
+</div>
+
+
+<h2>
+    Using for Loop with a String
+</h2>
+
+<p>
+    A string is a sequence of characters, so we can use a
+    for loop to access each character individually.
+</p>
+
+${codeBlock(`name = "Python"
+
+for character in name:
+    print(character)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+P<br>
+y<br>
+t<br>
+h<br>
+o<br>
+n
+</div>
+
+
+<h2>
+    Using range()
+</h2>
+
+<p>
+    The <b>range()</b> function is commonly used with for loops
+    to generate a sequence of numbers.
+</p>
+
+<h3>
+    range(stop)
+</h3>
+
+<p>
+    When only one value is provided, it represents the stopping
+    point. The sequence starts from <b>0</b> and stops before
+    the specified value.
+</p>
+
+${codeBlock(`for i in range(5):
+    print(i)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+0<br>
+1<br>
+2<br>
+3<br>
+4
+</div>
+
+
+<h3>
+    range(start, stop)
+</h3>
+
+<p>
+    You can specify both the starting and stopping values.
+</p>
+
+${codeBlock(`for i in range(2, 6):
+    print(i)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+2<br>
+3<br>
+4<br>
+5
+</div>
+
+
+<h3>
+    range(start, stop, step)
+</h3>
+
+<p>
+    The third argument specifies the amount by which the value
+    should increase or decrease.
+</p>
+
+${codeBlock(`for i in range(2, 11, 2):
+    print(i)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+2<br>
+4<br>
+6<br>
+8<br>
+10
+</div>
+
+
+<h2>
+    Reverse Loop
+</h2>
+
+<p>
+    A negative step can be used to count backwards.
+</p>
+
+${codeBlock(`for i in range(5, 0, -1):
+    print(i)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+5<br>
+4<br>
+3<br>
+2<br>
+1
+</div>
+
+
+<h2>
+    for Loop with if Statement
+</h2>
+
+<p>
+    A loop can be combined with conditional statements to make
+    decisions for each item.
+</p>
+
+${codeBlock(`for i in range(1, 11):
+    if i % 2 == 0:
+        print(i)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+2<br>
+4<br>
+6<br>
+8<br>
+10
+</div>
+
+
+<h2>
+    2. while Loop
+</h2>
+
+<p>
+    A <b>while loop</b> repeatedly executes a block of code
+    as long as a specified condition remains True.
+</p>
+
+<h3>
+    Syntax
+</h3>
+
+${codeBlock(`while condition:
+    # code to execute`, "Python")}
+
+
+<h3>
+    Simple Example
+</h3>
+
+${codeBlock(`count = 1
+
+while count <= 5:
+    print(count)
+    count += 1`, "Python")}
 
 <div class="output-title">
     Output
@@ -3024,6 +3314,615 @@ ${codeBlock(`for i in range(1, 6):
 4<br>
 5
 </div>
+
+<p>
+    The variable <b>count</b> is increased after every iteration.
+    When count becomes 6, the condition becomes False and the
+    loop stops.
+</p>
+
+
+<h2>
+    Important: Updating a while Loop
+</h2>
+
+<p>
+    When using a while loop, make sure the condition eventually
+    becomes False. Otherwise, the loop can become an
+    <b>infinite loop</b>.
+</p>
+
+${codeBlock(`count = 1
+
+while count <= 5:
+    print(count)
+    count += 1`, "Python")}
+
+<p>
+    Here, <b>count += 1</b> changes the value of count during
+    every iteration, allowing the loop to eventually stop.
+</p>
+
+
+<h2>
+    Infinite Loop
+</h2>
+
+<p>
+    An infinite loop is a loop that never becomes False.
+    It continues running until the program is stopped.
+</p>
+
+${codeBlock(`while True:
+    print("This is an infinite loop")`, "Python")}
+
+<p>
+    Infinite loops can be useful for programs that need to keep
+    running until a specific event occurs, but they must be
+    controlled carefully.
+</p>
+
+
+<h2>
+    Loop Control Statements
+</h2>
+
+<p>
+    Python provides three important statements for controlling
+    the execution of loops:
+</p>
+
+<ul>
+    <li><b>break</b> – Stops the loop immediately.</li>
+    <li><b>continue</b> – Skips the current iteration.</li>
+    <li><b>pass</b> – Does nothing and acts as a placeholder.</li>
+</ul>
+
+
+<h2>
+    3. break Statement
+</h2>
+
+<p>
+    The <b>break</b> statement immediately terminates the loop,
+    even if the loop condition is still True.
+</p>
+
+${codeBlock(`for i in range(1, 11):
+    if i == 5:
+        break
+
+    print(i)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1<br>
+2<br>
+3<br>
+4
+</div>
+
+<p>
+    When <b>i</b> becomes 5, the break statement stops the loop.
+</p>
+
+
+<h3>
+    break with while Loop
+</h3>
+
+${codeBlock(`count = 1
+
+while count <= 10:
+    if count == 6:
+        break
+
+    print(count)
+    count += 1`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1<br>
+2<br>
+3<br>
+4<br>
+5
+</div>
+
+
+<h2>
+    4. continue Statement
+</h2>
+
+<p>
+    The <b>continue</b> statement skips the remaining code
+    in the current iteration and moves to the next iteration.
+</p>
+
+${codeBlock(`for i in range(1, 6):
+    if i == 3:
+        continue
+
+    print(i)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1<br>
+2<br>
+4<br>
+5
+</div>
+
+<p>
+    When <b>i</b> is 3, the continue statement skips that
+    iteration.
+</p>
+
+
+<h2>
+    5. pass Statement
+</h2>
+
+<p>
+    The <b>pass</b> statement does nothing. It is used as a
+    placeholder when a statement is syntactically required
+    but no action needs to be performed.
+</p>
+
+${codeBlock(`for i in range(5):
+    if i == 2:
+        pass
+
+    print(i)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+0<br>
+1<br>
+2<br>
+3<br>
+4
+</div>
+
+
+<h2>
+    Nested Loops
+</h2>
+
+<p>
+    A loop inside another loop is called a <b>nested loop</b>.
+    For every iteration of the outer loop, the inner loop
+    executes completely.
+</p>
+
+${codeBlock(`for i in range(1, 4):
+    for j in range(1, 4):
+        print(i, j)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1 1<br>
+1 2<br>
+1 3<br>
+2 1<br>
+2 2<br>
+2 3<br>
+3 1<br>
+3 2<br>
+3 3
+</div>
+
+
+<h2>
+    Printing a Pattern
+</h2>
+
+<p>
+    Nested loops are commonly used to create patterns.
+</p>
+
+${codeBlock(`for i in range(1, 6):
+    for j in range(i):
+        print("*", end=" ")
+
+    print()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+*<br>
+* *<br>
+* * *<br>
+* * * *<br>
+* * * * *
+</div>
+
+
+<h2>
+    Looping Through a Dictionary
+</h2>
+
+<p>
+    A for loop can also be used to iterate through a dictionary.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}
+
+for key in student:
+    print(key)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+name<br>
+age<br>
+course
+</div>
+
+
+<h3>
+    Dictionary Values
+</h3>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}
+
+for value in student.values():
+    print(value)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+20<br>
+Python
+</div>
+
+
+<h3>
+    Dictionary Keys and Values
+</h3>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20
+}
+
+for key, value in student.items():
+    print(key, ":", value)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+name : Rahul<br>
+age : 20
+</div>
+
+
+<h2>
+    Looping with enumerate()
+</h2>
+
+<p>
+    The <b>enumerate()</b> function can be used when you need
+    both the index and the value while looping through a sequence.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana", "Mango"]
+
+for index, fruit in enumerate(fruits):
+    print(index, fruit)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+0 Apple<br>
+1 Banana<br>
+2 Mango
+</div>
+
+
+<h2>
+    Looping with zip()
+</h2>
+
+<p>
+    The <b>zip()</b> function allows you to iterate through
+    multiple sequences at the same time.
+</p>
+
+${codeBlock(`names = ["Rahul", "Amit", "Neha"]
+marks = [85, 90, 78]
+
+for name, mark in zip(names, marks):
+    print(name, mark)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul 85<br>
+Amit 90<br>
+Neha 78
+</div>
+
+
+<h2>
+    for Loop with else
+</h2>
+
+<p>
+    Python allows an <b>else</b> block to be used with a loop.
+    The else block executes when the loop finishes normally,
+    without encountering a <b>break</b> statement.
+</p>
+
+${codeBlock(`for i in range(5):
+    print(i)
+else:
+    print("Loop completed.")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+0<br>
+1<br>
+2<br>
+3<br>
+4<br>
+Loop completed.
+</div>
+
+
+<h2>
+    while Loop with else
+</h2>
+
+<p>
+    The else block can also be used with a while loop.
+</p>
+
+${codeBlock(`count = 1
+
+while count <= 3:
+    print(count)
+    count += 1
+else:
+    print("Loop completed.")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1<br>
+2<br>
+3<br>
+Loop completed.
+</div>
+
+
+<h2>
+    else with break
+</h2>
+
+<p>
+    If a loop is terminated using <b>break</b>, its else block
+    does not execute.
+</p>
+
+${codeBlock(`for i in range(1, 6):
+    if i == 3:
+        break
+
+    print(i)
+else:
+    print("Loop completed.")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1<br>
+2
+</div>
+
+
+<h2>
+    Practical Example: Multiplication Table
+</h2>
+
+<p>
+    Loops are useful for generating multiplication tables.
+</p>
+
+${codeBlock(`number = 5
+
+for i in range(1, 11):
+    print(number, "x", i, "=", number * i)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+5 x 1 = 5<br>
+5 x 2 = 10<br>
+5 x 3 = 15<br>
+5 x 4 = 20<br>
+5 x 5 = 25<br>
+5 x 6 = 30<br>
+5 x 7 = 35<br>
+5 x 8 = 40<br>
+5 x 9 = 45<br>
+5 x 10 = 50
+</div>
+
+
+<h2>
+    Practical Example: Sum of Numbers
+</h2>
+
+<p>
+    A loop can be used to calculate the sum of a sequence of numbers.
+</p>
+
+${codeBlock(`total = 0
+
+for i in range(1, 6):
+    total += i
+
+print("Total:", total)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Total: 15
+</div>
+
+
+<h2>
+    Practical Example: Finding an Item
+</h2>
+
+<p>
+    The <b>break</b> statement can be used to stop searching
+    once the required item is found.
+</p>
+
+${codeBlock(`numbers = [10, 20, 30, 40, 50]
+search = 30
+
+for number in numbers:
+    if number == search:
+        print("Number found.")
+        break`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Number found.
+</div>
+
+
+<h2>
+    Practical Example: Count Even Numbers
+</h2>
+
+${codeBlock(`numbers = [10, 15, 20, 25, 30, 35]
+
+count = 0
+
+for number in numbers:
+    if number % 2 == 0:
+        count += 1
+
+print("Even numbers:", count)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Even numbers: 3
+</div>
+
+
+<h2>
+    for Loop vs while Loop
+</h2>
+
+<table>
+    <tr>
+        <th>for Loop</th>
+        <th>while Loop</th>
+    </tr>
+    <tr>
+        <td>Used to iterate over a sequence.</td>
+        <td>Used while a condition is True.</td>
+    </tr>
+    <tr>
+        <td>Commonly used with range(), lists, strings, etc.</td>
+        <td>Commonly used when the number of iterations is not known.</td>
+    </tr>
+    <tr>
+        <td>Usually has a predictable number of iterations.</td>
+        <td>May continue until a condition changes.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Use a <b>for loop</b> to iterate over a sequence.</li>
+    <li>Use a <b>while loop</b> when repetition depends on a condition.</li>
+    <li>Use <b>range()</b> to generate a sequence of numbers.</li>
+    <li>Use <b>break</b> to stop a loop.</li>
+    <li>Use <b>continue</b> to skip the current iteration.</li>
+    <li>Use <b>pass</b> as a placeholder.</li>
+    <li>Loops can be nested inside other loops.</li>
+    <li>A loop can have an <b>else</b> block.</li>
+    <li>Always make sure a while loop can eventually become False.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Loops allow Python programs to repeat a block of code efficiently.
+    The <b>for loop</b> is commonly used for iterating through
+    sequences, while the <b>while loop</b> repeats code as long as
+    a condition is True. Python also provides <b>break</b>,
+    <b>continue</b>, and <b>pass</b> to control loop execution.
+    Nested loops, range(), enumerate(), and zip() make loops useful
+    for working with collections, patterns, calculations, and
+    real-world data processing.
+</p>
 
 `,
 
