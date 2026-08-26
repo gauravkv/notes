@@ -4123,66 +4123,300 @@ functiontypes: `
 </h1>
 
 <div class="subtitle">
-    Understand the different types of functions
-    available in Python.
+    Understand different ways functions can be defined and used in Python.
 </div>
 
 <div class="divider"></div>
 
 
-<p>
-    Python supports different types of functions
-    depending on how they are created and used.
-</p>
-
-
 <h2>
-    1. Built-in Functions
+    Types of Functions
 </h2>
 
 <p>
-    Built-in functions are already provided by Python.
-    We can use them directly without defining them.
+    Functions in Python can be categorized based on whether they
+    accept parameters and whether they return a value.
 </p>
 
+<p>
+    The four common types are:
+</p>
 
-${codeBlock(`numbers = [10, 20, 30]
-
-print(len(numbers))
-print(max(numbers))
-print(sum(numbers))`, "Python")}
+<ul>
+    <li>Function without parameters and without return value</li>
+    <li>Function with parameters and without return value</li>
+    <li>Function without parameters and with return value</li>
+    <li>Function with parameters and with return value</li>
+</ul>
 
 
 <h2>
-    2. User-defined Functions
+    1. Function Without Parameters and Without Return Value
 </h2>
 
 <p>
-    User-defined functions are created by the programmer
-    using the <strong>def</strong> keyword.
+    This type of function does not accept any values and does not
+    return a result. It simply performs a specific task.
 </p>
 
+${codeBlock(`def greet():
+    print("Hello, Python!")
+
+greet()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello, Python!
+</div>
+
+
+<h2>
+    2. Function With Parameters and Without Return Value
+</h2>
+
+<p>
+    This type of function accepts values through parameters but
+    does not return a value. It usually performs an operation
+    and displays the result.
+</p>
+
+${codeBlock(`def greet(name):
+    print("Hello", name)
+
+greet("Rahul")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello Rahul
+</div>
+
+
+<h3>
+    Example with Multiple Parameters
+</h3>
+
+${codeBlock(`def add(a, b):
+    print("Sum =", a + b)
+
+add(10, 20)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Sum = 30
+</div>
+
+
+<h2>
+    3. Function Without Parameters and With Return Value
+</h2>
+
+<p>
+    This type of function does not accept any parameters but
+    returns a value using the <b>return</b> statement.
+</p>
+
+${codeBlock(`def get_number():
+    return 100
+
+result = get_number()
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+100
+</div>
+
+
+<h2>
+    4. Function With Parameters and With Return Value
+</h2>
+
+<p>
+    This type of function accepts parameters and returns a result.
+    It is one of the most commonly used forms of functions.
+</p>
 
 ${codeBlock(`def add(a, b):
     return a + b
 
-print(add(10, 20))`, "Python")}
+result = add(10, 20)
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30
+</div>
+
+
+<h3>
+    Example
+</h3>
+
+${codeBlock(`def calculate_area(length, width):
+    return length * width
+
+area = calculate_area(10, 5)
+
+print("Area =", area)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Area = 50
+</div>
 
 
 <h2>
-    3. Lambda Functions
+    Function with Default Parameters
 </h2>
 
 <p>
-    A lambda function is a small anonymous function
-    written using the <strong>lambda</strong> keyword.
+    A parameter can have a default value. If no value is provided
+    when the function is called, the default value is used.
 </p>
 
+${codeBlock(`def greet(name="User"):
+    print("Hello", name)
+
+greet()
+greet("Rahul")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello User<br>
+Hello Rahul
+</div>
+
+
+<h2>
+    Function with Keyword Arguments
+</h2>
+
+<p>
+    Keyword arguments allow us to pass values using the parameter
+    names. This makes function calls easier to understand.
+</p>
+
+${codeBlock(`def student(name, age):
+    print("Name:", name)
+    print("Age:", age)
+
+student(age=20, name="Rahul")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Name: Rahul<br>
+Age: 20
+</div>
+
+
+<h2>
+    Function with Variable Number of Arguments
+</h2>
+
+<p>
+    Python allows a function to accept any number of positional
+    arguments using <b>*args</b>.
+</p>
+
+${codeBlock(`def add(*numbers):
+    total = 0
+
+    for number in numbers:
+        total += number
+
+    return total
+
+print(add(10, 20))
+print(add(10, 20, 30, 40))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30<br>
+100
+</div>
+
+
+<h2>
+    Function with **kwargs
+</h2>
+
+<p>
+    The <b>**kwargs</b> syntax allows a function to accept multiple
+    keyword arguments. These arguments are stored as a dictionary.
+</p>
+
+${codeBlock(`def student_info(**details):
+    for key, value in details.items():
+        print(key, ":", value)
+
+student_info(
+    name="Rahul",
+    age=20,
+    course="Python"
+)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+name : Rahul<br>
+age : 20<br>
+course : Python
+</div>
+
+
+<h2>
+    Lambda Function
+</h2>
+
+<p>
+    A <b>lambda function</b> is a small anonymous function.
+    It can contain an expression and return its result.
+</p>
+
+<h3>
+    Syntax
+</h3>
+
+${codeBlock(`lambda arguments: expression`, "Python")}
+
+<h3>
+    Example
+</h3>
 
 ${codeBlock(`square = lambda x: x * x
 
 print(square(5))`, "Python")}
-
 
 <div class="output-title">
     Output
@@ -4191,6 +4425,50 @@ print(square(5))`, "Python")}
 <div class="output">
 25
 </div>
+
+
+<h2>
+    Recursive Function
+</h2>
+
+<p>
+    A <b>recursive function</b> is a function that calls itself.
+    Recursion is useful for solving problems that can be divided
+    into smaller versions of the same problem.
+</p>
+
+${codeBlock(`def countdown(n):
+    if n == 0:
+        print("Done!")
+    else:
+        print(n)
+        countdown(n - 1)
+
+countdown(3)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+3<br>
+2<br>
+1<br>
+Done!
+</div>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Python functions can be used in many different ways. They can
+    accept parameters, return values, use default or keyword
+    arguments, and even accept a variable number of arguments.
+    Python also supports special forms such as lambda functions
+    and recursive functions.
+</p>
 
 `,
 
