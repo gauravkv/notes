@@ -1659,41 +1659,687 @@ operators: `
 </h1>
 
 <div class="subtitle">
-    Perform calculations and comparisons in Python.
+    Perform calculations, comparisons, logical operations and more in Python.
 </div>
 
 <div class="divider"></div>
 
 
 <h2>
-    Arithmetic Operators
+    What is an Operator?
 </h2>
 
 <p>
-    Arithmetic operators are used to perform
-    mathematical calculations.
+    An operator is a special symbol or keyword used to perform
+    an operation on one or more values. The values on which an
+    operator works are called operands.
 </p>
 
+${codeBlock(`a = 10
+b = 5
+
+result = a + b
+
+print(result)`, "Python")}
+
+<p>
+    In the above example, <b>+</b> is the operator and
+    <b>a</b> and <b>b</b> are the operands.
+</p>
+
+
+<h2>
+    Types of Operators in Python
+</h2>
+
+<p>
+    Python provides several types of operators:
+</p>
+
+<ul>
+    <li>Arithmetic Operators</li>
+    <li>Assignment Operators</li>
+    <li>Comparison Operators</li>
+    <li>Logical Operators</li>
+    <li>Identity Operators</li>
+    <li>Membership Operators</li>
+    <li>Bitwise Operators</li>
+</ul>
+
+
+<h2>
+    1. Arithmetic Operators
+</h2>
+
+<p>
+    Arithmetic operators are used to perform mathematical
+    calculations such as addition, subtraction, multiplication
+    and division.
+</p>
+
+<table>
+    <tr>
+        <th>Operator</th>
+        <th>Name</th>
+        <th>Example</th>
+    </tr>
+    <tr>
+        <td>+</td>
+        <td>Addition</td>
+        <td>a + b</td>
+    </tr>
+    <tr>
+        <td>-</td>
+        <td>Subtraction</td>
+        <td>a - b</td>
+    </tr>
+    <tr>
+        <td>*</td>
+        <td>Multiplication</td>
+        <td>a * b</td>
+    </tr>
+    <tr>
+        <td>/</td>
+        <td>Division</td>
+        <td>a / b</td>
+    </tr>
+    <tr>
+        <td>%</td>
+        <td>Modulus</td>
+        <td>a % b</td>
+    </tr>
+    <tr>
+        <td>**</td>
+        <td>Exponentiation</td>
+        <td>a ** b</td>
+    </tr>
+    <tr>
+        <td>//</td>
+        <td>Floor Division</td>
+        <td>a // b</td>
+    </tr>
+</table>
+
+
+<h3>
+    Addition (+)
+</h3>
+
+<p>
+    The <b>+</b> operator adds two values.
+</p>
 
 ${codeBlock(`a = 10
 b = 3
 
-print(a + b)
-print(a - b)
-print(a * b)
-print(a / b)`, "Python")}
-
+print(a + b)`, "Python")}
 
 <div class="output-title">
     Output
 </div>
 
 <div class="output">
-13<br>
-7<br>
-30<br>
+13
+</div>
+
+
+<h3>
+    Subtraction (-)
+</h3>
+
+<p>
+    The <b>-</b> operator subtracts the second value from the first value.
+</p>
+
+${codeBlock(`a = 10
+b = 3
+
+print(a - b)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+7
+</div>
+
+
+<h3>
+    Multiplication (*)
+</h3>
+
+<p>
+    The <b>*</b> operator multiplies two values.
+</p>
+
+${codeBlock(`a = 10
+b = 3
+
+print(a * b)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30
+</div>
+
+
+<h3>
+    Division (/)
+</h3>
+
+<p>
+    The <b>/</b> operator performs division. The result of normal
+    division is always a floating-point number.
+</p>
+
+${codeBlock(`a = 10
+b = 3
+
+print(a / b)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
 3.3333333333333335
 </div>
+
+
+<h3>
+    Modulus (%)
+</h3>
+
+<p>
+    The <b>%</b> operator returns the remainder after division.
+</p>
+
+${codeBlock(`a = 10
+b = 3
+
+print(a % b)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1
+</div>
+
+
+<h3>
+    Exponentiation (**)
+</h3>
+
+<p>
+    The <b>**</b> operator is used to raise a number to a power.
+</p>
+
+${codeBlock(`a = 2
+b = 3
+
+print(a ** b)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+8
+</div>
+
+
+<h3>
+    Floor Division (//)
+</h3>
+
+<p>
+    The <b>//</b> operator performs division and returns the
+    floor value of the result.
+</p>
+
+${codeBlock(`a = 10
+b = 3
+
+print(a // b)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+3
+</div>
+
+
+<h2>
+    2. Assignment Operators
+</h2>
+
+<p>
+    Assignment operators are used to assign values to variables.
+    Python also provides shorthand assignment operators for
+    performing an operation and assignment at the same time.
+</p>
+
+<table>
+    <tr>
+        <th>Operator</th>
+        <th>Example</th>
+        <th>Equivalent To</th>
+    </tr>
+    <tr>
+        <td>=</td>
+        <td>x = 10</td>
+        <td>x = 10</td>
+    </tr>
+    <tr>
+        <td>+=</td>
+        <td>x += 5</td>
+        <td>x = x + 5</td>
+    </tr>
+    <tr>
+        <td>-=</td>
+        <td>x -= 5</td>
+        <td>x = x - 5</td>
+    </tr>
+    <tr>
+        <td>*=</td>
+        <td>x *= 5</td>
+        <td>x = x * 5</td>
+    </tr>
+    <tr>
+        <td>/=</td>
+        <td>x /= 5</td>
+        <td>x = x / 5</td>
+    </tr>
+    <tr>
+        <td>%=</td>
+        <td>x %= 5</td>
+        <td>x = x % 5</td>
+    </tr>
+    <tr>
+        <td>**=</td>
+        <td>x **= 2</td>
+        <td>x = x ** 2</td>
+    </tr>
+    <tr>
+        <td>//=</td>
+        <td>x //= 2</td>
+        <td>x = x // 2</td>
+    </tr>
+</table>
+
+
+<h3>
+    Example
+</h3>
+
+${codeBlock(`x = 10
+
+x += 5
+print(x)
+
+x *= 2
+print(x)
+
+x -= 10
+print(x)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+15<br>
+30<br>
+20
+</div>
+
+
+<h2>
+    3. Comparison Operators
+</h2>
+
+<p>
+    Comparison operators are used to compare two values.
+    They return either <b>True</b> or <b>False</b>.
+</p>
+
+<table>
+    <tr>
+        <th>Operator</th>
+        <th>Name</th>
+    </tr>
+    <tr>
+        <td>==</td>
+        <td>Equal to</td>
+    </tr>
+    <tr>
+        <td>!=</td>
+        <td>Not equal to</td>
+    </tr>
+    <tr>
+        <td>&gt;</td>
+        <td>Greater than</td>
+    </tr>
+    <tr>
+        <td>&lt;</td>
+        <td>Less than</td>
+    </tr>
+    <tr>
+        <td>&gt;=</td>
+        <td>Greater than or equal to</td>
+    </tr>
+    <tr>
+        <td>&lt;=</td>
+        <td>Less than or equal to</td>
+    </tr>
+</table>
+
+${codeBlock(`a = 10
+b = 5
+
+print(a == b)
+print(a != b)
+print(a > b)
+print(a < b)
+print(a >= b)
+print(a <= b)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+False<br>
+True<br>
+True<br>
+False<br>
+True<br>
+False
+</div>
+
+
+<h2>
+    4. Logical Operators
+</h2>
+
+<p>
+    Logical operators are used to combine multiple conditions.
+    They are commonly used with conditional statements.
+</p>
+
+<table>
+    <tr>
+        <th>Operator</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>and</td>
+        <td>Returns True if both conditions are True.</td>
+    </tr>
+    <tr>
+        <td>or</td>
+        <td>Returns True if at least one condition is True.</td>
+    </tr>
+    <tr>
+        <td>not</td>
+        <td>Reverses the result of a condition.</td>
+    </tr>
+</table>
+
+
+<h3>
+    and Operator
+</h3>
+
+${codeBlock(`age = 20
+
+print(age >= 18 and age <= 60)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h3>
+    or Operator
+</h3>
+
+${codeBlock(`age = 15
+
+print(age < 18 or age > 60)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h3>
+    not Operator
+</h3>
+
+${codeBlock(`is_logged_in = True
+
+print(not is_logged_in)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+False
+</div>
+
+
+<h2>
+    5. Identity Operators
+</h2>
+
+<p>
+    Identity operators are used to check whether two variables
+    refer to the same object in memory.
+</p>
+
+<table>
+    <tr>
+        <th>Operator</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>is</td>
+        <td>Returns True if both variables refer to the same object.</td>
+    </tr>
+    <tr>
+        <td>is not</td>
+        <td>Returns True if both variables do not refer to the same object.</td>
+    </tr>
+</table>
+
+${codeBlock(`a = [1, 2, 3]
+b = a
+
+print(a is b)
+print(a is not b)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+False
+</div>
+
+
+<h2>
+    6. Membership Operators
+</h2>
+
+<p>
+    Membership operators are used to check whether a value exists
+    inside a sequence such as a string, list, tuple, set, or dictionary.
+</p>
+
+<table>
+    <tr>
+        <th>Operator</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>in</td>
+        <td>Returns True if the value exists.</td>
+    </tr>
+    <tr>
+        <td>not in</td>
+        <td>Returns True if the value does not exist.</td>
+    </tr>
+</table>
+
+${codeBlock(`numbers = [10, 20, 30, 40]
+
+print(20 in numbers)
+print(50 in numbers)
+print(50 not in numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+False<br>
+True
+</div>
+
+
+<h2>
+    7. Bitwise Operators
+</h2>
+
+<p>
+    Bitwise operators work on numbers at the binary level.
+    They are mainly used in low-level programming, optimization,
+    networking, and other specialized applications.
+</p>
+
+<table>
+    <tr>
+        <th>Operator</th>
+        <th>Name</th>
+    </tr>
+    <tr>
+        <td>&amp;</td>
+        <td>Bitwise AND</td>
+    </tr>
+    <tr>
+        <td>|</td>
+        <td>Bitwise OR</td>
+    </tr>
+    <tr>
+        <td>^</td>
+        <td>Bitwise XOR</td>
+    </tr>
+    <tr>
+        <td>~</td>
+        <td>Bitwise NOT</td>
+    </tr>
+    <tr>
+        <td>&lt;&lt;</td>
+        <td>Left Shift</td>
+    </tr>
+    <tr>
+        <td>&gt;&gt;</td>
+        <td>Right Shift</td>
+    </tr>
+</table>
+
+${codeBlock(`a = 5
+b = 3
+
+print(a & b)
+print(a | b)
+print(a ^ b)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1<br>
+7<br>
+6
+</div>
+
+
+<h2>
+    Operator Precedence
+</h2>
+
+<p>
+    When an expression contains multiple operators, Python follows
+    a specific order called <b>operator precedence</b>.
+</p>
+
+<p>
+    For example, multiplication is performed before addition.
+</p>
+
+${codeBlock(`result = 10 + 5 * 2
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+20
+</div>
+
+<p>
+    You can use parentheses to control the order of evaluation.
+</p>
+
+${codeBlock(`result = (10 + 5) * 2
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30
+</div>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Operators are an important part of Python programming. Arithmetic
+    operators are used for calculations, assignment operators are used
+    to assign values, comparison operators compare values, and logical
+    operators combine conditions. Identity and membership operators
+    are useful for checking objects and values, while bitwise operators
+    work with binary representations of numbers.
+</p>
 
 `,
 
