@@ -4484,31 +4484,918 @@ lists: `
 </h1>
 
 <div class="subtitle">
-    Store multiple values in a single variable.
+    Store, access, modify, and manage multiple values using Python lists.
 </div>
 
 <div class="divider"></div>
 
 
+<h2>
+    What is a List?
+</h2>
+
 <p>
-    A list is an ordered and changeable collection
-    of elements. Lists can contain values of different
-    data types.
+    A <b>list</b> is a collection used to store multiple values
+    in a single variable. Lists can contain different types of
+    data such as numbers, strings, Boolean values, and even other
+    lists.
+</p>
+
+<p>
+    Lists are <b>ordered</b>, <b>changeable</b>, and allow
+    <b>duplicate values</b>.
 </p>
 
 
-${codeBlock(`fruits = ["Apple", "Banana", "Mango"]
+<h2>
+    Creating a List
+</h2>
 
-print(fruits[0])`, "Python")}
+<p>
+    Lists are created using square brackets <b>[]</b>.
+</p>
 
+${codeBlock(`numbers = [10, 20, 30, 40, 50]
+
+print(numbers)`, "Python")}
 
 <div class="output-title">
     Output
 </div>
 
 <div class="output">
-Apple
+[10, 20, 30, 40, 50]
 </div>
+
+
+<h2>
+    List with Different Data Types
+</h2>
+
+<p>
+    A Python list can contain values of different data types.
+</p>
+
+${codeBlock(`student = ["Rahul", 20, 85.5, True]
+
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+['Rahul', 20, 85.5, True]
+</div>
+
+
+<h2>
+    Empty List
+</h2>
+
+<p>
+    An empty list is a list that does not contain any elements.
+</p>
+
+${codeBlock(`numbers = []
+
+print(numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[]
+</div>
+
+
+<h2>
+    Accessing List Elements
+</h2>
+
+<p>
+    List elements can be accessed using their index. Python uses
+    <b>zero-based indexing</b>, which means the first element has
+    index <b>0</b>.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana", "Mango"]
+
+print(fruits[0])
+print(fruits[1])
+print(fruits[2])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Apple<br>
+Banana<br>
+Mango
+</div>
+
+
+<h2>
+    Negative Indexing
+</h2>
+
+<p>
+    Python also supports negative indexing. The last element has
+    index <b>-1</b>, the second-last element has index <b>-2</b>,
+    and so on.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana", "Mango"]
+
+print(fruits[-1])
+print(fruits[-2])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Mango<br>
+Banana
+</div>
+
+
+<h2>
+    Changing List Elements
+</h2>
+
+<p>
+    Lists are mutable, which means their elements can be changed
+    after the list is created.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana", "Mango"]
+
+fruits[1] = "Orange"
+
+print(fruits)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+['Apple', 'Orange', 'Mango']
+</div>
+
+
+<h2>
+    Adding Elements to a List
+</h2>
+
+
+<h3>
+    append()
+</h3>
+
+<p>
+    The <b>append()</b> method adds one element to the end of a list.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana"]
+
+fruits.append("Mango")
+
+print(fruits)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+['Apple', 'Banana', 'Mango']
+</div>
+
+
+<h3>
+    insert()
+</h3>
+
+<p>
+    The <b>insert()</b> method adds an element at a specified index.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Mango"]
+
+fruits.insert(1, "Banana")
+
+print(fruits)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+['Apple', 'Banana', 'Mango']
+</div>
+
+
+<h3>
+    extend()
+</h3>
+
+<p>
+    The <b>extend()</b> method adds multiple elements from another
+    iterable to the end of a list.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana"]
+
+more_fruits = ["Mango", "Orange"]
+
+fruits.extend(more_fruits)
+
+print(fruits)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+['Apple', 'Banana', 'Mango', 'Orange']
+</div>
+
+
+<h2>
+    Removing Elements from a List
+</h2>
+
+
+<h3>
+    remove()
+</h3>
+
+<p>
+    The <b>remove()</b> method removes the first occurrence of
+    a specified value.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana", "Mango"]
+
+fruits.remove("Banana")
+
+print(fruits)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+['Apple', 'Mango']
+</div>
+
+
+<h3>
+    pop()
+</h3>
+
+<p>
+    The <b>pop()</b> method removes an element using its index
+    and returns the removed value. If no index is specified,
+    it removes the last element.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana", "Mango"]
+
+removed = fruits.pop()
+
+print(removed)
+print(fruits)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Mango<br>
+['Apple', 'Banana']
+</div>
+
+
+<h3>
+    del
+</h3>
+
+<p>
+    The <b>del</b> statement can be used to remove an element
+    at a specific index.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana", "Mango"]
+
+del fruits[1]
+
+print(fruits)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+['Apple', 'Mango']
+</div>
+
+
+<h3>
+    clear()
+</h3>
+
+<p>
+    The <b>clear()</b> method removes all elements from a list.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana", "Mango"]
+
+fruits.clear()
+
+print(fruits)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[]
+</div>
+
+
+<h2>
+    Finding the Length of a List
+</h2>
+
+<p>
+    The <b>len()</b> function returns the number of elements
+    present in a list.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana", "Mango"]
+
+print(len(fruits))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+3
+</div>
+
+
+<h2>
+    Checking if an Element Exists
+</h2>
+
+<p>
+    The <b>in</b> operator can be used to check whether an element
+    exists in a list.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana", "Mango"]
+
+print("Mango" in fruits)
+print("Orange" in fruits)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+False
+</div>
+
+
+<h2>
+    List Slicing
+</h2>
+
+<p>
+    Slicing is used to extract a portion of a list.
+</p>
+
+<h3>
+    Syntax
+</h3>
+
+${codeBlock(`list[start : stop : step]`, "Python")}
+
+
+<h3>
+    Example
+</h3>
+
+${codeBlock(`numbers = [10, 20, 30, 40, 50]
+
+print(numbers[1:4])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[20, 30, 40]
+</div>
+
+<p>
+    The stopping index is not included in the result.
+</p>
+
+
+<h3>
+    Slicing from the Beginning
+</h3>
+
+${codeBlock(`numbers = [10, 20, 30, 40, 50]
+
+print(numbers[:3])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[10, 20, 30]
+</div>
+
+
+<h3>
+    Slicing to the End
+</h3>
+
+${codeBlock(`numbers = [10, 20, 30, 40, 50]
+
+print(numbers[2:])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[30, 40, 50]
+</div>
+
+
+<h3>
+    Slicing with Step
+</h3>
+
+${codeBlock(`numbers = [10, 20, 30, 40, 50, 60]
+
+print(numbers[0:6:2])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[10, 30, 50]
+</div>
+
+
+<h2>
+    Looping Through a List
+</h2>
+
+<p>
+    A <b>for loop</b> can be used to access each element of a list.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana", "Mango"]
+
+for fruit in fruits:
+    print(fruit)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Apple<br>
+Banana<br>
+Mango
+</div>
+
+
+<h2>
+    Sorting a List
+</h2>
+
+
+<h3>
+    sort()
+</h3>
+
+<p>
+    The <b>sort()</b> method arranges the elements of a list
+    in ascending order by default.
+</p>
+
+${codeBlock(`numbers = [50, 20, 40, 10, 30]
+
+numbers.sort()
+
+print(numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[10, 20, 30, 40, 50]
+</div>
+
+
+<h3>
+    Descending Order
+</h3>
+
+${codeBlock(`numbers = [50, 20, 40, 10, 30]
+
+numbers.sort(reverse=True)
+
+print(numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[50, 40, 30, 20, 10]
+</div>
+
+
+<h2>
+    reverse()
+</h2>
+
+<p>
+    The <b>reverse()</b> method reverses the order of elements
+    in the list.
+</p>
+
+${codeBlock(`numbers = [10, 20, 30, 40]
+
+numbers.reverse()
+
+print(numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[40, 30, 20, 10]
+</div>
+
+
+<h2>
+    count()
+</h2>
+
+<p>
+    The <b>count()</b> method returns the number of times a
+    specified value appears in a list.
+</p>
+
+${codeBlock(`numbers = [10, 20, 10, 30, 10]
+
+print(numbers.count(10))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+3
+</div>
+
+
+<h2>
+    index()
+</h2>
+
+<p>
+    The <b>index()</b> method returns the index of the first
+    occurrence of a specified value.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana", "Mango"]
+
+print(fruits.index("Mango"))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+2
+</div>
+
+
+<h2>
+    Copying a List
+</h2>
+
+<p>
+    The <b>copy()</b> method creates a shallow copy of a list.
+</p>
+
+${codeBlock(`numbers = [10, 20, 30]
+
+new_numbers = numbers.copy()
+
+print(new_numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[10, 20, 30]
+</div>
+
+
+<h2>
+    Joining Two Lists
+</h2>
+
+<p>
+    The <b>+</b> operator can be used to combine two lists.
+</p>
+
+${codeBlock(`list1 = [10, 20, 30]
+list2 = [40, 50, 60]
+
+result = list1 + list2
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[10, 20, 30, 40, 50, 60]
+</div>
+
+
+<h2>
+    Repeating a List
+</h2>
+
+<p>
+    The <b>*</b> operator can be used to repeat the elements
+    of a list.
+</p>
+
+${codeBlock(`numbers = [1, 2, 3]
+
+result = numbers * 3
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[1, 2, 3, 1, 2, 3, 1, 2, 3]
+</div>
+
+
+<h2>
+    Nested Lists
+</h2>
+
+<p>
+    A list can contain other lists. Such a list is called a
+    <b>nested list</b>.
+</p>
+
+${codeBlock(`students = [
+    ["Rahul", 20],
+    ["Amit", 21],
+    ["Neha", 19]
+]
+
+print(students[0])
+print(students[0][0])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+['Rahul', 20]<br>
+Rahul
+</div>
+
+
+<h2>
+    List Comprehension
+</h2>
+
+<p>
+    List comprehension provides a short and readable way to
+    create a new list from an existing sequence.
+</p>
+
+<h3>
+    Syntax
+</h3>
+
+${codeBlock(`[expression for item in iterable]`, "Python")}
+
+
+<h3>
+    Example
+</h3>
+
+${codeBlock(`numbers = [1, 2, 3, 4, 5]
+
+squares = [number * number for number in numbers]
+
+print(squares)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[1, 4, 9, 16, 25]
+</div>
+
+
+<h3>
+    List Comprehension with Condition
+</h3>
+
+${codeBlock(`numbers = [1, 2, 3, 4, 5, 6]
+
+even_numbers = [
+    number for number in numbers
+    if number % 2 == 0
+]
+
+print(even_numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[2, 4, 6]
+</div>
+
+
+<h2>
+    Useful List Functions
+</h2>
+
+<table>
+    <tr>
+        <th>Function</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>len()</td>
+        <td>Returns the number of elements.</td>
+    </tr>
+    <tr>
+        <td>max()</td>
+        <td>Returns the largest value.</td>
+    </tr>
+    <tr>
+        <td>min()</td>
+        <td>Returns the smallest value.</td>
+    </tr>
+    <tr>
+        <td>sum()</td>
+        <td>Returns the sum of numeric elements.</td>
+    </tr>
+    <tr>
+        <td>sorted()</td>
+        <td>Returns a sorted version of the list.</td>
+    </tr>
+</table>
+
+
+<h3>
+    Example
+</h3>
+
+${codeBlock(`numbers = [10, 20, 30, 40, 50]
+
+print(len(numbers))
+print(max(numbers))
+print(min(numbers))
+print(sum(numbers))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+5<br>
+50<br>
+10<br>
+150
+</div>
+
+
+<h2>
+    List Methods Summary
+</h2>
+
+<table>
+    <tr>
+        <th>Method</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>append()</td>
+        <td>Adds an element to the end.</td>
+    </tr>
+    <tr>
+        <td>insert()</td>
+        <td>Adds an element at a specific position.</td>
+    </tr>
+    <tr>
+        <td>extend()</td>
+        <td>Adds multiple elements.</td>
+    </tr>
+    <tr>
+        <td>remove()</td>
+        <td>Removes a specified value.</td>
+    </tr>
+    <tr>
+        <td>pop()</td>
+        <td>Removes and returns an element.</td>
+    </tr>
+    <tr>
+        <td>clear()</td>
+        <td>Removes all elements.</td>
+    </tr>
+    <tr>
+        <td>sort()</td>
+        <td>Sorts the list.</td>
+    </tr>
+    <tr>
+        <td>reverse()</td>
+        <td>Reverses the list.</td>
+    </tr>
+    <tr>
+        <td>count()</td>
+        <td>Counts occurrences of a value.</td>
+    </tr>
+    <tr>
+        <td>index()</td>
+        <td>Returns the index of a value.</td>
+    </tr>
+    <tr>
+        <td>copy()</td>
+        <td>Creates a copy of the list.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Lists are created using square brackets <b>[]</b>.</li>
+    <li>List indexing starts from <b>0</b>.</li>
+    <li>Negative indexing starts from <b>-1</b>.</li>
+    <li>Lists are ordered and mutable.</li>
+    <li>Lists allow duplicate values.</li>
+    <li>A list can contain different data types.</li>
+    <li>Lists can contain other lists.</li>
+    <li>Use <b>append()</b> to add an item at the end.</li>
+    <li>Use <b>remove()</b> or <b>pop()</b> to remove items.</li>
+    <li>Use slicing to access a portion of a list.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Lists are one of the most commonly used data structures in
+    Python. They allow multiple values to be stored in a single
+    variable and provide many useful operations for adding,
+    removing, modifying, searching, sorting, and processing data.
+    Lists can also be combined with loops, conditions, and list
+    comprehensions to efficiently work with collections of data.
+</p>
 
 `,
 
