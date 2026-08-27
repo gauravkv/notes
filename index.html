@@ -929,6 +929,14 @@ strong {
 
              </button>
 
+           <button
+            class="topic"
+            onclick="showTopic('modules_and_packages', this)">
+
+            Modules & Packages
+
+             </button>
+
 
     </aside>
 
@@ -9284,6 +9292,718 @@ Valid email format
     features for working with strings, including indexing, slicing,
     concatenation, formatting, searching, replacing, splitting,
     joining, and checking text.
+</p>`,
+
+      modules_and_packages : `<h1>
+    Modules &amp; Packages
+</h1>
+
+<div class="subtitle">
+    Organize, reuse, and manage Python code using modules and packages.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Module?
+</h2>
+
+<p>
+    A <b>module</b> is a Python file containing code such as
+    variables, functions, classes, and statements that can be
+    reused in another Python program.
+</p>
+
+<p>
+    A module is simply a Python file with a <b>.py</b> extension.
+</p>
+
+
+<h2>
+    Creating a Module
+</h2>
+
+<p>
+    Suppose we create a file named <b>math_utils.py</b>.
+</p>
+
+${codeBlock(`def add(a, b):
+    return a + b
+
+
+def subtract(a, b):
+    return a - b
+
+
+PI = 3.14159`, "Python")}
+
+<p>
+    The above file is a module named <b>math_utils</b>.
+    We can use its code in another Python file.
+</p>
+
+
+<h2>
+    Importing a Module
+</h2>
+
+<p>
+    The <b>import</b> statement is used to import a module into
+    another Python program.
+</p>
+
+${codeBlock(`import math_utils
+
+print(math_utils.add(10, 5))
+print(math_utils.subtract(10, 5))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+15<br>
+5
+</div>
+
+
+<h2>
+    Accessing Variables from a Module
+</h2>
+
+<p>
+    Variables defined inside a module can also be accessed using
+    the module name.
+</p>
+
+${codeBlock(`import math_utils
+
+print(math_utils.PI)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+3.14159
+</div>
+
+
+<h2>
+    Importing Specific Items</h2>
+
+<p>
+    Instead of importing the complete module, specific functions
+    or variables can be imported using <b>from ... import</b>.
+</p>
+
+${codeBlock(`from math_utils import add
+
+print(add(10, 20))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30
+</div>
+
+
+<h2>
+    Importing Multiple Items
+</h2>
+
+<p>
+    Multiple functions or variables can be imported from the same
+    module.
+</p>
+
+${codeBlock(`from math_utils import add, subtract
+
+print(add(10, 5))
+print(subtract(10, 5))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+15<br>
+5
+</div>
+
+
+<h2>
+    Importing Everything from a Module
+</h2>
+
+<p>
+    The <b>*</b> symbol can be used to import all available names
+    from a module.
+</p>
+
+${codeBlock(`from math_utils import *
+
+print(add(10, 5))
+print(PI)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+15<br>
+3.14159
+</div>
+
+<p>
+    Although this syntax is possible, explicitly importing the
+    required items is generally clearer.
+</p>
+
+
+<h2>
+    Module Alias
+</h2>
+
+<p>
+    The <b>as</b> keyword can be used to give a module a shorter
+    or different name.
+</p>
+
+${codeBlock(`import math_utils as mu
+
+print(mu.add(10, 20))
+print(mu.PI)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30<br>
+3.14159
+</div>
+
+
+<h2>
+    Built-in Modules
+</h2>
+
+<p>
+    Python comes with many modules that provide ready-to-use
+    functionality. These are called <b>built-in modules</b>.
+</p>
+
+<p>
+    Some commonly used modules include <b>math</b>, <b>random</b>,
+    <b>datetime</b>, and <b>os</b>.
+</p>
+
+
+<h2>
+    math Module
+</h2>
+
+<p>
+    The <b>math</b> module provides mathematical functions and
+    constants.
+</p>
+
+${codeBlock(`import math
+
+print(math.sqrt(25))
+print(math.factorial(5))
+print(math.pi)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+5.0<br>
+120<br>
+3.141592653589793
+</div>
+
+
+<h2>
+    random Module
+</h2>
+
+<p>
+    The <b>random</b> module is used to generate random values.
+</p>
+
+${codeBlock(`import random
+
+number = random.randint(1, 10)
+
+print(number)`, "Python")}
+
+<p>
+    The output will be a random integer between <b>1</b> and
+    <b>10</b>.
+</p>
+
+
+<h2>
+    datetime Module
+</h2>
+
+<p>
+    The <b>datetime</b> module is used to work with dates and times.
+</p>
+
+${codeBlock(`import datetime
+
+today = datetime.datetime.now()
+
+print(today)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+2026-08-27 14:12:00.000000
+</div>
+
+
+<h2>
+    os Module
+</h2>
+
+<p>
+    The <b>os</b> module provides functions for interacting with
+    the operating system.
+</p>
+
+${codeBlock(`import os
+
+print(os.getcwd())`, "Python")}
+
+<p>
+    <b>getcwd()</b> returns the current working directory.
+</p>
+
+
+<h2>
+    What is a Package?
+</h2>
+
+<p>
+    A <b>package</b> is a collection of related Python modules
+    organized inside a directory.
+</p>
+
+<p>
+    For example, a project can be organized like this:
+</p>
+
+${codeBlock(`myproject/
+│
+├── main.py
+│
+└── utilities/
+    ├── __init__.py
+    ├── math_utils.py
+    └── string_utils.py`, "Python")}
+
+
+<h2>
+    Creating a Package
+</h2>
+
+<p>
+    A simple package can contain multiple Python files inside
+    a folder.
+</p>
+
+<p>
+    For example, the <b>utilities</b> folder can contain:
+</p>
+
+${codeBlock(`utilities/
+│
+├── __init__.py
+├── math_utils.py
+└── string_utils.py`, "Python")}
+
+<p>
+    Here, <b>math_utils.py</b> and <b>string_utils.py</b> are
+    modules, while <b>utilities</b> is the package.
+</p>
+
+
+<h2>
+    Module Inside a Package
+</h2>
+
+<p>
+    Suppose <b>math_utils.py</b> contains:
+</p>
+
+${codeBlock(`def add(a, b):
+    return a + b
+
+
+def multiply(a, b):
+    return a * b`, "Python")}
+
+
+<h2>
+    Importing a Module from a Package
+</h2>
+
+<p>
+    We can import the module using the package name followed by
+    the module name.
+</p>
+
+${codeBlock(`from utilities import math_utils
+
+print(math_utils.add(10, 20))
+print(math_utils.multiply(5, 4))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30<br>
+20
+</div>
+
+
+<h2>
+    Importing a Function from a Package Module
+</h2>
+
+<p>
+    A specific function can also be imported directly.
+</p>
+
+${codeBlock(`from utilities.math_utils import add
+
+print(add(100, 50))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+150
+</div>
+
+
+<h2>
+    Multiple Modules in a Package
+</h2>
+
+<p>
+    A package can contain many modules, each responsible for a
+    different part of the program.
+</p>
+
+${codeBlock(`myproject/
+│
+├── main.py
+│
+└── utilities/
+    ├── __init__.py
+    ├── math_utils.py
+    └── string_utils.py`, "Python")}
+
+<p>
+    For example, <b>string_utils.py</b> can contain:
+</p>
+
+${codeBlock(`def reverse_text(text):
+    return text[::-1]
+
+
+def make_upper(text):
+    return text.upper()`, "Python")}
+
+
+<h2>
+    Using Multiple Modules
+</h2>
+
+${codeBlock(`from utilities.math_utils import add
+from utilities.string_utils import make_upper
+
+print(add(10, 20))
+print(make_upper("python"))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30<br>
+PYTHON
+</div>
+
+
+<h2>
+    The __name__ Variable
+</h2>
+
+<p>
+    Every Python module has a special built-in variable called
+    <b>__name__</b>.
+</p>
+
+<p>
+    When a Python file is run directly, the value of
+    <b>__name__</b> is <b>"__main__"</b>.
+</p>
+
+${codeBlock(`print(__name__)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+__main__
+</div>
+
+
+<h2>
+    if __name__ == "__main__"
+</h2>
+
+<p>
+    This condition is commonly used to make sure that certain
+    code runs only when the file is executed directly, and not
+    when the module is imported.
+</p>
+
+${codeBlock(`def greet():
+    print("Hello, Python!")
+
+
+if __name__ == "__main__":
+    greet()`, "Python")}
+
+
+<h2>
+    Module Search Path
+</h2>
+
+<p>
+    When Python imports a module, it searches for that module in
+    specific locations. The <b>sys.path</b> variable contains
+    the locations Python searches.
+</p>
+
+${codeBlock(`import sys
+
+print(sys.path)`, "Python")}
+
+<p>
+    This displays a list of directories where Python looks for
+    modules and packages.
+</p>
+
+
+<h2>
+    Standard Library vs Third-Party Packages
+</h2>
+
+<p>
+    Python provides a large <b>standard library</b> containing
+    modules that can be used without installing additional packages.
+</p>
+
+<p>
+    There are also <b>third-party packages</b> created by the
+    Python community that can be installed when required.
+</p>
+
+<table>
+    <tr>
+        <th>Type</th>
+        <th>Examples</th>
+    </tr>
+    <tr>
+        <td>Standard Library</td>
+        <td>math, random, os, datetime</td>
+    </tr>
+    <tr>
+        <td>Third-Party</td>
+        <td>requests, pandas, numpy</td>
+    </tr>
+</table>
+
+
+<h2>
+    Installing a Package using pip
+</h2>
+
+<p>
+    <b>pip</b> is the standard package-management tool commonly
+    used to install Python packages from the Python Package Index.
+</p>
+
+${codeBlock(`pip install requests`, "Python")}
+
+<p>
+    After installation, the package can be imported into a Python
+    program.
+</p>
+
+${codeBlock(`import requests
+
+response = requests.get("https://example.com")
+
+print(response.status_code)`, "Python")}
+
+
+<h2>
+    Upgrading a Package
+</h2>
+
+<p>
+    The <b>--upgrade</b> option can be used to install a newer
+    available version of a package.
+</p>
+
+${codeBlock(`pip install --upgrade requests`, "Python")}
+
+
+<h2>
+    Viewing Installed Packages
+</h2>
+
+<p>
+    The following command displays packages installed in the
+    current Python environment.
+</p>
+
+${codeBlock(`pip list`, "Python")}
+
+
+<h2>
+    Importing with an Alias
+</h2>
+
+<p>
+    Aliases are commonly used when a module or package has a long
+    name or when a standard short name is commonly used.
+</p>
+
+${codeBlock(`import datetime as dt
+
+today = dt.datetime.now()
+
+print(today)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+2026-08-27 14:12:00.000000
+</div>
+
+
+<h2>
+    Module vs Package
+</h2>
+
+<table>
+    <tr>
+        <th>Module</th>
+        <th>Package</th>
+    </tr>
+    <tr>
+        <td>Usually a single .py file.</td>
+        <td>A directory containing related modules.</td>
+    </tr>
+    <tr>
+        <td>Contains reusable Python code.</td>
+        <td>Organizes multiple modules.</td>
+    </tr>
+    <tr>
+        <td>Example: math_utils.py</td>
+        <td>Example: utilities/</td>
+    </tr>
+</table>
+
+
+<h2>
+    Why Use Modules and Packages?
+</h2>
+
+<ul>
+    <li>They help organize large programs.</li>
+    <li>They allow code to be reused.</li>
+    <li>They make programs easier to maintain.</li>
+    <li>They separate different parts of an application.</li>
+    <li>They reduce unnecessary code duplication.</li>
+    <li>They make it easier to work on large projects.</li>
+</ul>
+
+
+<h2>
+    Practical Example
+</h2>
+
+<p>
+    A student management project can be divided into different
+    modules instead of keeping everything in one file.
+</p>
+
+${codeBlock(`student_project/
+│
+├── main.py
+│
+└── student/
+    ├── __init__.py
+    ├── details.py
+    ├── marks.py
+    └── fees.py`, "Python")}
+
+<p>
+    Each module can handle a specific responsibility, while
+    <b>main.py</b> can use those modules to run the application.
+</p>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>A <b>module</b> is usually a Python file containing reusable code.</li>
+    <li>A module normally has a <b>.py</b> extension.</li>
+    <li>Use <b>import</b> to import a module.</li>
+    <li>Use <b>from ... import</b> to import specific items.</li>
+    <li>Use <b>as</b> to create an alias.</li>
+    <li>A <b>package</b> organizes related modules in a directory.</li>
+    <li>Python provides many useful standard-library modules.</li>
+    <li>Third-party packages can be installed using <b>pip</b>.</li>
+    <li>The <b>__name__</b> variable identifies how a module is being executed.</li>
+    <li>Modules and packages make large Python projects easier to organize and maintain.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Modules and packages help developers organize Python programs
+    into reusable and manageable components. A module is generally
+    a single Python file, while a package is a collection of related
+    modules. Python also provides a large standard library, and
+    additional third-party packages can be installed using pip.
 </p>`
 
 };
