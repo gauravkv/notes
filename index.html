@@ -8113,6 +8113,1169 @@ print(common)`, "Python")}
     removing duplicate data and performing mathematical set
     operations such as union, intersection, difference, and
     symmetric difference.
+</p>`,
+
+      strings :
+
+            `<h1>
+    Strings
+</h1>
+
+<div class="subtitle">
+    Store and work with text and characters in Python.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a String?
+</h2>
+
+<p>
+    A <b>string</b> is a sequence of characters used to store
+    text in Python. Strings can contain letters, numbers,
+    symbols, spaces, and special characters.
+</p>
+
+<p>
+    Strings are written inside <b>single quotes</b>,
+    <b>double quotes</b>, or <b>triple quotes</b>.
+</p>
+
+
+<h2>
+    Creating a String
+</h2>
+
+${codeBlock(`name = "Rahul"
+course = 'Python'
+
+print(name)
+print(course)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+Python
+</div>
+
+
+<h2>
+    Single Quotes and Double Quotes
+</h2>
+
+<p>
+    Both single and double quotes can be used to create strings.
+    The choice usually depends on which makes the text easier to write.
+</p>
+
+${codeBlock(`name = "Rahul"
+city = 'Mumbai'
+
+print(name)
+print(city)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+Mumbai
+</div>
+
+
+<h2>
+    String with Quotes
+</h2>
+
+<p>
+    If a string contains a single quote, double quotes can be used
+    around the string.
+</p>
+
+${codeBlock(`message = "Rahul's Python Course"
+
+print(message)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul's Python Course
+</div>
+
+<p>
+    Similarly, single quotes can be used when the string contains
+    double quotes.
+</p>
+
+${codeBlock(`message = 'He said "Hello"'
+
+print(message)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+He said "Hello"
+</div>
+
+
+<h2>
+    Multi-line Strings
+</h2>
+
+<p>
+    Triple quotes can be used to create strings that span multiple
+    lines.
+</p>
+
+${codeBlock(`message = """Welcome to Python
+Learn Python step by step
+Practice every day"""
+
+print(message)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Welcome to Python<br>
+Learn Python step by step<br>
+Practice every day
+</div>
+
+
+<h2>
+    Checking the Data Type
+</h2>
+
+<p>
+    The <b>type()</b> function can be used to check whether a value
+    is a string.
+</p>
+
+${codeBlock(`name = "Rahul"
+
+print(type(name))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+&lt;class 'str'&gt;
+</div>
+
+
+<h2>
+    String Indexing
+</h2>
+
+<p>
+    Each character in a string has a position called an
+    <b>index</b>. String indexing starts from <b>0</b>.
+</p>
+
+${codeBlock(`name = "Python"
+
+print(name[0])
+print(name[1])
+print(name[2])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+P<br>
+y<br>
+t
+</div>
+
+
+<h2>
+    Negative Indexing
+</h2>
+
+<p>
+    Python also supports negative indexing. The last character
+    has an index of <b>-1</b>.
+</p>
+
+${codeBlock(`name = "Python"
+
+print(name[-1])
+print(name[-2])
+print(name[-3])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+n<br>
+o<br>
+h
+</div>
+
+
+<h2>
+    String Slicing
+</h2>
+
+<p>
+    Slicing is used to extract a portion of a string.
+</p>
+
+<h3>
+    Syntax
+</h3>
+
+${codeBlock(`string[start : stop : step]`, "Python")}
+
+
+<h3>
+    Example
+</h3>
+
+${codeBlock(`name = "Python"
+
+print(name[0:4])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Pyth
+</div>
+
+
+<h3>
+    Slicing from the Beginning
+</h3>
+
+${codeBlock(`name = "Python"
+
+print(name[:4])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Pyth
+</div>
+
+
+<h3>
+    Slicing to the End
+</h3>
+
+${codeBlock(`name = "Python"
+
+print(name[2:])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+thon
+</div>
+
+
+<h3>
+    Negative Slicing
+</h3>
+
+${codeBlock(`name = "Python"
+
+print(name[-4:])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+thon
+</div>
+
+
+<h2>
+    String Length
+</h2>
+
+<p>
+    The <b>len()</b> function returns the number of characters
+    in a string.
+</p>
+
+${codeBlock(`name = "Python"
+
+print(len(name))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+6
+</div>
+
+
+<h2>
+    Joining Strings
+</h2>
+
+<p>
+    The <b>+</b> operator can be used to join two or more strings.
+    This is called <b>string concatenation</b>.
+</p>
+
+${codeBlock(`first_name = "Rahul"
+last_name = "Patil"
+
+full_name = first_name + " " + last_name
+
+print(full_name)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul Patil
+</div>
+
+
+<h2>
+    Repeating a String
+</h2>
+
+<p>
+    The <b>*</b> operator can be used to repeat a string multiple times.
+</p>
+
+${codeBlock(`message = "Python "
+
+print(message * 3)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Python Python Python
+</div>
+
+
+<h2>
+    Checking if Text Exists
+</h2>
+
+<p>
+    The <b>in</b> operator checks whether a sequence of characters
+    exists inside a string.
+</p>
+
+${codeBlock(`message = "I am learning Python"
+
+print("Python" in message)
+print("Java" in message)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+False
+</div>
+
+
+<h2>
+    Checking if Text Does Not Exist
+</h2>
+
+<p>
+    The <b>not in</b> operator checks whether a sequence of
+    characters does not exist inside a string.
+</p>
+
+${codeBlock(`message = "I am learning Python"
+
+print("Java" not in message)
+print("Python" not in message)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+False
+</div>
+
+
+<h2>
+    Strings are Immutable
+</h2>
+
+<p>
+    Strings cannot be changed directly after they are created.
+    This property is called <b>immutability</b>.
+</p>
+
+${codeBlock(`name = "Python"
+
+name[0] = "J"
+
+print(name)`, "Python")}
+
+<p>
+    The above code produces a <b>TypeError</b> because individual
+    characters of a string cannot be changed directly.
+</p>
+
+<p>
+    Instead, create a new string.
+</p>
+
+${codeBlock(`name = "Python"
+
+name = "J" + name[1:]
+
+print(name)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Jython
+</div>
+
+
+<h2>
+    Converting Values into Strings
+</h2>
+
+<p>
+    The <b>str()</b> function converts a value into a string.
+</p>
+
+${codeBlock(`age = 20
+
+age_text = str(age)
+
+print(age_text)
+print(type(age_text))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+20<br>
+&lt;class 'str'&gt;
+</div>
+
+
+<h2>
+    Escape Characters
+</h2>
+
+<p>
+    Escape characters are special characters used inside strings.
+    They begin with a backslash <b>\</b>.
+</p>
+
+<table>
+    <tr>
+        <th>Escape Character</th>
+        <th>Meaning</th>
+    </tr>
+    <tr>
+        <td>\n</td>
+        <td>New line</td>
+    </tr>
+    <tr>
+        <td>\t</td>
+        <td>Tab space</td>
+    </tr>
+    <tr>
+        <td>\\</td>
+        <td>Backslash</td>
+    </tr>
+    <tr>
+        <td>\'</td>
+        <td>Single quote</td>
+    </tr>
+    <tr>
+        <td>\"</td>
+        <td>Double quote</td>
+    </tr>
+</table>
+
+
+<h3>
+    New Line
+</h3>
+
+${codeBlock(`print("Hello\\nPython")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello<br>
+Python
+</div>
+
+
+<h3>
+    Tab
+</h3>
+
+${codeBlock(`print("Name:\\tRahul")
+print("Age:\\t20")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Name:    Rahul<br>
+Age:     20
+</div>
+
+
+<h2>
+    String Formatting using f-Strings
+</h2>
+
+<p>
+    An <b>f-string</b> provides a simple way to insert variables
+    directly inside a string.
+</p>
+
+${codeBlock(`name = "Rahul"
+age = 20
+
+print(f"My name is {name}")
+print(f"I am {age} years old")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+My name is Rahul<br>
+I am 20 years old
+</div>
+
+
+<h2>
+    Formatting Multiple Values
+</h2>
+
+${codeBlock(`name = "Rahul"
+age = 20
+course = "Python"
+
+print(f"{name} is {age} years old and is learning {course}.")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul is 20 years old and is learning Python.
+</div>
+
+
+<h2>
+    String Comparison
+</h2>
+
+<p>
+    Strings can be compared using comparison operators such as
+    <b>==</b>, <b>!=</b>, <b>&lt;</b>, and <b>&gt;</b>.
+</p>
+
+${codeBlock(`name1 = "Rahul"
+name2 = "Rahul"
+
+print(name1 == name2)
+print(name1 != name2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+False
+</div>
+
+
+<h2>
+    Converting Case
+</h2>
+
+<p>
+    Python provides methods to convert strings between uppercase
+    and lowercase.
+</p>
+
+
+<h3>
+    upper()
+</h3>
+
+${codeBlock(`name = "python"
+
+print(name.upper())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+PYTHON
+</div>
+
+
+<h3>
+    lower()
+</h3>
+
+${codeBlock(`name = "PYTHON"
+
+print(name.lower())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+python
+</div>
+
+
+<h3>
+    capitalize()
+</h3>
+
+${codeBlock(`message = "hello python"
+
+print(message.capitalize())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello python
+</div>
+
+
+<h3>
+    title()
+</h3>
+
+${codeBlock(`message = "learn python programming"
+
+print(message.title())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Learn Python Programming
+</div>
+
+
+<h2>
+    Removing Spaces
+</h2>
+
+<p>
+    The <b>strip()</b> method removes spaces from the beginning
+    and end of a string.
+</p>
+
+${codeBlock(`name = "   Rahul   "
+
+print(name.strip())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul
+</div>
+
+
+<h3>
+    lstrip()
+</h3>
+
+<p>
+    Removes spaces from the beginning of a string.
+</p>
+
+${codeBlock(`name = "   Rahul"
+
+print(name.lstrip())`, "Python")}
+
+
+<h3>
+    rstrip()
+</h3>
+
+<p>
+    Removes spaces from the end of a string.
+</p>
+
+${codeBlock(`name = "Rahul   "
+
+print(name.rstrip())`, "Python")}
+
+
+<h2>
+    Replacing Text
+</h2>
+
+<p>
+    The <b>replace()</b> method replaces one part of a string
+    with another value.
+</p>
+
+${codeBlock(`message = "I like Java"
+
+message = message.replace("Java", "Python")
+
+print(message)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+I like Python
+</div>
+
+
+<h2>
+    Finding Text
+</h2>
+
+<p>
+    The <b>find()</b> method returns the index of the first
+    occurrence of a specified substring.
+</p>
+
+${codeBlock(`message = "I am learning Python"
+
+print(message.find("Python"))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+14
+</div>
+
+
+<h2>
+    Counting Text
+</h2>
+
+<p>
+    The <b>count()</b> method returns the number of times a
+    specified substring occurs in a string.
+</p>
+
+${codeBlock(`message = "Python is easy. Python is powerful."
+
+print(message.count("Python"))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+2
+</div>
+
+
+<h2>
+    Checking the Beginning of a String
+</h2>
+
+<p>
+    The <b>startswith()</b> method checks whether a string begins
+    with a specified value.
+</p>
+
+${codeBlock(`message = "Python Programming"
+
+print(message.startswith("Python"))
+print(message.startswith("Java"))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+False
+</div>
+
+
+<h2>
+    Checking the End of a String
+</h2>
+
+<p>
+    The <b>endswith()</b> method checks whether a string ends
+    with a specified value.
+</p>
+
+${codeBlock(`filename = "program.py"
+
+print(filename.endswith(".py"))
+print(filename.endswith(".java"))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+False
+</div>
+
+
+<h2>
+    Splitting a String
+</h2>
+
+<p>
+    The <b>split()</b> method divides a string into a list of
+    smaller strings.
+</p>
+
+${codeBlock(`message = "Python is easy to learn"
+
+words = message.split()
+
+print(words)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+['Python', 'is', 'easy', 'to', 'learn']
+</div>
+
+
+<h2>
+    Splitting using a Separator
+</h2>
+
+${codeBlock(`data = "Apple,Banana,Mango"
+
+fruits = data.split(",")
+
+print(fruits)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+['Apple', 'Banana', 'Mango']
+</div>
+
+
+<h2>
+    Joining Strings
+</h2>
+
+<p>
+    The <b>join()</b> method combines elements of an iterable
+    into a single string.
+</p>
+
+${codeBlock(`fruits = ["Apple", "Banana", "Mango"]
+
+result = ", ".join(fruits)
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Apple, Banana, Mango
+</div>
+
+
+<h2>
+    Checking String Content
+</h2>
+
+<h3>
+    isalpha()
+</h3>
+
+<p>
+    Returns True if all characters are alphabetic.
+</p>
+
+${codeBlock(`name = "Rahul"
+
+print(name.isalpha())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h3>
+    isdigit()
+</h3>
+
+<p>
+    Returns True if all characters are digits.
+</p>
+
+${codeBlock(`number = "12345"
+
+print(number.isdigit())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h3>
+    isalnum()
+</h3>
+
+<p>
+    Returns True if all characters are letters or numbers.
+</p>
+
+${codeBlock(`value = "Python123"
+
+print(value.isalnum())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h3>
+    isspace()
+</h3>
+
+<p>
+    Returns True if the string contains only whitespace characters.
+</p>
+
+${codeBlock(`value = "   "
+
+print(value.isspace())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h2>
+    Practical Example: User Information
+</h2>
+
+${codeBlock(`name = "Rahul"
+course = "Python"
+city = "Mumbai"
+
+print(f"Name: {name}")
+print(f"Course: {course}")
+print(f"City: {city}")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Name: Rahul<br>
+Course: Python<br>
+City: Mumbai
+</div>
+
+
+<h2>
+    Practical Example: Email Validation
+</h2>
+
+<p>
+    String methods can be used for simple checks on user input.
+</p>
+
+${codeBlock(`email = "rahul@gmail.com"
+
+if "@" in email and "." in email:
+    print("Valid email format")
+else:
+    print("Invalid email format")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Valid email format
+</div>
+
+
+<h2>
+    Common String Methods
+</h2>
+
+<table>
+    <tr>
+        <th>Method</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>upper()</td>
+        <td>Converts string to uppercase.</td>
+    </tr>
+    <tr>
+        <td>lower()</td>
+        <td>Converts string to lowercase.</td>
+    </tr>
+    <tr>
+        <td>capitalize()</td>
+        <td>Capitalizes the first character.</td>
+    </tr>
+    <tr>
+        <td>title()</td>
+        <td>Capitalizes the first character of each word.</td>
+    </tr>
+    <tr>
+        <td>strip()</td>
+        <td>Removes spaces from both ends.</td>
+    </tr>
+    <tr>
+        <td>replace()</td>
+        <td>Replaces text with another value.</td>
+    </tr>
+    <tr>
+        <td>find()</td>
+        <td>Returns the index of specified text.</td>
+    </tr>
+    <tr>
+        <td>count()</td>
+        <td>Counts occurrences of specified text.</td>
+    </tr>
+    <tr>
+        <td>split()</td>
+        <td>Splits a string into a list.</td>
+    </tr>
+    <tr>
+        <td>join()</td>
+        <td>Combines iterable elements into a string.</td>
+    </tr>
+    <tr>
+        <td>startswith()</td>
+        <td>Checks the beginning of a string.</td>
+    </tr>
+    <tr>
+        <td>endswith()</td>
+        <td>Checks the end of a string.</td>
+    </tr>
+    <tr>
+        <td>isalpha()</td>
+        <td>Checks whether all characters are alphabetic.</td>
+    </tr>
+    <tr>
+        <td>isdigit()</td>
+        <td>Checks whether all characters are digits.</td>
+    </tr>
+    <tr>
+        <td>isalnum()</td>
+        <td>Checks whether all characters are letters or numbers.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Strings are used to store text.</li>
+    <li>Strings can be created using single, double, or triple quotes.</li>
+    <li>String indexing starts from <b>0</b>.</li>
+    <li>Negative indexing starts from <b>-1</b>.</li>
+    <li>Strings support slicing.</li>
+    <li>Strings are <b>immutable</b>.</li>
+    <li>The <b>+</b> operator joins strings.</li>
+    <li>The <b>*</b> operator repeats strings.</li>
+    <li>The <b>in</b> operator checks whether text exists in a string.</li>
+    <li>The <b>len()</b> function returns the length of a string.</li>
+    <li>String methods such as <b>upper()</b>, <b>lower()</b>, <b>replace()</b>,
+        and <b>split()</b> are commonly used for text processing.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Strings are one of the most commonly used data types in Python.
+    They are used to store and process text. Python provides powerful
+    features for working with strings, including indexing, slicing,
+    concatenation, formatting, searching, replacing, splitting,
+    joining, and checking text.
 </p>`
 
 };
