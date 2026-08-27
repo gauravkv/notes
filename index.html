@@ -945,6 +945,16 @@ strong {
 
              </button>
 
+           <button
+            class="topic"
+            onclick="showTopic('exception', this)">
+
+           Exception Handling
+
+             </button>
+
+          
+
 
     </aside>
 
@@ -10588,8 +10598,563 @@ ${codeBlock(`import abcxyz`, "Python")}
     specific functions or variables, or use aliases to make imported
     names shorter. Importing code helps keep Python programs
     organized, reusable, and easier to maintain.
-</p>`
+</p>`,
 
+      exception : `<h1>
+    Exception Handling
+</h1>
+
+<div class="subtitle">
+    Handle errors in Python programs without stopping the entire program.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is an Exception?
+</h2>
+
+<p>
+    An <b>exception</b> is an error that occurs while a Python
+    program is running. If an exception is not handled, the program
+    stops and displays an error message.
+</p>
+
+${codeBlock(`number = 10
+result = number / 0
+
+print(result)`, "Python")}
+
+<p>
+    The above program generates a <b>ZeroDivisionError</b> because
+    a number cannot be divided by zero.
+</p>
+
+
+<h2>
+    Why Exception Handling?
+</h2>
+
+<p>
+    Exception handling allows us to detect and handle errors
+    gracefully instead of allowing the program to terminate
+    unexpectedly.
+</p>
+
+
+<h2>
+    try and except
+</h2>
+
+<p>
+    The <b>try</b> block contains code that may generate an exception.
+    The <b>except</b> block handles the exception.
+</p>
+
+${codeBlock(`try:
+    number = 10
+    result = number / 0
+    print(result)
+
+except:
+    print("An error occurred")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+An error occurred
+</div>
+
+
+<h2>
+    Handling a Specific Exception
+</h2>
+
+<p>
+    Instead of using a general <b>except</b>, we can specify the
+    type of exception we want to handle.
+</p>
+
+${codeBlock(`try:
+    number = 10
+    result = number / 0
+
+except ZeroDivisionError:
+    print("Cannot divide by zero")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Cannot divide by zero
+</div>
+
+
+<h2>
+    Handling ValueError
+</h2>
+
+<p>
+    A <b>ValueError</b> occurs when a function receives a value
+    of the correct type but an inappropriate value.
+</p>
+
+${codeBlock(`try:
+    age = int("twenty")
+    print(age)
+
+except ValueError:
+    print("Please enter a valid number")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Please enter a valid number
+</div>
+
+
+<h2>
+    Handling TypeError
+</h2>
+
+<p>
+    A <b>TypeError</b> occurs when an operation is performed
+    on an inappropriate data type.
+</p>
+
+${codeBlock(`try:
+    result = "10" + 5
+    print(result)
+
+except TypeError:
+    print("Cannot add string and integer")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Cannot add string and integer
+</div>
+
+
+<h2>
+    Handling IndexError
+</h2>
+
+<p>
+    An <b>IndexError</b> occurs when we try to access an index
+    that does not exist.
+</p>
+
+${codeBlock(`numbers = [10, 20, 30]
+
+try:
+    print(numbers[5])
+
+except IndexError:
+    print("Index does not exist")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Index does not exist
+</div>
+
+
+<h2>
+    Handling KeyError
+</h2>
+
+<p>
+    A <b>KeyError</b> occurs when we try to access a dictionary
+    using a key that does not exist.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20
+}
+
+try:
+    print(student["marks"])
+
+except KeyError:
+    print("Key does not exist")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Key does not exist
+</div>
+
+
+<h2>
+    Multiple except Blocks
+</h2>
+
+<p>
+    Multiple <b>except</b> blocks can be used to handle different
+    types of exceptions separately.
+</p>
+
+${codeBlock(`try:
+    number = int(input("Enter a number: "))
+    result = 100 / number
+
+    print(result)
+
+except ValueError:
+    print("Please enter a valid number")
+
+except ZeroDivisionError:
+    print("Number cannot be zero")`, "Python")}
+
+
+<h2>
+    Using Exception as a Variable
+</h2>
+
+<p>
+    The <b>as</b> keyword can be used to store the exception object
+    in a variable and display its error message.
+</p>
+
+${codeBlock(`try:
+    number = 10 / 0
+
+except ZeroDivisionError as error:
+    print("Error:", error)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Error: division by zero
+</div>
+
+
+<h2>
+    else Block
+</h2>
+
+<p>
+    The <b>else</b> block executes only when no exception occurs
+    inside the <b>try</b> block.
+</p>
+
+${codeBlock(`try:
+    number = 10 / 2
+
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+else:
+    print("Result:", number)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Result: 5.0
+</div>
+
+
+<h2>
+    finally Block
+</h2>
+
+<p>
+    The <b>finally</b> block always executes whether an exception
+    occurs or not.
+</p>
+
+${codeBlock(`try:
+    number = 10 / 2
+    print(number)
+
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+finally:
+    print("Program completed")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+5.0<br>
+Program completed
+</div>
+
+
+<h2>
+    try, except, else and finally
+</h2>
+
+<p>
+    All four blocks can be used together when required.
+</p>
+
+${codeBlock(`try:
+    number = int(input("Enter a number: "))
+    result = 100 / number
+
+except ValueError:
+    print("Invalid number")
+
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+else:
+    print("Result:", result)
+
+finally:
+    print("Execution finished")`, "Python")}
+
+
+<h2>
+    Raising an Exception
+</h2>
+
+<p>
+    The <b>raise</b> statement is used to manually generate
+    an exception when a specific condition is not satisfied.
+</p>
+
+${codeBlock(`age = 15
+
+if age < 18:
+    raise ValueError("Age must be 18 or above")
+
+print("Eligible")`, "Python")}
+
+<p>
+    The program raises a <b>ValueError</b> because the age is
+    less than 18.
+</p>
+
+
+<h2>
+    Handling a Raised Exception
+</h2>
+
+${codeBlock(`try:
+    age = 15
+
+    if age < 18:
+        raise ValueError("Age must be 18 or above")
+
+except ValueError as error:
+    print(error)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Age must be 18 or above
+</div>
+
+
+<h2>
+    Custom Exception
+</h2>
+
+<p>
+    Python allows us to create our own exception classes by
+    inheriting from <b>Exception</b>.
+</p>
+
+${codeBlock(`class AgeError(Exception):
+    pass
+
+
+try:
+    age = 15
+
+    if age < 18:
+        raise AgeError("Age must be 18 or above")
+
+except AgeError as error:
+    print(error)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Age must be 18 or above
+</div>
+
+
+<h2>
+    Practical Example: User Input
+</h2>
+
+<p>
+    Exception handling is useful when accepting input from users.
+</p>
+
+${codeBlock(`try:
+    age = int(input("Enter your age: "))
+
+    print("Your age is:", age)
+
+except ValueError:
+    print("Please enter age as a number")`, "Python")}
+
+
+<h2>
+    Practical Example: Division Calculator
+</h2>
+
+${codeBlock(`try:
+    a = float(input("Enter first number: "))
+    b = float(input("Enter second number: "))
+
+    result = a / b
+
+    print("Result:", result)
+
+except ValueError:
+    print("Please enter valid numbers")
+
+except ZeroDivisionError:
+    print("Second number cannot be zero")`, "Python")}
+
+
+<h2>
+    Practical Example: File Handling
+</h2>
+
+<p>
+    Exception handling can also be used when working with files
+    that may not exist.
+</p>
+
+${codeBlock(`try:
+    file = open("data.txt", "r")
+
+    content = file.read()
+
+    print(content)
+
+    file.close()
+
+except FileNotFoundError:
+    print("File not found")`, "Python")}
+
+
+<h2>
+    Common Python Exceptions
+</h2>
+
+<table>
+    <tr>
+        <th>Exception</th>
+        <th>When it Occurs</th>
+    </tr>
+    <tr>
+        <td>ValueError</td>
+        <td>Invalid value is provided.</td>
+    </tr>
+    <tr>
+        <td>TypeError</td>
+        <td>Operation is performed on an inappropriate type.</td>
+    </tr>
+    <tr>
+        <td>ZeroDivisionError</td>
+        <td>Division by zero is attempted.</td>
+    </tr>
+    <tr>
+        <td>IndexError</td>
+        <td>Invalid list or sequence index is accessed.</td>
+    </tr>
+    <tr>
+        <td>KeyError</td>
+        <td>Missing dictionary key is accessed.</td>
+    </tr>
+    <tr>
+        <td>FileNotFoundError</td>
+        <td>Requested file cannot be found.</td>
+    </tr>
+    <tr>
+        <td>NameError</td>
+        <td>An undefined variable or name is used.</td>
+    </tr>
+    <tr>
+        <td>AttributeError</td>
+        <td>An invalid attribute or method is accessed.</td>
+    </tr>
+    <tr>
+        <td>ImportError</td>
+        <td>A required import cannot be performed.</td>
+    </tr>
+    <tr>
+        <td>ModuleNotFoundError</td>
+        <td>The requested module cannot be found.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Exception Handling Flow
+</h2>
+
+${codeBlock(`try:
+    # Code that may cause an error
+
+except:
+    # Handle the error
+
+else:
+    # Runs when there is no error
+
+finally:
+    # Always runs`, "Python")}
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Exceptions are errors that occur during program execution.</li>
+    <li>Use <b>try</b> for code that may cause an exception.</li>
+    <li>Use <b>except</b> to handle an exception.</li>
+    <li>Specific exception types can be handled separately.</li>
+    <li>Use <b>else</b> when code should run only if no exception occurs.</li>
+    <li>Use <b>finally</b> for code that must always execute.</li>
+    <li>Use <b>raise</b> to manually generate an exception.</li>
+    <li>Custom exceptions can be created by inheriting from <b>Exception</b>.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Exception handling is used to handle runtime errors in a
+    controlled way. Python provides <b>try</b>, <b>except</b>,
+    <b>else</b>, and <b>finally</b> blocks for handling exceptions.
+    Using exception handling makes programs more reliable and
+    prevents unexpected errors from stopping the application.
+</p>`
 };
 
 
