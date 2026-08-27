@@ -6224,29 +6224,639 @@ Longitude: 72.8777
 dictionary: `
 
 <h1>
-    Dictionary
+    Dictionaries
 </h1>
 
 <div class="subtitle">
-    Store data using key-value pairs.
+    Store and manage data using key-value pairs in Python.
 </div>
 
 <div class="divider"></div>
 
 
+<h2>
+    What is a Dictionary?
+</h2>
+
 <p>
-    A dictionary stores data in the form of
-    <strong>key-value pairs</strong>.
+    A <b>dictionary</b> is a collection used to store data in
+    <b>key-value pairs</b>. Each key is used to access its
+    corresponding value.
 </p>
 
+<p>
+    Dictionaries are <b>ordered</b>, <b>changeable</b>, and do not
+    allow duplicate keys.
+</p>
+
+
+<h2>
+    Creating a Dictionary
+</h2>
+
+<p>
+    Dictionaries are created using curly brackets <b>{}</b>.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}
+
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{'name': 'Rahul', 'age': 20, 'course': 'Python'}
+</div>
+
+
+<h2>
+    Dictionary Key-Value Pair
+</h2>
+
+<p>
+    Each item in a dictionary consists of a <b>key</b> and its
+    corresponding <b>value</b>.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20
+}`, "Python")}
+
+<p>
+    Here, <b>"name"</b> and <b>"age"</b> are keys, while
+    <b>"Rahul"</b> and <b>20</b> are their corresponding values.
+</p>
+
+
+<h2>
+    Empty Dictionary
+</h2>
+
+<p>
+    An empty dictionary is created using empty curly brackets.
+</p>
+
+${codeBlock(`student = {}
+
+print(student)
+print(type(student))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{}<br>
+&lt;class 'dict'&gt;
+</div>
+
+
+<h2>
+    Accessing Dictionary Values
+</h2>
+
+<p>
+    Values can be accessed using their corresponding keys.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}
+
+print(student["name"])
+print(student["age"])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+20
+</div>
+
+
+<h2>
+    Using get()
+</h2>
+
+<p>
+    The <b>get()</b> method can also be used to access a value.
+    It is useful when the specified key may not exist.
+</p>
 
 ${codeBlock(`student = {
     "name": "Rahul",
     "age": 20
 }
 
-print(student["name"])`, "Python")}
+print(student.get("name"))
+print(student.get("course"))`, "Python")}
 
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+None
+</div>
+
+
+<h2>
+    Adding a New Item
+</h2>
+
+<p>
+    A new key-value pair can be added by assigning a value to
+    a new key.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20
+}
+
+student["course"] = "Python"
+
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{'name': 'Rahul', 'age': 20, 'course': 'Python'}
+</div>
+
+
+<h2>
+    Changing a Value
+</h2>
+
+<p>
+    Existing dictionary values can be changed by assigning a new
+    value to the corresponding key.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20
+}
+
+student["age"] = 21
+
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{'name': 'Rahul', 'age': 21}
+</div>
+
+
+<h2>
+    Updating a Dictionary
+</h2>
+
+<p>
+    The <b>update()</b> method can be used to add new items or
+    modify existing items.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20
+}
+
+student.update({
+    "age": 21,
+    "course": "Python"
+})
+
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{'name': 'Rahul', 'age': 21, 'course': 'Python'}
+</div>
+
+
+<h2>
+    Removing Items
+</h2>
+
+
+<h3>
+    pop()
+</h3>
+
+<p>
+    The <b>pop()</b> method removes the item with the specified key
+    and returns its value.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}
+
+removed = student.pop("age")
+
+print(removed)
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+20<br>
+{'name': 'Rahul', 'course': 'Python'}
+</div>
+
+
+<h3>
+    popitem()
+</h3>
+
+<p>
+    The <b>popitem()</b> method removes and returns the last
+    key-value pair.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}
+
+student.popitem()
+
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{'name': 'Rahul', 'age': 20}
+</div>
+
+
+<h3>
+    del
+</h3>
+
+<p>
+    The <b>del</b> statement can be used to remove an item
+    using its key.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}
+
+del student["age"]
+
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{'name': 'Rahul', 'course': 'Python'}
+</div>
+
+
+<h3>
+    clear()
+</h3>
+
+<p>
+    The <b>clear()</b> method removes all items from a dictionary.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20
+}
+
+student.clear()
+
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{}
+</div>
+
+
+<h2>
+    Finding the Length of a Dictionary
+</h2>
+
+<p>
+    The <b>len()</b> function returns the number of key-value
+    pairs in a dictionary.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}
+
+print(len(student))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+3
+</div>
+
+
+<h2>
+    Checking if a Key Exists
+</h2>
+
+<p>
+    The <b>in</b> operator can be used to check whether a key
+    exists in a dictionary.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20
+}
+
+print("name" in student)
+print("course" in student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+False
+</div>
+
+
+<h2>
+    Dictionary Keys
+</h2>
+
+<p>
+    The <b>keys()</b> method returns a view containing all
+    the keys in a dictionary.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}
+
+print(student.keys())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+dict_keys(['name', 'age', 'course'])
+</div>
+
+
+<h2>
+    Dictionary Values
+</h2>
+
+<p>
+    The <b>values()</b> method returns a view containing all
+    the values in a dictionary.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}
+
+print(student.values())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+dict_values(['Rahul', 20, 'Python'])
+</div>
+
+
+<h2>
+    Dictionary Items
+</h2>
+
+<p>
+    The <b>items()</b> method returns all key-value pairs.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20
+}
+
+print(student.items())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+dict_items([('name', 'Rahul'), ('age', 20)])
+</div>
+
+
+<h2>
+    Looping Through a Dictionary
+</h2>
+
+<p>
+    A <b>for loop</b> can be used to iterate through the keys
+    of a dictionary.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}
+
+for key in student:
+    print(key)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+name<br>
+age<br>
+course
+</div>
+
+
+<h2>
+    Looping Through Values
+</h2>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}
+
+for value in student.values():
+    print(value)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+20<br>
+Python
+</div>
+
+
+<h2>
+    Looping Through Keys and Values
+</h2>
+
+<p>
+    The <b>items()</b> method can be used to access both the
+    key and value during a loop.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}
+
+for key, value in student.items():
+    print(key, ":", value)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+name : Rahul<br>
+age : 20<br>
+course : Python
+</div>
+
+
+<h2>
+    Duplicate Keys
+</h2>
+
+<p>
+    Dictionary keys must be unique. If the same key is written
+    more than once, the last value replaces the previous value.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "age": 21
+}
+
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{'name': 'Rahul', 'age': 21}
+</div>
+
+
+<h2>
+    Dictionary with Different Data Types
+</h2>
+
+<p>
+    Dictionary values can contain different data types.
+</p>
+
+${codeBlock(`data = {
+    "name": "Rahul",
+    "age": 20,
+    "marks": 85.5,
+    "passed": True
+}
+
+print(data)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{'name': 'Rahul', 'age': 20, 'marks': 85.5, 'passed': True}
+</div>
+
+
+<h2>
+    Nested Dictionary
+</h2>
+
+<p>
+    A dictionary can contain another dictionary as a value.
+    This is called a <b>nested dictionary</b>.
+</p>
+
+${codeBlock(`students = {
+    "student1": {
+        "name": "Rahul",
+        "age": 20
+    },
+    "student2": {
+        "name": "Amit",
+        "age": 21
+    }
+}
+
+print(students["student1"]["name"])`, "Python")}
 
 <div class="output-title">
     Output
@@ -6255,6 +6865,283 @@ print(student["name"])`, "Python")}
 <div class="output">
 Rahul
 </div>
+
+
+<h2>
+    Dictionary Containing a List
+</h2>
+
+<p>
+    Dictionary values can also contain lists.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "marks": [80, 85, 90]
+}
+
+print(student["marks"])
+print(student["marks"][1])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[80, 85, 90]<br>
+85
+</div>
+
+
+<h2>
+    Copying a Dictionary
+</h2>
+
+<p>
+    The <b>copy()</b> method creates a copy of a dictionary.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20
+}
+
+new_student = student.copy()
+
+print(new_student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{'name': 'Rahul', 'age': 20}
+</div>
+
+
+<h2>
+    Creating a Dictionary with fromkeys()
+</h2>
+
+<p>
+    The <b>fromkeys()</b> method creates a new dictionary using
+    the specified keys and a common value.
+</p>
+
+${codeBlock(`keys = ["name", "age", "course"]
+
+student = dict.fromkeys(keys, "Unknown")
+
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{'name': 'Unknown', 'age': 'Unknown', 'course': 'Unknown'}
+</div>
+
+
+<h2>
+    Dictionary Comprehension
+</h2>
+
+<p>
+    Dictionary comprehension provides a short way to create
+    dictionaries using an expression and a loop.
+</p>
+
+<h3>
+    Syntax
+</h3>
+
+${codeBlock(`{key: value for item in iterable}`, "Python")}
+
+
+<h3>
+    Example
+</h3>
+
+${codeBlock(`numbers = [1, 2, 3, 4, 5]
+
+squares = {
+    number: number * number
+    for number in numbers
+}
+
+print(squares)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+</div>
+
+
+<h2>
+    Dictionary Comprehension with Condition
+</h2>
+
+${codeBlock(`numbers = [1, 2, 3, 4, 5, 6]
+
+even_squares = {
+    number: number * number
+    for number in numbers
+    if number % 2 == 0
+}
+
+print(even_squares)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{2: 4, 4: 16, 6: 36}
+</div>
+
+
+<h2>
+    Practical Example: Student Record
+</h2>
+
+<p>
+    Dictionaries are useful for storing related information
+    about an object such as a student.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python",
+    "marks": 85
+}
+
+print("Name:", student["name"])
+print("Course:", student["course"])
+print("Marks:", student["marks"])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Name: Rahul<br>
+Course: Python<br>
+Marks: 85
+</div>
+
+
+<h2>
+    Practical Example: Product Details
+</h2>
+
+${codeBlock(`product = {
+    "name": "Laptop",
+    "price": 55000,
+    "brand": "Dell",
+    "stock": 10
+}
+
+print("Product:", product["name"])
+print("Price:", product["price"])
+print("Stock:", product["stock"])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Product: Laptop<br>
+Price: 55000<br>
+Stock: 10
+</div>
+
+
+<h2>
+    Dictionary Methods Summary
+</h2>
+
+<table>
+    <tr>
+        <th>Method</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>get()</td>
+        <td>Returns the value of a specified key.</td>
+    </tr>
+    <tr>
+        <td>keys()</td>
+        <td>Returns all keys.</td>
+    </tr>
+    <tr>
+        <td>values()</td>
+        <td>Returns all values.</td>
+    </tr>
+    <tr>
+        <td>items()</td>
+        <td>Returns all key-value pairs.</td>
+    </tr>
+    <tr>
+        <td>update()</td>
+        <td>Adds or updates key-value pairs.</td>
+    </tr>
+    <tr>
+        <td>pop()</td>
+        <td>Removes a specified key.</td>
+    </tr>
+    <tr>
+        <td>popitem()</td>
+        <td>Removes the last key-value pair.</td>
+    </tr>
+    <tr>
+        <td>clear()</td>
+        <td>Removes all items.</td>
+    </tr>
+    <tr>
+        <td>copy()</td>
+        <td>Creates a copy of the dictionary.</td>
+    </tr>
+    <tr>
+        <td>fromkeys()</td>
+        <td>Creates a dictionary from specified keys.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Dictionaries store data in <b>key-value pairs</b>.</li>
+    <li>Dictionaries are created using <b>{}</b>.</li>
+    <li>Keys must be unique.</li>
+    <li>Values can be of different data types.</li>
+    <li>Dictionaries are changeable.</li>
+    <li>Values are accessed using their keys.</li>
+    <li>Use <b>get()</b> to safely access a value.</li>
+    <li>Use <b>update()</b> to add or modify items.</li>
+    <li>Use <b>keys()</b>, <b>values()</b>, and <b>items()</b> to access dictionary data.</li>
+    <li>Dictionaries can contain lists and other dictionaries.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    A dictionary is a powerful Python data structure used to store
+    information in key-value pairs. It allows us to quickly access,
+    add, modify, and remove data using keys. Dictionaries are widely
+    used for storing structured information such as student records,
+    product details, user profiles, and configuration data.
+</p>
 
 `
 
