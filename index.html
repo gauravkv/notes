@@ -913,6 +913,14 @@ strong {
 
         </button>
 
+           <button
+            class="topic"
+            onclick="showTopic('set', this)">
+
+            Set
+
+             </button>
+
 
     </aside>
 
@@ -7143,7 +7151,969 @@ Stock: 10
     product details, user profiles, and configuration data.
 </p>
 
-`
+`,
+      set : 
+
+            `<h1>
+    Sets
+</h1>
+
+<div class="subtitle">
+    Store unique and unordered values using Python sets.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Set?
+</h2>
+
+<p>
+    A <b>set</b> is a collection used to store multiple values.
+    Sets are <b>unordered</b>, <b>changeable</b>, and do not allow
+    duplicate values.
+</p>
+
+<p>
+    Sets are especially useful when you need to store unique
+    values or perform mathematical operations such as union,
+    intersection, and difference.
+</p>
+
+
+<h2>
+    Creating a Set
+</h2>
+
+<p>
+    Sets are created using curly brackets <b>{}</b>.
+</p>
+
+${codeBlock(`numbers = {10, 20, 30, 40}
+
+print(numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{10, 20, 30, 40}
+</div>
+
+
+<h2>
+    Duplicate Values
+</h2>
+
+<p>
+    A set automatically removes duplicate values.
+</p>
+
+${codeBlock(`numbers = {10, 20, 10, 30, 20, 40}
+
+print(numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{10, 20, 30, 40}
+</div>
+
+<p>
+    Even though duplicate values were provided, each value appears
+    only once in the set.
+</p>
+
+
+<h2>
+    Creating an Empty Set
+</h2>
+
+<p>
+    An empty set cannot be created using <b>{}</b> because
+    <b>{}</b> represents an empty dictionary. Use <b>set()</b>
+    instead.
+</p>
+
+${codeBlock(`numbers = set()
+
+print(numbers)
+print(type(numbers))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+set()<br>
+&lt;class 'set'&gt;
+</div>
+
+
+<h2>
+    Set with Different Data Types
+</h2>
+
+<p>
+    A set can contain values of different data types.
+</p>
+
+${codeBlock(`data = {"Rahul", 20, 85.5, True}
+
+print(data)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{'Rahul', 20, 85.5, True}
+</div>
+
+
+<h2>
+    Accessing Set Elements
+</h2>
+
+<p>
+    Sets are unordered, so they do not support indexing or
+    accessing elements using positions.
+</p>
+
+${codeBlock(`numbers = {10, 20, 30}
+
+print(numbers[0])`, "Python")}
+
+<p>
+    The above code produces a <b>TypeError</b> because set
+    elements cannot be accessed using an index.
+</p>
+
+
+<h2>
+    Looping Through a Set
+</h2>
+
+<p>
+    A <b>for loop</b> can be used to access each element of a set.
+</p>
+
+${codeBlock(`fruits = {"Apple", "Banana", "Mango"}
+
+for fruit in fruits:
+    print(fruit)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Apple<br>
+Banana<br>
+Mango
+</div>
+
+<p>
+    The order of elements in the output may vary because sets
+    are unordered collections.
+</p>
+
+
+<h2>
+    Finding the Length of a Set
+</h2>
+
+<p>
+    The <b>len()</b> function returns the number of unique elements
+    in a set.
+</p>
+
+${codeBlock(`numbers = {10, 20, 30, 40}
+
+print(len(numbers))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+4
+</div>
+
+
+<h2>
+    Checking if an Element Exists
+</h2>
+
+<p>
+    The <b>in</b> operator can be used to check whether an element
+    exists in a set.
+</p>
+
+${codeBlock(`fruits = {"Apple", "Banana", "Mango"}
+
+print("Mango" in fruits)
+print("Orange" in fruits)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+False
+</div>
+
+
+<h2>
+    Adding Elements to a Set
+</h2>
+
+
+<h3>
+    add()
+</h3>
+
+<p>
+    The <b>add()</b> method adds one element to a set.
+</p>
+
+${codeBlock(`numbers = {10, 20, 30}
+
+numbers.add(40)
+
+print(numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{10, 20, 30, 40}
+</div>
+
+
+<h3>
+    Adding a Duplicate Value
+</h3>
+
+<p>
+    Adding a value that already exists does not create another
+    copy of that value.
+</p>
+
+${codeBlock(`numbers = {10, 20, 30}
+
+numbers.add(20)
+
+print(numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{10, 20, 30}
+</div>
+
+
+<h3>
+    update()
+</h3>
+
+<p>
+    The <b>update()</b> method adds multiple elements to a set.
+</p>
+
+${codeBlock(`numbers = {10, 20}
+
+numbers.update([30, 40, 50])
+
+print(numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{10, 20, 30, 40, 50}
+</div>
+
+
+<h2>
+    Removing Elements from a Set
+</h2>
+
+
+<h3>
+    remove()
+</h3>
+
+<p>
+    The <b>remove()</b> method removes a specified element.
+    If the element does not exist, it raises a KeyError.
+</p>
+
+${codeBlock(`numbers = {10, 20, 30, 40}
+
+numbers.remove(30)
+
+print(numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{10, 20, 40}
+</div>
+
+
+<h3>
+    discard()
+</h3>
+
+<p>
+    The <b>discard()</b> method also removes a specified element.
+    Unlike remove(), it does not raise an error if the element
+    does not exist.
+</p>
+
+${codeBlock(`numbers = {10, 20, 30}
+
+numbers.discard(50)
+
+print(numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{10, 20, 30}
+</div>
+
+
+<h3>
+    pop()
+</h3>
+
+<p>
+    The <b>pop()</b> method removes and returns an arbitrary
+    element from the set.
+</p>
+
+${codeBlock(`numbers = {10, 20, 30}
+
+removed = numbers.pop()
+
+print("Removed:", removed)
+print("Set:", numbers)`, "Python")}
+
+<p>
+    Since sets are unordered, the element removed by
+    <b>pop()</b> should not be assumed to be a particular value.
+</p>
+
+
+<h3>
+    clear()
+</h3>
+
+<p>
+    The <b>clear()</b> method removes all elements from a set.
+</p>
+
+${codeBlock(`numbers = {10, 20, 30}
+
+numbers.clear()
+
+print(numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+set()
+</div>
+
+
+<h2>
+    Set Union
+</h2>
+
+<p>
+    The <b>union</b> operation combines all unique elements from
+    two or more sets.
+</p>
+
+<p>
+    It can be performed using the <b>|</b> operator or the
+    <b>union()</b> method.
+</p>
+
+${codeBlock(`set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+
+result = set1 | set2
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{1, 2, 3, 4, 5, 6}
+</div>
+
+
+<h3>
+    Using union()
+</h3>
+
+${codeBlock(`set1 = {1, 2, 3}
+set2 = {3, 4, 5}
+
+result = set1.union(set2)
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{1, 2, 3, 4, 5}
+</div>
+
+
+<h2>
+    Set Intersection
+</h2>
+
+<p>
+    The <b>intersection</b> operation returns only the elements
+    that are common to both sets.
+</p>
+
+<p>
+    It can be performed using the <b>&</b> operator or the
+    <b>intersection()</b> method.
+</p>
+
+${codeBlock(`set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+
+result = set1 & set2
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{3, 4}
+</div>
+
+
+<h3>
+    Using intersection()
+</h3>
+
+${codeBlock(`set1 = {1, 2, 3}
+set2 = {2, 3, 4}
+
+result = set1.intersection(set2)
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{2, 3}
+</div>
+
+
+<h2>
+    Set Difference
+</h2>
+
+<p>
+    The <b>difference</b> operation returns elements that are
+    present in the first set but not in the second set.
+</p>
+
+<p>
+    It can be performed using the <b>-</b> operator or the
+    <b>difference()</b> method.
+</p>
+
+${codeBlock(`set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+
+result = set1 - set2
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{1, 2}
+</div>
+
+
+<h3>
+    Reverse Difference
+</h3>
+
+${codeBlock(`set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+
+print(set2 - set1)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{5, 6}
+</div>
+
+
+<h2>
+    Symmetric Difference
+</h2>
+
+<p>
+    Symmetric difference returns elements that are present in
+    either set, but not in both sets.
+</p>
+
+<p>
+    It can be performed using the <b>^</b> operator or the
+    <b>symmetric_difference()</b> method.
+</p>
+
+${codeBlock(`set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+
+result = set1 ^ set2
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{1, 2, 5, 6}
+</div>
+
+
+<h2>
+    Subset
+</h2>
+
+<p>
+    A set is a <b>subset</b> of another set if all of its elements
+    are present in the other set.
+</p>
+
+<p>
+    The <b>&lt;=</b> operator or <b>issubset()</b> method can be used
+    to check this.
+</p>
+
+${codeBlock(`set1 = {1, 2}
+set2 = {1, 2, 3, 4}
+
+print(set1.issubset(set2))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h2>
+    Superset
+</h2>
+
+<p>
+    A set is a <b>superset</b> if it contains all the elements
+    of another set.
+</p>
+
+${codeBlock(`set1 = {1, 2, 3, 4}
+set2 = {1, 2}
+
+print(set1.issuperset(set2))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h2>
+    Disjoint Sets
+</h2>
+
+<p>
+    Two sets are <b>disjoint</b> if they have no elements in common.
+</p>
+
+${codeBlock(`set1 = {1, 2, 3}
+set2 = {4, 5, 6}
+
+print(set1.isdisjoint(set2))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h2>
+    Set Comparison
+</h2>
+
+<p>
+    Sets can be compared using operators such as <b>==</b>,
+    <b>!=</b>, <b>&lt;</b>, and <b>&gt;</b>.
+</p>
+
+${codeBlock(`set1 = {1, 2, 3}
+set2 = {1, 2, 3}
+
+print(set1 == set2)
+print(set1 != set2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+False
+</div>
+
+
+<h2>
+    Converting a List into a Set
+</h2>
+
+<p>
+    The <b>set()</b> function can be used to convert a list into
+    a set. This is useful for removing duplicate values.
+</p>
+
+${codeBlock(`numbers = [10, 20, 10, 30, 20, 40]
+
+unique_numbers = set(numbers)
+
+print(unique_numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{10, 20, 30, 40}
+</div>
+
+
+<h2>
+    Converting a Set into a List
+</h2>
+
+<p>
+    The <b>list()</b> function can be used to convert a set into
+    a list.
+</p>
+
+${codeBlock(`numbers = {10, 20, 30}
+
+result = list(numbers)
+
+print(result)
+print(type(result))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[10, 20, 30]<br>
+&lt;class 'list'&gt;
+</div>
+
+
+<h2>
+    Frozenset
+</h2>
+
+<p>
+    A <b>frozenset</b> is an immutable version of a set.
+    Once created, its elements cannot be added or removed.
+</p>
+
+${codeBlock(`numbers = frozenset([10, 20, 30])
+
+print(numbers)
+print(type(numbers))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+frozenset({10, 20, 30})<br>
+&lt;class 'frozenset'&gt;
+</div>
+
+
+<h2>
+    Practical Example: Removing Duplicates
+</h2>
+
+<p>
+    Sets are commonly used to remove duplicate values from data.
+</p>
+
+${codeBlock(`marks = [80, 90, 80, 75, 90, 85]
+
+unique_marks = set(marks)
+
+print(unique_marks)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{80, 90, 75, 85}
+</div>
+
+
+<h2>
+    Practical Example: Common Subjects
+</h2>
+
+<p>
+    Set intersection can be used to find common values between
+    two collections.
+</p>
+
+${codeBlock(`student1 = {"Python", "Java", "SQL"}
+student2 = {"Python", "C++", "SQL"}
+
+common = student1 & student2
+
+print(common)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{'Python', 'SQL'}
+</div>
+
+
+<h2>
+    Set Operations Summary
+</h2>
+
+<table>
+    <tr>
+        <th>Operation</th>
+        <th>Operator</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>Union</td>
+        <td>|</td>
+        <td>Combines unique elements from both sets.</td>
+    </tr>
+    <tr>
+        <td>Intersection</td>
+        <td>&amp;</td>
+        <td>Returns common elements.</td>
+    </tr>
+    <tr>
+        <td>Difference</td>
+        <td>-</td>
+        <td>Returns elements present only in the first set.</td>
+    </tr>
+    <tr>
+        <td>Symmetric Difference</td>
+        <td>^</td>
+        <td>Returns elements that are not common.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Set Methods Summary
+</h2>
+
+<table>
+    <tr>
+        <th>Method</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>add()</td>
+        <td>Adds one element.</td>
+    </tr>
+    <tr>
+        <td>update()</td>
+        <td>Adds multiple elements.</td>
+    </tr>
+    <tr>
+        <td>remove()</td>
+        <td>Removes a specified element.</td>
+    </tr>
+    <tr>
+        <td>discard()</td>
+        <td>Removes an element without raising an error if absent.</td>
+    </tr>
+    <tr>
+        <td>pop()</td>
+        <td>Removes and returns an arbitrary element.</td>
+    </tr>
+    <tr>
+        <td>clear()</td>
+        <td>Removes all elements.</td>
+    </tr>
+    <tr>
+        <td>union()</td>
+        <td>Combines sets.</td>
+    </tr>
+    <tr>
+        <td>intersection()</td>
+        <td>Returns common elements.</td>
+    </tr>
+    <tr>
+        <td>difference()</td>
+        <td>Returns elements only in the first set.</td>
+    </tr>
+    <tr>
+        <td>symmetric_difference()</td>
+        <td>Returns non-common elements.</td>
+    </tr>
+    <tr>
+        <td>issubset()</td>
+        <td>Checks whether a set is a subset.</td>
+    </tr>
+    <tr>
+        <td>issuperset()</td>
+        <td>Checks whether a set is a superset.</td>
+    </tr>
+    <tr>
+        <td>isdisjoint()</td>
+        <td>Checks whether two sets have no common elements.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Set vs List vs Tuple
+</h2>
+
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>List</th>
+        <th>Tuple</th>
+        <th>Set</th>
+    </tr>
+    <tr>
+        <td>Syntax</td>
+        <td>[]</td>
+        <td>()</td>
+        <td>{}</td>
+    </tr>
+    <tr>
+        <td>Ordered</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>No</td>
+    </tr>
+    <tr>
+        <td>Changeable</td>
+        <td>Yes</td>
+        <td>No</td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>Duplicates</td>
+        <td>Allowed</td>
+        <td>Allowed</td>
+        <td>Not allowed</td>
+    </tr>
+    <tr>
+        <td>Indexing</td>
+        <td>Supported</td>
+        <td>Supported</td>
+        <td>Not supported</td>
+    </tr>
+</table>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Sets store <b>unique values</b>.</li>
+    <li>Sets do not allow duplicate elements.</li>
+    <li>Sets do not support indexing.</li>
+    <li>Sets are mutable.</li>
+    <li>Use <b>set()</b> to create an empty set.</li>
+    <li>Use <b>add()</b> to add one element.</li>
+    <li>Use <b>update()</b> to add multiple elements.</li>
+    <li>Use <b>remove()</b> or <b>discard()</b> to remove elements.</li>
+    <li>Use <b>|</b> for union.</li>
+    <li>Use <b>&amp;</b> for intersection.</li>
+    <li>Use <b>-</b> for difference.</li>
+    <li>Use <b>^</b> for symmetric difference.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    A set is a collection of unique values in Python. Unlike lists
+    and tuples, sets do not support indexing and do not maintain
+    elements in a positional order. Sets are especially useful for
+    removing duplicate data and performing mathematical set
+    operations such as union, intersection, difference, and
+    symmetric difference.
+</p>`
 
 };
 
