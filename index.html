@@ -937,6 +937,14 @@ strong {
 
              </button>
 
+           <button
+            class="topic"
+            onclick="showTopic('import', this)">
+
+           Import Statement
+
+             </button>
+
 
     </aside>
 
@@ -10004,7 +10012,583 @@ ${codeBlock(`student_project/
     a single Python file, while a package is a collection of related
     modules. Python also provides a large standard library, and
     additional third-party packages can be installed using pip.
-</p>`
+</p>`,
+
+      import : '
+            <h1>
+          Import Statement
+            </h1>
+
+<div class="subtitle">
+    Use code from modules and packages in your Python programs.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is import?
+</h2>
+
+<p>
+    The <b>import</b> statement is used to include a module in a
+    Python program. It allows you to use functions, variables,
+    classes, and other code that are already defined in that module.
+</p>
+
+
+<h2>
+    Basic import
+</h2>
+
+<p>
+    The simplest way to import a module is to use the
+    <b>import</b> keyword followed by the module name.
+</p>
+
+${codeBlock(`import math
+
+print(math.sqrt(25))
+print(math.pi)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+5.0<br>
+3.141592653589793
+</div>
+
+
+<h2>
+    Using a Module Name
+</h2>
+
+<p>
+    After importing a module, its members can be accessed using
+    the <b>dot (.) operator</b>.
+</p>
+
+${codeBlock(`import math
+
+number = 16
+
+print(math.sqrt(number))
+print(math.factorial(5))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+4.0<br>
+120
+</div>
+
+
+<h2>
+    Import Multiple Modules
+</h2>
+
+<p>
+    Multiple modules can be imported in the same program.
+</p>
+
+${codeBlock(`import math
+import random
+
+print(math.sqrt(36))
+print(random.randint(1, 10))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+6.0<br>
+7
+</div>
+
+<p>
+    The second output may be different because
+    <b>randint()</b> generates a random number.
+</p>
+
+
+<h2>
+    Import Specific Function</h2>
+
+<p>
+    The <b>from ... import</b> syntax can be used to import a
+    specific function from a module.
+</p>
+
+${codeBlock(`from math import sqrt
+
+print(sqrt(49))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+7.0
+</div>
+
+<p>
+    Since <b>sqrt</b> was imported directly, the module name
+    is not required when calling it.
+</p>
+
+
+<h2>
+    Import Multiple Functions
+</h2>
+
+${codeBlock(`from math import sqrt, factorial
+
+print(sqrt(64))
+print(factorial(5))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+8.0<br>
+120
+</div>
+
+
+<h2>
+    Import a Constant
+</h2>
+
+<p>
+    You can also import constants or variables from a module.
+</p>
+
+${codeBlock(`from math import pi
+
+radius = 5
+
+area = pi * radius * radius
+
+print(area)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+78.53981633974483
+</div>
+
+
+<h2>
+    Import with Alias
+</h2>
+
+<p>
+    The <b>as</b> keyword can be used to give an imported module
+    a shorter name.
+</p>
+
+${codeBlock(`import math as m
+
+print(m.sqrt(100))
+print(m.pi)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+10.0<br>
+3.141592653589793
+</div>
+
+
+<h2>
+    Alias for a Function
+</h2>
+
+<p>
+    An imported function can also be given a different name using
+    <b>as</b>.
+</p>
+
+${codeBlock(`from math import factorial as fact
+
+print(fact(5))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+120
+</div>
+
+
+<h2>
+    Import Everything
+</h2>
+
+<p>
+    The <b>*</b> symbol imports all names available from a module.
+</p>
+
+${codeBlock(`from math import *
+
+print(sqrt(81))
+print(pi)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+9.0<br>
+3.141592653589793
+</div>
+
+<p>
+    Although this is supported, importing specific names is
+    generally preferred because it makes the code easier to read
+    and avoids unnecessary name conflicts.
+</p>
+
+
+<h2>
+    Importing Your Own Module
+</h2>
+
+<p>
+    You can create your own Python module and import it into another
+    Python file.
+</p>
+
+<p>
+    Suppose we have a file named <b>calculator.py</b>.
+</p>
+
+${codeBlock(`def add(a, b):
+    return a + b
+
+
+def multiply(a, b):
+    return a * b`, "Python")}
+
+<p>
+    Now create another file named <b>main.py</b>.
+</p>
+
+${codeBlock(`import calculator
+
+print(calculator.add(10, 20))
+print(calculator.multiply(5, 4))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30<br>
+20
+</div>
+
+
+<h2>
+    Import Function from Your Module
+</h2>
+
+<p>
+    You can import only the required function from your own module.
+</p>
+
+${codeBlock(`from calculator import add
+
+print(add(50, 25))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+75
+</div>
+
+
+<h2>
+    Import from a Package
+</h2>
+
+<p>
+    A module inside a package can also be imported using the
+    package name.
+</p>
+
+${codeBlock(`from utilities import math_utils
+
+print(math_utils.add(10, 20))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30
+</div>
+
+
+<h2>
+    Import Directly from a Package Module
+</h2>
+
+<p>
+    A specific function can be imported directly from a module
+    inside a package.
+</p>
+
+${codeBlock(`from utilities.math_utils import add
+
+print(add(100, 50))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+150
+</div>
+
+
+<h2>
+    Common Python Modules
+</h2>
+
+<p>
+    Python provides many useful modules that can be imported
+    whenever required.
+</p>
+
+<table>
+    <tr>
+        <th>Module</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>math</td>
+        <td>Mathematical operations.</td>
+    </tr>
+    <tr>
+        <td>random</td>
+        <td>Generate random values.</td>
+    </tr>
+    <tr>
+        <td>datetime</td>
+        <td>Work with dates and times.</td>
+    </tr>
+    <tr>
+        <td>os</td>
+        <td>Interact with the operating system.</td>
+    </tr>
+    <tr>
+        <td>sys</td>
+        <td>Access Python system-specific information.</td>
+    </tr>
+    <tr>
+        <td>statistics</td>
+        <td>Perform statistical calculations.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Importing datetime
+</h2>
+
+${codeBlock(`import datetime
+
+today = datetime.datetime.now()
+
+print(today)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+2026-08-27 14:30:00.000000
+</div>
+
+
+<h2>
+    Importing random
+</h2>
+
+${codeBlock(`import random
+
+numbers = [10, 20, 30, 40, 50]
+
+print(random.choice(numbers))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30
+</div>
+
+<p>
+    The output may be different because <b>choice()</b> selects
+    a random element.
+</p>
+
+
+<h2>
+    Importing statistics
+</h2>
+
+${codeBlock(`import statistics
+
+marks = [70, 80, 90, 85, 75]
+
+print(statistics.mean(marks))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+80
+</div>
+
+
+<h2>
+    import vs from import
+</h2>
+
+<table>
+    <tr>
+        <th>Syntax</th>
+        <th>Example</th>
+        <th>Usage</th>
+    </tr>
+    <tr>
+        <td>import</td>
+        <td>import math</td>
+        <td>Imports the module.</td>
+    </tr>
+    <tr>
+        <td>from ... import</td>
+        <td>from math import sqrt</td>
+        <td>Imports a specific item.</td>
+    </tr>
+    <tr>
+        <td>import ... as</td>
+        <td>import math as m</td>
+        <td>Creates an alias for a module.</td>
+    </tr>
+    <tr>
+        <td>from ... import ... as</td>
+        <td>from math import factorial as fact</td>
+        <td>Creates an alias for an imported item.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Importing Third-Party Packages
+</h2>
+
+<p>
+    Python can also import packages installed separately using
+    <b>pip</b>.
+</p>
+
+${codeBlock(`pip install requests`, "Python")}
+
+<p>
+    After installing the package, it can be imported into your
+    Python program.
+</p>
+
+${codeBlock(`import requests
+
+response = requests.get("https://example.com")
+
+print(response.status_code)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+200
+</div>
+
+
+<h2>
+    Handling Import Errors
+</h2>
+
+<p>
+    If Python cannot find the requested module, it raises a
+    <b>ModuleNotFoundError</b>.
+</p>
+
+${codeBlock(`import abcxyz`, "Python")}
+
+<p>
+    If <b>abcxyz</b> is not available, Python will raise
+    <b>ModuleNotFoundError</b>.
+</p>
+
+
+<h2>
+    Why Use import?
+</h2>
+
+<ul>
+    <li>Reuse existing code.</li>
+    <li>Use Python's standard library.</li>
+    <li>Use third-party packages.</li>
+    <li>Organize large applications.</li>
+    <li>Avoid writing the same code repeatedly.</li>
+    <li>Keep programs modular and easier to maintain.</li>
+</ul>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Use <b>import</b> to include a module.</li>
+    <li>Use the <b>dot (.) operator</b> to access module members.</li>
+    <li>Use <b>from ... import</b> to import specific items.</li>
+    <li>Use <b>as</b> to create an alias.</li>
+    <li>Python provides many built-in and standard-library modules.</li>
+    <li>Third-party packages can be installed using <b>pip</b>.</li>
+    <li>You can also import your own modules and packages.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    The <b>import</b> statement allows Python programs to reuse
+    code from modules and packages. You can import complete modules,
+    specific functions or variables, or use aliases to make imported
+    names shorter. Importing code helps keep Python programs
+    organized, reusable, and easier to maintain.
+</p>'
 
 };
 
