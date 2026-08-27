@@ -953,6 +953,15 @@ strong {
 
              </button>
 
+           <button
+            class="topic"
+            onclick="showTopic('file', this)">
+
+           File Handling
+
+             </button>
+
+
           
 
 
@@ -11154,6 +11163,894 @@ finally:
     <b>else</b>, and <b>finally</b> blocks for handling exceptions.
     Using exception handling makes programs more reliable and
     prevents unexpected errors from stopping the application.
+</p>`,
+
+      file : `<h1>
+    File Handling
+</h1>
+
+<div class="subtitle">
+    Create, read, write, and manage files using Python.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is File Handling?
+</h2>
+
+<p>
+    File handling is used to create, read, write, update, and
+    delete files using Python. It allows programs to store data
+    permanently instead of keeping it only in memory.
+</p>
+
+<p>
+    Python provides the built-in <b>open()</b> function to work
+    with files.
+</p>
+
+
+<h2>
+    Opening a File
+</h2>
+
+<p>
+    The <b>open()</b> function is used to open a file.
+</p>
+
+<h3>
+    Syntax
+</h3>
+
+${codeBlock(`open("filename", "mode")`, "Python")}
+
+
+<h2>
+    File Modes
+</h2>
+
+<table>
+    <tr>
+        <th>Mode</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>r</td>
+        <td>Read an existing file.</td>
+    </tr>
+    <tr>
+        <td>w</td>
+        <td>Write to a file. Creates the file if it does not exist.</td>
+    </tr>
+    <tr>
+        <td>a</td>
+        <td>Append data to the end of a file.</td>
+    </tr>
+    <tr>
+        <td>x</td>
+        <td>Create a new file. Raises an error if the file already exists.</td>
+    </tr>
+    <tr>
+        <td>t</td>
+        <td>Text mode. This is the default mode.</td>
+    </tr>
+    <tr>
+        <td>b</td>
+        <td>Binary mode.</td>
+    </tr>
+    <tr>
+        <td>+</td>
+        <td>Allows both reading and writing.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Reading a File
+</h2>
+
+<p>
+    Suppose <b>data.txt</b> contains:
+</p>
+
+${codeBlock(`Hello Python
+Welcome to programming`, "Text")}
+
+<p>
+    We can read the file using the <b>r</b> mode.
+</p>
+
+${codeBlock(`file = open("data.txt", "r")
+
+content = file.read()
+
+print(content)
+
+file.close()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello Python<br>
+Welcome to programming
+</div>
+
+
+<h2>
+    Using read()
+</h2>
+
+<p>
+    The <b>read()</b> method reads the complete contents of a file.
+</p>
+
+${codeBlock(`file = open("data.txt", "r")
+
+content = file.read()
+
+print(content)
+
+file.close()`, "Python")}
+
+
+<h2>
+    Reading a Specific Number of Characters
+</h2>
+
+<p>
+    A number can be passed to <b>read()</b> to specify how many
+    characters should be read.
+</p>
+
+${codeBlock(`file = open("data.txt", "r")
+
+content = file.read(5)
+
+print(content)
+
+file.close()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello
+</div>
+
+
+<h2>
+    Using readline()
+</h2>
+
+<p>
+    The <b>readline()</b> method reads one line at a time.
+</p>
+
+${codeBlock(`file = open("data.txt", "r")
+
+line1 = file.readline()
+line2 = file.readline()
+
+print(line1)
+print(line2)
+
+file.close()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello Python<br>
+Welcome to programming
+</div>
+
+
+<h2>
+    Using readlines()
+</h2>
+
+<p>
+    The <b>readlines()</b> method reads all lines and returns
+    them as a list.
+</p>
+
+${codeBlock(`file = open("data.txt", "r")
+
+lines = file.readlines()
+
+print(lines)
+
+file.close()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+['Hello Python\n', 'Welcome to programming']
+</div>
+
+
+<h2>
+    Reading a File using a Loop
+</h2>
+
+<p>
+    A file can be iterated line by line using a <b>for</b> loop.
+</p>
+
+${codeBlock(`file = open("data.txt", "r")
+
+for line in file:
+    print(line.strip())
+
+file.close()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello Python<br>
+Welcome to programming
+</div>
+
+
+<h2>
+    Writing to a File
+</h2>
+
+<p>
+    The <b>w</b> mode is used to write data to a file. If the file
+    does not exist, Python creates it automatically.
+</p>
+
+${codeBlock(`file = open("data.txt", "w")
+
+file.write("Hello Python")
+
+file.close()`, "Python")}
+
+<p>
+    After running the program, <b>data.txt</b> will contain:
+</p>
+
+${codeBlock(`Hello Python`, "Text")}
+
+
+<h2>
+    Writing Multiple Lines
+</h2>
+
+<p>
+    The <b>\\n</b> escape character can be used to create new lines.
+</p>
+
+${codeBlock(`file = open("data.txt", "w")
+
+file.write("Python\\n")
+file.write("Java\\n")
+file.write("C++\\n")
+
+file.close()`, "Python")}
+
+<p>
+    The file will contain:
+</p>
+
+${codeBlock(`Python
+Java
+C++`, "Text")}
+
+
+<h2>
+    Important: Write Mode Replaces Existing Data
+</h2>
+
+<p>
+    Opening a file using <b>w</b> mode removes its existing contents
+    before writing new data.
+</p>
+
+${codeBlock(`file = open("data.txt", "w")
+
+file.write("New Content")
+
+file.close()`, "Python")}
+
+<p>
+    Therefore, use <b>w</b> carefully when you do not want to lose
+    existing file contents.
+</p>
+
+
+<h2>
+    Appending Data
+</h2>
+
+<p>
+    The <b>a</b> mode adds new content to the end of an existing file
+    without removing its previous contents.
+</p>
+
+${codeBlock(`file = open("data.txt", "a")
+
+file.write("\\nPython is easy to learn.")
+
+file.close()`, "Python")}
+
+
+<h2>
+    Reading After Appending
+</h2>
+
+${codeBlock(`file = open("data.txt", "a")
+
+file.write("\\nNew line added.")
+
+file.close()
+
+
+file = open("data.txt", "r")
+
+print(file.read())
+
+file.close()`, "Python")}
+
+
+<h2>
+    Creating a New File
+</h2>
+
+<p>
+    The <b>x</b> mode creates a new file. If the file already exists,
+    Python raises a <b>FileExistsError</b>.
+</p>
+
+${codeBlock(`file = open("newfile.txt", "x")
+
+file.write("This is a new file.")
+
+file.close()`, "Python")}
+
+
+<h2>
+    Closing a File
+</h2>
+
+<p>
+    The <b>close()</b> method closes an opened file. Closing files
+    releases system resources and ensures that pending data is
+    properly written.
+</p>
+
+${codeBlock(`file = open("data.txt", "r")
+
+print(file.read())
+
+file.close()`, "Python")}
+
+
+<h2>
+    Using with Statement
+</h2>
+
+<p>
+    The <b>with</b> statement is the recommended way to work with
+    files. It automatically closes the file after the block finishes.
+</p>
+
+${codeBlock(`with open("data.txt", "r") as file:
+    content = file.read()
+
+    print(content)`, "Python")}
+
+<p>
+    You do not need to call <b>close()</b> manually when using
+    <b>with</b>.
+</p>
+
+
+<h2>
+    Writing using with
+</h2>
+
+${codeBlock(`with open("data.txt", "w") as file:
+    file.write("Python File Handling")`, "Python")}
+
+
+<h2>
+    Appending using with
+</h2>
+
+${codeBlock(`with open("data.txt", "a") as file:
+    file.write("\\nLearning Python")`, "Python")}
+
+
+<h2>
+    File Position
+</h2>
+
+<p>
+    Python keeps track of the current position inside an opened
+    file. The <b>tell()</b> method returns the current position.
+</p>
+
+${codeBlock(`with open("data.txt", "r") as file:
+    print(file.tell())
+    
+    file.read(5)
+
+    print(file.tell())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+0<br>
+5
+</div>
+
+
+<h2>
+    Changing File Position using seek()
+</h2>
+
+<p>
+    The <b>seek()</b> method moves the file pointer to a specified
+    position.
+</p>
+
+${codeBlock(`with open("data.txt", "r") as file:
+    print(file.read(5))
+
+    file.seek(0)
+
+    print(file.read(5))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello<br>
+Hello
+</div>
+
+
+<h2>
+    Reading and Writing Together
+</h2>
+
+<p>
+    The <b>r+</b> mode allows both reading and writing. The file
+    must already exist.
+</p>
+
+${codeBlock(`with open("data.txt", "r+") as file:
+    content = file.read()
+
+    print(content)
+
+    file.write("\\nNew content")`, "Python")}
+
+
+<h2>
+    Writing and Reading Together
+</h2>
+
+<p>
+    The <b>w+</b> mode allows reading and writing, but it clears
+    the existing file contents when the file is opened.
+</p>
+
+${codeBlock(`with open("data.txt", "w+") as file:
+    file.write("Python")
+
+    file.seek(0)
+
+    print(file.read())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Python
+</div>
+
+
+<h2>
+    Appending and Reading Together
+</h2>
+
+<p>
+    The <b>a+</b> mode allows both appending and reading.
+</p>
+
+${codeBlock(`with open("data.txt", "a+") as file:
+    file.write("\\nNew Data")
+
+    file.seek(0)
+
+    print(file.read())`, "Python")}
+
+
+<h2>
+    File Encoding
+</h2>
+
+<p>
+    The <b>encoding</b> parameter specifies how text should be
+    encoded when reading or writing a file.
+</p>
+
+${codeBlock(`with open("data.txt", "r", encoding="utf-8") as file:
+    content = file.read()
+
+    print(content)`, "Python")}
+
+
+<h2>
+    Handling File Not Found Error
+</h2>
+
+<p>
+    If you try to open a file that does not exist in read mode,
+    Python raises a <b>FileNotFoundError</b>.
+</p>
+
+${codeBlock(`try:
+    with open("data.txt", "r") as file:
+        print(file.read())
+
+except FileNotFoundError:
+    print("File not found")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+File not found
+</div>
+
+
+<h2>
+    Checking if a File Exists
+</h2>
+
+<p>
+    The <b>os.path.exists()</b> function can be used to check
+    whether a file or directory exists.
+</p>
+
+${codeBlock(`import os
+
+if os.path.exists("data.txt"):
+    print("File exists")
+else:
+    print("File does not exist")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+File exists
+</div>
+
+
+<h2>
+    Deleting a File
+</h2>
+
+<p>
+    The <b>os.remove()</b> function can be used to delete a file.
+</p>
+
+${codeBlock(`import os
+
+if os.path.exists("data.txt"):
+    os.remove("data.txt")
+    print("File deleted")
+else:
+    print("File does not exist")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+File deleted
+</div>
+
+
+<h2>
+    Getting File Information
+</h2>
+
+<p>
+    The <b>os.path</b> module provides useful functions for
+    working with file paths.
+</p>
+
+${codeBlock(`import os
+
+file = "data.txt"
+
+print(os.path.exists(file))
+print(os.path.getsize(file))`, "Python")}
+
+<p>
+    <b>getsize()</b> returns the file size in bytes.
+</p>
+
+
+<h2>
+    Working with CSV Files
+</h2>
+
+<p>
+    Python provides the built-in <b>csv</b> module for working
+    with CSV files.
+</p>
+
+${codeBlock(`import csv
+
+with open("students.csv", "r", newline="") as file:
+    reader = csv.reader(file)
+
+    for row in reader:
+        print(row)`, "Python")}
+
+
+<h2>
+    Writing to a CSV File
+</h2>
+
+${codeBlock(`import csv
+
+students = [
+    ["Name", "Age", "Course"],
+    ["Rahul", 20, "Python"],
+    ["Amit", 21, "Java"]
+]
+
+with open("students.csv", "w", newline="") as file:
+    writer = csv.writer(file)
+
+    writer.writerows(students)`, "Python")}
+
+
+<h2>
+    Working with JSON Files
+</h2>
+
+<p>
+    Python's built-in <b>json</b> module can be used to store
+    structured data in JSON format.
+</p>
+
+${codeBlock(`import json
+
+student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}
+
+with open("student.json", "w") as file:
+    json.dump(student, file, indent=4)`, "Python")}
+
+<p>
+    The resulting JSON file will contain:
+</p>
+
+${codeBlock(`{
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}`, "JSON")}
+
+
+<h2>
+    Reading a JSON File
+</h2>
+
+${codeBlock(`import json
+
+with open("student.json", "r") as file:
+    student = json.load(file)
+
+print(student["name"])
+print(student["course"])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+Python
+</div>
+
+
+<h2>
+    Practical Example: Student Data
+</h2>
+
+<p>
+    File handling can be used to store student information
+    permanently.
+</p>
+
+${codeBlock(`student = {
+    "name": "Rahul",
+    "age": 20,
+    "course": "Python"
+}
+
+with open("student.txt", "w") as file:
+    file.write(f"Name: {student['name']}\\n")
+    file.write(f"Age: {student['age']}\\n")
+    file.write(f"Course: {student['course']}\\n")`, "Python")}
+
+<p>
+    The <b>student.txt</b> file will contain:
+</p>
+
+${codeBlock(`Name: Rahul
+Age: 20
+Course: Python`, "Text")}
+
+
+<h2>
+    File Modes Summary
+</h2>
+
+<table>
+    <tr>
+        <th>Mode</th>
+        <th>Read</th>
+        <th>Write</th>
+        <th>Creates File</th>
+        <th>Existing Data</th>
+    </tr>
+    <tr>
+        <td>r</td>
+        <td>Yes</td>
+        <td>No</td>
+        <td>No</td>
+        <td>Preserved</td>
+    </tr>
+    <tr>
+        <td>w</td>
+        <td>No</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Replaced</td>
+    </tr>
+    <tr>
+        <td>a</td>
+        <td>No</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Preserved</td>
+    </tr>
+    <tr>
+        <td>x</td>
+        <td>No</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Error if exists</td>
+    </tr>
+    <tr>
+        <td>r+</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>No</td>
+        <td>Preserved</td>
+    </tr>
+    <tr>
+        <td>w+</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Replaced</td>
+    </tr>
+    <tr>
+        <td>a+</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Preserved</td>
+    </tr>
+</table>
+
+
+<h2>
+    Important File Methods
+</h2>
+
+<table>
+    <tr>
+        <th>Method</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>read()</td>
+        <td>Reads file contents.</td>
+    </tr>
+    <tr>
+        <td>readline()</td>
+        <td>Reads one line.</td>
+    </tr>
+    <tr>
+        <td>readlines()</td>
+        <td>Reads all lines as a list.</td>
+    </tr>
+    <tr>
+        <td>write()</td>
+        <td>Writes data to a file.</td>
+    </tr>
+    <tr>
+        <td>writelines()</td>
+        <td>Writes multiple strings to a file.</td>
+    </tr>
+    <tr>
+        <td>seek()</td>
+        <td>Moves the file pointer.</td>
+    </tr>
+    <tr>
+        <td>tell()</td>
+        <td>Returns the current file position.</td>
+    </tr>
+    <tr>
+        <td>close()</td>
+        <td>Closes the file.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Use <b>open()</b> to open a file.</li>
+    <li>Use <b>r</b> to read a file.</li>
+    <li>Use <b>w</b> to write and replace existing content.</li>
+    <li>Use <b>a</b> to add content without removing existing data.</li>
+    <li>Use <b>x</b> to create a new file.</li>
+    <li>Use <b>read()</b> to read the complete file.</li>
+    <li>Use <b>readline()</b> to read one line.</li>
+    <li>Use <b>write()</b> to write data.</li>
+    <li>Use <b>seek()</b> to change the file position.</li>
+    <li>Use <b>tell()</b> to find the current file position.</li>
+    <li>Prefer the <b>with</b> statement because it automatically closes the file.</li>
+    <li>Use <b>try-except</b> to handle file-related errors.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    File handling allows Python programs to store and retrieve
+    information from files. Python provides several file modes
+    for reading, writing, appending, and creating files. The
+    <b>with</b> statement provides a safe and convenient way to
+    work with files, while modules such as <b>csv</b> and
+    <b>json</b> make it possible to work with structured data.
 </p>`
 };
 
