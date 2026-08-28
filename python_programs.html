@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Python Programs - Cursor Computers Academy</title>
+    <title>100 Python Programs - Cursor Computers Academy</title>
 
     <style>
         * {
@@ -19,45 +19,51 @@
             color: #222;
         }
 
-        /* Header */
+        /* HEADER */
         header {
-            background: white;
+            background: #ffffff;
             padding: 22px 15px;
             text-align: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
         }
 
         header h1 {
-            font-size: 26px;
+            font-size: 27px;
             color: #1f2937;
+            letter-spacing: 1px;
         }
 
         header p {
-            margin-top: 6px;
+            margin-top: 7px;
             color: #6b7280;
             font-size: 14px;
         }
 
-        /* Main */
+        /* MAIN */
         main {
-            max-width: 900px;
+            max-width: 950px;
             margin: 35px auto;
             padding: 0 15px;
         }
 
-        .title {
+        .page-title {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
-        .title h2 {
-            font-size: 24px;
+        .page-title h2 {
             color: #1f2937;
+            font-size: 25px;
         }
 
-        /* Accordion */
+        .page-title p {
+            margin-top: 8px;
+            color: #6b7280;
+        }
+
+        /* ACCORDION */
         .accordion {
-            background: white;
+            background: #ffffff;
             margin-bottom: 12px;
             border-radius: 10px;
             overflow: hidden;
@@ -68,15 +74,17 @@
             width: 100%;
             border: none;
             outline: none;
-            background: white;
+            background: #ffffff;
             padding: 18px 20px;
             text-align: left;
-            font-size: 17px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             transition: 0.3s;
         }
 
@@ -96,7 +104,7 @@
         .content {
             display: none;
             padding: 0 20px 20px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #eeeeee;
         }
 
         .content.show {
@@ -106,10 +114,16 @@
         .question {
             margin-top: 18px;
             margin-bottom: 15px;
+            line-height: 1.6;
         }
 
         .question strong {
             color: #374151;
+        }
+
+        .solution-title {
+            display: block;
+            margin-bottom: 8px;
         }
 
         pre {
@@ -120,6 +134,7 @@
             overflow-x: auto;
             line-height: 1.6;
             font-size: 14px;
+            font-family: Consolas, monospace;
         }
 
         .output {
@@ -129,19 +144,29 @@
         .output-box {
             background: #f3f4f6;
             padding: 14px;
+            margin-top: 8px;
             border-radius: 8px;
-            font-family: monospace;
+            font-family: Consolas, monospace;
             white-space: pre-wrap;
+            line-height: 1.5;
         }
 
-        /* Mobile */
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
         @media (max-width: 600px) {
 
             header h1 {
                 font-size: 21px;
             }
 
-            .title h2 {
+            .page-title h2 {
                 font-size: 21px;
             }
 
@@ -171,185 +196,514 @@
 
 <main>
 
-    <div class="title">
-        <h2>10 Python Programs with Solution</h2>
+    <div class="page-title">
+        <h2>100 Python Programs with Solutions</h2>
+        <p>Click on any program to view the question, solution and output.</p>
     </div>
 
 
-    <!-- Program 1 -->
+    <!-- 1 -->
     <div class="accordion">
-
         <button class="accordion-header">
-            1. Add Two Numbers
+            1. Print Hello World
             <span class="arrow">▼</span>
         </button>
-
         <div class="content">
-
             <div class="question">
                 <strong>Question:</strong>
-                Write a Python program to accept two numbers and find their sum.
+                Write a Python program to print "Hello World".
             </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>print("Hello World")</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Hello World</div>
+            </div>
+        </div>
+    </div>
 
-            <strong>Solution:</strong>
 
-<pre>
-a = int(input("Enter first number: "))
+    <!-- 2 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            2. Print Your Name
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to accept and display your name.
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>name = input("Enter your name: ")
+print("Your name is", name)</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter your name: Rahul
+Your name is Rahul</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 3 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            3. Add Two Numbers
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to find the sum of two numbers.
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>a = int(input("Enter first number: "))
 b = int(input("Enter second number: "))
 
-sum = a + b
-
-print("Sum =", sum)
-</pre>
-
+print("Sum =", a + b)</pre>
             <div class="output">
                 <strong>Output:</strong>
                 <div class="output-box">Enter first number: 10
 Enter second number: 20
 Sum = 30</div>
             </div>
-
         </div>
     </div>
 
 
-    <!-- Program 2 -->
+    <!-- 4 -->
     <div class="accordion">
-
         <button class="accordion-header">
-            2. Check Even or Odd
+            4. Subtract Two Numbers
             <span class="arrow">▼</span>
         </button>
-
         <div class="content">
-
             <div class="question">
                 <strong>Question:</strong>
-                Write a Python program to check whether a number is even or odd.
+                Write a Python program to find the difference between two numbers.
             </div>
-
-            <strong>Solution:</strong>
-
-<pre>
-num = int(input("Enter a number: "))
-
-if num % 2 == 0:
-    print("Even Number")
-else:
-    print("Odd Number")
-</pre>
-
-            <div class="output">
-                <strong>Output:</strong>
-                <div class="output-box">Enter a number: 15
-Odd Number</div>
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- Program 3 -->
-    <div class="accordion">
-
-        <button class="accordion-header">
-            3. Find Largest of Two Numbers
-            <span class="arrow">▼</span>
-        </button>
-
-        <div class="content">
-
-            <div class="question">
-                <strong>Question:</strong>
-                Write a Python program to find the largest of two numbers.
-            </div>
-
-            <strong>Solution:</strong>
-
-<pre>
-a = int(input("Enter first number: "))
+            <strong class="solution-title">Solution:</strong>
+<pre>a = int(input("Enter first number: "))
 b = int(input("Enter second number: "))
 
-if a > b:
-    print("Largest =", a)
-else:
-    print("Largest =", b)
-</pre>
-
+print("Difference =", a - b)</pre>
             <div class="output">
                 <strong>Output:</strong>
-                <div class="output-box">Enter first number: 25
-Enter second number: 40
-Largest = 40</div>
+                <div class="output-box">Enter first number: 50
+Enter second number: 20
+Difference = 30</div>
             </div>
-
         </div>
     </div>
 
 
-    <!-- Program 4 -->
+    <!-- 5 -->
     <div class="accordion">
-
         <button class="accordion-header">
-            4. Check Positive, Negative or Zero
+            5. Multiply Two Numbers
             <span class="arrow">▼</span>
         </button>
-
         <div class="content">
-
             <div class="question">
                 <strong>Question:</strong>
-                Write a Python program to check whether a number is positive, negative or zero.
+                Write a Python program to multiply two numbers.
             </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
 
-            <strong>Solution:</strong>
+print("Product =", a * b)</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter first number: 6
+Enter second number: 7
+Product = 42</div>
+            </div>
+        </div>
+    </div>
 
-<pre>
-num = int(input("Enter a number: "))
+
+    <!-- 6 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            6. Divide Two Numbers
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to divide two numbers.
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>a = float(input("Enter first number: "))
+b = float(input("Enter second number: "))
+
+print("Division =", a / b)</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter first number: 20
+Enter second number: 4
+Division = 5.0</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 7 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            7. Calculate Average of Three Numbers
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to calculate the average of three numbers.
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>a = float(input("Enter first number: "))
+b = float(input("Enter second number: "))
+c = float(input("Enter third number: "))
+
+average = (a + b + c) / 3
+
+print("Average =", average)</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter first number: 10
+Enter second number: 20
+Enter third number: 30
+Average = 20.0</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 8 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            8. Calculate Simple Interest
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to calculate simple interest.
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>p = float(input("Enter principal: "))
+r = float(input("Enter rate: "))
+t = float(input("Enter time: "))
+
+si = (p * r * t) / 100
+
+print("Simple Interest =", si)</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter principal: 10000
+Enter rate: 5
+Enter time: 2
+Simple Interest = 1000.0</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 9 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            9. Calculate Area of Circle
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to calculate the area of a circle.
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>radius = float(input("Enter radius: "))
+
+area = 3.14 * radius * radius
+
+print("Area =", area)</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter radius: 5
+Area = 78.5</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 10 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            10. Calculate Area of Rectangle
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to calculate the area of a rectangle.
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>length = float(input("Enter length: "))
+width = float(input("Enter width: "))
+
+area = length * width
+
+print("Area =", area)</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter length: 10
+Enter width: 5
+Area = 50.0</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 11 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            11. Check Even or Odd
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check whether a number is even or odd.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+
+if num % 2 == 0:
+    print("Even")
+else:
+    print("Odd")</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 12
+Even</div></div>
+        </div>
+    </div>
+
+
+    <!-- 12 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            12. Check Positive, Negative or Zero
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check whether a number is positive, negative or zero.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
 
 if num > 0:
     print("Positive")
 elif num < 0:
     print("Negative")
 else:
-    print("Zero")
-</pre>
-
-            <div class="output">
-                <strong>Output:</strong>
-                <div class="output-box">Enter a number: -8
-Negative</div>
-            </div>
-
+    print("Zero")</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: -5
+Negative</div></div>
         </div>
     </div>
 
 
-    <!-- Program 5 -->
+    <!-- 13 -->
     <div class="accordion">
-
         <button class="accordion-header">
-            5. Print Numbers from 1 to 10
+            13. Find Largest of Two Numbers
             <span class="arrow">▼</span>
         </button>
-
         <div class="content">
+            <div class="question"><strong>Question:</strong> Find the largest of two numbers.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
 
-            <div class="question">
-                <strong>Question:</strong>
-                Write a Python program to print numbers from 1 to 10.
-            </div>
+if a > b:
+    print("Largest =", a)
+else:
+    print("Largest =", b)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter first number: 25
+Enter second number: 40
+Largest = 40</div></div>
+        </div>
+    </div>
 
-            <strong>Solution:</strong>
 
-<pre>
-for i in range(1, 11):
-    print(i)
-</pre>
+    <!-- 14 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            14. Find Largest of Three Numbers
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the largest among three numbers.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+c = int(input("Enter third number: "))
 
-            <div class="output">
-                <strong>Output:</strong>
-                <div class="output-box">1
+if a >= b and a >= c:
+    print("Largest =", a)
+elif b >= a and b >= c:
+    print("Largest =", b)
+else:
+    print("Largest =", c)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter first number: 10
+Enter second number: 50
+Enter third number: 30
+Largest = 50</div></div>
+        </div>
+    </div>
+
+
+    <!-- 15 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            15. Check Voting Eligibility
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check whether a person is eligible to vote.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>age = int(input("Enter age: "))
+
+if age >= 18:
+    print("Eligible to vote")
+else:
+    print("Not eligible to vote")</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter age: 20
+Eligible to vote</div></div>
+        </div>
+    </div>
+
+
+    <!-- 16 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            16. Check Leap Year
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check whether a year is a leap year.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>year = int(input("Enter year: "))
+
+if year % 400 == 0 or (year % 4 == 0 and year % 100 != 0):
+    print("Leap Year")
+else:
+    print("Not a Leap Year")</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter year: 2024
+Leap Year</div></div>
+        </div>
+    </div>
+
+
+    <!-- 17 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            17. Check Divisible by 5
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check whether a number is divisible by 5.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+
+if num % 5 == 0:
+    print("Divisible by 5")
+else:
+    print("Not divisible by 5")</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 25
+Divisible by 5</div></div>
+        </div>
+    </div>
+
+
+    <!-- 18 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            18. Check Number is Multiple of 10
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check whether a number is a multiple of 10.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+
+if num % 10 == 0:
+    print("Multiple of 10")
+else:
+    print("Not a multiple of 10")</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 50
+Multiple of 10</div></div>
+        </div>
+    </div>
+
+
+    <!-- 19 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            19. Calculate Grade
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display grade according to marks.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>marks = int(input("Enter marks: "))
+
+if marks >= 90:
+    grade = "A"
+elif marks >= 75:
+    grade = "B"
+elif marks >= 60:
+    grade = "C"
+elif marks >= 40:
+    grade = "D"
+else:
+    grade = "F"
+
+print("Grade =", grade)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter marks: 82
+Grade = B</div></div>
+        </div>
+    </div>
+
+
+    <!-- 20 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            20. Check Character Vowel or Consonant
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check whether a character is a vowel or consonant.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>ch = input("Enter character: ")
+
+if ch.lower() in "aeiou":
+    print("Vowel")
+else:
+    print("Consonant")</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter character: e
+Vowel</div></div>
+        </div>
+    </div>
+
+
+    <!-- 21 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            21. Print Numbers 1 to 10
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print numbers from 1 to 10.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>for i in range(1, 11):
+    print(i)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">1
 2
 3
 4
@@ -358,197 +712,97 @@ for i in range(1, 11):
 7
 8
 9
-10</div>
-            </div>
-
+10</div></div>
         </div>
     </div>
 
 
-    <!-- Program 6 -->
+    <!-- 22 -->
     <div class="accordion">
-
         <button class="accordion-header">
-            6. Find Factorial of a Number
+            22. Print Even Numbers 1 to 20
             <span class="arrow">▼</span>
         </button>
-
         <div class="content">
-
-            <div class="question">
-                <strong>Question:</strong>
-                Write a Python program to find the factorial of a number.
-            </div>
-
-            <strong>Solution:</strong>
-
-<pre>
-num = int(input("Enter a number: "))
-
-fact = 1
-
-for i in range(1, num + 1):
-    fact = fact * i
-
-print("Factorial =", fact)
-</pre>
-
-            <div class="output">
-                <strong>Output:</strong>
-                <div class="output-box">Enter a number: 5
-Factorial = 120</div>
-            </div>
-
+            <div class="question"><strong>Question:</strong> Print even numbers from 1 to 20.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>for i in range(2, 21, 2):
+    print(i)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">2
+4
+6
+8
+10
+12
+14
+16
+18
+20</div></div>
         </div>
     </div>
 
 
-    <!-- Program 7 -->
+    <!-- 23 -->
     <div class="accordion">
-
         <button class="accordion-header">
-            7. Check Prime Number
+            23. Print Odd Numbers 1 to 20
             <span class="arrow">▼</span>
         </button>
-
         <div class="content">
-
-            <div class="question">
-                <strong>Question:</strong>
-                Write a Python program to check whether a number is prime or not.
-            </div>
-
-            <strong>Solution:</strong>
-
-<pre>
-num = int(input("Enter a number: "))
-
-if num &lt; 2:
-    print("Not Prime")
-else:
-    for i in range(2, num):
-        if num % i == 0:
-            print("Not Prime")
-            break
-    else:
-        print("Prime Number")
-</pre>
-
-            <div class="output">
-                <strong>Output:</strong>
-                <div class="output-box">Enter a number: 17
-Prime Number</div>
-            </div>
-
+            <div class="question"><strong>Question:</strong> Print odd numbers from 1 to 20.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>for i in range(1, 21, 2):
+    print(i)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">1
+3
+5
+7
+9
+11
+13
+15
+17
+19</div></div>
         </div>
     </div>
 
 
-    <!-- Program 8 -->
+    <!-- 24 -->
     <div class="accordion">
-
         <button class="accordion-header">
-            8. Reverse a Number
+            24. Sum of Natural Numbers
             <span class="arrow">▼</span>
         </button>
-
         <div class="content">
-
-            <div class="question">
-                <strong>Question:</strong>
-                Write a Python program to reverse a given number.
-            </div>
-
-            <strong>Solution:</strong>
-
-<pre>
-num = int(input("Enter a number: "))
-
-reverse = 0
-
-while num &gt; 0:
-    digit = num % 10
-    reverse = reverse * 10 + digit
-    num = num // 10
-
-print("Reverse =", reverse)
-</pre>
-
-            <div class="output">
-                <strong>Output:</strong>
-                <div class="output-box">Enter a number: 12345
-Reverse = 54321</div>
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- Program 9 -->
-    <div class="accordion">
-
-        <button class="accordion-header">
-            9. Find Sum of Natural Numbers
-            <span class="arrow">▼</span>
-        </button>
-
-        <div class="content">
-
-            <div class="question">
-                <strong>Question:</strong>
-                Write a Python program to find the sum of first N natural numbers.
-            </div>
-
-            <strong>Solution:</strong>
-
-<pre>
-n = int(input("Enter N: "))
-
-sum = 0
+            <div class="question"><strong>Question:</strong> Find the sum of first N natural numbers.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>n = int(input("Enter N: "))
+total = 0
 
 for i in range(1, n + 1):
-    sum = sum + i
+    total += i
 
-print("Sum =", sum)
-</pre>
-
-            <div class="output">
-                <strong>Output:</strong>
-                <div class="output-box">Enter N: 10
-Sum = 55</div>
-            </div>
-
+print("Sum =", total)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter N: 10
+Sum = 55</div></div>
         </div>
     </div>
 
 
-    <!-- Program 10 -->
+    <!-- 25 -->
     <div class="accordion">
-
         <button class="accordion-header">
-            10. Multiplication Table
+            25. Multiplication Table
             <span class="arrow">▼</span>
         </button>
-
         <div class="content">
-
-            <div class="question">
-                <strong>Question:</strong>
-                Write a Python program to print the multiplication table of a number.
-            </div>
-
-            <strong>Solution:</strong>
-
-<pre>
-num = int(input("Enter a number: "))
+            <div class="question"><strong>Question:</strong> Print multiplication table of a number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
 
 for i in range(1, 11):
-    print(num, "x", i, "=", num * i)
-</pre>
-
-            <div class="output">
-                <strong>Output:</strong>
-                <div class="output-box">Enter a number: 5
+    print(num, "x", i, "=", num * i)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 5
 5 x 1 = 5
 5 x 2 = 10
 5 x 3 = 15
@@ -558,20 +812,1681 @@ for i in range(1, 11):
 5 x 7 = 35
 5 x 8 = 40
 5 x 9 = 45
-5 x 10 = 50</div>
+5 x 10 = 50</div></div>
+        </div>
+    </div>
+
+
+    <!-- 26 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            26. Factorial of a Number
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find factorial of a number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+fact = 1
+
+for i in range(1, num + 1):
+    fact *= i
+
+print("Factorial =", fact)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 5
+Factorial = 120</div></div>
+        </div>
+    </div>
+
+
+    <!-- 27 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            27. Count from N to 1
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print numbers from N to 1.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>n = int(input("Enter N: "))
+
+for i in range(n, 0, -1):
+    print(i)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter N: 5
+5
+4
+3
+2
+1</div></div>
+        </div>
+    </div>
+
+
+    <!-- 28 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            28. Sum of Even Numbers
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the sum of even numbers from 1 to N.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>n = int(input("Enter N: "))
+total = 0
+
+for i in range(2, n + 1, 2):
+    total += i
+
+print("Sum =", total)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter N: 10
+Sum = 30</div></div>
+        </div>
+    </div>
+
+
+    <!-- 29 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            29. Sum of Odd Numbers
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the sum of odd numbers from 1 to N.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>n = int(input("Enter N: "))
+total = 0
+
+for i in range(1, n + 1, 2):
+    total += i
+
+print("Sum =", total)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter N: 10
+Sum = 25</div></div>
+        </div>
+    </div>
+
+
+    <!-- 30 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            30. Power of a Number
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the power of a number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>base = int(input("Enter base: "))
+power = int(input("Enter power: "))
+
+result = base ** power
+
+print("Result =", result)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter base: 2
+Enter power: 5
+Result = 32</div></div>
+        </div>
+    </div>
+
+
+    <!-- 31 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            31. Reverse a Number
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Reverse a given number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+reverse = 0
+
+while num > 0:
+    digit = num % 10
+    reverse = reverse * 10 + digit
+    num //= 10
+
+print("Reverse =", reverse)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 12345
+Reverse = 54321</div></div>
+        </div>
+    </div>
+
+
+    <!-- 32 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            32. Count Digits
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Count the number of digits in a number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+
+count = 0
+
+while num != 0:
+    num //= 10
+    count += 1
+
+print("Digits =", count)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 12345
+Digits = 5</div></div>
+        </div>
+    </div>
+
+
+    <!-- 33 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            33. Sum of Digits
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the sum of digits of a number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+total = 0
+
+while num > 0:
+    total += num % 10
+    num //= 10
+
+print("Sum of digits =", total)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 1234
+Sum of digits = 10</div></div>
+        </div>
+    </div>
+
+
+    <!-- 34 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            34. Product of Digits
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the product of digits of a number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+product = 1
+
+while num > 0:
+    product *= num % 10
+    num //= 10
+
+print("Product =", product)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 1234
+Product = 24</div></div>
+        </div>
+    </div>
+
+
+    <!-- 35 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            35. Check Palindrome Number
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check whether a number is a palindrome.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+
+original = num
+reverse = 0
+
+while num > 0:
+    digit = num % 10
+    reverse = reverse * 10 + digit
+    num //= 10
+
+if original == reverse:
+    print("Palindrome")
+else:
+    print("Not Palindrome")</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 121
+Palindrome</div></div>
+        </div>
+    </div>
+
+
+    <!-- 36 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            36. Check Armstrong Number
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check whether a number is an Armstrong number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+
+original = num
+digits = len(str(num))
+total = 0
+
+while num > 0:
+    digit = num % 10
+    total += digit ** digits
+    num //= 10
+
+if total == original:
+    print("Armstrong Number")
+else:
+    print("Not Armstrong Number")</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 153
+Armstrong Number</div></div>
+        </div>
+    </div>
+
+
+    <!-- 37 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            37. Check Prime Number
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check whether a number is prime.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+
+if num < 2:
+    print("Not Prime")
+else:
+    for i in range(2, num):
+        if num % i == 0:
+            print("Not Prime")
+            break
+    else:
+        print("Prime Number")</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 17
+Prime Number</div></div>
+        </div>
+    </div>
+
+
+    <!-- 38 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            38. Print Prime Numbers
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print prime numbers from 1 to N.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>n = int(input("Enter N: "))
+
+for num in range(2, n + 1):
+    for i in range(2, num):
+        if num % i == 0:
+            break
+    else:
+        print(num)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter N: 10
+2
+3
+5
+7</div></div>
+        </div>
+    </div>
+
+
+    <!-- 39 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            39. Fibonacci Series
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print Fibonacci series up to N terms.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>n = int(input("Enter number of terms: "))
+
+a = 0
+b = 1
+
+for i in range(n):
+    print(a)
+    a, b = b, a + b</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number of terms: 7
+0
+1
+1
+2
+3
+5
+8</div></div>
+        </div>
+    </div>
+
+
+    <!-- 40 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            40. Find GCD of Two Numbers
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the GCD of two numbers.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+
+while b:
+    a, b = b, a % b
+
+print("GCD =", a)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter first number: 24
+Enter second number: 36
+GCD = 12</div></div>
+        </div>
+    </div>
+
+
+    <!-- 41 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            41. Find LCM of Two Numbers
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the LCM of two numbers.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+
+x = a
+y = b
+
+while y:
+    x, y = y, x % y
+
+gcd = x
+lcm = (a * b) // gcd
+
+print("LCM =", lcm)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter first number: 12
+Enter second number: 18
+LCM = 36</div></div>
+        </div>
+    </div>
+
+
+    <!-- 42 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            42. Check Perfect Number
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check whether a number is a perfect number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+total = 0
+
+for i in range(1, num):
+    if num % i == 0:
+        total += i
+
+if total == num:
+    print("Perfect Number")
+else:
+    print("Not Perfect Number")</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 28
+Perfect Number</div></div>
+        </div>
+    </div>
+
+
+    <!-- 43 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            43. Check Strong Number
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check whether a number is a strong number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+
+original = num
+total = 0
+
+while num > 0:
+    digit = num % 10
+
+    fact = 1
+    for i in range(1, digit + 1):
+        fact *= i
+
+    total += fact
+    num //= 10
+
+if total == original:
+    print("Strong Number")
+else:
+    print("Not Strong Number")</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 145
+Strong Number</div></div>
+        </div>
+    </div>
+
+
+    <!-- 44 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            44. Decimal to Binary
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Convert a decimal number into binary.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter decimal number: "))
+
+print("Binary =", bin(num)[2:])</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter decimal number: 10
+Binary = 1010</div></div>
+        </div>
+    </div>
+
+
+    <!-- 45 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            45. Decimal to Octal
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Convert a decimal number into octal.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter decimal number: "))
+
+print("Octal =", oct(num)[2:])</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter decimal number: 8
+Octal = 10</div></div>
+        </div>
+    </div>
+
+
+    <!-- 46 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            46. Decimal to Hexadecimal
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Convert a decimal number into hexadecimal.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter decimal number: "))
+
+print("Hexadecimal =", hex(num)[2:])</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter decimal number: 255
+Hexadecimal = ff</div></div>
+        </div>
+    </div>
+
+
+    <!-- 47 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            47. Binary to Decimal
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Convert a binary number into decimal.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>binary = input("Enter binary number: ")
+
+decimal = int(binary, 2)
+
+print("Decimal =", decimal)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter binary number: 1010
+Decimal = 10</div></div>
+        </div>
+    </div>
+
+
+    <!-- 48 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            48. Find Factors of a Number
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print all factors of a number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+
+for i in range(1, num + 1):
+    if num % i == 0:
+        print(i)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 12
+1
+2
+3
+4
+6
+12</div></div>
+        </div>
+    </div>
+
+
+    <!-- 49 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            49. Count Factors
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Count the number of factors of a number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+count = 0
+
+for i in range(1, num + 1):
+    if num % i == 0:
+        count += 1
+
+print("Number of factors =", count)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 12
+Number of factors = 6</div></div>
+        </div>
+    </div>
+
+
+    <!-- 50 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            50. Sum of Factors
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the sum of all factors of a number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>num = int(input("Enter number: "))
+total = 0
+
+for i in range(1, num + 1):
+    if num % i == 0:
+        total += i
+
+print("Sum of factors =", total)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 12
+Sum of factors = 28</div></div>
+        </div>
+    </div>
+
+
+    <!-- 51 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            51. Reverse a String
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Reverse a given string.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>text = input("Enter string: ")
+
+print("Reverse =", text[::-1])</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter string: Python
+Reverse = nohtyP</div></div>
+        </div>
+    </div>
+
+
+    <!-- 52 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            52. Check String Palindrome
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check whether a string is a palindrome.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>text = input("Enter string: ")
+
+if text == text[::-1]:
+    print("Palindrome")
+else:
+    print("Not Palindrome")</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter string: madam
+Palindrome</div></div>
+        </div>
+    </div>
+
+
+    <!-- 53 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            53. Count Characters in String
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Count the number of characters in a string.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>text = input("Enter string: ")
+
+print("Characters =", len(text))</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter string: Python
+Characters = 6</div></div>
+        </div>
+    </div>
+
+
+    <!-- 54 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            54. Count Vowels in String
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Count vowels in a string.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>text = input("Enter string: ")
+count = 0
+
+for ch in text.lower():
+    if ch in "aeiou":
+        count += 1
+
+print("Vowels =", count)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter string: Education
+Vowels = 5</div></div>
+        </div>
+    </div>
+
+
+    <!-- 55 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            55. Count Consonants in String
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Count consonants in a string.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>text = input("Enter string: ")
+count = 0
+
+for ch in text.lower():
+    if ch.isalpha() and ch not in "aeiou":
+        count += 1
+
+print("Consonants =", count)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter string: Python
+Consonants = 5</div></div>
+        </div>
+    </div>
+
+
+    <!-- 56 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            56. Convert String to Uppercase
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Convert a string to uppercase.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>text = input("Enter string: ")
+
+print(text.upper())</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter string: python
+PYTHON</div></div>
+        </div>
+    </div>
+
+
+    <!-- 57 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            57. Convert String to Lowercase
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Convert a string to lowercase.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>text = input("Enter string: ")
+
+print(text.lower())</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter string: PYTHON
+python</div></div>
+        </div>
+    </div>
+
+
+    <!-- 58 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            58. Count Words in a Sentence
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Count the number of words in a sentence.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>sentence = input("Enter sentence: ")
+
+words = sentence.split()
+
+print("Words =", len(words))</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter sentence: Python is easy
+Words = 3</div></div>
+        </div>
+    </div>
+
+
+    <!-- 59 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            59. Count Occurrence of Character
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Count how many times a character occurs in a string.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>text = input("Enter string: ")
+ch = input("Enter character: ")
+
+print("Occurrence =", text.count(ch))</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter string: banana
+Enter character: a
+Occurrence = 3</div></div>
+        </div>
+    </div>
+
+
+    <!-- 60 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            60. Remove Spaces from String
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Remove all spaces from a string.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>text = input("Enter string: ")
+
+print(text.replace(" ", ""))</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter string: Hello World
+HelloWorld</div></div>
+        </div>
+    </div>
+
+
+    <!-- 61 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            61. Create a List
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create and display a list of numbers.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>numbers = [10, 20, 30, 40, 50]
+
+print(numbers)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">[10, 20, 30, 40, 50]</div></div>
+        </div>
+    </div>
+
+
+    <!-- 62 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            62. Find Largest Element in List
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the largest element in a list.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>numbers = [10, 50, 20, 80, 30]
+
+print("Largest =", max(numbers))</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Largest = 80</div></div>
+        </div>
+    </div>
+
+
+    <!-- 63 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            63. Find Smallest Element in List
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the smallest element in a list.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>numbers = [10, 50, 20, 80, 30]
+
+print("Smallest =", min(numbers))</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Smallest = 10</div></div>
+        </div>
+    </div>
+
+
+    <!-- 64 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            64. Find Sum of List Elements
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the sum of all elements in a list.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>numbers = [10, 20, 30, 40]
+
+print("Sum =", sum(numbers))</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Sum = 100</div></div>
+        </div>
+    </div>
+
+
+    <!-- 65 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            65. Find Average of List
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the average of elements in a list.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>numbers = [10, 20, 30, 40]
+
+average = sum(numbers) / len(numbers)
+
+print("Average =", average)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Average = 25.0</div></div>
+        </div>
+    </div>
+
+
+    <!-- 66 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            66. Sort a List
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Sort a list in ascending order.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>numbers = [40, 10, 30, 20, 50]
+
+numbers.sort()
+
+print(numbers)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">[10, 20, 30, 40, 50]</div></div>
+        </div>
+    </div>
+
+
+    <!-- 67 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            67. Sort List in Descending Order
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Sort a list in descending order.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>numbers = [40, 10, 30, 20, 50]
+
+numbers.sort(reverse=True)
+
+print(numbers)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">[50, 40, 30, 20, 10]</div></div>
+        </div>
+    </div>
+
+
+    <!-- 68 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            68. Remove Duplicates from List
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Remove duplicate elements from a list.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>numbers = [10, 20, 10, 30, 20, 40]
+
+unique = list(set(numbers))
+
+print(unique)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">[40, 10, 20, 30]</div></div>
+        </div>
+    </div>
+
+
+    <!-- 69 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            69. Count Even and Odd Numbers in List
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Count even and odd numbers in a list.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>numbers = [1, 2, 3, 4, 5, 6]
+
+even = 0
+odd = 0
+
+for num in numbers:
+    if num % 2 == 0:
+        even += 1
+    else:
+        odd += 1
+
+print("Even =", even)
+print("Odd =", odd)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Even = 3
+Odd = 3</div></div>
+        </div>
+    </div>
+
+
+    <!-- 70 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            70. Search Element in List
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Search for an element in a list.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>numbers = [10, 20, 30, 40, 50]
+
+num = int(input("Enter number: "))
+
+if num in numbers:
+    print("Element found")
+else:
+    print("Element not found")</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter number: 30
+Element found</div></div>
+        </div>
+    </div>
+
+
+    <!-- 71 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            71. Create a Tuple
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create and display a tuple.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>numbers = (10, 20, 30, 40)
+
+print(numbers)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">(10, 20, 30, 40)</div></div>
+        </div>
+    </div>
+
+
+    <!-- 72 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            72. Access Tuple Element
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Access an element from a tuple.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>numbers = (10, 20, 30, 40)
+
+print(numbers[2])</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">30</div></div>
+        </div>
+    </div>
+
+
+    <!-- 73 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            73. Create a Dictionary
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create and display a dictionary.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>student = {
+    "name": "Rahul",
+    "age": 18,
+    "marks": 85
+}
+
+print(student)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">{'name': 'Rahul', 'age': 18, 'marks': 85}</div></div>
+        </div>
+    </div>
+
+
+    <!-- 74 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            74. Access Dictionary Value
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Access a value from a dictionary using its key.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>student = {
+    "name": "Rahul",
+    "age": 18
+}
+
+print(student["name"])</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Rahul</div></div>
+        </div>
+    </div>
+
+
+    <!-- 75 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            75. Add Item to Dictionary
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Add a new item to a dictionary.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>student = {
+    "name": "Rahul",
+    "age": 18
+}
+
+student["marks"] = 90
+
+print(student)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">{'name': 'Rahul', 'age': 18, 'marks': 90}</div></div>
+        </div>
+    </div>
+
+
+    <!-- 76 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            76. Function to Add Two Numbers
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a function to add two numbers.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>def add(a, b):
+    return a + b
+
+print(add(10, 20))</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">30</div></div>
+        </div>
+    </div>
+
+
+    <!-- 77 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            77. Function to Find Square
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a function to find the square of a number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>def square(num):
+    return num * num
+
+print(square(5))</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">25</div></div>
+        </div>
+    </div>
+
+
+    <!-- 78 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            78. Function to Check Even
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a function to check whether a number is even.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>def is_even(num):
+    return num % 2 == 0
+
+print(is_even(10))</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">True</div></div>
+        </div>
+    </div>
+
+
+    <!-- 79 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            79. Function to Find Maximum
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a function to find the maximum of two numbers.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>def maximum(a, b):
+    if a > b:
+        return a
+    return b
+
+print(maximum(25, 40))</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">40</div></div>
+        </div>
+    </div>
+
+
+    <!-- 80 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            80. Function to Find Factorial
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a function to calculate factorial.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>def factorial(n):
+    result = 1
+
+    for i in range(1, n + 1):
+        result *= i
+
+    return result
+
+print(factorial(5))</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">120</div></div>
+        </div>
+    </div>
+
+
+    <!-- 81 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            81. Star Pattern
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print a right triangle star pattern.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>for i in range(1, 6):
+    print("*" * i)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">*
+**
+***
+****
+*****</div></div>
+        </div>
+    </div>
+
+
+    <!-- 82 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            82. Inverted Star Pattern
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print an inverted star pattern.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>for i in range(5, 0, -1):
+    print("*" * i)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">*****
+****
+***
+**
+*</div></div>
+        </div>
+    </div>
+
+
+    <!-- 83 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            83. Number Triangle Pattern
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print the following number pattern.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>for i in range(1, 6):
+    for j in range(1, i + 1):
+        print(j, end=" ")
+    print()</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5</div></div>
+        </div>
+    </div>
+
+
+    <!-- 84 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            84. Same Number Triangle
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print a triangle containing the same number in each row.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>for i in range(1, 6):
+    print(str(i) * i)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">1
+22
+333
+4444
+55555</div></div>
+        </div>
+    </div>
+
+
+    <!-- 85 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            85. Square Star Pattern
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print a square pattern using stars.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>for i in range(5):
+    print("* " * 5)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">* * * * *
+* * * * *
+* * * * *
+* * * * *
+* * * * *</div></div>
+        </div>
+    </div>
+
+
+    <!-- 86 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            86. Find Second Largest Number
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the second largest number in a list.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>numbers = [10, 50, 20, 80, 30]
+
+numbers.sort()
+
+print("Second largest =", numbers[-2])</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Second largest = 50</div></div>
+        </div>
+    </div>
+
+
+    <!-- 87 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            87. Find Second Smallest Number
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the second smallest number in a list.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>numbers = [10, 50, 20, 80, 30]
+
+numbers.sort()
+
+print("Second smallest =", numbers[1])</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Second smallest = 20</div></div>
+        </div>
+    </div>
+
+
+    <!-- 88 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            88. Merge Two Lists
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Merge two lists into one list.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+
+result = list1 + list2
+
+print(result)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">[1, 2, 3, 4, 5, 6]</div></div>
+        </div>
+    </div>
+
+
+    <!-- 89 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            89. Find Common Elements in Two Lists
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find common elements between two lists.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>list1 = [1, 2, 3, 4]
+list2 = [3, 4, 5, 6]
+
+common = list(set(list1) & set(list2))
+
+print(common)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">[3, 4]</div></div>
+        </div>
+    </div>
+
+
+    <!-- 90 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            90. Separate Even and Odd from List
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Separate even and odd numbers from a list.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>numbers = [1, 2, 3, 4, 5, 6]
+
+even = []
+odd = []
+
+for num in numbers:
+    if num % 2 == 0:
+        even.append(num)
+    else:
+        odd.append(num)
+
+print("Even =", even)
+print("Odd =", odd)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Even = [2, 4, 6]
+Odd = [1, 3, 5]</div></div>
+        </div>
+    </div>
+
+
+    <!-- 91 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            91. Calculate Electricity Bill
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Calculate electricity bill according to units consumed.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>units = int(input("Enter units: "))
+
+if units <= 100:
+    bill = units * 5
+elif units <= 200:
+    bill = 100 * 5 + (units - 100) * 7
+else:
+    bill = 100 * 5 + 100 * 7 + (units - 200) * 10
+
+print("Bill =", bill)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter units: 250
+Bill = 2200</div></div>
+        </div>
+    </div>
+
+
+    <!-- 92 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            92. Calculate Shopping Discount
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Calculate discount on a shopping bill.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>amount = float(input("Enter amount: "))
+
+if amount >= 5000:
+    discount = amount * 0.20
+elif amount >= 2000:
+    discount = amount * 0.10
+else:
+    discount = 0
+
+final_amount = amount - discount
+
+print("Discount =", discount)
+print("Final Amount =", final_amount)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter amount: 5000
+Discount = 1000.0
+Final Amount = 4000.0</div></div>
+        </div>
+    </div>
+
+
+    <!-- 93 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            93. Calculate BMI
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Calculate BMI using weight and height.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>weight = float(input("Enter weight in kg: "))
+height = float(input("Enter height in meters: "))
+
+bmi = weight / (height ** 2)
+
+print("BMI =", round(bmi, 2))</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter weight in kg: 60
+Enter height in meters: 1.7
+BMI = 20.76</div></div>
+        </div>
+    </div>
+
+
+    <!-- 94 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            94. Simple Calculator
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a simple calculator using if-else.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>a = float(input("Enter first number: "))
+b = float(input("Enter second number: "))
+op = input("Enter operator (+, -, *, /): ")
+
+if op == "+":
+    print(a + b)
+elif op == "-":
+    print(a - b)
+elif op == "*":
+    print(a * b)
+elif op == "/":
+    print(a / b)
+else:
+    print("Invalid operator")</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter first number: 20
+Enter second number: 5
+Enter operator (+, -, *, /): *
+100.0</div></div>
+        </div>
+    </div>
+
+
+    <!-- 95 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            95. Temperature Celsius to Fahrenheit
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Convert temperature from Celsius to Fahrenheit.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>celsius = float(input("Enter Celsius: "))
+
+fahrenheit = (celsius * 9 / 5) + 32
+
+print("Fahrenheit =", fahrenheit)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter Celsius: 25
+Fahrenheit = 77.0</div></div>
+        </div>
+    </div>
+
+
+    <!-- 96 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            96. Temperature Fahrenheit to Celsius
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Convert temperature from Fahrenheit to Celsius.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>fahrenheit = float(input("Enter Fahrenheit: "))
+
+celsius = (fahrenheit - 32) * 5 / 9
+
+print("Celsius =", celsius)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter Fahrenheit: 77
+Celsius = 25.0</div></div>
+        </div>
+    </div>
+
+
+    <!-- 97 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            97. Swap Two Numbers
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Swap two numbers without using a third variable.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+
+a, b = b, a
+
+print("After swapping:")
+print("a =", a)
+print("b =", b)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Enter first number: 10
+Enter second number: 20
+After swapping:
+a = 20
+b = 10</div></div>
+        </div>
+    </div>
+
+
+    <!-- 98 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            98. Generate Random Number
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Generate a random number between 1 and 100.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>import random
+
+num = random.randint(1, 100)
+
+print("Random Number =", num)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Random Number = 57</div></div>
+        </div>
+    </div>
+
+
+    <!-- 99 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            99. Guess the Number Game
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a simple number guessing game.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>import random
+
+number = random.randint(1, 10)
+
+guess = int(input("Guess the number (1-10): "))
+
+if guess == number:
+    print("Correct Guess!")
+else:
+    print("Wrong Guess!")
+    print("The number was", number)</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Guess the number (1-10): 7
+Correct Guess!</div></div>
+        </div>
+    </div>
+
+
+    <!-- 100 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            100. Student Result Program
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to accept marks of three subjects,
+                calculate total and percentage, and display pass/fail.
             </div>
 
+            <strong class="solution-title">Solution:</strong>
+
+<pre>m1 = float(input("Enter marks of Subject 1: "))
+m2 = float(input("Enter marks of Subject 2: "))
+m3 = float(input("Enter marks of Subject 3: "))
+
+total = m1 + m2 + m3
+percentage = total / 3
+
+print("Total =", total)
+print("Percentage =", percentage)
+
+if m1 >= 40 and m2 >= 40 and m3 >= 40:
+    print("Result = PASS")
+else:
+    print("Result = FAIL")</pre>
+
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter marks of Subject 1: 80
+Enter marks of Subject 2: 75
+Enter marks of Subject 3: 90
+
+Total = 245.0
+Percentage = 81.66666666666667
+Result = PASS</div>
+            </div>
         </div>
     </div>
 
 </main>
 
 
+<footer>
+    © 2026 Cursor Computers Academy
+</footer>
+
+
 <script>
 
-    const accordions = document.querySelectorAll(".accordion-header");
+    const buttons = document.querySelectorAll(".accordion-header");
 
-    accordions.forEach(button => {
+    buttons.forEach(button => {
 
         button.addEventListener("click", function () {
 
