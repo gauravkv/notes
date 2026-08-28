@@ -600,17 +600,11 @@
                 '<span>' + optionText + '</span>';
 
             label.addEventListener("click", function () {
-                if (answered) return;
                 selectedOption = index;
-                answered = true;
 
                 document.querySelectorAll(".option-label").forEach(el => el.classList.remove("selected"));
                 label.classList.add("selected");
                 label.querySelector("input").checked = true;
-
-                if (index === q.answer) {
-                    score++;
-                }
 
                 nextBtn.disabled = false;
             });
@@ -643,8 +637,12 @@
     }
 
     nextBtn.addEventListener("click", function () {
-        if (!answered) return;
+        if (selectedOption === null) return;
         clearInterval(timerInterval);
+
+        if (selectedOption === questions[currentQuestion].answer) {
+            score++;
+        }
 
         if (currentQuestion < questions.length - 1) {
             currentQuestion++;
