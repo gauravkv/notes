@@ -1,0 +1,2496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Core Java Programs | Cursor Computers Academy</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f7fb;
+        color: #222;
+    }
+
+    header {
+        background: linear-gradient(135deg, #172554, #2563eb);
+        color: white;
+        text-align: center;
+        padding: 24px 15px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 28px;
+        letter-spacing: 1px;
+    }
+
+    header p {
+        margin: 8px 0 0;
+        font-size: 16px;
+        opacity: 0.9;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+
+    .page-title {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .page-title h2 {
+        color: #172554;
+        margin-bottom: 5px;
+    }
+
+    .page-title p {
+        color: #666;
+    }
+
+    .accordion {
+        background: white;
+        margin-bottom: 12px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        border: 1px solid #e5e7eb;
+    }
+
+    .accordion-header {
+        width: 100%;
+        padding: 17px 20px;
+        border: none;
+        background: white;
+        text-align: left;
+        font-size: 16px;
+        font-weight: bold;
+        color: #172554;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .accordion-header:hover {
+        background: #eff6ff;
+    }
+
+    .arrow {
+        font-size: 18px;
+        transition: transform 0.3s;
+    }
+
+    .accordion-header.active .arrow {
+        transform: rotate(90deg);
+    }
+
+    .content {
+        display: none;
+        padding: 0 20px 20px;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .content h3 {
+        color: #2563eb;
+        margin-bottom: 8px;
+    }
+
+    .content h4 {
+        color: #172554;
+        margin-bottom: 6px;
+    }
+
+    pre {
+        background: #111827;
+        color: #f9fafb;
+        padding: 16px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .output {
+        background: #f0fdf4;
+        border-left: 4px solid #16a34a;
+        padding: 12px 15px;
+        border-radius: 6px;
+        white-space: pre-wrap;
+        font-family: Consolas, monospace;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 40px;
+        padding: 20px;
+        background: #172554;
+        color: white;
+    }
+
+    @media (max-width: 600px) {
+        header h1 {
+            font-size: 23px;
+        }
+
+        .accordion-header {
+            font-size: 14px;
+            padding: 15px;
+        }
+
+        .content {
+            padding: 0 15px 15px;
+        }
+
+        pre {
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>CURSOR COMPUTERS ACADEMY</h1>
+    <p>Core Java Programming</p>
+</header>
+
+<div class="container">
+
+<div class="page-title">
+    <h2>100 Core Java Programs</h2>
+    <p>Programs with Solution & Output</p>
+</div>
+
+
+<!-- 1 -->
+<div class="accordion">
+<button class="accordion-header">1. Hello World <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello World");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Hello World</div>
+</div>
+</div>
+
+
+<!-- 2 -->
+<div class="accordion">
+<button class="accordion-header">2. Print Your Name <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class PrintName {
+    public static void main(String[] args) {
+        System.out.println("Rahul");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Rahul</div>
+</div>
+</div>
+
+
+<!-- 3 -->
+<div class="accordion">
+<button class="accordion-header">3. Add Two Numbers <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Add {
+    public static void main(String[] args) {
+        int a = 10, b = 20;
+        System.out.println("Sum = " + (a + b));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Sum = 30</div>
+</div>
+</div>
+
+
+<!-- 4 -->
+<div class="accordion">
+<button class="accordion-header">4. Subtract Two Numbers <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Subtract {
+    public static void main(String[] args) {
+        int a = 30, b = 10;
+        System.out.println("Difference = " + (a - b));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Difference = 20</div>
+</div>
+</div>
+
+
+<!-- 5 -->
+<div class="accordion">
+<button class="accordion-header">5. Multiply Two Numbers <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Multiply {
+    public static void main(String[] args) {
+        int a = 10, b = 5;
+        System.out.println("Product = " + (a * b));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Product = 50</div>
+</div>
+</div>
+
+
+<!-- 6 -->
+<div class="accordion">
+<button class="accordion-header">6. Divide Two Numbers <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Divide {
+    public static void main(String[] args) {
+        int a = 20, b = 5;
+        System.out.println("Division = " + (a / b));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Division = 4</div>
+</div>
+</div>
+
+
+<!-- 7 -->
+<div class="accordion">
+<button class="accordion-header">7. Calculate Remainder <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Remainder {
+    public static void main(String[] args) {
+        int a = 17, b = 5;
+        System.out.println("Remainder = " + (a % b));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Remainder = 2</div>
+</div>
+</div>
+
+
+<!-- 8 -->
+<div class="accordion">
+<button class="accordion-header">8. Check Even or Odd <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class EvenOdd {
+    public static void main(String[] args) {
+        int n = 12;
+
+        if (n % 2 == 0)
+            System.out.println("Even");
+        else
+            System.out.println("Odd");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Even</div>
+</div>
+</div>
+
+
+<!-- 9 -->
+<div class="accordion">
+<button class="accordion-header">9. Check Positive or Negative <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class PositiveNegative {
+    public static void main(String[] args) {
+        int n = -5;
+
+        if (n >= 0)
+            System.out.println("Positive");
+        else
+            System.out.println("Negative");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Negative</div>
+</div>
+</div>
+
+
+<!-- 10 -->
+<div class="accordion">
+<button class="accordion-header">10. Find Largest of Two Numbers <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class LargestTwo {
+    public static void main(String[] args) {
+        int a = 25, b = 40;
+
+        if (a > b)
+            System.out.println(a);
+        else
+            System.out.println(b);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">40</div>
+</div>
+</div>
+
+
+<!-- 11 -->
+<div class="accordion">
+<button class="accordion-header">11. Find Largest of Three Numbers <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class LargestThree {
+    public static void main(String[] args) {
+        int a = 20, b = 50, c = 30;
+
+        if (a >= b && a >= c)
+            System.out.println(a);
+        else if (b >= a && b >= c)
+            System.out.println(b);
+        else
+            System.out.println(c);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">50</div>
+</div>
+</div>
+
+
+<!-- 12 -->
+<div class="accordion">
+<button class="accordion-header">12. Check Voting Eligibility <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Voting {
+    public static void main(String[] args) {
+        int age = 20;
+
+        if (age >= 18)
+            System.out.println("Eligible for voting");
+        else
+            System.out.println("Not eligible");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Eligible for voting</div>
+</div>
+</div>
+
+
+<!-- 13 -->
+<div class="accordion">
+<button class="accordion-header">13. Check Leap Year <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class LeapYear {
+    public static void main(String[] args) {
+        int year = 2024;
+
+        if (year % 400 == 0 ||
+            (year % 4 == 0 && year % 100 != 0))
+            System.out.println("Leap Year");
+        else
+            System.out.println("Not a Leap Year");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Leap Year</div>
+</div>
+</div>
+
+
+<!-- 14 -->
+<div class="accordion">
+<button class="accordion-header">14. Check Divisibility by 5 and 11 <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Divisible {
+    public static void main(String[] args) {
+        int n = 55;
+
+        if (n % 5 == 0 && n % 11 == 0)
+            System.out.println("Divisible by 5 and 11");
+        else
+            System.out.println("Not divisible");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Divisible by 5 and 11</div>
+</div>
+</div>
+
+
+<!-- 15 -->
+<div class="accordion">
+<button class="accordion-header">15. Check Vowel or Consonant <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Vowel {
+    public static void main(String[] args) {
+        char ch = 'a';
+
+        if (ch=='a' || ch=='e' || ch=='i' ||
+            ch=='o' || ch=='u')
+            System.out.println("Vowel");
+        else
+            System.out.println("Consonant");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Vowel</div>
+</div>
+</div>
+
+
+<!-- 16 -->
+<div class="accordion">
+<button class="accordion-header">16. Print Numbers 1 to 10 <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Numbers {
+    public static void main(String[] args) {
+        for(int i = 1; i <= 10; i++)
+            System.out.print(i + " ");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">1 2 3 4 5 6 7 8 9 10</div>
+</div>
+</div>
+
+
+<!-- 17 -->
+<div class="accordion">
+<button class="accordion-header">17. Print Even Numbers 1 to 20 <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class EvenNumbers {
+    public static void main(String[] args) {
+        for(int i = 2; i <= 20; i += 2)
+            System.out.print(i + " ");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">2 4 6 8 10 12 14 16 18 20</div>
+</div>
+</div>
+
+
+<!-- 18 -->
+<div class="accordion">
+<button class="accordion-header">18. Print Odd Numbers 1 to 20 <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class OddNumbers {
+    public static void main(String[] args) {
+        for(int i = 1; i <= 20; i += 2)
+            System.out.print(i + " ");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">1 3 5 7 9 11 13 15 17 19</div>
+</div>
+</div>
+
+
+<!-- 19 -->
+<div class="accordion">
+<button class="accordion-header">19. Sum of Natural Numbers <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class NaturalSum {
+    public static void main(String[] args) {
+        int sum = 0;
+
+        for(int i = 1; i <= 10; i++)
+            sum += i;
+
+        System.out.println("Sum = " + sum);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Sum = 55</div>
+</div>
+</div>
+
+
+<!-- 20 -->
+<div class="accordion">
+<button class="accordion-header">20. Multiplication Table <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Table {
+    public static void main(String[] args) {
+        int n = 5;
+
+        for(int i = 1; i <= 10; i++)
+            System.out.println(n + " x " + i + " = " + (n*i));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+5 x 4 = 20
+5 x 5 = 25
+5 x 6 = 30
+5 x 7 = 35
+5 x 8 = 40
+5 x 9 = 45
+5 x 10 = 50</div>
+</div>
+</div>
+
+
+<!-- 21 -->
+<div class="accordion">
+<button class="accordion-header">21. Factorial of a Number <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Factorial {
+    public static void main(String[] args) {
+        int n = 5;
+        int fact = 1;
+
+        for(int i = 1; i <= n; i++)
+            fact *= i;
+
+        System.out.println("Factorial = " + fact);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Factorial = 120</div>
+</div>
+</div>
+
+
+<!-- 22 -->
+<div class="accordion">
+<button class="accordion-header">22. Reverse a Number <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ReverseNumber {
+    public static void main(String[] args) {
+        int n = 1234;
+        int rev = 0;
+
+        while(n != 0) {
+            int digit = n % 10;
+            rev = rev * 10 + digit;
+            n /= 10;
+        }
+
+        System.out.println("Reverse = " + rev);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Reverse = 4321</div>
+</div>
+</div>
+
+
+<!-- 23 -->
+<div class="accordion">
+<button class="accordion-header">23. Count Digits in a Number <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class CountDigits {
+    public static void main(String[] args) {
+        int n = 12345;
+        int count = 0;
+
+        while(n != 0) {
+            count++;
+            n /= 10;
+        }
+
+        System.out.println("Digits = " + count);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Digits = 5</div>
+</div>
+</div>
+
+
+<!-- 24 -->
+<div class="accordion">
+<button class="accordion-header">24. Sum of Digits <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class SumDigits {
+    public static void main(String[] args) {
+        int n = 1234;
+        int sum = 0;
+
+        while(n != 0) {
+            sum += n % 10;
+            n /= 10;
+        }
+
+        System.out.println("Sum = " + sum);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Sum = 10</div>
+</div>
+</div>
+
+
+<!-- 25 -->
+<div class="accordion">
+<button class="accordion-header">25. Check Palindrome Number <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class PalindromeNumber {
+    public static void main(String[] args) {
+        int n = 121;
+        int original = n;
+        int rev = 0;
+
+        while(n != 0) {
+            rev = rev * 10 + n % 10;
+            n /= 10;
+        }
+
+        if(original == rev)
+            System.out.println("Palindrome");
+        else
+            System.out.println("Not Palindrome");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Palindrome</div>
+</div>
+</div>
+
+
+<!-- 26 -->
+<div class="accordion">
+<button class="accordion-header">26. Check Armstrong Number <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Armstrong {
+    public static void main(String[] args) {
+        int n = 153;
+        int original = n;
+        int sum = 0;
+
+        while(n != 0) {
+            int d = n % 10;
+            sum += d*d*d;
+            n /= 10;
+        }
+
+        if(sum == original)
+            System.out.println("Armstrong Number");
+        else
+            System.out.println("Not Armstrong");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Armstrong Number</div>
+</div>
+</div>
+
+
+<!-- 27 -->
+<div class="accordion">
+<button class="accordion-header">27. Check Prime Number <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Prime {
+    public static void main(String[] args) {
+        int n = 17;
+        boolean prime = true;
+
+        for(int i = 2; i < n; i++) {
+            if(n % i == 0) {
+                prime = false;
+                break;
+            }
+        }
+
+        if(prime)
+            System.out.println("Prime");
+        else
+            System.out.println("Not Prime");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Prime</div>
+</div>
+</div>
+
+
+<!-- 28 -->
+<div class="accordion">
+<button class="accordion-header">28. Print Prime Numbers 1 to 50 <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class PrimeNumbers {
+    public static void main(String[] args) {
+
+        for(int n = 2; n <= 50; n++) {
+            boolean prime = true;
+
+            for(int i = 2; i < n; i++) {
+                if(n % i == 0) {
+                    prime = false;
+                    break;
+                }
+            }
+
+            if(prime)
+                System.out.print(n + " ");
+        }
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">2 3 5 7 11 13 17 19 23 29 31 37 41 43 47</div>
+</div>
+</div>
+
+
+<!-- 29 -->
+<div class="accordion">
+<button class="accordion-header">29. Fibonacci Series <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Fibonacci {
+    public static void main(String[] args) {
+        int a = 0, b = 1;
+
+        for(int i = 1; i <= 10; i++) {
+            System.out.print(a + " ");
+
+            int c = a + b;
+            a = b;
+            b = c;
+        }
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">0 1 1 2 3 5 8 13 21 34</div>
+</div>
+</div>
+
+
+<!-- 30 -->
+<div class="accordion">
+<button class="accordion-header">30. GCD of Two Numbers <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class GCD {
+    public static void main(String[] args) {
+        int a = 24, b = 36;
+
+        while(b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+
+        System.out.println("GCD = " + a);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">GCD = 12</div>
+</div>
+</div>
+
+
+<!-- 31 -->
+<div class="accordion">
+<button class="accordion-header">31. LCM of Two Numbers <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class LCM {
+    public static void main(String[] args) {
+        int a = 12, b = 18;
+        int max = Math.max(a, b);
+
+        while(true) {
+            if(max % a == 0 && max % b == 0)
+                break;
+            max++;
+        }
+
+        System.out.println("LCM = " + max);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">LCM = 36</div>
+</div>
+</div>
+
+
+<!-- 32 -->
+<div class="accordion">
+<button class="accordion-header">32. Power of a Number <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Power {
+    public static void main(String[] args) {
+        int base = 2;
+        int exponent = 5;
+
+        System.out.println("Power = " +
+            Math.pow(base, exponent));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Power = 32.0</div>
+</div>
+</div>
+
+
+<!-- 33 -->
+<div class="accordion">
+<button class="accordion-header">33. Swap Two Numbers Using Third Variable <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Swap {
+    public static void main(String[] args) {
+        int a = 10, b = 20;
+
+        int temp = a;
+        a = b;
+        b = temp;
+
+        System.out.println(a);
+        System.out.println(b);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">20
+10</div>
+</div>
+</div>
+
+
+<!-- 34 -->
+<div class="accordion">
+<button class="accordion-header">34. Swap Two Numbers Without Third Variable <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class SwapWithoutTemp {
+    public static void main(String[] args) {
+        int a = 10, b = 20;
+
+        a = a + b;
+        b = a - b;
+        a = a - b;
+
+        System.out.println(a);
+        System.out.println(b);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">20
+10</div>
+</div>
+</div>
+
+
+<!-- 35 -->
+<div class="accordion">
+<button class="accordion-header">35. Find ASCII Value of Character <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ASCII {
+    public static void main(String[] args) {
+        char ch = 'A';
+
+        System.out.println("ASCII = " + (int)ch);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">ASCII = 65</div>
+</div>
+</div>
+
+
+<!-- 36 -->
+<div class="accordion">
+<button class="accordion-header">36. Convert Celsius to Fahrenheit <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Celsius {
+    public static void main(String[] args) {
+        double c = 25;
+
+        double f = (c * 9/5) + 32;
+
+        System.out.println("Fahrenheit = " + f);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Fahrenheit = 77.0</div>
+</div>
+</div>
+
+
+<!-- 37 -->
+<div class="accordion">
+<button class="accordion-header">37. Calculate Simple Interest <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class SimpleInterest {
+    public static void main(String[] args) {
+        double p = 10000;
+        double r = 5;
+        double t = 2;
+
+        double si = (p * r * t) / 100;
+
+        System.out.println("SI = " + si);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">SI = 1000.0</div>
+</div>
+</div>
+
+
+<!-- 38 -->
+<div class="accordion">
+<button class="accordion-header">38. Calculate Area of Circle <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class CircleArea {
+    public static void main(String[] args) {
+        double r = 5;
+
+        double area = Math.PI * r * r;
+
+        System.out.println("Area = " + area);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Area = 78.53981633974483</div>
+</div>
+</div>
+
+
+<!-- 39 -->
+<div class="accordion">
+<button class="accordion-header">39. Calculate Area of Rectangle <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class RectangleArea {
+    public static void main(String[] args) {
+        int length = 10;
+        int width = 5;
+
+        System.out.println("Area = " +
+            (length * width));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Area = 50</div>
+</div>
+</div>
+
+
+<!-- 40 -->
+<div class="accordion">
+<button class="accordion-header">40. Calculate Area of Triangle <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class TriangleArea {
+    public static void main(String[] args) {
+        double base = 10;
+        double height = 6;
+
+        double area = 0.5 * base * height;
+
+        System.out.println("Area = " + area);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Area = 30.0</div>
+</div>
+</div>
+
+
+<!-- 41 -->
+<div class="accordion">
+<button class="accordion-header">41. Reverse a String <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ReverseString {
+    public static void main(String[] args) {
+        String str = "Java";
+
+        String rev = "";
+
+        for(int i = str.length()-1; i >= 0; i--)
+            rev += str.charAt(i);
+
+        System.out.println(rev);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">avaJ</div>
+</div>
+</div>
+
+
+<!-- 42 -->
+<div class="accordion">
+<button class="accordion-header">42. Check Palindrome String <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class StringPalindrome {
+    public static void main(String[] args) {
+        String str = "madam";
+        String rev = "";
+
+        for(int i = str.length()-1; i >= 0; i--)
+            rev += str.charAt(i);
+
+        if(str.equals(rev))
+            System.out.println("Palindrome");
+        else
+            System.out.println("Not Palindrome");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Palindrome</div>
+</div>
+</div>
+
+
+<!-- 43 -->
+<div class="accordion">
+<button class="accordion-header">43. Count Characters in String <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class CountCharacters {
+    public static void main(String[] args) {
+        String str = "Java";
+
+        System.out.println("Characters = " +
+            str.length());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Characters = 4</div>
+</div>
+</div>
+
+
+<!-- 44 -->
+<div class="accordion">
+<button class="accordion-header">44. Count Vowels in String <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class CountVowels {
+    public static void main(String[] args) {
+        String str = "education";
+        int count = 0;
+
+        for(int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u')
+                count++;
+        }
+
+        System.out.println("Vowels = " + count);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Vowels = 5</div>
+</div>
+</div>
+
+
+<!-- 45 -->
+<div class="accordion">
+<button class="accordion-header">45. Convert String to Uppercase <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Uppercase {
+    public static void main(String[] args) {
+        String str = "java";
+
+        System.out.println(str.toUpperCase());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">JAVA</div>
+</div>
+</div>
+
+
+<!-- 46 -->
+<div class="accordion">
+<button class="accordion-header">46. Convert String to Lowercase <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Lowercase {
+    public static void main(String[] args) {
+        String str = "JAVA";
+
+        System.out.println(str.toLowerCase());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">java</div>
+</div>
+</div>
+
+
+<!-- 47 -->
+<div class="accordion">
+<button class="accordion-header">47. Compare Two Strings <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class CompareStrings {
+    public static void main(String[] args) {
+        String a = "Java";
+        String b = "Java";
+
+        if(a.equals(b))
+            System.out.println("Strings are equal");
+        else
+            System.out.println("Strings are different");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Strings are equal</div>
+</div>
+</div>
+
+
+<!-- 48 -->
+<div class="accordion">
+<button class="accordion-header">48. Count Words in String <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class CountWords {
+    public static void main(String[] args) {
+        String str = "Java is very easy";
+
+        String[] words = str.split(" ");
+
+        System.out.println("Words = " + words.length);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Words = 4</div>
+</div>
+</div>
+
+
+<!-- 49 -->
+<div class="accordion">
+<button class="accordion-header">49. Remove Spaces from String <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class RemoveSpaces {
+    public static void main(String[] args) {
+        String str = "Java Programming";
+
+        System.out.println(str.replace(" ", ""));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">JavaProgramming</div>
+</div>
+</div>
+
+
+<!-- 50 -->
+<div class="accordion">
+<button class="accordion-header">50. Find Character at Specific Position <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class CharacterPosition {
+    public static void main(String[] args) {
+        String str = "Java";
+
+        System.out.println(str.charAt(2));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">v</div>
+</div>
+</div>
+
+
+<!-- 51 -->
+<div class="accordion">
+<button class="accordion-header">51. Declare and Print Array <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ArrayExample {
+    public static void main(String[] args) {
+        int[] a = {10,20,30,40,50};
+
+        for(int n : a)
+            System.out.print(n + " ");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">10 20 30 40 50</div>
+</div>
+</div>
+
+
+<!-- 52 -->
+<div class="accordion">
+<button class="accordion-header">52. Find Sum of Array Elements <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ArraySum {
+    public static void main(String[] args) {
+        int[] a = {10,20,30,40};
+        int sum = 0;
+
+        for(int n : a)
+            sum += n;
+
+        System.out.println("Sum = " + sum);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Sum = 100</div>
+</div>
+</div>
+
+
+<!-- 53 -->
+<div class="accordion">
+<button class="accordion-header">53. Find Largest Element in Array <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ArrayLargest {
+    public static void main(String[] args) {
+        int[] a = {10,50,20,80,30};
+        int max = a[0];
+
+        for(int n : a) {
+            if(n > max)
+                max = n;
+        }
+
+        System.out.println("Largest = " + max);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Largest = 80</div>
+</div>
+</div>
+
+
+<!-- 54 -->
+<div class="accordion">
+<button class="accordion-header">54. Find Smallest Element in Array <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ArraySmallest {
+    public static void main(String[] args) {
+        int[] a = {10,50,20,80,30};
+        int min = a[0];
+
+        for(int n : a) {
+            if(n < min)
+                min = n;
+        }
+
+        System.out.println("Smallest = " + min);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Smallest = 10</div>
+</div>
+</div>
+
+
+<!-- 55 -->
+<div class="accordion">
+<button class="accordion-header">55. Search Element in Array <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ArraySearch {
+    public static void main(String[] args) {
+        int[] a = {10,20,30,40};
+        int search = 30;
+        boolean found = false;
+
+        for(int n : a) {
+            if(n == search) {
+                found = true;
+                break;
+            }
+        }
+
+        if(found)
+            System.out.println("Element Found");
+        else
+            System.out.println("Element Not Found");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Element Found</div>
+</div>
+</div>
+
+
+<!-- 56 -->
+<div class="accordion">
+<button class="accordion-header">56. Reverse an Array <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ReverseArray {
+    public static void main(String[] args) {
+        int[] a = {10,20,30,40,50};
+
+        for(int i = a.length-1; i >= 0; i--)
+            System.out.print(a[i] + " ");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">50 40 30 20 10</div>
+</div>
+</div>
+
+
+<!-- 57 -->
+<div class="accordion">
+<button class="accordion-header">57. Count Even and Odd Elements in Array <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class EvenOddArray {
+    public static void main(String[] args) {
+        int[] a = {1,2,3,4,5,6};
+        int even = 0, odd = 0;
+
+        for(int n : a) {
+            if(n % 2 == 0)
+                even++;
+            else
+                odd++;
+        }
+
+        System.out.println("Even = " + even);
+        System.out.println("Odd = " + odd);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Even = 3
+Odd = 3</div>
+</div>
+</div>
+
+
+<!-- 58 -->
+<div class="accordion">
+<button class="accordion-header">58. Sort an Array in Ascending Order <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.Arrays;
+
+class SortArray {
+    public static void main(String[] args) {
+        int[] a = {50,20,40,10,30};
+
+        Arrays.sort(a);
+
+        System.out.println(Arrays.toString(a));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[10, 20, 30, 40, 50]</div>
+</div>
+</div>
+
+
+<!-- 59 -->
+<div class="accordion">
+<button class="accordion-header">59. Copy an Array <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.Arrays;
+
+class CopyArray {
+    public static void main(String[] args) {
+        int[] a = {10,20,30};
+        int[] b = Arrays.copyOf(a, a.length);
+
+        System.out.println(Arrays.toString(b));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[10, 20, 30]</div>
+</div>
+</div>
+
+
+<!-- 60 -->
+<div class="accordion">
+<button class="accordion-header">60. Find Average of Array Elements <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ArrayAverage {
+    public static void main(String[] args) {
+        int[] a = {10,20,30,40,50};
+        int sum = 0;
+
+        for(int n : a)
+            sum += n;
+
+        double avg = (double)sum / a.length;
+
+        System.out.println("Average = " + avg);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Average = 30.0</div>
+</div>
+</div>
+
+
+<!-- 61 -->
+<div class="accordion">
+<button class="accordion-header">61. Create a Class and Object <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Student {
+    String name = "Rahul";
+
+    public static void main(String[] args) {
+        Student s = new Student();
+
+        System.out.println(s.name);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Rahul</div>
+</div>
+</div>
+
+
+<!-- 62 -->
+<div class="accordion">
+<button class="accordion-header">62. Use Constructor <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Student {
+    Student() {
+        System.out.println("Constructor Called");
+    }
+
+    public static void main(String[] args) {
+        Student s = new Student();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Constructor Called</div>
+</div>
+</div>
+
+
+<!-- 63 -->
+<div class="accordion">
+<button class="accordion-header">63. Parameterized Constructor <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Student {
+    String name;
+    int age;
+
+    Student(String n, int a) {
+        name = n;
+        age = a;
+    }
+
+    public static void main(String[] args) {
+        Student s = new Student("Rahul", 20);
+
+        System.out.println(s.name);
+        System.out.println(s.age);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Rahul
+20</div>
+</div>
+</div>
+
+
+<!-- 64 -->
+<div class="accordion">
+<button class="accordion-header">64. Use this Keyword <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Student {
+    String name;
+
+    Student(String name) {
+        this.name = name;
+    }
+
+    public static void main(String[] args) {
+        Student s = new Student("Amit");
+
+        System.out.println(s.name);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Amit</div>
+</div>
+</div>
+
+
+<!-- 65 -->
+<div class="accordion">
+<button class="accordion-header">65. Method Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class MethodExample {
+
+    static void display() {
+        System.out.println("Hello from method");
+    }
+
+    public static void main(String[] args) {
+        display();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Hello from method</div>
+</div>
+</div>
+
+
+<!-- 66 -->
+<div class="accordion">
+<button class="accordion-header">66. Method with Parameters <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class MethodParameter {
+
+    static void add(int a, int b) {
+        System.out.println("Sum = " + (a+b));
+    }
+
+    public static void main(String[] args) {
+        add(10, 20);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Sum = 30</div>
+</div>
+</div>
+
+
+<!-- 67 -->
+<div class="accordion">
+<button class="accordion-header">67. Method Returning Value <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ReturnMethod {
+
+    static int square(int n) {
+        return n * n;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(square(5));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">25</div>
+</div>
+</div>
+
+
+<!-- 68 -->
+<div class="accordion">
+<button class="accordion-header">68. Method Overloading <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Overloading {
+
+    static int add(int a, int b) {
+        return a + b;
+    }
+
+    static int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(add(10,20));
+        System.out.println(add(10,20,30));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">30
+60</div>
+</div>
+</div>
+
+
+<!-- 69 -->
+<div class="accordion">
+<button class="accordion-header">69. Static Variable <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class StaticVariable {
+    static int count = 10;
+
+    public static void main(String[] args) {
+        System.out.println(count);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">10</div>
+</div>
+</div>
+
+
+<!-- 70 -->
+<div class="accordion">
+<button class="accordion-header">70. Encapsulation Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Student {
+    private int age;
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public static void main(String[] args) {
+        Student s = new Student();
+
+        s.setAge(20);
+
+        System.out.println(s.getAge());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">20</div>
+</div>
+</div>
+
+
+<!-- 71 -->
+<div class="accordion">
+<button class="accordion-header">71. Single Inheritance <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Animal {
+    void eat() {
+        System.out.println("Animal eats");
+    }
+}
+
+class Dog extends Animal {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.eat();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Animal eats</div>
+</div>
+</div>
+
+
+<!-- 72 -->
+<div class="accordion">
+<button class="accordion-header">72. Multilevel Inheritance <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class A {
+    void showA() {
+        System.out.println("Class A");
+    }
+}
+
+class B extends A {
+    void showB() {
+        System.out.println("Class B");
+    }
+}
+
+class C extends B {
+    public static void main(String[] args) {
+        C obj = new C();
+
+        obj.showA();
+        obj.showB();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Class A
+Class B</div>
+</div>
+</div>
+
+
+<!-- 73 -->
+<div class="accordion">
+<button class="accordion-header">73. Method Overriding <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Animal {
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog barks");
+    }
+
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.sound();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Dog barks</div>
+</div>
+</div>
+
+
+<!-- 74 -->
+<div class="accordion">
+<button class="accordion-header">74. super Keyword <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Parent {
+    int x = 10;
+}
+
+class Child extends Parent {
+    int x = 20;
+
+    void show() {
+        System.out.println(super.x);
+    }
+
+    public static void main(String[] args) {
+        new Child().show();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">10</div>
+</div>
+</div>
+
+
+<!-- 75 -->
+<div class="accordion">
+<button class="accordion-header">75. final Variable <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class FinalExample {
+    public static void main(String[] args) {
+        final int x = 100;
+
+        System.out.println(x);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">100</div>
+</div>
+</div>
+
+
+<!-- 76 -->
+<div class="accordion">
+<button class="accordion-header">76. Abstract Class Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>abstract class Animal {
+    abstract void sound();
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog barks");
+    }
+
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.sound();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Dog barks</div>
+</div>
+</div>
+
+
+<!-- 77 -->
+<div class="accordion">
+<button class="accordion-header">77. Interface Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>interface Animal {
+    void sound();
+}
+
+class Dog implements Animal {
+
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.sound();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Dog barks</div>
+</div>
+</div>
+
+
+<!-- 78 -->
+<div class="accordion">
+<button class="accordion-header">78. Multiple Interfaces <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>interface A {
+    void showA();
+}
+
+interface B {
+    void showB();
+}
+
+class Demo implements A, B {
+
+    public void showA() {
+        System.out.println("Interface A");
+    }
+
+    public void showB() {
+        System.out.println("Interface B");
+    }
+
+    public static void main(String[] args) {
+        Demo d = new Demo();
+        d.showA();
+        d.showB();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Interface A
+Interface B</div>
+</div>
+</div>
+
+
+<!-- 79 -->
+<div class="accordion">
+<button class="accordion-header">79. Runtime Polymorphism <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Animal {
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog sound");
+    }
+
+    public static void main(String[] args) {
+        Animal a = new Dog();
+        a.sound();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Dog sound</div>
+</div>
+</div>
+
+
+<!-- 80 -->
+<div class="accordion">
+<button class="accordion-header">80. Constructor Overloading <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Student {
+
+    Student() {
+        System.out.println("Default Constructor");
+    }
+
+    Student(int age) {
+        System.out.println("Age = " + age);
+    }
+
+    public static void main(String[] args) {
+        new Student();
+        new Student(20);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Default Constructor
+Age = 20</div>
+</div>
+</div>
+
+
+<!-- 81 -->
+<div class="accordion">
+<button class="accordion-header">81. Try-Catch Exception Handling <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ExceptionExample {
+    public static void main(String[] args) {
+
+        try {
+            int a = 10 / 0;
+            System.out.println(a);
+        }
+        catch(ArithmeticException e) {
+            System.out.println("Cannot divide by zero");
+        }
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Cannot divide by zero</div>
+</div>
+</div>
+
+
+<!-- 82 -->
+<div class="accordion">
+<button class="accordion-header">82. Multiple Catch Blocks <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class MultipleCatch {
+    public static void main(String[] args) {
+
+        try {
+            int[] a = {10,20};
+            System.out.println(a[5]);
+        }
+        catch(ArithmeticException e) {
+            System.out.println("Arithmetic Error");
+        }
+        catch(ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array Index Error");
+        }
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Array Index Error</div>
+</div>
+</div>
+
+
+<!-- 83 -->
+<div class="accordion">
+<button class="accordion-header">83. finally Block <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class FinallyExample {
+    public static void main(String[] args) {
+
+        try {
+            System.out.println(10 / 2);
+        }
+        finally {
+            System.out.println("Finally Block Executed");
+        }
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">5
+Finally Block Executed</div>
+</div>
+</div>
+
+
+<!-- 84 -->
+<div class="accordion">
+<button class="accordion-header">84. throw Keyword <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ThrowExample {
+    public static void main(String[] args) {
+
+        try {
+            throw new ArithmeticException("Invalid operation");
+        }
+        catch(ArithmeticException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Invalid operation</div>
+</div>
+</div>
+
+
+<!-- 85 -->
+<div class="accordion">
+<button class="accordion-header">85. Create User Defined Exception <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class MyException extends Exception {
+    MyException(String msg) {
+        super(msg);
+    }
+}
+
+class TestException {
+    public static void main(String[] args) {
+
+        try {
+            throw new MyException("Custom Exception");
+        }
+        catch(MyException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Custom Exception</div>
+</div>
+</div>
+
+
+<!-- 86 -->
+<div class="accordion">
+<button class="accordion-header">86. Create a Thread Using Thread Class <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class MyThread extends Thread {
+
+    public void run() {
+        System.out.println("Thread is running");
+    }
+
+    public static void main(String[] args) {
+        MyThread t = new MyThread();
+        t.start();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Thread is running</div>
+</div>
+</div>
+
+
+<!-- 87 -->
+<div class="accordion">
+<button class="accordion-header">87. Create Thread Using Runnable <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class MyRunnable implements Runnable {
+
+    public void run() {
+        System.out.println("Runnable Thread");
+    }
+
+    public static void main(String[] args) {
+        MyRunnable obj = new MyRunnable();
+
+        Thread t = new Thread(obj);
+        t.start();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Runnable Thread</div>
+</div>
+</div>
+
+
+<!-- 88 -->
+<div class="accordion">
+<button class="accordion-header">88. ArrayList Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.ArrayList;
+
+class ArrayListExample {
+    public static void main(String[] args) {
+
+        ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+
+        list.add("Java");
+        list.add("Python");
+        list.add("C++");
+
+        System.out.println(list);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[Java, Python, C++]</div>
+</div>
+</div>
+
+
+<!-- 89 -->
+<div class="accordion">
+<button class="accordion-header">89. ArrayList Traversal <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.ArrayList;
+
+class ArrayListLoop {
+    public static void main(String[] args) {
+
+        ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+
+        list.add("Java");
+        list.add("Python");
+        list.add("C++");
+
+        for(String x : list)
+            System.out.println(x);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Java
+Python
+C++</div>
+</div>
+</div>
+
+
+<!-- 90 -->
+<div class="accordion">
+<button class="accordion-header">90. HashSet Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.HashSet;
+
+class HashSetExample {
+    public static void main(String[] args) {
+
+        HashSet&lt;String&gt; set = new HashSet&lt;&gt;();
+
+        set.add("Java");
+        set.add("Python");
+        set.add("Java");
+
+        System.out.println(set);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[Java, Python]</div>
+</div>
+</div>
+
+
+<!-- 91 -->
+<div class="accordion">
+<button class="accordion-header">91. HashMap Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.HashMap;
+
+class HashMapExample {
+    public static void main(String[] args) {
+
+        HashMap&lt;Integer,String&gt; map = new HashMap&lt;&gt;();
+
+        map.put(1, "Rahul");
+        map.put(2, "Amit");
+        map.put(3, "Priya");
+
+        System.out.println(map);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">{1=Rahul, 2=Amit, 3=Priya}</div>
+</div>
+</div>
+
+
+<!-- 92 -->
+<div class="accordion">
+<button class="accordion-header">92. Wrapper Class Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class WrapperExample {
+    public static void main(String[] args) {
+
+        int n = 10;
+
+        Integer obj = n;
+
+        System.out.println(obj);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">10</div>
+</div>
+</div>
+
+
+<!-- 93 -->
+<div class="accordion">
+<button class="accordion-header">93. Autoboxing Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Autoboxing {
+    public static void main(String[] args) {
+
+        int n = 50;
+
+        Integer obj = n;
+
+        System.out.println(obj);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">50</div>
+</div>
+</div>
+
+
+<!-- 94 -->
+<div class="accordion">
+<button class="accordion-header">94. Unboxing Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Unboxing {
+    public static void main(String[] args) {
+
+        Integer obj = 100;
+
+        int n = obj;
+
+        System.out.println(n);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">100</div>
+</div>
+</div>
+
+
+<!-- 95 -->
+<div class="accordion">
+<button class="accordion-header">95. Math Class Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class MathExample {
+    public static void main(String[] args) {
+
+        System.out.println(Math.sqrt(25));
+        System.out.println(Math.pow(2,3));
+        System.out.println(Math.max(10,20));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">5.0
+8.0
+20</div>
+</div>
+</div>
+
+
+<!-- 96 -->
+<div class="accordion">
+<button class="accordion-header">96. Generate Random Number <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class RandomNumber {
+    public static void main(String[] args) {
+
+        int n = (int)(Math.random() * 100);
+
+        System.out.println("Random Number = " + n);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Random Number = 57
+
+(Note: Random value may be different.)</div>
+</div>
+</div>
+
+
+<!-- 97 -->
+<div class="accordion">
+<button class="accordion-header">97. Read Command Line Argument <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class CommandLine {
+    public static void main(String[] args) {
+
+        System.out.println("Name = " + args[0]);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Name = Rahul
+
+Run:
+java CommandLine Rahul</div>
+</div>
+</div>
+
+
+<!-- 98 -->
+<div class="accordion">
+<button class="accordion-header">98. Write Data to File <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.io.FileWriter;
+import java.io.IOException;
+
+class WriteFile {
+    public static void main(String[] args)
+            throws IOException {
+
+        FileWriter fw = new FileWriter("data.txt");
+
+        fw.write("Hello Java");
+
+        fw.close();
+
+        System.out.println("Data written successfully");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Data written successfully</div>
+</div>
+</div>
+
+
+<!-- 99 -->
+<div class="accordion">
+<button class="accordion-header">99. Read Data from File <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.io.FileReader;
+import java.io.IOException;
+
+class ReadFile {
+    public static void main(String[] args)
+            throws IOException {
+
+        FileReader fr = new FileReader("data.txt");
+
+        int ch;
+
+        while((ch = fr.read()) != -1) {
+            System.out.print((char)ch);
+        }
+
+        fr.close();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Hello Java</div>
+</div>
+</div>
+
+
+<!-- 100 -->
+<div class="accordion">
+<button class="accordion-header">100. Simple Student Management Program <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Student {
+    int rollNo;
+    String name;
+    double marks;
+
+    Student(int rollNo, String name, double marks) {
+        this.rollNo = rollNo;
+        this.name = name;
+        this.marks = marks;
+    }
+
+    void display() {
+        System.out.println("Roll No : " + rollNo);
+        System.out.println("Name    : " + name);
+        System.out.println("Marks   : " + marks);
+    }
+
+    public static void main(String[] args) {
+
+        Student s = new Student(
+            101,
+            "Rahul",
+            85.5
+        );
+
+        s.display();
+    }
+}</pre>
+
+<h4>Output</h4>
+<div class="output">Roll No : 101
+Name    : Rahul
+Marks   : 85.5</div>
+</div>
+</div>
+
+
+</div>
+
+<footer>
+    © 2026 Cursor Computers Academy
+</footer>
+
+
+<script>
+    const buttons = document.querySelectorAll(".accordion-header");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+
+            const content = button.nextElementSibling;
+
+            button.classList.toggle("active");
+
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
