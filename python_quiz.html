@@ -19,6 +19,106 @@
             color: #222;
         }
 
+        /* SITE NAV */
+        .site-nav {
+            background: #ffffff; border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+        .site-nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            position: relative;
+        }
+        .site-nav-links {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        .site-nav-link {
+            color: #374151;
+            text-decoration: none;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        .site-nav-link:hover, .site-nav-link.active {
+            color: #4f46e5;
+            background: #f0f5ff;
+        }
+        .site-nav-dropdown {
+            position: relative;
+        }
+        .site-nav-menu {
+            display: none; border: 1px solid #e5e7eb;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            min-width: 160px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 0 0 8px 8px;
+            z-index: 1001;
+        }
+        .site-nav-dropdown:hover .site-nav-menu {
+            display: block;
+        }
+        .site-nav-menu a { border-bottom: 1px solid #f3f4f6;
+            display: block;
+            color: #374151;
+            text-decoration: none;
+            padding: 11px 18px;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .site-nav-menu a:hover {
+            background: #f0f5ff;
+            color: #4f46e5;
+        }
+        .site-hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: #374151;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 12px;
+            margin-left: auto;
+        }
+        @media (max-width: 600px) {
+            .site-hamburger { display: block; }
+            .site-nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: #ffffff;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                z-index: 1002;
+            }
+            .site-nav-links.open { display: flex; }
+            .site-nav-link { text-align: left; width: 100%; display: block; border-bottom: 1px solid #e5e7eb; }
+            .site-nav-menu {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .site-nav-menu a { border-bottom: 1px solid #f3f4f6; padding-left: 36px; }
+            .site-nav-dropdown { width: 100%; } .site-nav-dropdown:hover .site-nav-menu { display: none; }
+            .site-nav-dropdown.open .site-nav-menu { display: block; }
+        }
+
         /* HEADER */
         header {
             background: #ffffff;
@@ -37,32 +137,6 @@
             margin-top: 7px;
             color: #6b7280;
             font-size: 14px;
-        }
-
-        .back-bar {
-            max-width: 950px;
-            margin: 20px auto 0;
-            padding: 0 15px;
-        }
-
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            text-decoration: none;
-            color: #4f46e5;
-            font-size: 14px;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-
-        .back-btn:hover {
-            color: #3730a3;
-            transform: translateX(-3px);
-        }
-
-        .back-arrow {
-            font-size: 18px;
         }
 
         /* MAIN */
@@ -189,7 +263,7 @@
 
         .btn {
             background: #4f46e5;
-            color: #ffffff;
+            color: #4f46e5;
             border: none;
             padding: 13px 28px;
             border-radius: 8px;
@@ -246,6 +320,45 @@
             margin: 15px 0 25px;
         }
 
+        .option.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+        }
+        .option.wrong {
+            background: #fef2f2;
+            border-color: #ef4444;
+        }
+        .option.locked {
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .review-screen { display: none; }
+        .review-screen.show { display: block; }
+        .review-item {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .review-item .q-num {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 6px;
+        }
+        .review-item .q-text {
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .review-item .answer-row {
+            font-size: 14px;
+            padding: 4px 0;
+        }
+        .review-item .answer-row.correct-answer { color: #16a34a; }
+        .review-item .answer-row.user-wrong { color: #dc2626; }
+
         /* FOOTER */
         footer {
             text-align: center;
@@ -292,11 +405,30 @@
     <p>Python Programming</p>
 </header>
 
-<div class="back-bar">
-    <a href="index.html" class="back-btn">
-        <span class="back-arrow">&larr;</span> Back to Home
-    </a>
-</div>
+<nav class="site-nav">
+    <div class="site-nav-inner">
+        <div class="site-nav-links" id="siteNavLinks">
+            <a href="index.html" class="site-nav-link">Home</a>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Python ▾</span>
+                <div class="site-nav-menu">
+                    <a href="python_theory.html">Theory</a>
+                    <a href="python_programs.html">Programs</a>
+                    <a href="python_quiz.html">Quiz</a>
+                </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">MySQL ▾</span>
+                <div class="site-nav-menu">
+                    <a href="mysql_theory.html">Theory</a>
+                    <a href="mysql_programs.html">Programs</a>
+                    <a href="mysql_quiz.html">Quiz</a>
+                </div>
+            </div>
+        </div>
+        <button class="site-hamburger" onclick="document.getElementById('siteNavLinks').classList.toggle('open')">☰</button>
+    </div>
+</nav>
 
 <main>
 
@@ -338,6 +470,16 @@
             <div class="result-score" id="resultScoreText">You got 0 out of 25 correct!</div>
             <div class="result-percent" id="resultPercent">0%</div>
             <button class="btn" id="restartBtn">Try Again</button>
+            <button class="btn" id="reviewBtn" style="margin-left:10px; background:#6b7280;">Review Answers</button>
+        </div>
+
+        <!-- REVIEW SCREEN -->
+        <div class="review-screen" id="reviewScreen">
+            <h2 style="text-align:center; margin-bottom:20px;">Review Your Answers</h2>
+            <div id="reviewContainer"></div>
+            <div style="text-align:center; margin-top:20px;">
+                <button class="btn" id="backToResultBtn">Back to Result</button>
+            </div>
         </div>
 
     </div>
@@ -486,6 +628,7 @@
     let answered = false;
     let timeLeft = 30;
     let timerInterval = null;
+    let userAnswers = [];
 
     const questionCounter = document.getElementById("questionCounter");
     const scoreTracker = document.getElementById("scoreTracker");
@@ -516,12 +659,20 @@
 
             if (timeLeft <= 0) {
                 clearInterval(timerInterval);
-                currentQuestion++;
-                if (currentQuestion < questions.length) {
-                    loadQuestion();
-                } else {
-                    showResult();
-                }
+                userAnswers.push(-1);
+                answered = true;
+                var allOpts = document.querySelectorAll(".option");
+                allOpts.forEach(function(opt) { opt.classList.add("locked"); });
+                var correctIdx = questions[currentQuestion].answer;
+                if (allOpts[correctIdx]) allOpts[correctIdx].classList.add("correct");
+                setTimeout(function() {
+                    currentQuestion++;
+                    if (currentQuestion < questions.length) {
+                        loadQuestion();
+                    } else {
+                        showResult();
+                    }
+                }, 1000);
             }
         }, 1000);
     }
@@ -553,12 +704,27 @@
             radio.value = index;
 
             radio.addEventListener("change", function () {
+                if (answered) return;
                 selectedOption = index;
                 answered = true;
-                nextBtn.disabled = false;
+                userAnswers.push(index);
+                clearInterval(timerInterval);
 
-                document.querySelectorAll(".option").forEach(opt => opt.classList.remove("selected"));
+                var allOpts = document.querySelectorAll(".option");
+                allOpts.forEach(function(opt) { opt.classList.remove("selected"); opt.classList.add("locked"); });
                 optionDiv.classList.add("selected");
+
+                var correctIdx = questions[currentQuestion].answer;
+                if (index === correctIdx) {
+                    optionDiv.classList.add("correct");
+                    score++;
+                    scoreTracker.textContent = "Score: " + score;
+                } else {
+                    optionDiv.classList.add("wrong");
+                    if (allOpts[correctIdx]) allOpts[correctIdx].classList.add("correct");
+                }
+
+                nextBtn.disabled = false;
             });
 
             const span = document.createElement("span");
@@ -574,10 +740,6 @@
     function nextQuestion() {
         if (!answered) return;
         clearInterval(timerInterval);
-
-        if (selectedOption === questions[currentQuestion].answer) {
-            score++;
-        }
 
         currentQuestion++;
 
@@ -605,8 +767,10 @@
         score = 0;
         selectedOption = null;
         answered = false;
+        userAnswers = [];
 
         resultScreen.classList.remove("show");
+        document.getElementById("reviewScreen").classList.remove("show");
         quizScreen.classList.remove("hide");
 
         loadQuestion();
@@ -614,6 +778,46 @@
 
     nextBtn.addEventListener("click", nextQuestion);
     restartBtn.addEventListener("click", restartQuiz);
+
+    document.getElementById('reviewBtn').addEventListener('click', function() {
+        resultScreen.classList.remove('show');
+        document.getElementById('reviewScreen').classList.add('show');
+
+        var container = document.getElementById('reviewContainer');
+        container.innerHTML = '';
+
+        questions.forEach(function(q, i) {
+            var item = document.createElement('div');
+            item.className = 'review-item';
+
+            var userAns = userAnswers[i];
+            var isCorrect = userAns === q.answer;
+            var isTimeout = userAns === -1;
+
+            var html = '<div class="q-num">Question ' + (i + 1) + ' of ' + questions.length + '</div>';
+            html += '<div class="q-text">' + q.question + '</div>';
+
+            q.options.forEach(function(opt, j) {
+                var cls = 'answer-row';
+                var prefix = '';
+                if (j === q.answer) { cls += ' correct-answer'; prefix = '✓ '; }
+                if (j === userAns && !isCorrect) { cls += ' user-wrong'; prefix = '✗ '; }
+                html += '<div class="' + cls + '">' + prefix + opt + '</div>';
+            });
+
+            if (isTimeout) {
+                html += '<div class="answer-row user-wrong">⏱ Time ran out</div>';
+            }
+
+            item.innerHTML = html;
+            container.appendChild(item);
+        });
+    });
+
+    document.getElementById('backToResultBtn').addEventListener('click', function() {
+        document.getElementById('reviewScreen').classList.remove('show');
+        resultScreen.classList.add('show');
+    });
 
     loadQuestion();
 

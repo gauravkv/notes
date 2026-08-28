@@ -80,6 +80,106 @@
                 font-size: 18px;
             }
         }
+
+        /* SITE NAV */
+        .site-nav {
+            background: #ffffff; border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+        .site-nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            position: relative;
+        }
+        .site-nav-links {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        .site-nav-link {
+            color: #374151;
+            text-decoration: none;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        .site-nav-link:hover, .site-nav-link.active {
+            color: #4f46e5;
+            background: #f0f5ff;
+        }
+        .site-nav-dropdown {
+            position: relative;
+        }
+        .site-nav-menu {
+            display: none; border: 1px solid #e5e7eb;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            min-width: 160px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 0 0 8px 8px;
+            z-index: 1001;
+        }
+        .site-nav-dropdown:hover .site-nav-menu {
+            display: block;
+        }
+        .site-nav-menu a { border-bottom: 1px solid #f3f4f6;
+            display: block;
+            color: #374151;
+            text-decoration: none;
+            padding: 11px 18px;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .site-nav-menu a:hover {
+            background: #f0f5ff;
+            color: #4f46e5;
+        }
+        .site-hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: #374151;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 12px;
+            margin-left: auto;
+        }
+        @media (max-width: 600px) {
+            .site-hamburger { display: block; }
+            .site-nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: #ffffff;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                z-index: 1002;
+            }
+            .site-nav-links.open { display: flex; }
+            .site-nav-link { text-align: left; width: 100%; display: block; border-bottom: 1px solid #e5e7eb; }
+            .site-nav-menu {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .site-nav-menu a { border-bottom: 1px solid #f3f4f6; padding-left: 36px; }
+            .site-nav-dropdown { width: 100%; } .site-nav-dropdown:hover .site-nav-menu { display: none; }
+            .site-nav-dropdown.open .site-nav-menu { display: block; }
+        }
     </style>
 </head>
 
@@ -88,6 +188,31 @@
     <header>
         <h1>Cursor Computers Academy</h1>
     </header>
+
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <div class="site-nav-links" id="siteNavLinks">
+                <a href="index.html" class="site-nav-link active">Home</a>
+                <div class="site-nav-dropdown">
+                    <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Python ▾</span>
+                    <div class="site-nav-menu">
+                        <a href="python_theory.html">Theory</a>
+                        <a href="python_programs.html">Programs</a>
+                        <a href="python_quiz.html">Quiz</a>
+                    </div>
+                </div>
+                <div class="site-nav-dropdown">
+                    <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">MySQL ▾</span>
+                    <div class="site-nav-menu">
+                        <a href="mysql_theory.html">Theory</a>
+                        <a href="mysql_programs.html">Programs</a>
+                        <a href="mysql_quiz.html">Quiz</a>
+                    </div>
+                </div>
+            </div>
+            <button class="site-hamburger" onclick="document.getElementById('siteNavLinks').classList.toggle('open')">☰</button>
+        </div>
+    </nav>
 
     <main>
         <div class="topic-card">
