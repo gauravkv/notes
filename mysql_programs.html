@@ -184,6 +184,12 @@
             }
         }
 
+        .header-top {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px 0;
+        }
+
         .back-btn {
             text-decoration: none;
             background: #eef0ff;
@@ -193,10 +199,6 @@
             font-size: 13px;
             font-weight: 600;
             transition: 0.2s;
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
         }
 
         .back-btn:hover {
@@ -207,8 +209,10 @@
 
 <body>
 
-<header style="position: relative;">
-    <a href="index.html" class="back-btn">&larr; Home</a>
+<header>
+    <div class="header-top">
+        <a href="index.html" class="back-btn">&larr; Home</a>
+    </div>
     <h1>Cursor Computers Academy</h1>
     <p>MySQL Database</p>
 </header>
