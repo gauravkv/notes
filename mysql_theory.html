@@ -1,0 +1,4975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>MySQL Coding Notes</title>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+
+    background: #f5f7fa;
+
+    color: #252a34;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+
+    height: 64px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e2e6ed;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 100;
+}
+
+
+.back-btn {
+
+    text-decoration: none;
+
+    background: #eef0ff;
+
+    color: #4f46e5;
+
+    padding: 7px 14px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.back-btn:hover {
+
+    background: #dde0ff;
+}
+
+
+.logo {
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    color: #252a34;
+}
+
+
+.language {
+
+    font-size: 14px;
+
+    color: #687386;
+}
+
+
+/* =====================================================
+   MOBILE MENU BUTTON
+===================================================== */
+
+.menu-btn {
+
+    display: none;
+
+    border: none;
+
+    background: #eef0ff;
+
+    color: #4f46e5;
+
+    padding: 8px 12px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   MAIN LAYOUT
+===================================================== */
+
+.main {
+
+    display: flex;
+
+    position: fixed;
+
+    top: 64px;
+
+    bottom: 0;
+
+    left: 0;
+
+    right: 0;
+}
+
+
+/* =====================================================
+   LEFT SIDEBAR
+===================================================== */
+
+.sidebar {
+
+    width: 18%;
+
+    min-width: 150px;
+
+    background: #ffffff;
+
+    border-right: 1px solid #e2e6ed;
+
+    overflow-y: auto;
+
+    padding: 25px 15px;
+}
+
+
+.sidebar-title {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #8a93a3;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    padding: 0 12px;
+
+    margin-bottom: 12px;
+}
+
+
+/* =====================================================
+   TOPIC BUTTON
+===================================================== */
+
+.topic {
+
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    text-align: left;
+
+    padding: 12px 14px;
+
+    margin-bottom: 4px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    color: #505866;
+
+    font-size: 14px;
+
+    transition: all 0.2s;
+}
+
+
+.topic:hover {
+
+    background: #f3f4ff;
+
+    color: #4f46e5;
+}
+
+
+.topic.active {
+
+    background: #eef0ff;
+
+    color: #4f46e5;
+
+    
+}
+
+
+/* =====================================================
+   RIGHT CONTENT AREA
+===================================================== */
+
+.content-area {
+
+    width: 82%;
+
+    overflow-y: auto;
+
+    padding: 2px;
+}
+
+
+/* =====================================================
+   CONTENT CARD
+===================================================== */
+
+.content {
+
+    width: min(1600px, 100%);
+
+    margin: 0 10;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e6ed;
+
+    border-radius: 14px;
+
+    padding: 45px;
+
+    box-shadow:
+        0 8px 30px rgba(30, 36, 48, 0.06);
+}
+
+
+/* =====================================================
+   TYPOGRAPHY
+===================================================== */
+
+h1 {
+
+    margin: 0;
+
+    font-size: 36px;
+
+    line-height: 1.2;
+
+    color: #202532;
+}
+
+
+.subtitle {
+
+    margin-top: 10px;
+
+    color: #687386;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+
+.divider {
+
+    height: 1px;
+
+    background: #e5e8ee;
+
+    margin: 28px 0;
+}
+
+
+h2 {
+
+    font-size: 24px;
+
+    margin-top: 32px;
+
+    margin-bottom: 10px;
+
+    color: #252a34;
+}
+
+
+p {
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    color: #3f4652;
+
+    margin: 12px 0;
+}
+
+
+strong {
+
+    color: #303744;
+}
+
+
+/* =====================================================
+   LIST
+===================================================== */
+
+.topic-list {
+
+    padding-left: 22px;
+
+    color: #3f4652;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+
+.topic-list li {
+
+    margin-bottom: 2px;
+}
+
+
+/* =====================================================
+   CODE HEADER
+===================================================== */
+
+.code-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: #171b24;
+
+    color: #aeb6c5;
+
+    padding: 10px 15px;
+
+    border-radius: 9px 9px 0 0;
+
+    font-size: 13px;
+
+    margin-top: 20px;
+}
+
+
+/* =====================================================
+   COPY BUTTON
+===================================================== */
+
+.copy-btn {
+
+    border: none;
+
+    background: #292f3c;
+
+    color: #dce1ea;
+
+    padding: 6px 11px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    transition: 0.2s;
+}
+
+
+.copy-btn:hover {
+
+    background: #3a4252;
+}
+
+
+/* =====================================================
+   CODE BOX
+===================================================== */
+
+.code-box {
+
+    background: #1e2430;
+
+    padding: 20px;
+
+    border-radius: 0 0 9px 9px;
+
+    overflow-x: auto;
+
+    box-shadow:
+        0 8px 20px rgba(20, 25, 35, 0.12);
+}
+
+
+.code-box pre {
+
+    margin: 0;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    color: #e6eaf0;
+
+    white-space: pre;
+}
+
+
+/* =====================================================
+   SYNTAX COLORS
+===================================================== */
+
+.keyword {
+    color: #c792ea;
+}
+
+.function {
+    color: #82aaff;
+}
+
+.string {
+    color: #c3e88d;
+}
+
+.number {
+    color: #f78c6c;
+}
+
+.comment {
+    color: #697386;
+}
+
+
+/* =====================================================
+   OUTPUT
+===================================================== */
+
+.output-title {
+
+    margin-top: 25px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #687386;
+}
+
+
+.output {
+
+    margin-top: 8px;
+
+    background: #f8f9fb;
+
+    border: 1px solid #e2e6ed;
+
+    border-radius: 8px;
+
+    padding: 14px 18px;
+
+    font-family:
+        Consolas,
+        monospace;
+
+    font-size: 14px;
+
+    color: #303744;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   INFO BOX
+===================================================== */
+
+.info {
+
+    margin-top: 25px;
+
+    padding: 17px 20px;
+
+    background: #f3f4ff;
+
+    border-left: 4px solid #6366f1;
+
+    border-radius: 6px;
+
+    color: #454a65;
+
+    line-height: 1.6;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   MOBILE OVERLAY
+===================================================== */
+
+.overlay {
+
+    display: none;
+}
+
+
+/* =====================================================
+   MOBILE DESIGN
+===================================================== */
+
+@media (max-width: 700px) {
+
+
+    /* ---------------------------------------------
+       NAVBAR
+    --------------------------------------------- */
+
+    .navbar {
+
+        padding: 0 16px;
+    }
+
+
+    .menu-btn {
+
+        display: block;
+    }
+
+
+    .language {
+
+        display: none;
+    }
+
+
+    /* ---------------------------------------------
+       MAIN
+    --------------------------------------------- */
+
+    .main {
+
+        position: static;
+
+        display: block;
+
+        margin-top: 64px;
+    }
+
+
+    /* ---------------------------------------------
+       SIDEBAR / DRAWER
+    --------------------------------------------- */
+
+    .sidebar {
+
+        position: fixed;
+
+        top: 64px;
+
+        left: 0;
+
+        bottom: 0;
+
+        width: 280px;
+
+        min-width: 0;
+
+        z-index: 200;
+
+        transform: translateX(-100%);
+
+        transition:
+            transform 0.25s ease;
+
+        box-shadow:
+            5px 0 25px rgba(0,0,0,0.12);
+
+        overflow-y: auto;
+
+        padding: 22px 15px;
+    }
+
+
+    .sidebar.open {
+
+        transform: translateX(0);
+    }
+
+
+    /* ---------------------------------------------
+       DARK OVERLAY
+    --------------------------------------------- */
+
+    .overlay {
+
+        position: fixed;
+
+        display: none;
+
+        top: 64px;
+
+        left: 0;
+
+        right: 0;
+
+        bottom: 0;
+
+        background:
+            rgba(0,0,0,0.35);
+
+        z-index: 150;
+    }
+
+
+    .overlay.show {
+
+        display: block;
+    }
+
+
+    /* ---------------------------------------------
+       CONTENT
+    --------------------------------------------- */
+
+    .content-area {
+
+        width: 100%;
+
+        padding: 20px 12px;
+
+        overflow: visible;
+    }
+
+
+    .content {
+
+        width: 100%;
+
+        padding: 28px 20px;
+
+        border-radius: 10px;
+    }
+
+
+    h1 {
+
+        font-size: 30px;
+    }
+
+
+    h2 {
+
+        font-size: 22px;
+    }
+
+
+    p {
+
+        font-size: 16px;
+
+        line-height: 1.7;
+    }
+
+
+    .code-box {
+
+        padding: 15px;
+    }
+
+
+    .code-box pre {
+
+        font-size: 13px;
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .logo {
+
+        font-size: 17px;
+    }
+
+
+    .menu-btn {
+
+        font-size: 12px;
+
+        padding: 7px 10px;
+    }
+
+
+    .content {
+
+        padding: 24px 16px;
+    }
+
+
+    h1 {
+
+        font-size: 27px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ===================================================
+     NAVBAR
+=================================================== -->
+
+<nav class="navbar">
+
+
+    <a href="index.html" class="back-btn">
+        &larr; Home
+    </a>
+
+
+    <div class="logo">
+
+        Coding Notes
+
+    </div>
+
+
+    <!-- Mobile only -->
+
+    <button
+        class="menu-btn"
+        onclick="toggleMenu()">
+
+        ☰ Topics
+
+    </button>
+
+
+    <div class="language">
+
+        MySQL
+
+    </div>
+
+
+</nav>
+
+
+
+<!-- ===================================================
+     MAIN
+=================================================== -->
+
+<div class="main">
+
+
+    <!-- =================================================
+         LEFT TOPICS
+    ================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar">
+
+
+        <div class="sidebar-title">
+
+            MySQL Topics
+
+        </div>
+
+
+        <button
+            class="topic active"
+            onclick="showTopic('intro', this)">
+
+            Introduction to MySQL
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('installing', this)">
+
+            Installing MySQL
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('databases', this)">
+
+            Databases
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('tables', this)">
+
+            Tables
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('insert', this)">
+
+            INSERT
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('select', this)">
+
+            SELECT
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('where', this)">
+
+            WHERE Clause
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('update', this)">
+
+            UPDATE
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('delete', this)">
+
+            DELETE
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('orderby', this)">
+
+            ORDER BY
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('limit', this)">
+
+            LIMIT & OFFSET
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('aggregate', this)">
+
+            Aggregate Functions
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('groupby', this)">
+
+            GROUP BY
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('having', this)">
+
+            HAVING Clause
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('joins', this)">
+
+            Joins
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('subqueries', this)">
+
+            Subqueries
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('union', this)">
+
+            UNION
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('stringfunctions', this)">
+
+            String Functions
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('numericfunctions', this)">
+
+            Numeric Functions
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('datefunctions', this)">
+
+            Date Functions
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('altertable', this)">
+
+            ALTER TABLE
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('constraints', this)">
+
+            Constraints
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('indexes', this)">
+
+            Indexes
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('views', this)">
+
+            Views
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('procedures', this)">
+
+            Stored Procedures
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('udf', this)">
+
+            User-Defined Functions
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('triggers', this)">
+
+            Triggers
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('transactions', this)">
+
+            Transactions
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('usermanagement', this)">
+
+            User Management
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('importexport', this)">
+
+            Import & Export
+
+        </button>
+
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MOBILE OVERLAY
+    ================================================== -->
+
+    <div
+        class="overlay"
+        id="overlay"
+        onclick="closeMenu()">
+    </div>
+
+
+
+    <!-- =================================================
+         RIGHT CONTENT
+    ================================================== -->
+
+    <section class="content-area">
+
+
+        <div
+            class="content"
+            id="content">
+        </div>
+
+
+    </section>
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   TOPIC CONTENT
+===================================================== */
+
+const topics = {
+
+
+intro: `
+
+<h1>
+    Introduction to MySQL
+</h1>
+
+<div class="subtitle">
+    Learn what MySQL is, why it is used, and understand the core
+    concepts of relational database management systems.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is MySQL?
+</h2>
+
+<p>
+    MySQL is an open-source <strong>Relational Database Management
+    System (RDBMS)</strong> that uses Structured Query Language (SQL)
+    to store, manage, and retrieve data. It was originally created by
+    MySQL AB and is now owned and maintained by Oracle Corporation.
+</p>
+
+<p>
+    MySQL stores data in the form of tables, which are organized into
+    rows and columns, similar to a spreadsheet. It is one of the most
+    widely used databases in the world and powers many popular
+    websites and applications.
+</p>
+
+
+<h2>
+    What is an RDBMS?
+</h2>
+
+<p>
+    A Relational Database Management System organizes data into
+    tables that can be linked, or related, to one another based on
+    common data. Each table consists of rows (records) and columns
+    (fields), and relationships between tables are created using
+    keys such as primary keys and foreign keys.
+</p>
+
+<ul class="topic-list">
+    <li>Data is stored in structured tables</li>
+    <li>Tables can be related using keys</li>
+    <li>Ensures data integrity through constraints</li>
+    <li>Supports powerful querying using SQL</li>
+</ul>
+
+
+<h2>
+    Why Use MySQL?
+</h2>
+
+<p>
+    MySQL is popular because it is free, fast, reliable, and easy to
+    use. It works well for small applications as well as large,
+    high-traffic websites and enterprise systems.
+</p>
+
+<div class="info">
+
+<strong>MySQL is used in:</strong><br><br>
+
+Web Applications • E-commerce Platforms •
+Content Management Systems • Data Warehousing •
+Enterprise Applications • Mobile App Backends
+
+</div>
+
+
+<h2>
+    Features of MySQL
+</h2>
+
+<ul class="topic-list">
+    <li><strong>Open Source:</strong> Free to use, modify, and distribute.</li>
+    <li><strong>Fast and Reliable:</strong> Optimized for high performance and speed.</li>
+    <li><strong>Cross-Platform:</strong> Runs on Windows, Linux, and macOS.</li>
+    <li><strong>Secure:</strong> Provides user authentication and privilege management.</li>
+    <li><strong>Scalable:</strong> Can handle small projects to large-scale applications.</li>
+    <li><strong>Supports SQL Standards:</strong> Compatible with standard SQL syntax.</li>
+</ul>
+
+
+<h2>
+    MySQL vs Other Databases
+</h2>
+
+<p>
+    MySQL is often compared with other database systems such as
+    PostgreSQL, Oracle, and SQL Server. While all of them use SQL,
+    they differ in licensing, performance characteristics, and the
+    advanced features they provide.
+</p>
+
+${codeBlock(`-- A simple example of a SQL statement used across
+-- most relational databases, including MySQL
+SELECT first_name, last_name
+FROM employees
+WHERE department = 'Sales';`, "SQL")}
+
+
+<div class="info">
+
+<strong>Note:</strong><br>
+MySQL is the "M" in the popular LAMP stack
+(Linux, Apache, MySQL, PHP/Python/Perl), which is widely
+used for building dynamic web applications.
+
+</div>
+
+`,
+
+
+installing: `
+
+<h1>
+    Installing MySQL
+</h1>
+
+<div class="subtitle">
+    Learn how to install MySQL, connect using MySQL Workbench, and
+    run your first commands from the command line.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Downloading MySQL
+</h2>
+
+<p>
+    MySQL can be downloaded from the official MySQL website
+    (dev.mysql.com/downloads). It provides installers for Windows,
+    macOS, and Linux. The MySQL Installer bundles the MySQL Server,
+    MySQL Workbench, and other useful tools together.
+</p>
+
+<ul class="topic-list">
+    <li>MySQL Community Server – the core database engine (free)</li>
+    <li>MySQL Workbench – a visual tool for designing and managing databases</li>
+    <li>MySQL Shell – an advanced command-line client</li>
+</ul>
+
+
+<h2>
+    Installation Steps
+</h2>
+
+<p>
+    During installation, you will be asked to set a root password.
+    This password is used to log in as the administrator account
+    and should be kept safe, since the root user has full control
+    over the database server.
+</p>
+
+<ul class="topic-list">
+    <li>Download the MySQL Installer for your operating system</li>
+    <li>Choose "Server only" or "Full" setup type</li>
+    <li>Configure the port (default is 3306)</li>
+    <li>Set a strong root password</li>
+    <li>Complete the installation and start the MySQL service</li>
+</ul>
+
+
+<h2>
+    Connecting via Command Line
+</h2>
+
+<p>
+    Once MySQL is installed, you can connect to the server using the
+    <strong>mysql</strong> command-line client.
+</p>
+
+${codeBlock(`mysql -u root -p`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Enter password: ********<br>
+    Welcome to the MySQL monitor...<br>
+    mysql&gt;
+</div>
+
+
+<h2>
+    Using MySQL Workbench
+</h2>
+
+<p>
+    MySQL Workbench is a graphical tool that allows you to design
+    databases, write and run SQL queries, manage users, and view
+    server performance without typing every command manually.
+</p>
+
+<ul class="topic-list">
+    <li>Create a new connection with host, port, username, and password</li>
+    <li>Use the SQL editor to write and execute queries</li>
+    <li>Visually design tables using the schema browser</li>
+    <li>Export and import data using built-in wizards</li>
+</ul>
+
+
+<h2>
+    Basic Setup Commands
+</h2>
+
+<p>
+    After connecting, you can check the MySQL version and see the
+    list of existing databases to confirm the installation was
+    successful.
+</p>
+
+${codeBlock(`SELECT VERSION();
+
+SHOW DATABASES;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +-----------+<br>
+    | VERSION() |<br>
+    +-----------+<br>
+    | 8.0.36    |<br>
+    +-----------+
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Always remember your root password. If you forget it, you
+will need to reset it using MySQL's safe mode recovery process.
+
+</div>
+
+`,
+
+
+databases: `
+
+<h1>
+    Databases
+</h1>
+
+<div class="subtitle">
+    Learn how to create, select, view, and delete databases in MySQL.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Database?
+</h2>
+
+<p>
+    A database is a container that holds related tables, views,
+    stored procedures, and other database objects. In MySQL, a
+    single server can host many databases, each isolated from the
+    others.
+</p>
+
+
+<h2>
+    Creating a Database
+</h2>
+
+<p>
+    The <strong>CREATE DATABASE</strong> statement is used to create
+    a new, empty database on the server.
+</p>
+
+${codeBlock(`CREATE DATABASE school;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Query OK, 1 row affected (0.02 sec)
+</div>
+
+
+<h2>
+    Viewing All Databases
+</h2>
+
+<p>
+    The <strong>SHOW DATABASES</strong> command lists every database
+    that currently exists on the MySQL server.
+</p>
+
+${codeBlock(`SHOW DATABASES;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +--------------------+<br>
+    | Database           |<br>
+    +--------------------+<br>
+    | information_schema |<br>
+    | mysql               |<br>
+    | performance_schema |<br>
+    | school              |<br>
+    +--------------------+
+</div>
+
+
+<h2>
+    Selecting a Database
+</h2>
+
+<p>
+    Before you can create tables or run queries, you must tell
+    MySQL which database to use with the <strong>USE</strong>
+    statement.
+</p>
+
+${codeBlock(`USE school;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Database changed
+</div>
+
+
+<h2>
+    Deleting a Database
+</h2>
+
+<p>
+    The <strong>DROP DATABASE</strong> statement permanently deletes
+    a database along with all of its tables and data.
+</p>
+
+${codeBlock(`DROP DATABASE school;`, "SQL")}
+
+
+<div class="info">
+
+<strong>Warning:</strong><br>
+DROP DATABASE cannot be undone. All tables, rows, and objects
+inside the database are permanently deleted. Always take a
+backup before dropping a production database.
+
+</div>
+
+
+<h2>
+    Checking if a Database Exists
+</h2>
+
+<p>
+    Using <strong>IF NOT EXISTS</strong> avoids errors when a
+    database with the same name already exists.
+</p>
+
+${codeBlock(`CREATE DATABASE IF NOT EXISTS school;
+
+DROP DATABASE IF EXISTS old_school;`, "SQL")}
+
+`,
+
+
+tables: `
+
+<h1>
+    Tables
+</h1>
+
+<div class="subtitle">
+    Learn how to create tables, understand data types, and view or
+    remove table structures in MySQL.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Table?
+</h2>
+
+<p>
+    A table is a structured object inside a database that stores
+    data in rows and columns. Every column has a name and a data
+    type that defines what kind of values it can hold.
+</p>
+
+
+<h2>
+    Creating a Table
+</h2>
+
+<p>
+    The <strong>CREATE TABLE</strong> statement defines a new table
+    along with its columns and data types.
+</p>
+
+${codeBlock(`CREATE TABLE students (
+    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    age INT,
+    course VARCHAR(50),
+    fee DECIMAL(10, 2)
+);`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Query OK, 0 rows affected (0.03 sec)
+</div>
+
+
+<h2>
+    Common MySQL Data Types
+</h2>
+
+<ul class="topic-list">
+    <li><strong>INT:</strong> Whole numbers, e.g. 10, 200, -5</li>
+    <li><strong>VARCHAR(n):</strong> Variable-length text up to n characters</li>
+    <li><strong>CHAR(n):</strong> Fixed-length text of exactly n characters</li>
+    <li><strong>DECIMAL(p, d):</strong> Exact numeric values, useful for money</li>
+    <li><strong>FLOAT / DOUBLE:</strong> Approximate decimal numbers</li>
+    <li><strong>DATE:</strong> Stores dates as YYYY-MM-DD</li>
+    <li><strong>DATETIME / TIMESTAMP:</strong> Stores date and time together</li>
+    <li><strong>BOOLEAN:</strong> Stores true/false (stored internally as TINYINT)</li>
+    <li><strong>TEXT:</strong> Large blocks of text</li>
+</ul>
+
+
+<h2>
+    Viewing Table Structure
+</h2>
+
+<p>
+    The <strong>DESCRIBE</strong> command (or <strong>DESC</strong>)
+    shows the column names, data types, and constraints of a table.
+</p>
+
+${codeBlock(`DESCRIBE students;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +------------+---------------+------+-----+---------+----------------+<br>
+    | Field      | Type          | Null | Key | Default | Extra          |<br>
+    +------------+---------------+------+-----+---------+----------------+<br>
+    | student_id | int           | NO   | PRI | NULL    | auto_increment |<br>
+    | name       | varchar(50)   | NO   |     | NULL    |                |<br>
+    | age        | int           | YES  |     | NULL    |                |<br>
+    | course     | varchar(50)   | YES  |     | NULL    |                |<br>
+    | fee        | decimal(10,2) | YES  |     | NULL    |                |<br>
+    +------------+---------------+------+-----+---------+----------------+
+</div>
+
+
+<h2>
+    Listing All Tables
+</h2>
+
+${codeBlock(`SHOW TABLES;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +------------------+<br>
+    | Tables_in_school |<br>
+    +------------------+<br>
+    | students         |<br>
+    +------------------+
+</div>
+
+
+<h2>
+    Deleting a Table
+</h2>
+
+<p>
+    The <strong>DROP TABLE</strong> statement permanently removes a
+    table and all the data it contains.
+</p>
+
+${codeBlock(`DROP TABLE students;
+
+DROP TABLE IF EXISTS students;`, "SQL")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use DROP TABLE IF EXISTS to avoid an error when the table you
+are trying to remove might not exist.
+
+</div>
+
+`,
+
+
+insert: `
+
+<h1>
+    INSERT Statement
+</h1>
+
+<div class="subtitle">
+    Learn how to add new rows of data into a MySQL table.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Inserting a Single Row
+</h2>
+
+<p>
+    The <strong>INSERT INTO</strong> statement is used to add a new
+    row of data into a table. You specify the column names followed
+    by the values you want to insert.
+</p>
+
+${codeBlock(`INSERT INTO students (name, age, course, fee)
+VALUES ('Rahul Sharma', 20, 'Computer Science', 45000.00);`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Query OK, 1 row affected (0.01 sec)
+</div>
+
+
+<h2>
+    Inserting Multiple Rows
+</h2>
+
+<p>
+    You can insert several rows in a single statement by separating
+    each set of values with a comma. This is faster than running
+    multiple individual INSERT statements.
+</p>
+
+${codeBlock(`INSERT INTO students (name, age, course, fee) VALUES
+('Priya Verma', 21, 'Information Technology', 42000.00),
+('Aman Gupta', 19, 'Mechanical Engineering', 38000.00),
+('Sneha Reddy', 22, 'Computer Science', 45000.00);`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Query OK, 3 rows affected (0.01 sec)<br>
+    Records: 3  Duplicates: 0  Warnings: 0
+</div>
+
+
+<h2>
+    Inserting Without Specifying Columns
+</h2>
+
+<p>
+    If you provide values for every column in the exact order they
+    were defined in the table, you can skip listing the column
+    names. This approach is less readable and breaks easily if the
+    table structure changes.
+</p>
+
+${codeBlock(`INSERT INTO students
+VALUES (5, 'Karan Mehta', 20, 'Electronics', 40000.00);`, "SQL")}
+
+
+<h2>
+    Inserting Partial Data
+</h2>
+
+<p>
+    You can also insert a row while leaving some columns empty.
+    Columns not listed will be set to their default value, or
+    NULL if no default is defined.
+</p>
+
+${codeBlock(`INSERT INTO students (name, course)
+VALUES ('Neha Joshi', 'Civil Engineering');`, "SQL")}
+
+
+<div class="info">
+
+<strong>Note:</strong><br>
+If a column is defined as AUTO_INCREMENT, such as student_id,
+you should not provide a value for it manually — MySQL will
+generate the next number automatically.
+
+</div>
+
+`,
+
+
+select: `
+
+<h1>
+    SELECT Statement
+</h1>
+
+<div class="subtitle">
+    Learn how to retrieve data from a MySQL table using the SELECT
+    statement.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Selecting All Columns
+</h2>
+
+<p>
+    The <strong>SELECT *</strong> statement retrieves every column
+    from every row of a table.
+</p>
+
+${codeBlock(`SELECT * FROM students;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +------------+--------------+------+-------------------+----------+<br>
+    | student_id | name         | age  | course            | fee      |<br>
+    +------------+--------------+------+-------------------+----------+<br>
+    | 1          | Rahul Sharma | 20   | Computer Science  | 45000.00 |<br>
+    | 2          | Priya Verma  | 21   | Information Tech. | 42000.00 |<br>
+    +------------+--------------+------+-------------------+----------+
+</div>
+
+
+<h2>
+    Selecting Specific Columns
+</h2>
+
+<p>
+    You can select only the columns you need instead of retrieving
+    the entire table, which improves performance and readability.
+</p>
+
+${codeBlock(`SELECT name, course FROM students;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +--------------+-------------------+<br>
+    | name         | course            |<br>
+    +--------------+-------------------+<br>
+    | Rahul Sharma | Computer Science  |<br>
+    | Priya Verma  | Information Tech. |<br>
+    +--------------+-------------------+
+</div>
+
+
+<h2>
+    Using Column Aliases
+</h2>
+
+<p>
+    The <strong>AS</strong> keyword renames a column in the result
+    set, making the output easier to read. The alias does not
+    change the actual column name in the table.
+</p>
+
+${codeBlock(`SELECT name AS student_name, fee AS course_fee
+FROM students;`, "SQL")}
+
+
+<h2>
+    Selecting Distinct Values
+</h2>
+
+<p>
+    The <strong>DISTINCT</strong> keyword removes duplicate values
+    from the result, returning only unique rows.
+</p>
+
+${codeBlock(`SELECT DISTINCT course FROM students;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +-------------------+<br>
+    | course            |<br>
+    +-------------------+<br>
+    | Computer Science  |<br>
+    | Information Tech. |<br>
+    | Mechanical Eng.   |<br>
+    +-------------------+
+</div>
+
+
+<h2>
+    Using Expressions in SELECT
+</h2>
+
+<p>
+    SELECT can also compute expressions, not just return raw
+    column values.
+</p>
+
+${codeBlock(`SELECT name, fee, fee * 0.10 AS scholarship
+FROM students;`, "SQL")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Avoid using SELECT * in production applications. Explicitly
+listing column names makes queries faster and more predictable
+when the table structure changes.
+
+</div>
+
+`,
+
+
+where: `
+
+<h1>
+    WHERE Clause
+</h1>
+
+<div class="subtitle">
+    Learn how to filter rows returned by a query using comparison,
+    range, list, pattern, and NULL conditions.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Filtering with Comparison Operators
+</h2>
+
+<p>
+    The <strong>WHERE</strong> clause filters rows based on a
+    condition. Only rows that satisfy the condition are included
+    in the result.
+</p>
+
+${codeBlock(`SELECT * FROM students WHERE age = 20;
+
+SELECT * FROM students WHERE age != 20;
+
+SELECT * FROM students WHERE fee > 40000;
+
+SELECT * FROM students WHERE fee <= 42000;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +------------+--------------+------+-------------------+----------+<br>
+    | student_id | name         | age  | course            | fee      |<br>
+    +------------+--------------+------+-------------------+----------+<br>
+    | 1          | Rahul Sharma | 20   | Computer Science  | 45000.00 |<br>
+    +------------+--------------+------+-------------------+----------+
+</div>
+
+
+<h2>
+    BETWEEN Operator
+</h2>
+
+<p>
+    <strong>BETWEEN</strong> checks whether a value lies within a
+    range, inclusive of both boundary values.
+</p>
+
+${codeBlock(`SELECT * FROM students
+WHERE fee BETWEEN 40000 AND 45000;`, "SQL")}
+
+
+<h2>
+    IN Operator
+</h2>
+
+<p>
+    <strong>IN</strong> checks whether a value matches any value in
+    a given list, avoiding multiple OR conditions.
+</p>
+
+${codeBlock(`SELECT * FROM students
+WHERE course IN ('Computer Science', 'Electronics');`, "SQL")}
+
+
+<h2>
+    LIKE Operator
+</h2>
+
+<p>
+    <strong>LIKE</strong> is used for pattern matching with text.
+    The <strong>%</strong> symbol matches any sequence of
+    characters, and <strong>_</strong> matches a single character.
+</p>
+
+${codeBlock(`SELECT * FROM students WHERE name LIKE 'R%';
+
+SELECT * FROM students WHERE name LIKE '%a';
+
+SELECT * FROM students WHERE name LIKE '_aran';`, "SQL")}
+
+
+<h2>
+    IS NULL / IS NOT NULL
+</h2>
+
+<p>
+    Since NULL represents "no value", you cannot compare it using
+    <strong>=</strong>. Instead, use <strong>IS NULL</strong> or
+    <strong>IS NOT NULL</strong>.
+</p>
+
+${codeBlock(`SELECT * FROM students WHERE age IS NULL;
+
+SELECT * FROM students WHERE age IS NOT NULL;`, "SQL")}
+
+
+<h2>
+    Combining Conditions with AND / OR
+</h2>
+
+${codeBlock(`SELECT * FROM students
+WHERE course = 'Computer Science' AND fee > 40000;
+
+SELECT * FROM students
+WHERE course = 'Civil Engineering' OR age < 20;`, "SQL")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use parentheses when combining AND and OR in the same query
+to make sure the conditions are evaluated in the order you
+intend.
+
+</div>
+
+`,
+
+
+update: `
+
+<h1>
+    UPDATE Statement
+</h1>
+
+<div class="subtitle">
+    Learn how to modify existing rows of data in a MySQL table.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Updating a Single Column
+</h2>
+
+<p>
+    The <strong>UPDATE</strong> statement changes the values of one
+    or more columns for rows that match a given condition.
+</p>
+
+${codeBlock(`UPDATE students
+SET fee = 47000
+WHERE student_id = 1;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Query OK, 1 row affected (0.01 sec)<br>
+    Rows matched: 1  Changed: 1  Warnings: 0
+</div>
+
+
+<h2>
+    Updating Multiple Columns
+</h2>
+
+<p>
+    You can update several columns at once by separating each
+    assignment with a comma.
+</p>
+
+${codeBlock(`UPDATE students
+SET age = 21, course = 'Data Science'
+WHERE student_id = 3;`, "SQL")}
+
+
+<h2>
+    Updating Multiple Rows
+</h2>
+
+<p>
+    Any row that matches the WHERE condition will be updated. If
+    multiple rows satisfy the condition, all of them are changed.
+</p>
+
+${codeBlock(`UPDATE students
+SET fee = fee + 2000
+WHERE course = 'Computer Science';`, "SQL")}
+
+
+<h2>
+    Updating Without WHERE
+</h2>
+
+<p>
+    Omitting the WHERE clause updates <strong>every row</strong> in
+    the table. This should be done carefully, and usually only
+    intentionally.
+</p>
+
+${codeBlock(`UPDATE students
+SET fee = fee * 1.05;`, "SQL")}
+
+
+<div class="info">
+
+<strong>Warning:</strong><br>
+Always double-check your WHERE clause before running an
+UPDATE. Forgetting WHERE will modify every row in the table,
+which can be difficult to reverse.
+
+</div>
+
+`,
+
+
+delete: `
+
+<h1>
+    DELETE Statement
+</h1>
+
+<div class="subtitle">
+    Learn how to remove rows from a table, and understand the
+    difference between DELETE and TRUNCATE.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Deleting Specific Rows
+</h2>
+
+<p>
+    The <strong>DELETE FROM</strong> statement removes rows that
+    match a WHERE condition.
+</p>
+
+${codeBlock(`DELETE FROM students
+WHERE student_id = 6;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Query OK, 1 row affected (0.01 sec)
+</div>
+
+
+<h2>
+    Deleting Multiple Rows
+</h2>
+
+${codeBlock(`DELETE FROM students
+WHERE course = 'Civil Engineering';`, "SQL")}
+
+
+<h2>
+    Deleting All Rows
+</h2>
+
+<p>
+    Omitting the WHERE clause deletes every row in the table,
+    while keeping the table structure intact.
+</p>
+
+${codeBlock(`DELETE FROM students;`, "SQL")}
+
+
+<h2>
+    TRUNCATE vs DELETE
+</h2>
+
+<p>
+    <strong>TRUNCATE TABLE</strong> also removes all rows from a
+    table, but it works differently from DELETE.
+</p>
+
+${codeBlock(`TRUNCATE TABLE students;`, "SQL")}
+
+<ul class="topic-list">
+    <li>TRUNCATE is generally faster than DELETE for removing all rows</li>
+    <li>TRUNCATE resets the AUTO_INCREMENT counter back to 1</li>
+    <li>TRUNCATE cannot be used with a WHERE clause</li>
+    <li>DELETE can be rolled back inside a transaction; TRUNCATE usually cannot</li>
+    <li>DELETE fires row-level triggers; TRUNCATE does not</li>
+</ul>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use DELETE when you need to remove specific rows or want the
+operation to be logged and reversible. Use TRUNCATE when you
+want to quickly empty an entire table.
+
+</div>
+
+`,
+
+
+orderby: `
+
+<h1>
+    ORDER BY
+</h1>
+
+<div class="subtitle">
+    Learn how to sort query results in ascending or descending
+    order, using one or more columns.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Sorting in Ascending Order
+</h2>
+
+<p>
+    The <strong>ORDER BY</strong> clause sorts the result set based
+    on one or more columns. By default, sorting is done in
+    ascending order (<strong>ASC</strong>).
+</p>
+
+${codeBlock(`SELECT name, fee FROM students
+ORDER BY fee;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +--------------+----------+<br>
+    | name         | fee      |<br>
+    +--------------+----------+<br>
+    | Aman Gupta   | 38000.00 |<br>
+    | Priya Verma  | 42000.00 |<br>
+    | Rahul Sharma | 45000.00 |<br>
+    +--------------+----------+
+</div>
+
+
+<h2>
+    Sorting in Descending Order
+</h2>
+
+<p>
+    Use the <strong>DESC</strong> keyword to sort results from
+    highest to lowest.
+</p>
+
+${codeBlock(`SELECT name, fee FROM students
+ORDER BY fee DESC;`, "SQL")}
+
+
+<h2>
+    Sorting by Multiple Columns
+</h2>
+
+<p>
+    You can sort by more than one column. The second column is used
+    to break ties when values in the first column are the same.
+</p>
+
+${codeBlock(`SELECT name, course, fee FROM students
+ORDER BY course ASC, fee DESC;`, "SQL")}
+
+
+<h2>
+    Sorting by Column Position
+</h2>
+
+<p>
+    Columns can also be referenced by their position number in the
+    SELECT list, although using column names is more readable.
+</p>
+
+${codeBlock(`SELECT name, fee FROM students
+ORDER BY 2 DESC;`, "SQL")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+ORDER BY is usually the last clause evaluated in a query, so
+it can sort by column aliases defined in the SELECT list.
+
+</div>
+
+`,
+
+
+limit: `
+
+<h1>
+    LIMIT & OFFSET
+</h1>
+
+<div class="subtitle">
+    Learn how to restrict the number of rows returned by a query,
+    and how to implement pagination.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Limiting Results
+</h2>
+
+<p>
+    The <strong>LIMIT</strong> clause restricts the number of rows
+    returned by a query. This is useful when you only need the
+    top few records.
+</p>
+
+${codeBlock(`SELECT name, fee FROM students
+ORDER BY fee DESC
+LIMIT 3;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +--------------+----------+<br>
+    | name         | fee      |<br>
+    +--------------+----------+<br>
+    | Rahul Sharma | 47000.00 |<br>
+    | Sneha Reddy  | 45000.00 |<br>
+    | Priya Verma  | 42000.00 |<br>
+    +--------------+----------+
+</div>
+
+
+<h2>
+    Using OFFSET
+</h2>
+
+<p>
+    <strong>OFFSET</strong> skips a given number of rows before
+    starting to return results. It is often combined with LIMIT to
+    build pagination.
+</p>
+
+${codeBlock(`SELECT name, fee FROM students
+ORDER BY fee DESC
+LIMIT 3 OFFSET 3;`, "SQL")}
+
+
+<h2>
+    Shorthand LIMIT Syntax
+</h2>
+
+<p>
+    MySQL also allows a shorthand form where the first number is
+    the offset and the second is the row count.
+</p>
+
+${codeBlock(`-- LIMIT offset, row_count
+SELECT name, fee FROM students
+ORDER BY fee DESC
+LIMIT 3, 3;`, "SQL")}
+
+
+<h2>
+    Pagination Example
+</h2>
+
+<p>
+    To display data in pages of 5 records, calculate the OFFSET
+    based on the current page number.
+</p>
+
+${codeBlock(`-- Page 1
+SELECT * FROM students LIMIT 5 OFFSET 0;
+
+-- Page 2
+SELECT * FROM students LIMIT 5 OFFSET 5;
+
+-- Page 3
+SELECT * FROM students LIMIT 5 OFFSET 10;`, "SQL")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Always use ORDER BY together with LIMIT. Without a defined
+sort order, MySQL does not guarantee a consistent row order,
+which can make pagination unreliable.
+
+</div>
+
+`,
+
+
+aggregate: `
+
+<h1>
+    Aggregate Functions
+</h1>
+
+<div class="subtitle">
+    Learn how to summarize data using COUNT, SUM, AVG, MIN, and MAX.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What are Aggregate Functions?
+</h2>
+
+<p>
+    Aggregate functions perform a calculation on a set of rows and
+    return a single summarized value. They are commonly used with
+    GROUP BY to summarize data by category.
+</p>
+
+
+<h2>
+    COUNT()
+</h2>
+
+<p>
+    <strong>COUNT()</strong> returns the number of rows that match
+    a given condition.
+</p>
+
+${codeBlock(`SELECT COUNT(*) AS total_students
+FROM students;
+
+SELECT COUNT(fee) AS students_with_fee
+FROM students;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +----------------+<br>
+    | total_students |<br>
+    +----------------+<br>
+    | 5              |<br>
+    +----------------+
+</div>
+
+
+<h2>
+    SUM()
+</h2>
+
+<p>
+    <strong>SUM()</strong> adds up all the numeric values in a
+    column.
+</p>
+
+${codeBlock(`SELECT SUM(fee) AS total_fee_collected
+FROM students;`, "SQL")}
+
+
+<h2>
+    AVG()
+</h2>
+
+<p>
+    <strong>AVG()</strong> calculates the average value of a
+    numeric column.
+</p>
+
+${codeBlock(`SELECT AVG(fee) AS average_fee
+FROM students;`, "SQL")}
+
+
+<h2>
+    MIN() and MAX()
+</h2>
+
+<p>
+    <strong>MIN()</strong> and <strong>MAX()</strong> return the
+    smallest and largest values in a column.
+</p>
+
+${codeBlock(`SELECT MIN(fee) AS lowest_fee, MAX(fee) AS highest_fee
+FROM students;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +------------+-------------+<br>
+    | lowest_fee | highest_fee |<br>
+    +------------+-------------+<br>
+    | 38000.00   | 47000.00    |<br>
+    +------------+-------------+
+</div>
+
+
+<h2>
+    Combining Aggregate Functions
+</h2>
+
+${codeBlock(`SELECT
+    COUNT(*) AS total,
+    SUM(fee) AS total_fee,
+    AVG(fee) AS avg_fee,
+    MIN(fee) AS min_fee,
+    MAX(fee) AS max_fee
+FROM students;`, "SQL")}
+
+
+<div class="info">
+
+<strong>Note:</strong><br>
+Aggregate functions ignore NULL values, except for
+COUNT(*), which counts every row regardless of NULLs.
+
+</div>
+
+`,
+
+
+groupby: `
+
+<h1>
+    GROUP BY
+</h1>
+
+<div class="subtitle">
+    Learn how to group rows that share the same value and apply
+    aggregate functions to each group.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is GROUP BY?
+</h2>
+
+<p>
+    The <strong>GROUP BY</strong> clause groups rows that have the
+    same values in specified columns into summary rows. It is
+    almost always used together with an aggregate function.
+</p>
+
+
+<h2>
+    Grouping with COUNT
+</h2>
+
+<p>
+    The following query counts how many students are enrolled in
+    each course.
+</p>
+
+${codeBlock(`SELECT course, COUNT(*) AS total_students
+FROM students
+GROUP BY course;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +-------------------+----------------+<br>
+    | course            | total_students |<br>
+    +-------------------+----------------+<br>
+    | Computer Science  | 2              |<br>
+    | Information Tech. | 1              |<br>
+    | Electronics       | 1              |<br>
+    +-------------------+----------------+
+</div>
+
+
+<h2>
+    Grouping with SUM and AVG
+</h2>
+
+${codeBlock(`SELECT course, SUM(fee) AS total_fee, AVG(fee) AS avg_fee
+FROM students
+GROUP BY course;`, "SQL")}
+
+
+<h2>
+    Grouping by Multiple Columns
+</h2>
+
+<p>
+    You can group by more than one column to create more specific
+    subgroups.
+</p>
+
+${codeBlock(`SELECT course, age, COUNT(*) AS total
+FROM students
+GROUP BY course, age;`, "SQL")}
+
+
+<h2>
+    GROUP BY with ORDER BY
+</h2>
+
+${codeBlock(`SELECT course, COUNT(*) AS total_students
+FROM students
+GROUP BY course
+ORDER BY total_students DESC;`, "SQL")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Every column in the SELECT list that is not inside an
+aggregate function must also appear in the GROUP BY clause.
+
+</div>
+
+`,
+
+
+having: `
+
+<h1>
+    HAVING Clause
+</h1>
+
+<div class="subtitle">
+    Learn how to filter grouped results, and understand the
+    difference between WHERE and HAVING.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is HAVING?
+</h2>
+
+<p>
+    The <strong>HAVING</strong> clause filters groups created by
+    GROUP BY, based on the result of an aggregate function. Unlike
+    WHERE, HAVING is evaluated after grouping happens.
+</p>
+
+
+<h2>
+    Filtering Groups
+</h2>
+
+<p>
+    The following query returns only the courses that have more
+    than one student enrolled.
+</p>
+
+${codeBlock(`SELECT course, COUNT(*) AS total_students
+FROM students
+GROUP BY course
+HAVING COUNT(*) > 1;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +-------------------+----------------+<br>
+    | course            | total_students |<br>
+    +-------------------+----------------+<br>
+    | Computer Science  | 2              |<br>
+    +-------------------+----------------+
+</div>
+
+
+<h2>
+    HAVING with SUM / AVG
+</h2>
+
+${codeBlock(`SELECT course, AVG(fee) AS avg_fee
+FROM students
+GROUP BY course
+HAVING AVG(fee) > 40000;`, "SQL")}
+
+
+<h2>
+    WHERE vs HAVING
+</h2>
+
+<p>
+    WHERE filters individual rows <strong>before</strong> grouping
+    takes place, while HAVING filters groups
+    <strong>after</strong> aggregation.
+</p>
+
+${codeBlock(`SELECT course, COUNT(*) AS total_students
+FROM students
+WHERE age >= 20
+GROUP BY course
+HAVING COUNT(*) >= 1;`, "SQL")}
+
+<ul class="topic-list">
+    <li>WHERE cannot use aggregate functions like COUNT() or SUM()</li>
+    <li>HAVING is designed specifically to filter aggregated results</li>
+    <li>WHERE runs first, then GROUP BY, then HAVING</li>
+</ul>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use WHERE to reduce rows early for better performance, and use
+HAVING only when the condition depends on an aggregate
+calculation.
+
+</div>
+
+`,
+
+
+joins: `
+
+<h1>
+    Joins
+</h1>
+
+<div class="subtitle">
+    Learn how to combine rows from two or more tables using INNER,
+    LEFT, RIGHT, CROSS, and self joins.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Why Use Joins?
+</h2>
+
+<p>
+    In a relational database, data is often split across multiple
+    related tables to avoid duplication. <strong>Joins</strong>
+    combine rows from two or more tables based on a related
+    column, usually a foreign key.
+</p>
+
+${codeBlock(`CREATE TABLE departments (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(50)
+);
+
+CREATE TABLE employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50),
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+);`, "SQL")}
+
+
+<h2>
+    INNER JOIN
+</h2>
+
+<p>
+    <strong>INNER JOIN</strong> returns only the rows that have
+    matching values in both tables.
+</p>
+
+${codeBlock(`SELECT e.emp_name, d.dept_name
+FROM employees e
+INNER JOIN departments d ON e.dept_id = d.dept_id;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +-----------+-------------+<br>
+    | emp_name  | dept_name   |<br>
+    +-----------+-------------+<br>
+    | Aditya    | Sales       |<br>
+    | Kavya     | Marketing   |<br>
+    +-----------+-------------+
+</div>
+
+
+<h2>
+    LEFT JOIN
+</h2>
+
+<p>
+    <strong>LEFT JOIN</strong> returns all rows from the left
+    table, along with matching rows from the right table. If there
+    is no match, NULL is returned for the right table's columns.
+</p>
+
+${codeBlock(`SELECT e.emp_name, d.dept_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id;`, "SQL")}
+
+
+<h2>
+    RIGHT JOIN
+</h2>
+
+<p>
+    <strong>RIGHT JOIN</strong> returns all rows from the right
+    table, along with matching rows from the left table.
+</p>
+
+${codeBlock(`SELECT e.emp_name, d.dept_name
+FROM employees e
+RIGHT JOIN departments d ON e.dept_id = d.dept_id;`, "SQL")}
+
+
+<h2>
+    FULL JOIN (Simulated)
+</h2>
+
+<p>
+    MySQL does not directly support <strong>FULL JOIN</strong>. It
+    can be simulated by combining a LEFT JOIN and a RIGHT JOIN
+    using UNION.
+</p>
+
+${codeBlock(`SELECT e.emp_name, d.dept_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id
+UNION
+SELECT e.emp_name, d.dept_name
+FROM employees e
+RIGHT JOIN departments d ON e.dept_id = d.dept_id;`, "SQL")}
+
+
+<h2>
+    CROSS JOIN
+</h2>
+
+<p>
+    <strong>CROSS JOIN</strong> returns the Cartesian product of
+    two tables, combining every row from the first table with
+    every row from the second.
+</p>
+
+${codeBlock(`SELECT e.emp_name, d.dept_name
+FROM employees e
+CROSS JOIN departments d;`, "SQL")}
+
+
+<h2>
+    Self Join
+</h2>
+
+<p>
+    A <strong>self join</strong> joins a table with itself. It is
+    useful for comparing rows within the same table, such as
+    finding an employee's manager.
+</p>
+
+${codeBlock(`SELECT a.emp_name AS employee, b.emp_name AS manager
+FROM employees a
+JOIN employees b ON a.manager_id = b.emp_id;`, "SQL")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Always give tables short aliases (like e and d) when joining,
+so column references stay short and readable.
+
+</div>
+
+`,
+
+
+subqueries: `
+
+<h1>
+    Subqueries
+</h1>
+
+<div class="subtitle">
+    Learn how to nest one query inside another to build more
+    powerful and flexible SQL statements.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Subquery?
+</h2>
+
+<p>
+    A <strong>subquery</strong> is a query written inside another
+    query. It is often enclosed in parentheses and can appear in
+    the WHERE, SELECT, or FROM clause.
+</p>
+
+
+<h2>
+    Subquery in WHERE
+</h2>
+
+<p>
+    A subquery in WHERE is commonly used to filter rows based on
+    the result of another query.
+</p>
+
+${codeBlock(`SELECT name, fee FROM students
+WHERE fee > (
+    SELECT AVG(fee) FROM students
+);`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +--------------+----------+<br>
+    | name         | fee      |<br>
+    +--------------+----------+<br>
+    | Rahul Sharma | 47000.00 |<br>
+    | Sneha Reddy  | 45000.00 |<br>
+    +--------------+----------+
+</div>
+
+
+<h2>
+    Subquery with IN
+</h2>
+
+${codeBlock(`SELECT emp_name FROM employees
+WHERE dept_id IN (
+    SELECT dept_id FROM departments
+    WHERE dept_name = 'Sales'
+);`, "SQL")}
+
+
+<h2>
+    Subquery in SELECT
+</h2>
+
+<p>
+    A subquery placed inside the SELECT list computes a value for
+    every row of the outer query.
+</p>
+
+${codeBlock(`SELECT name,
+    (SELECT AVG(fee) FROM students) AS overall_avg_fee
+FROM students;`, "SQL")}
+
+
+<h2>
+    Subquery in FROM (Derived Table)
+</h2>
+
+<p>
+    A subquery can also act as a temporary table in the FROM
+    clause. This is often called a derived table.
+</p>
+
+${codeBlock(`SELECT course, avg_fee
+FROM (
+    SELECT course, AVG(fee) AS avg_fee
+    FROM students
+    GROUP BY course
+) AS course_summary
+WHERE avg_fee > 40000;`, "SQL")}
+
+
+<h2>
+    Correlated Subqueries
+</h2>
+
+<p>
+    A <strong>correlated subquery</strong> refers to a column from
+    the outer query, so it is re-evaluated once for every row
+    processed by the outer query.
+</p>
+
+${codeBlock(`SELECT s1.name, s1.course, s1.fee
+FROM students s1
+WHERE fee > (
+    SELECT AVG(s2.fee)
+    FROM students s2
+    WHERE s2.course = s1.course
+);`, "SQL")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Correlated subqueries can be slower on large tables because
+they run once per outer row. A join can often achieve the
+same result more efficiently.
+
+</div>
+
+`,
+
+
+union: `
+
+<h1>
+    UNION
+</h1>
+
+<div class="subtitle">
+    Learn how to combine the result sets of two or more SELECT
+    statements into a single result.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is UNION?
+</h2>
+
+<p>
+    <strong>UNION</strong> combines the results of two or more
+    SELECT statements into one result set. Each SELECT statement
+    must have the same number of columns, in a compatible order
+    and data type.
+</p>
+
+${codeBlock(`CREATE TABLE current_students (
+    name VARCHAR(50),
+    city VARCHAR(50)
+);
+
+CREATE TABLE alumni (
+    name VARCHAR(50),
+    city VARCHAR(50)
+);`, "SQL")}
+
+
+<h2>
+    UNION (Removes Duplicates)
+</h2>
+
+<p>
+    By default, UNION removes duplicate rows from the combined
+    result set.
+</p>
+
+${codeBlock(`SELECT name, city FROM current_students
+UNION
+SELECT name, city FROM alumni;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +--------------+--------+<br>
+    | name         | city   |<br>
+    +--------------+--------+<br>
+    | Rahul Sharma | Mumbai |<br>
+    | Priya Verma  | Pune   |<br>
+    | Aman Gupta   | Delhi  |<br>
+    +--------------+--------+
+</div>
+
+
+<h2>
+    UNION ALL (Keeps Duplicates)
+</h2>
+
+<p>
+    <strong>UNION ALL</strong> combines results without removing
+    duplicates, which also makes it faster since MySQL does not
+    need to check for duplicate rows.
+</p>
+
+${codeBlock(`SELECT name, city FROM current_students
+UNION ALL
+SELECT name, city FROM alumni;`, "SQL")}
+
+
+<h2>
+    UNION with ORDER BY
+</h2>
+
+<p>
+    ORDER BY can be applied only once, at the end of the combined
+    query, to sort the final result set.
+</p>
+
+${codeBlock(`SELECT name, city FROM current_students
+UNION
+SELECT name, city FROM alumni
+ORDER BY name;`, "SQL")}
+
+
+<div class="info">
+
+<strong>Note:</strong><br>
+All SELECT statements combined with UNION must return the
+same number of columns with compatible data types, otherwise
+MySQL will raise an error.
+
+</div>
+
+`,
+
+
+stringfunctions: `
+
+<h1>
+    String Functions
+</h1>
+
+<div class="subtitle">
+    Learn how to manipulate and format text data using MySQL's
+    built-in string functions.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    CONCAT()
+</h2>
+
+<p>
+    <strong>CONCAT()</strong> joins two or more strings together
+    into a single string.
+</p>
+
+${codeBlock(`SELECT CONCAT(name, ' - ', course) AS student_info
+FROM students;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +--------------------------------+<br>
+    | student_info                   |<br>
+    +--------------------------------+<br>
+    | Rahul Sharma - Computer Science|<br>
+    +--------------------------------+
+</div>
+
+
+<h2>
+    LENGTH()
+</h2>
+
+<p>
+    <strong>LENGTH()</strong> returns the number of characters (in
+    bytes) in a string.
+</p>
+
+${codeBlock(`SELECT name, LENGTH(name) AS name_length
+FROM students;`, "SQL")}
+
+
+<h2>
+    UPPER() and LOWER()
+</h2>
+
+${codeBlock(`SELECT UPPER(name) AS upper_name,
+       LOWER(course) AS lower_course
+FROM students;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +--------------+-------------------+<br>
+    | upper_name   | lower_course      |<br>
+    +--------------+-------------------+<br>
+    | RAHUL SHARMA | computer science  |<br>
+    +--------------+-------------------+
+</div>
+
+
+<h2>
+    SUBSTRING()
+</h2>
+
+<p>
+    <strong>SUBSTRING()</strong> extracts a portion of a string,
+    starting at a given position for a given length.
+</p>
+
+${codeBlock(`SELECT SUBSTRING(name, 1, 5) AS short_name
+FROM students;`, "SQL")}
+
+
+<h2>
+    TRIM()
+</h2>
+
+<p>
+    <strong>TRIM()</strong> removes leading and trailing spaces
+    (or other characters) from a string.
+</p>
+
+${codeBlock(`SELECT TRIM('   MySQL   ') AS trimmed_text;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +--------------+<br>
+    | trimmed_text |<br>
+    +--------------+<br>
+    | MySQL        |<br>
+    +--------------+
+</div>
+
+
+<h2>
+    REPLACE()
+</h2>
+
+<p>
+    <strong>REPLACE()</strong> substitutes every occurrence of a
+    substring with another substring.
+</p>
+
+${codeBlock(`SELECT REPLACE(course, 'Science', 'Studies') AS updated_course
+FROM students;`, "SQL")}
+
+
+<h2>
+    REVERSE()
+</h2>
+
+${codeBlock(`SELECT REVERSE('MySQL') AS reversed_text;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +---------------+<br>
+    | reversed_text |<br>
+    +---------------+<br>
+    | LQSyM         |<br>
+    +---------------+
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+String functions can be combined together, for example
+UPPER(TRIM(name)), to clean and format data in a single
+query.
+
+</div>
+
+`,
+
+
+numericfunctions: `
+
+<h1>
+    Numeric Functions
+</h1>
+
+<div class="subtitle">
+    Learn how to perform mathematical calculations using MySQL's
+    built-in numeric functions.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    ROUND()
+</h2>
+
+<p>
+    <strong>ROUND()</strong> rounds a number to a specified number
+    of decimal places.
+</p>
+
+${codeBlock(`SELECT ROUND(45.6789, 2) AS rounded_value;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +---------------+<br>
+    | rounded_value |<br>
+    +---------------+<br>
+    | 45.68         |<br>
+    +---------------+
+</div>
+
+
+<h2>
+    CEIL() and FLOOR()
+</h2>
+
+<p>
+    <strong>CEIL()</strong> rounds a number up to the nearest
+    integer, while <strong>FLOOR()</strong> rounds it down.
+</p>
+
+${codeBlock(`SELECT CEIL(4.2) AS ceil_value, FLOOR(4.8) AS floor_value;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +------------+-------------+<br>
+    | ceil_value | floor_value |<br>
+    +------------+-------------+<br>
+    | 5          | 4           |<br>
+    +------------+-------------+
+</div>
+
+
+<h2>
+    ABS()
+</h2>
+
+<p>
+    <strong>ABS()</strong> returns the absolute (non-negative)
+    value of a number.
+</p>
+
+${codeBlock(`SELECT ABS(-25) AS absolute_value;`, "SQL")}
+
+
+<h2>
+    MOD()
+</h2>
+
+<p>
+    <strong>MOD()</strong> returns the remainder after dividing one
+    number by another.
+</p>
+
+${codeBlock(`SELECT MOD(10, 3) AS remainder;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +-----------+<br>
+    | remainder |<br>
+    +-----------+<br>
+    | 1         |<br>
+    +-----------+
+</div>
+
+
+<h2>
+    POWER()
+</h2>
+
+<p>
+    <strong>POWER()</strong> raises a number to the power of
+    another number.
+</p>
+
+${codeBlock(`SELECT POWER(2, 5) AS power_value;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +-------------+<br>
+    | power_value |<br>
+    +-------------+<br>
+    | 32          |<br>
+    +-------------+
+</div>
+
+
+<h2>
+    Combining Numeric Functions
+</h2>
+
+${codeBlock(`SELECT name, fee, ROUND(fee * 0.18, 2) AS gst_amount
+FROM students;`, "SQL")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Numeric functions are especially useful for calculating
+totals, discounts, taxes, and other financial values directly
+inside a query.
+
+</div>
+
+`,
+
+
+datefunctions: `
+
+<h1>
+    Date Functions
+</h1>
+
+<div class="subtitle">
+    Learn how to work with dates and times using MySQL's built-in
+    date and time functions.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    NOW() and CURDATE()
+</h2>
+
+<p>
+    <strong>NOW()</strong> returns the current date and time,
+    while <strong>CURDATE()</strong> returns only the current
+    date.
+</p>
+
+${codeBlock(`SELECT NOW() AS current_datetime, CURDATE() AS current_date;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +---------------------+---------------+<br>
+    | current_datetime    | current_date  |<br>
+    +---------------------+---------------+<br>
+    | 2026-08-28 10:15:32 | 2026-08-28    |<br>
+    +---------------------+---------------+
+</div>
+
+
+<h2>
+    CURTIME()
+</h2>
+
+<p>
+    <strong>CURTIME()</strong> returns only the current time.
+</p>
+
+${codeBlock(`SELECT CURTIME() AS current_time;`, "SQL")}
+
+
+<h2>
+    DATE_FORMAT()
+</h2>
+
+<p>
+    <strong>DATE_FORMAT()</strong> formats a date value according
+    to a specified pattern.
+</p>
+
+${codeBlock(`SELECT DATE_FORMAT(NOW(), '%d-%m-%Y') AS formatted_date;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +----------------+<br>
+    | formatted_date |<br>
+    +----------------+<br>
+    | 28-08-2026     |<br>
+    +----------------+
+</div>
+
+
+<h2>
+    DATEDIFF()
+</h2>
+
+<p>
+    <strong>DATEDIFF()</strong> returns the number of days between
+    two dates.
+</p>
+
+${codeBlock(`SELECT DATEDIFF('2026-12-31', '2026-08-28') AS days_remaining;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +----------------+<br>
+    | days_remaining |<br>
+    +----------------+<br>
+    | 125            |<br>
+    +----------------+
+</div>
+
+
+<h2>
+    DATE_ADD() and DATE_SUB()
+</h2>
+
+<p>
+    <strong>DATE_ADD()</strong> and <strong>DATE_SUB()</strong> add
+    or subtract a time interval from a date.
+</p>
+
+${codeBlock(`SELECT DATE_ADD('2026-08-28', INTERVAL 30 DAY) AS thirty_days_later;
+
+SELECT DATE_SUB('2026-08-28', INTERVAL 1 MONTH) AS one_month_before;`, "SQL")}
+
+
+<h2>
+    YEAR(), MONTH(), DAY()
+</h2>
+
+<p>
+    These functions extract individual parts from a date value.
+</p>
+
+${codeBlock(`SELECT
+    YEAR('2026-08-28') AS year_part,
+    MONTH('2026-08-28') AS month_part,
+    DAY('2026-08-28') AS day_part;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +-----------+------------+----------+<br>
+    | year_part | month_part | day_part |<br>
+    +-----------+------------+----------+<br>
+    | 2026      | 8          | 28       |<br>
+    +-----------+------------+----------+
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use DATE_FORMAT() whenever you need to display a date to
+users in a specific, human-readable format.
+
+</div>
+
+`,
+
+
+altertable: `
+
+<h1>
+    ALTER TABLE
+</h1>
+
+<div class="subtitle">
+    Learn how to modify the structure of an existing table by
+    adding, dropping, modifying, or renaming columns.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Adding a Column
+</h2>
+
+<p>
+    The <strong>ALTER TABLE ... ADD COLUMN</strong> statement adds
+    a new column to an existing table.
+</p>
+
+${codeBlock(`ALTER TABLE students
+ADD COLUMN email VARCHAR(100);`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Query OK, 0 rows affected (0.02 sec)
+</div>
+
+
+<h2>
+    Dropping a Column
+</h2>
+
+<p>
+    <strong>DROP COLUMN</strong> permanently removes a column and
+    all of its data from a table.
+</p>
+
+${codeBlock(`ALTER TABLE students
+DROP COLUMN email;`, "SQL")}
+
+
+<h2>
+    Modifying a Column
+</h2>
+
+<p>
+    <strong>MODIFY COLUMN</strong> changes the data type or
+    constraints of an existing column, while keeping its name the
+    same.
+</p>
+
+${codeBlock(`ALTER TABLE students
+MODIFY COLUMN age SMALLINT NOT NULL;`, "SQL")}
+
+
+<h2>
+    Renaming a Column
+</h2>
+
+<p>
+    <strong>CHANGE COLUMN</strong> renames a column and can also
+    change its data type at the same time.
+</p>
+
+${codeBlock(`ALTER TABLE students
+CHANGE COLUMN course branch VARCHAR(50);`, "SQL")}
+
+
+<h2>
+    Renaming a Table
+</h2>
+
+${codeBlock(`ALTER TABLE students
+RENAME TO learners;
+
+-- Alternative syntax
+RENAME TABLE learners TO students;`, "SQL")}
+
+
+<h2>
+    Adding a Constraint
+</h2>
+
+${codeBlock(`ALTER TABLE students
+ADD CONSTRAINT unique_name UNIQUE (name);`, "SQL")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+On very large tables, ALTER TABLE operations can take time and
+may lock the table. Plan schema changes during low-traffic
+periods on production systems.
+
+</div>
+
+`,
+
+
+constraints: `
+
+<h1>
+    Constraints
+</h1>
+
+<div class="subtitle">
+    Learn how to enforce rules on table data using PRIMARY KEY,
+    FOREIGN KEY, UNIQUE, NOT NULL, DEFAULT, CHECK, and
+    AUTO_INCREMENT.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What are Constraints?
+</h2>
+
+<p>
+    Constraints are rules applied to table columns that restrict
+    the type of data that can be stored. They help maintain the
+    accuracy and reliability of data in the database.
+</p>
+
+
+<h2>
+    PRIMARY KEY
+</h2>
+
+<p>
+    A <strong>PRIMARY KEY</strong> uniquely identifies each row in
+    a table. It cannot contain NULL values, and each table can have
+    only one primary key.
+</p>
+
+${codeBlock(`CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(50)
+);`, "SQL")}
+
+
+<h2>
+    AUTO_INCREMENT
+</h2>
+
+<p>
+    <strong>AUTO_INCREMENT</strong> automatically generates a
+    unique number for each new row, commonly used with primary
+    keys.
+</p>
+
+${codeBlock(`CREATE TABLE orders (
+    order_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_date DATE
+);`, "SQL")}
+
+
+<h2>
+    FOREIGN KEY
+</h2>
+
+<p>
+    A <strong>FOREIGN KEY</strong> links a column in one table to
+    the primary key of another table, enforcing referential
+    integrity between the two tables.
+</p>
+
+${codeBlock(`CREATE TABLE order_items (
+    item_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT,
+    product_id INT,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);`, "SQL")}
+
+
+<h2>
+    UNIQUE
+</h2>
+
+<p>
+    <strong>UNIQUE</strong> ensures that all values in a column
+    are different from one another, but unlike PRIMARY KEY, it
+    allows one NULL value.
+</p>
+
+${codeBlock(`CREATE TABLE users (
+    user_id INT PRIMARY KEY,
+    email VARCHAR(100) UNIQUE
+);`, "SQL")}
+
+
+<h2>
+    NOT NULL
+</h2>
+
+<p>
+    <strong>NOT NULL</strong> ensures that a column cannot store a
+    NULL value, forcing every row to have a value for that column.
+</p>
+
+${codeBlock(`CREATE TABLE employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50) NOT NULL
+);`, "SQL")}
+
+
+<h2>
+    DEFAULT
+</h2>
+
+<p>
+    <strong>DEFAULT</strong> sets a value automatically when no
+    value is provided for a column during INSERT.
+</p>
+
+${codeBlock(`CREATE TABLE accounts (
+    account_id INT PRIMARY KEY,
+    status VARCHAR(20) DEFAULT 'Active'
+);`, "SQL")}
+
+
+<h2>
+    CHECK
+</h2>
+
+<p>
+    <strong>CHECK</strong> ensures that all values in a column
+    satisfy a specific condition.
+</p>
+
+${codeBlock(`CREATE TABLE products_v2 (
+    product_id INT PRIMARY KEY,
+    price DECIMAL(10, 2) CHECK (price > 0)
+);`, "SQL")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Combining constraints such as NOT NULL, UNIQUE, and CHECK
+together helps enforce strong data quality rules directly at
+the database level.
+
+</div>
+
+`,
+
+
+indexes: `
+
+<h1>
+    Indexes
+</h1>
+
+<div class="subtitle">
+    Learn how indexes speed up data retrieval, and when they
+    should and should not be used.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is an Index?
+</h2>
+
+<p>
+    An <strong>index</strong> is a special lookup structure that
+    MySQL uses to find rows quickly, without scanning the entire
+    table. It works similarly to an index at the back of a book.
+</p>
+
+
+<h2>
+    Creating an Index
+</h2>
+
+${codeBlock(`CREATE INDEX idx_course
+ON students (course);`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Query OK, 0 rows affected (0.04 sec)
+</div>
+
+
+<h2>
+    Creating a Unique Index
+</h2>
+
+<p>
+    A <strong>unique index</strong> prevents duplicate values from
+    being stored in the indexed column, in addition to speeding up
+    lookups.
+</p>
+
+${codeBlock(`CREATE UNIQUE INDEX idx_email
+ON users (email);`, "SQL")}
+
+
+<h2>
+    Composite (Multi-Column) Index
+</h2>
+
+<p>
+    An index can also be created across multiple columns. It is
+    most effective when queries filter by the leftmost columns of
+    the index.
+</p>
+
+${codeBlock(`CREATE INDEX idx_course_age
+ON students (course, age);`, "SQL")}
+
+
+<h2>
+    Viewing Indexes
+</h2>
+
+${codeBlock(`SHOW INDEX FROM students;`, "SQL")}
+
+
+<h2>
+    Dropping an Index
+</h2>
+
+${codeBlock(`DROP INDEX idx_course ON students;`, "SQL")}
+
+
+<h2>
+    Types of Indexes
+</h2>
+
+<ul class="topic-list">
+    <li><strong>Primary Index:</strong> Automatically created for the PRIMARY KEY</li>
+    <li><strong>Unique Index:</strong> Ensures no duplicate values in a column</li>
+    <li><strong>Composite Index:</strong> Built on two or more columns</li>
+    <li><strong>Full-text Index:</strong> Used for fast text-search queries</li>
+</ul>
+
+
+<h2>
+    When to Use Indexes
+</h2>
+
+<ul class="topic-list">
+    <li>Columns frequently used in WHERE clauses</li>
+    <li>Columns used in JOIN conditions</li>
+    <li>Columns used in ORDER BY or GROUP BY</li>
+</ul>
+
+
+<div class="info">
+
+<strong>Warning:</strong><br>
+Indexes speed up SELECT queries but slow down INSERT, UPDATE,
+and DELETE operations, since the index must also be updated.
+Avoid over-indexing small or rarely queried tables.
+
+</div>
+
+`,
+
+
+views: `
+
+<h1>
+    Views
+</h1>
+
+<div class="subtitle">
+    Learn how to create virtual tables using views, and understand
+    their advantages.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a View?
+</h2>
+
+<p>
+    A <strong>view</strong> is a virtual table based on the result
+    of a SELECT query. It does not store data itself, but displays
+    data from one or more underlying tables.
+</p>
+
+
+<h2>
+    Creating a View
+</h2>
+
+${codeBlock(`CREATE VIEW student_summary AS
+SELECT name, course, fee
+FROM students
+WHERE fee > 40000;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Query OK, 0 rows affected (0.02 sec)
+</div>
+
+
+<h2>
+    Querying a View
+</h2>
+
+<p>
+    A view can be queried just like a regular table.
+</p>
+
+${codeBlock(`SELECT * FROM student_summary;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +--------------+-------------------+----------+<br>
+    | name         | course            | fee      |<br>
+    +--------------+-------------------+----------+<br>
+    | Rahul Sharma | Computer Science  | 47000.00 |<br>
+    | Sneha Reddy  | Computer Science  | 45000.00 |<br>
+    +--------------+-------------------+----------+
+</div>
+
+
+<h2>
+    Updating Data Through a View
+</h2>
+
+<p>
+    Simple views (based on a single table, without aggregate
+    functions, GROUP BY, or DISTINCT) can sometimes be used to
+    update the underlying table directly.
+</p>
+
+${codeBlock(`UPDATE student_summary
+SET fee = 48000
+WHERE name = 'Rahul Sharma';`, "SQL")}
+
+
+<h2>
+    Dropping a View
+</h2>
+
+${codeBlock(`DROP VIEW student_summary;`, "SQL")}
+
+
+<h2>
+    Advantages of Views
+</h2>
+
+<ul class="topic-list">
+    <li>Simplifies complex queries by hiding them behind a simple name</li>
+    <li>Restricts access to specific columns or rows for security</li>
+    <li>Provides a consistent, reusable interface to underlying data</li>
+    <li>Can combine data from multiple tables into one virtual table</li>
+</ul>
+
+
+<div class="info">
+
+<strong>Note:</strong><br>
+Views do not store data physically. Every time a view is
+queried, MySQL runs the underlying SELECT statement again.
+
+</div>
+
+`,
+
+
+procedures: `
+
+<h1>
+    Stored Procedures
+</h1>
+
+<div class="subtitle">
+    Learn how to create reusable blocks of SQL code using stored
+    procedures, with IN, OUT, and INOUT parameters.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Stored Procedure?
+</h2>
+
+<p>
+    A <strong>stored procedure</strong> is a set of SQL statements
+    that is saved in the database and can be executed repeatedly
+    by calling its name, instead of rewriting the same code
+    every time.
+</p>
+
+
+<h2>
+    Creating a Simple Procedure
+</h2>
+
+<p>
+    The <strong>DELIMITER</strong> command is used to temporarily
+    change the statement terminator, since the procedure body
+    itself contains semicolons.
+</p>
+
+${codeBlock(`DELIMITER //
+
+CREATE PROCEDURE GetAllStudents()
+BEGIN
+    SELECT * FROM students;
+END //
+
+DELIMITER ;`, "SQL")}
+
+
+<h2>
+    Calling a Procedure
+</h2>
+
+${codeBlock(`CALL GetAllStudents();`, "SQL")}
+
+
+<h2>
+    Using an IN Parameter
+</h2>
+
+<p>
+    An <strong>IN</strong> parameter passes a value into the
+    procedure.
+</p>
+
+${codeBlock(`DELIMITER //
+
+CREATE PROCEDURE GetStudentsByCourse(IN course_name VARCHAR(50))
+BEGIN
+    SELECT * FROM students WHERE course = course_name;
+END //
+
+DELIMITER ;
+
+CALL GetStudentsByCourse('Computer Science');`, "SQL")}
+
+
+<h2>
+    Using an OUT Parameter
+</h2>
+
+<p>
+    An <strong>OUT</strong> parameter returns a value from the
+    procedure back to the caller.
+</p>
+
+${codeBlock(`DELIMITER //
+
+CREATE PROCEDURE CountStudents(OUT total INT)
+BEGIN
+    SELECT COUNT(*) INTO total FROM students;
+END //
+
+DELIMITER ;
+
+CALL CountStudents(@total_students);
+SELECT @total_students;`, "SQL")}
+
+
+<h2>
+    Using an INOUT Parameter
+</h2>
+
+<p>
+    An <strong>INOUT</strong> parameter can both receive a value
+    from the caller and return an updated value back.
+</p>
+
+${codeBlock(`DELIMITER //
+
+CREATE PROCEDURE DoubleValue(INOUT num INT)
+BEGIN
+    SET num = num * 2;
+END //
+
+DELIMITER ;
+
+SET @value = 10;
+CALL DoubleValue(@value);
+SELECT @value;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +--------+<br>
+    | @value |<br>
+    +--------+<br>
+    | 20     |<br>
+    +--------+
+</div>
+
+
+<h2>
+    Dropping a Procedure
+</h2>
+
+${codeBlock(`DROP PROCEDURE IF EXISTS GetAllStudents;`, "SQL")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Stored procedures improve performance by reducing network
+traffic and allow you to centralize business logic inside the
+database.
+
+</div>
+
+`,
+
+
+udf: `
+
+<h1>
+    User-Defined Functions
+</h1>
+
+<div class="subtitle">
+    Learn how to create custom functions in MySQL that return a
+    single value, and how to call them inside queries.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a User-Defined Function?
+</h2>
+
+<p>
+    A <strong>user-defined function (UDF)</strong> is similar to a
+    stored procedure, but it must return exactly one value and can
+    be used directly inside SQL expressions, such as in a SELECT
+    statement.
+</p>
+
+
+<h2>
+    Creating a Function
+</h2>
+
+<p>
+    The <strong>RETURNS</strong> clause specifies the data type of
+    the value the function will return, and
+    <strong>DETERMINISTIC</strong> tells MySQL that the function
+    always returns the same result for the same input.
+</p>
+
+${codeBlock(`DELIMITER //
+
+CREATE FUNCTION CalculateGST(price DECIMAL(10,2))
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+    DECLARE gst DECIMAL(10,2);
+    SET gst = price * 0.18;
+    RETURN gst;
+END //
+
+DELIMITER ;`, "SQL")}
+
+
+<h2>
+    Calling a Function
+</h2>
+
+${codeBlock(`SELECT name, fee, CalculateGST(fee) AS gst_amount
+FROM students;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +--------------+----------+------------+<br>
+    | name         | fee      | gst_amount |<br>
+    +--------------+----------+------------+<br>
+    | Rahul Sharma | 47000.00 | 8460.00    |<br>
+    +--------------+----------+------------+
+</div>
+
+
+<h2>
+    Function with Conditional Logic
+</h2>
+
+${codeBlock(`DELIMITER //
+
+CREATE FUNCTION GetGrade(marks INT)
+RETURNS VARCHAR(10)
+DETERMINISTIC
+BEGIN
+    DECLARE grade VARCHAR(10);
+
+    IF marks >= 90 THEN
+        SET grade = 'A+';
+    ELSEIF marks >= 75 THEN
+        SET grade = 'A';
+    ELSE
+        SET grade = 'B';
+    END IF;
+
+    RETURN grade;
+END //
+
+DELIMITER ;
+
+SELECT GetGrade(85);`, "SQL")}
+
+
+<h2>
+    Dropping a Function
+</h2>
+
+${codeBlock(`DROP FUNCTION IF EXISTS CalculateGST;`, "SQL")}
+
+
+<h2>
+    Functions vs Procedures
+</h2>
+
+<ul class="topic-list">
+    <li>A function must return exactly one value; a procedure may return none, one, or many results</li>
+    <li>Functions can be used inside SELECT statements; procedures cannot</li>
+    <li>Procedures support IN, OUT, and INOUT parameters; functions only accept input parameters</li>
+</ul>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Mark a function DETERMINISTIC whenever possible — it helps
+MySQL optimize query execution and is required when binary
+logging is enabled in some configurations.
+
+</div>
+
+`,
+
+
+triggers: `
+
+<h1>
+    Triggers
+</h1>
+
+<div class="subtitle">
+    Learn how to automatically execute SQL code in response to
+    INSERT, UPDATE, or DELETE events using triggers.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Trigger?
+</h2>
+
+<p>
+    A <strong>trigger</strong> is a set of SQL statements that
+    runs automatically when a specific event (INSERT, UPDATE, or
+    DELETE) occurs on a table.
+</p>
+
+
+<h2>
+    BEFORE INSERT Trigger
+</h2>
+
+<p>
+    A <strong>BEFORE INSERT</strong> trigger runs before a new row
+    is added, and can be used to validate or modify incoming data
+    using the <strong>NEW</strong> keyword.
+</p>
+
+${codeBlock(`DELIMITER //
+
+CREATE TRIGGER before_student_insert
+BEFORE INSERT ON students
+FOR EACH ROW
+BEGIN
+    IF NEW.fee < 0 THEN
+        SET NEW.fee = 0;
+    END IF;
+END //
+
+DELIMITER ;`, "SQL")}
+
+
+<h2>
+    AFTER INSERT Trigger
+</h2>
+
+<p>
+    An <strong>AFTER INSERT</strong> trigger runs after a row has
+    been added, often used for logging.
+</p>
+
+${codeBlock(`CREATE TABLE student_logs (
+    log_id INT PRIMARY KEY AUTO_INCREMENT,
+    message VARCHAR(255),
+    created_at DATETIME
+);
+
+DELIMITER //
+
+CREATE TRIGGER after_student_insert
+AFTER INSERT ON students
+FOR EACH ROW
+BEGIN
+    INSERT INTO student_logs (message, created_at)
+    VALUES (CONCAT('New student added: ', NEW.name), NOW());
+END //
+
+DELIMITER ;`, "SQL")}
+
+
+<h2>
+    BEFORE UPDATE Trigger (NEW and OLD)
+</h2>
+
+<p>
+    In UPDATE triggers, <strong>OLD</strong> refers to the row's
+    values before the change, and <strong>NEW</strong> refers to
+    the values after the change.
+</p>
+
+${codeBlock(`DELIMITER //
+
+CREATE TRIGGER before_student_update
+BEFORE UPDATE ON students
+FOR EACH ROW
+BEGIN
+    IF NEW.fee < OLD.fee THEN
+        SET NEW.fee = OLD.fee;
+    END IF;
+END //
+
+DELIMITER ;`, "SQL")}
+
+
+<h2>
+    AFTER DELETE Trigger
+</h2>
+
+<p>
+    In DELETE triggers, only the <strong>OLD</strong> keyword is
+    available, since the row no longer exists after deletion.
+</p>
+
+${codeBlock(`DELIMITER //
+
+CREATE TRIGGER after_student_delete
+AFTER DELETE ON students
+FOR EACH ROW
+BEGIN
+    INSERT INTO student_logs (message, created_at)
+    VALUES (CONCAT('Student removed: ', OLD.name), NOW());
+END //
+
+DELIMITER ;`, "SQL")}
+
+
+<h2>
+    Viewing and Dropping Triggers
+</h2>
+
+${codeBlock(`SHOW TRIGGERS;
+
+DROP TRIGGER IF EXISTS before_student_insert;`, "SQL")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Triggers run automatically and invisibly. Overusing them can
+make it harder to understand what changes data — use them
+carefully and document their behavior.
+
+</div>
+
+`,
+
+
+transactions: `
+
+<h1>
+    Transactions
+</h1>
+
+<div class="subtitle">
+    Learn how to group multiple SQL statements into a single unit
+    of work using transactions, and understand the ACID properties.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Transaction?
+</h2>
+
+<p>
+    A <strong>transaction</strong> is a sequence of one or more
+    SQL statements that are executed as a single logical unit.
+    Either all the statements succeed together, or none of them
+    take effect at all.
+</p>
+
+
+<h2>
+    START TRANSACTION and COMMIT
+</h2>
+
+<p>
+    <strong>START TRANSACTION</strong> begins a transaction, and
+    <strong>COMMIT</strong> saves all the changes made during the
+    transaction permanently.
+</p>
+
+${codeBlock(`START TRANSACTION;
+
+UPDATE accounts SET balance = balance - 5000 WHERE account_id = 1;
+UPDATE accounts SET balance = balance + 5000 WHERE account_id = 2;
+
+COMMIT;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Query OK, 1 row affected (0.00 sec)<br>
+    Query OK, 1 row affected (0.00 sec)<br>
+    Query OK, 0 rows affected (0.01 sec)
+</div>
+
+
+<h2>
+    ROLLBACK
+</h2>
+
+<p>
+    <strong>ROLLBACK</strong> undoes all the changes made since
+    the transaction started, restoring the database to its
+    previous state. This is used when something goes wrong.
+</p>
+
+${codeBlock(`START TRANSACTION;
+
+UPDATE accounts SET balance = balance - 5000 WHERE account_id = 1;
+
+-- Something went wrong, undo the change
+ROLLBACK;`, "SQL")}
+
+
+<h2>
+    SAVEPOINT
+</h2>
+
+<p>
+    A <strong>SAVEPOINT</strong> marks a point within a
+    transaction that you can roll back to, without undoing the
+    entire transaction.
+</p>
+
+${codeBlock(`START TRANSACTION;
+
+UPDATE accounts SET balance = balance - 1000 WHERE account_id = 1;
+SAVEPOINT sp1;
+
+UPDATE accounts SET balance = balance - 2000 WHERE account_id = 1;
+
+ROLLBACK TO sp1;
+
+COMMIT;`, "SQL")}
+
+
+<h2>
+    ACID Properties
+</h2>
+
+<p>
+    Transactions in MySQL (using the InnoDB storage engine) follow
+    the <strong>ACID</strong> properties, which guarantee reliable
+    processing of database transactions.
+</p>
+
+<ul class="topic-list">
+    <li><strong>Atomicity:</strong> All statements in a transaction succeed, or none do</li>
+    <li><strong>Consistency:</strong> The database moves from one valid state to another</li>
+    <li><strong>Isolation:</strong> Concurrent transactions do not interfere with each other</li>
+    <li><strong>Durability:</strong> Once committed, changes are permanently saved, even after a crash</li>
+</ul>
+
+
+<div class="info">
+
+<strong>Note:</strong><br>
+Transactions require a storage engine that supports them, such
+as InnoDB. MyISAM, an older MySQL storage engine, does not
+support transactions.
+
+</div>
+
+`,
+
+
+usermanagement: `
+
+<h1>
+    User Management
+</h1>
+
+<div class="subtitle">
+    Learn how to create database users, grant and revoke
+    privileges, and manage access control in MySQL.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Creating a User
+</h2>
+
+<p>
+    The <strong>CREATE USER</strong> statement creates a new
+    MySQL account with a username, host, and password.
+</p>
+
+${codeBlock(`CREATE USER 'app_user'@'localhost'
+IDENTIFIED BY 'StrongPassword123!';`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Query OK, 0 rows affected (0.02 sec)
+</div>
+
+
+<h2>
+    Granting Privileges
+</h2>
+
+<p>
+    <strong>GRANT</strong> gives a user specific permissions on a
+    database or table.
+</p>
+
+${codeBlock(`GRANT SELECT, INSERT, UPDATE ON school.* TO 'app_user'@'localhost';
+
+GRANT ALL PRIVILEGES ON school.* TO 'admin_user'@'localhost';
+
+FLUSH PRIVILEGES;`, "SQL")}
+
+
+<h2>
+    Viewing Granted Privileges
+</h2>
+
+${codeBlock(`SHOW GRANTS FOR 'app_user'@'localhost';`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    +---------------------------------------------------------------+<br>
+    | Grants for app_user@localhost                                 |<br>
+    +---------------------------------------------------------------+<br>
+    | GRANT SELECT, INSERT, UPDATE ON 'school'.* TO 'app_user'@'localhost' |<br>
+    +---------------------------------------------------------------+
+</div>
+
+
+<h2>
+    Revoking Privileges
+</h2>
+
+<p>
+    <strong>REVOKE</strong> removes specific permissions that were
+    previously granted to a user.
+</p>
+
+${codeBlock(`REVOKE INSERT, UPDATE ON school.* FROM 'app_user'@'localhost';`, "SQL")}
+
+
+<h2>
+    Changing a User's Password
+</h2>
+
+${codeBlock(`ALTER USER 'app_user'@'localhost'
+IDENTIFIED BY 'NewStrongerPassword456!';`, "SQL")}
+
+
+<h2>
+    Dropping a User
+</h2>
+
+${codeBlock(`DROP USER 'app_user'@'localhost';`, "SQL")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Follow the principle of least privilege — grant users only
+the permissions they actually need, and avoid using accounts
+with ALL PRIVILEGES for everyday application access.
+
+</div>
+
+`,
+
+
+importexport: `
+
+<h1>
+    Import & Export
+</h1>
+
+<div class="subtitle">
+    Learn how to back up, restore, and transfer data in and out of
+    MySQL using mysqldump, SOURCE, and file-based commands.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Exporting a Database with mysqldump
+</h2>
+
+<p>
+    <strong>mysqldump</strong> is a command-line utility used to
+    create a backup of a database as a SQL script. It is run from
+    the terminal, not inside the MySQL prompt.
+</p>
+
+${codeBlock(`mysqldump -u root -p school > school_backup.sql`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Enter password: ********<br>
+    (school_backup.sql file created successfully)
+</div>
+
+
+<h2>
+    Exporting a Single Table
+</h2>
+
+${codeBlock(`mysqldump -u root -p school students > students_backup.sql`, "SQL")}
+
+
+<h2>
+    Restoring a Database with SOURCE
+</h2>
+
+<p>
+    The <strong>SOURCE</strong> command, run inside the MySQL
+    prompt, executes a SQL script file — commonly used to restore
+    a backup.
+</p>
+
+${codeBlock(`USE school;
+
+SOURCE school_backup.sql;`, "SQL")}
+
+
+<h2>
+    Restoring from the Command Line
+</h2>
+
+${codeBlock(`mysql -u root -p school < school_backup.sql`, "SQL")}
+
+
+<h2>
+    Importing Data with LOAD DATA INFILE
+</h2>
+
+<p>
+    <strong>LOAD DATA INFILE</strong> quickly imports data from a
+    CSV or text file directly into a table.
+</p>
+
+${codeBlock(`LOAD DATA INFILE '/var/lib/mysql-files/students.csv'
+INTO TABLE students
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;`, "SQL")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Query OK, 5 rows affected (0.02 sec)<br>
+    Records: 5  Deleted: 0  Skipped: 0  Warnings: 0
+</div>
+
+
+<h2>
+    Exporting Data with SELECT INTO OUTFILE
+</h2>
+
+<p>
+    <strong>SELECT ... INTO OUTFILE</strong> exports the result of
+    a query directly into a file on the server.
+</p>
+
+${codeBlock(`SELECT name, course, fee
+FROM students
+INTO OUTFILE '/var/lib/mysql-files/students_export.csv'
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n';`, "SQL")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Always test a restore on a non-production database first.
+Regular, verified backups are one of the most important
+habits for protecting real-world MySQL data.
+
+</div>
+
+`
+};
+
+
+/* =====================================================
+   CREATE CODE BLOCK
+===================================================== */
+
+function codeBlock(code, language) {
+
+    const id =
+        "code_" +
+        Math.random()
+        .toString(36)
+        .substring(2, 9);
+
+
+    return `
+
+        <div class="code-header">
+
+            <span>
+                ${language}
+            </span>
+
+            <button
+                class="copy-btn"
+                onclick="copyCode('${id}', this)">
+
+                Copy
+
+            </button>
+
+        </div>
+
+
+        <div class="code-box">
+
+            <pre id="${id}">${escapeHTML(code.trim())}</pre>
+
+        </div>
+
+    `;
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text) {
+
+    return text
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;");
+
+}
+
+
+/* =====================================================
+   SHOW TOPIC
+===================================================== */
+
+function showTopic(topic, button) {
+
+
+    document.getElementById("content").innerHTML =
+        topics[topic];
+
+
+    /* Remove active class */
+
+    document
+        .querySelectorAll(".topic")
+        .forEach(function(item) {
+
+            item.classList.remove("active");
+
+        });
+
+
+    /* Add active class */
+
+    button.classList.add("active");
+
+
+    /* Scroll content to top */
+
+    document
+        .querySelector(".content-area")
+        .scrollTop = 0;
+
+
+    /* Close mobile menu */
+
+    if (window.innerWidth <= 700) {
+
+        closeMenu();
+
+    }
+
+}
+
+
+/* =====================================================
+   COPY CODE
+===================================================== */
+
+function copyCode(id, button) {
+
+    const code =
+        document.getElementById(id).innerText;
+
+
+    navigator.clipboard.writeText(code);
+
+
+    button.innerText = "Copied!";
+
+
+    setTimeout(function() {
+
+        button.innerText = "Copy";
+
+    }, 1500);
+
+}
+
+
+/* =====================================================
+   OPEN / CLOSE MOBILE MENU
+===================================================== */
+
+function toggleMenu() {
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const overlay =
+        document.getElementById("overlay");
+
+
+    sidebar.classList.toggle("open");
+
+    overlay.classList.toggle("show");
+
+}
+
+
+function closeMenu() {
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const overlay =
+        document.getElementById("overlay");
+
+
+    sidebar.classList.remove("open");
+
+    overlay.classList.remove("show");
+
+}
+
+
+/* =====================================================
+   LOAD FIRST TOPIC
+===================================================== */
+
+showTopic(
+    "intro",
+    document.querySelector(".topic")
+);
+
+</script>
+
+
+
+</body>
+</html>
