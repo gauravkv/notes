@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Python Programs - Cursor Computers Academy</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            padding: 22px 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        header h1 {
+            font-size: 26px;
+            color: #1f2937;
+        }
+
+        header p {
+            margin-top: 6px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* Main */
+        main {
+            max-width: 900px;
+            margin: 35px auto;
+            padding: 0 15px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .title h2 {
+            font-size: 24px;
+            color: #1f2937;
+        }
+
+        /* Accordion */
+        .accordion {
+            background: white;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+        }
+
+        .accordion-header {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: white;
+            padding: 18px 20px;
+            text-align: left;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: #f0f5ff;
+        }
+
+        .arrow {
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+
+        .accordion.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .content {
+            display: none;
+            padding: 0 20px 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .content.show {
+            display: block;
+        }
+
+        .question {
+            margin-top: 18px;
+            margin-bottom: 15px;
+        }
+
+        .question strong {
+            color: #374151;
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #f8f8f2;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .output {
+            margin-top: 15px;
+        }
+
+        .output-box {
+            background: #f3f4f6;
+            padding: 14px;
+            border-radius: 8px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 21px;
+            }
+
+            .title h2 {
+                font-size: 21px;
+            }
+
+            .accordion-header {
+                font-size: 15px;
+                padding: 16px;
+            }
+
+            .content {
+                padding: 0 16px 18px;
+            }
+
+            pre {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Cursor Computers Academy</h1>
+    <p>Python Programming</p>
+</header>
+
+
+<main>
+
+    <div class="title">
+        <h2>10 Python Programs with Solution</h2>
+    </div>
+
+
+    <!-- Program 1 -->
+    <div class="accordion">
+
+        <button class="accordion-header">
+            1. Add Two Numbers
+            <span class="arrow">▼</span>
+        </button>
+
+        <div class="content">
+
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to accept two numbers and find their sum.
+            </div>
+
+            <strong>Solution:</strong>
+
+<pre>
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+
+sum = a + b
+
+print("Sum =", sum)
+</pre>
+
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter first number: 10
+Enter second number: 20
+Sum = 30</div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Program 2 -->
+    <div class="accordion">
+
+        <button class="accordion-header">
+            2. Check Even or Odd
+            <span class="arrow">▼</span>
+        </button>
+
+        <div class="content">
+
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to check whether a number is even or odd.
+            </div>
+
+            <strong>Solution:</strong>
+
+<pre>
+num = int(input("Enter a number: "))
+
+if num % 2 == 0:
+    print("Even Number")
+else:
+    print("Odd Number")
+</pre>
+
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter a number: 15
+Odd Number</div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Program 3 -->
+    <div class="accordion">
+
+        <button class="accordion-header">
+            3. Find Largest of Two Numbers
+            <span class="arrow">▼</span>
+        </button>
+
+        <div class="content">
+
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to find the largest of two numbers.
+            </div>
+
+            <strong>Solution:</strong>
+
+<pre>
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+
+if a > b:
+    print("Largest =", a)
+else:
+    print("Largest =", b)
+</pre>
+
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter first number: 25
+Enter second number: 40
+Largest = 40</div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Program 4 -->
+    <div class="accordion">
+
+        <button class="accordion-header">
+            4. Check Positive, Negative or Zero
+            <span class="arrow">▼</span>
+        </button>
+
+        <div class="content">
+
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to check whether a number is positive, negative or zero.
+            </div>
+
+            <strong>Solution:</strong>
+
+<pre>
+num = int(input("Enter a number: "))
+
+if num > 0:
+    print("Positive")
+elif num < 0:
+    print("Negative")
+else:
+    print("Zero")
+</pre>
+
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter a number: -8
+Negative</div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Program 5 -->
+    <div class="accordion">
+
+        <button class="accordion-header">
+            5. Print Numbers from 1 to 10
+            <span class="arrow">▼</span>
+        </button>
+
+        <div class="content">
+
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to print numbers from 1 to 10.
+            </div>
+
+            <strong>Solution:</strong>
+
+<pre>
+for i in range(1, 11):
+    print(i)
+</pre>
+
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Program 6 -->
+    <div class="accordion">
+
+        <button class="accordion-header">
+            6. Find Factorial of a Number
+            <span class="arrow">▼</span>
+        </button>
+
+        <div class="content">
+
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to find the factorial of a number.
+            </div>
+
+            <strong>Solution:</strong>
+
+<pre>
+num = int(input("Enter a number: "))
+
+fact = 1
+
+for i in range(1, num + 1):
+    fact = fact * i
+
+print("Factorial =", fact)
+</pre>
+
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter a number: 5
+Factorial = 120</div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Program 7 -->
+    <div class="accordion">
+
+        <button class="accordion-header">
+            7. Check Prime Number
+            <span class="arrow">▼</span>
+        </button>
+
+        <div class="content">
+
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to check whether a number is prime or not.
+            </div>
+
+            <strong>Solution:</strong>
+
+<pre>
+num = int(input("Enter a number: "))
+
+if num &lt; 2:
+    print("Not Prime")
+else:
+    for i in range(2, num):
+        if num % i == 0:
+            print("Not Prime")
+            break
+    else:
+        print("Prime Number")
+</pre>
+
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter a number: 17
+Prime Number</div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Program 8 -->
+    <div class="accordion">
+
+        <button class="accordion-header">
+            8. Reverse a Number
+            <span class="arrow">▼</span>
+        </button>
+
+        <div class="content">
+
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to reverse a given number.
+            </div>
+
+            <strong>Solution:</strong>
+
+<pre>
+num = int(input("Enter a number: "))
+
+reverse = 0
+
+while num &gt; 0:
+    digit = num % 10
+    reverse = reverse * 10 + digit
+    num = num // 10
+
+print("Reverse =", reverse)
+</pre>
+
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter a number: 12345
+Reverse = 54321</div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Program 9 -->
+    <div class="accordion">
+
+        <button class="accordion-header">
+            9. Find Sum of Natural Numbers
+            <span class="arrow">▼</span>
+        </button>
+
+        <div class="content">
+
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to find the sum of first N natural numbers.
+            </div>
+
+            <strong>Solution:</strong>
+
+<pre>
+n = int(input("Enter N: "))
+
+sum = 0
+
+for i in range(1, n + 1):
+    sum = sum + i
+
+print("Sum =", sum)
+</pre>
+
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter N: 10
+Sum = 55</div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Program 10 -->
+    <div class="accordion">
+
+        <button class="accordion-header">
+            10. Multiplication Table
+            <span class="arrow">▼</span>
+        </button>
+
+        <div class="content">
+
+            <div class="question">
+                <strong>Question:</strong>
+                Write a Python program to print the multiplication table of a number.
+            </div>
+
+            <strong>Solution:</strong>
+
+<pre>
+num = int(input("Enter a number: "))
+
+for i in range(1, 11):
+    print(num, "x", i, "=", num * i)
+</pre>
+
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Enter a number: 5
+5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+5 x 4 = 20
+5 x 5 = 25
+5 x 6 = 30
+5 x 7 = 35
+5 x 8 = 40
+5 x 9 = 45
+5 x 10 = 50</div>
+            </div>
+
+        </div>
+    </div>
+
+</main>
+
+
+<script>
+
+    const accordions = document.querySelectorAll(".accordion-header");
+
+    accordions.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            const accordion = this.parentElement;
+            const content = accordion.querySelector(".content");
+
+            accordion.classList.toggle("active");
+            content.classList.toggle("show");
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
