@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Python Programming - Cursor Computers Academy</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        /* Header */
+        header {
+            background: #ffffff;
+            padding: 22px 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        header h1 {
+            font-size: 27px;
+            color: #1f2937;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin-top: 7px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 850px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title h2 {
+            font-size: 25px;
+            color: #1f2937;
+        }
+
+        .page-title p {
+            margin-top: 8px;
+            color: #6b7280;
+        }
+
+        /* Links */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-card {
+            background: #ffffff;
+            padding: 22px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+            text-decoration: none;
+            color: #1f2937;
+            font-size: 19px;
+            font-weight: bold;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            transition: 0.3s;
+        }
+
+        .link-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
+            background: #f8fbff;
+        }
+
+        .arrow {
+            font-size: 22px;
+            color: #2563eb;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 40px;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 22px;
+            }
+
+            main {
+                margin-top: 30px;
+            }
+
+            .page-title h2 {
+                font-size: 21px;
+            }
+
+            .link-card {
+                font-size: 17px;
+                padding: 19px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Cursor Computers Academy</h1>
+        <p>Python Programming</p>
+    </header>
+
+
+    <!-- Main Content -->
+    <main>
+
+        <div class="page-title">
+            <h2>Python Programming</h2>
+            <p>Select a topic to continue</p>
+        </div>
+
+
+        <div class="links-container">
+
+            <!-- Python Theory -->
+            <a href="python_theory.html" class="link-card">
+                <span>Python Theory</span>
+                <span class="arrow">→</span>
+            </a>
+
+
+            <!-- Python Programs -->
+            <a href="python_programs.html" class="link-card">
+                <span>Python Programs</span>
+                <span class="arrow">→</span>
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        © 2026 Cursor Computers Academy
+    </footer>
+
+</body>
+</html>
