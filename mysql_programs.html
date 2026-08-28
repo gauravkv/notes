@@ -1,0 +1,2441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>100 MySQL Programs - Cursor Computers Academy</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        /* HEADER */
+        header {
+            background: #ffffff;
+            padding: 22px 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        header h1 {
+            font-size: 27px;
+            color: #1f2937;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin-top: 7px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* MAIN */
+        main {
+            max-width: 950px;
+            margin: 35px auto;
+            padding: 0 15px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title h2 {
+            color: #1f2937;
+            font-size: 25px;
+        }
+
+        .page-title p {
+            margin-top: 8px;
+            color: #6b7280;
+        }
+
+        /* ACCORDION */
+        .accordion {
+            background: #ffffff;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+        }
+
+        .accordion-header {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: #ffffff;
+            padding: 18px 20px;
+            text-align: left;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            transition: 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: #f0f5ff;
+        }
+
+        .arrow {
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+
+        .accordion.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .content {
+            display: none;
+            padding: 0 20px 20px;
+            border-top: 1px solid #eeeeee;
+        }
+
+        .content.show {
+            display: block;
+        }
+
+        .question {
+            margin-top: 18px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .question strong {
+            color: #374151;
+        }
+
+        .solution-title {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #f8f8f2;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            line-height: 1.6;
+            font-size: 14px;
+            font-family: Consolas, monospace;
+        }
+
+        .output {
+            margin-top: 15px;
+        }
+
+        .output-box {
+            background: #f3f4f6;
+            padding: 14px;
+            margin-top: 8px;
+            border-radius: 8px;
+            font-family: Consolas, monospace;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 21px;
+            }
+
+            .page-title h2 {
+                font-size: 21px;
+            }
+
+            .accordion-header {
+                font-size: 15px;
+                padding: 16px;
+            }
+
+            .content {
+                padding: 0 16px 18px;
+            }
+
+            pre {
+                font-size: 13px;
+            }
+        }
+
+        .back-btn {
+            text-decoration: none;
+            background: #eef0ff;
+            color: #4f46e5;
+            padding: 7px 14px;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.2s;
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .back-btn:hover {
+            background: #dde0ff;
+        }
+    </style>
+</head>
+
+<body>
+
+<header style="position: relative;">
+    <a href="index.html" class="back-btn">&larr; Home</a>
+    <h1>Cursor Computers Academy</h1>
+    <p>MySQL Database</p>
+</header>
+
+
+<main>
+
+    <div class="page-title">
+        <h2>100 MySQL Programs with Solutions</h2>
+        <p>Click on any program to view the question, solution and output.</p>
+    </div>
+
+
+    <!-- 1 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            1. Show All Databases
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a MySQL query to show all databases on the server.
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SHOW DATABASES;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">+--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| school             |
+| company            |
++--------------------+</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 2 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            2. Create a Database
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a MySQL query to create a new database named "company".
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>CREATE DATABASE company;
+USE company;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Query OK, 1 row affected
+Database changed</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 3 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            3. Create a Table
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a MySQL query to create an "employees" table.
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>CREATE TABLE employees (
+    emp_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50),
+    department VARCHAR(30),
+    salary DECIMAL(10,2),
+    join_date DATE,
+    city VARCHAR(30)
+);</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Query OK, 0 rows affected
+Table 'employees' created</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 4 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            4. Insert a Single Record
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a MySQL query to insert a single record into the employees table.
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>INSERT INTO employees (name, department, salary, join_date, city)
+VALUES ('Rahul Sharma', 'IT', 55000, '2022-01-15', 'Pune');</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Query OK, 1 row affected</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 5 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            5. Insert Multiple Records
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a MySQL query to insert multiple records into the employees table.
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>INSERT INTO employees (name, department, salary, join_date, city) VALUES
+('Priya Singh', 'HR', 42000, '2021-06-10', 'Mumbai'),
+('Aman Verma', 'IT', 60000, '2020-03-22', 'Pune'),
+('Sneha Patil', 'Sales', 38000, '2023-02-05', 'Nashik'),
+('Karan Mehta', 'IT', 72000, '2019-11-30', 'Pune');</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Query OK, 4 rows affected
+Records: 4  Duplicates: 0  Warnings: 0</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 6 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            6. Select All Records
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a MySQL query to select all records from the employees table.
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT * FROM employees;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">+--------+--------------+------------+--------+------------+--------+
+| emp_id | name         | department | salary | join_date  | city   |
++--------+--------------+------------+--------+------------+--------+
+| 1      | Rahul Sharma | IT         | 55000  | 2022-01-15 | Pune   |
+| 2      | Priya Singh  | HR         | 42000  | 2021-06-10 | Mumbai |
+| 3      | Aman Verma   | IT         | 60000  | 2020-03-22 | Pune   |
+| 4      | Sneha Patil  | Sales      | 38000  | 2023-02-05 | Nashik |
+| 5      | Karan Mehta  | IT         | 72000  | 2019-11-30 | Pune   |
++--------+--------------+------------+--------+------------+--------+</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 7 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            7. Select Specific Columns
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Select only the name and salary columns from employees.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, salary FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+
+| name         | salary |
++--------------+--------+
+| Rahul Sharma | 55000  |
+| Priya Singh  | 42000  |
+| Aman Verma   | 60000  |
+| Sneha Patil  | 38000  |
+| Karan Mehta  | 72000  |
++--------------+--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 8 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            8. Select with WHERE Clause
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Select employees who work in the IT department.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT * FROM employees WHERE department = 'IT';</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------+--------------+------------+--------+------------+------+
+| emp_id | name         | department | salary | join_date  | city |
++--------+--------------+------------+--------+------------+------+
+| 1      | Rahul Sharma | IT         | 55000  | 2022-01-15 | Pune |
+| 3      | Aman Verma   | IT         | 60000  | 2020-03-22 | Pune |
+| 5      | Karan Mehta  | IT         | 72000  | 2019-11-30 | Pune |
++--------+--------------+------------+--------+------------+------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 9 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            9. Select with AND / OR
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Select IT employees with salary greater than 55000.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT * FROM employees
+WHERE department = 'IT' AND salary > 55000;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------+-------------+------------+--------+------------+------+
+| emp_id | name        | department | salary | join_date  | city |
++--------+-------------+------------+--------+------------+------+
+| 3      | Aman Verma  | IT         | 60000  | 2020-03-22 | Pune |
+| 5      | Karan Mehta | IT         | 72000  | 2019-11-30 | Pune |
++--------+-------------+------------+--------+------------+------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 10 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            10. Select with BETWEEN
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Select employees whose salary is between 40000 and 65000.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, salary FROM employees
+WHERE salary BETWEEN 40000 AND 65000;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+
+| name         | salary |
++--------------+--------+
+| Rahul Sharma | 55000  |
+| Priya Singh  | 42000  |
+| Aman Verma   | 60000  |
++--------------+--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 11 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            11. Select with LIKE
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Select employees whose name starts with "A".</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name FROM employees WHERE name LIKE 'A%';</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+------------+
+| name       |
++------------+
+| Aman Verma |
++------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 12 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            12. Select with IN
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Select employees who work in HR or Sales department.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, department FROM employees
+WHERE department IN ('HR', 'Sales');</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+-------------+------------+
+| name        | department |
++-------------+------------+
+| Priya Singh | HR         |
+| Sneha Patil | Sales      |
++-------------+------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 13 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            13. Select DISTINCT Values
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Select all distinct department names from employees.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT DISTINCT department FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+------------+
+| department |
++------------+
+| IT         |
+| HR         |
+| Sales      |
++------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 14 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            14. Update a Record
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Update the salary of employee "Priya Singh" to 45000.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>UPDATE employees
+SET salary = 45000
+WHERE name = 'Priya Singh';</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 1 row affected
+Rows matched: 1  Changed: 1</div></div>
+        </div>
+    </div>
+
+
+    <!-- 15 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            15. Delete a Record
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Delete the employee named "Sneha Patil" from the table.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>DELETE FROM employees WHERE name = 'Sneha Patil';</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 1 row affected</div></div>
+        </div>
+    </div>
+
+
+    <!-- 16 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            16. ORDER BY Ascending
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Select employees sorted by salary in ascending order.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, salary FROM employees
+ORDER BY salary ASC;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+
+| name         | salary |
++--------------+--------+
+| Priya Singh  | 42000  |
+| Rahul Sharma | 55000  |
+| Aman Verma   | 60000  |
+| Karan Mehta  | 72000  |
++--------------+--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 17 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            17. ORDER BY Descending
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Select employees sorted by salary in descending order.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, salary FROM employees
+ORDER BY salary DESC;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+
+| name         | salary |
++--------------+--------+
+| Karan Mehta  | 72000  |
+| Aman Verma   | 60000  |
+| Rahul Sharma | 55000  |
+| Priya Singh  | 42000  |
++--------------+--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 18 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            18. ORDER BY Multiple Columns
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Select employees sorted by department, then by salary descending.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT department, name, salary FROM employees
+ORDER BY department ASC, salary DESC;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+------------+--------------+--------+
+| department | name         | salary |
++------------+--------------+--------+
+| HR         | Priya Singh  | 42000  |
+| IT         | Karan Mehta  | 72000  |
+| IT         | Aman Verma   | 60000  |
+| IT         | Rahul Sharma | 55000  |
++------------+--------------+--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 19 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            19. LIMIT Results
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Select only the first 2 employees from the table.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT * FROM employees LIMIT 2;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------+--------------+------------+--------+
+| emp_id | name         | department | salary |
++--------+--------------+------------+--------+
+| 1      | Rahul Sharma | IT         | 55000  |
+| 2      | Priya Singh  | HR         | 42000  |
++--------+--------------+------------+--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 20 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            20. LIMIT with OFFSET
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Skip the first 2 employees and select the next 2.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT * FROM employees LIMIT 2 OFFSET 2;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------+-------------+------------+--------+
+| emp_id | name        | department | salary |
++--------+-------------+------------+--------+
+| 3      | Aman Verma  | IT         | 60000  |
+| 4      | Sneha Patil | Sales      | 38000  |
++--------+-------------+------------+--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 21 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            21. Top N Records
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the top 3 highest paid employees.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, salary FROM employees
+ORDER BY salary DESC
+LIMIT 3;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+
+| name         | salary |
++--------------+--------+
+| Karan Mehta  | 72000  |
+| Aman Verma   | 60000  |
+| Rahul Sharma | 55000  |
++--------------+--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 22 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            22. Last N Records
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the last 2 employees to join the company.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, join_date FROM employees
+ORDER BY join_date DESC
+LIMIT 2;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+------------+
+| name         | join_date  |
++--------------+------------+
+| Sneha Patil  | 2023-02-05 |
+| Rahul Sharma | 2022-01-15 |
++--------------+------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 23 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            23. COUNT Rows
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Count the total number of employees.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT COUNT(*) AS total_employees FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+-----------------+
+| total_employees |
++-----------------+
+| 5               |
++-----------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 24 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            24. SUM of a Column
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the total salary paid to all employees.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT SUM(salary) AS total_salary FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+
+| total_salary |
++--------------+
+| 267000       |
++--------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 25 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            25. AVG of a Column
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the average salary of all employees.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT AVG(salary) AS average_salary FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+----------------+
+| average_salary |
++----------------+
+| 53400.00       |
++----------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 26 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            26. MIN of a Column
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the minimum salary among employees.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT MIN(salary) AS min_salary FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+------------+
+| min_salary |
++------------+
+| 38000      |
++------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 27 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            27. MAX of a Column
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the maximum salary among employees.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT MAX(salary) AS max_salary FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+------------+
+| max_salary |
++------------+
+| 72000      |
++------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 28 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            28. GROUP BY with COUNT
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Count the number of employees in each department.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT department, COUNT(*) AS total
+FROM employees
+GROUP BY department;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+------------+-------+
+| department | total |
++------------+-------+
+| IT         | 3     |
+| HR         | 1     |
+| Sales      | 1     |
++------------+-------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 29 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            29. GROUP BY with SUM
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the total salary paid in each department.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT department, SUM(salary) AS total_salary
+FROM employees
+GROUP BY department;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+------------+--------------+
+| department | total_salary |
++------------+--------------+
+| IT         | 187000       |
+| HR         | 42000        |
+| Sales      | 38000        |
++------------+--------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 30 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            30. GROUP BY with AVG
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the average salary in each department.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT department, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+------------+------------+
+| department | avg_salary |
++------------+------------+
+| IT         | 62333.33   |
+| HR         | 42000.00   |
+| Sales      | 38000.00   |
++------------+------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 31 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            31. HAVING Clause
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find departments having more than 1 employee.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT department, COUNT(*) AS total
+FROM employees
+GROUP BY department
+HAVING COUNT(*) > 1;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+------------+-------+
+| department | total |
++------------+-------+
+| IT         | 3     |
++------------+-------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 32 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            32. GROUP BY with Multiple Columns
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Group employees by department and city.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT department, city, COUNT(*) AS total
+FROM employees
+GROUP BY department, city;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+------------+--------+-------+
+| department | city   | total |
++------------+--------+-------+
+| IT         | Pune   | 3     |
+| HR         | Mumbai | 1     |
+| Sales      | Nashik | 1     |
++------------+--------+-------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 33 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            33. Count Distinct Values
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Count the number of distinct cities employees live in.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT COUNT(DISTINCT city) AS total_cities FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+
+| total_cities |
++--------------+
+| 3            |
++--------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 34 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            34. Sum with WHERE
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the total salary of employees in the IT department.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT SUM(salary) AS it_total
+FROM employees
+WHERE department = 'IT';</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+----------+
+| it_total |
++----------+
+| 187000   |
++----------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 35 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            35. Average Salary by Department
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> List departments with average salary greater than 40000.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT department, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department
+HAVING AVG(salary) > 40000;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+------------+------------+
+| department | avg_salary |
++------------+------------+
+| IT         | 62333.33   |
+| HR         | 42000.00   |
++------------+------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 36 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            36. INNER JOIN Two Tables
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Given "departments(dept_id, dept_name)" and "employees(emp_id, name, dept_id, salary)",
+                write a query to display employee names with their department names.
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT e.name, d.dept_name
+FROM employees e
+INNER JOIN departments d ON e.dept_id = d.dept_id;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+------------+
+| name         | dept_name  |
++--------------+------------+
+| Rahul Sharma | IT         |
+| Priya Singh  | HR         |
+| Aman Verma   | IT         |
+| Karan Mehta  | IT         |
++--------------+------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 37 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            37. LEFT JOIN
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display all departments along with employee names, including departments with no employees.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT d.dept_name, e.name
+FROM departments d
+LEFT JOIN employees e ON d.dept_id = e.dept_id;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+------------+--------------+
+| dept_name  | name         |
++------------+--------------+
+| IT         | Rahul Sharma |
+| IT         | Aman Verma   |
+| IT         | Karan Mehta  |
+| HR         | Priya Singh  |
+| Finance    | NULL         |
++------------+--------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 38 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            38. RIGHT JOIN
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display all employees along with their department, including employees not yet assigned a department.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT e.name, d.dept_name
+FROM departments d
+RIGHT JOIN employees e ON d.dept_id = e.dept_id;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-----------+
+| name         | dept_name |
++--------------+-----------+
+| Rahul Sharma | IT        |
+| Priya Singh  | HR        |
+| Aman Verma   | IT        |
+| Karan Mehta  | IT        |
+| Sneha Patil  | NULL      |
++--------------+-----------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 39 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            39. Self JOIN
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Given employees(emp_id, name, manager_id), display each employee with their manager's name.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT e.name AS employee, m.name AS manager
+FROM employees e
+LEFT JOIN employees m ON e.manager_id = m.emp_id;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------------+
+| employee     | manager      |
++--------------+--------------+
+| Priya Singh  | Karan Mehta  |
+| Aman Verma   | Karan Mehta  |
+| Karan Mehta  | NULL         |
++--------------+--------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 40 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            40. CROSS JOIN
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Produce every combination of products and departments using CROSS JOIN.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT p.product_name, d.dept_name
+FROM products p
+CROSS JOIN departments d;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+---------------+-----------+
+| product_name  | dept_name |
++---------------+-----------+
+| Laptop        | IT        |
+| Laptop        | HR        |
+| Mouse         | IT        |
+| Mouse         | HR        |
++---------------+-----------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 41 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            41. JOIN with WHERE
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display employees from the IT department using a join with a filter.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT e.name, d.dept_name
+FROM employees e
+JOIN departments d ON e.dept_id = d.dept_id
+WHERE d.dept_name = 'IT';</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-----------+
+| name         | dept_name |
++--------------+-----------+
+| Rahul Sharma | IT        |
+| Aman Verma   | IT        |
+| Karan Mehta  | IT        |
++--------------+-----------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 42 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            42. JOIN Three Tables
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Given orders(order_id, customer_name, product_id, quantity) and products(product_id, product_name, price),
+                display order details with department info of the person who placed it (via employees).
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT o.order_id, e.name, p.product_name, o.quantity
+FROM orders o
+JOIN employees e ON o.customer_name = e.name
+JOIN products p ON o.product_id = p.product_id;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+----------+--------------+---------------+----------+
+| order_id | name         | product_name  | quantity |
++----------+--------------+---------------+----------+
+| 1        | Rahul Sharma | Laptop        | 1        |
+| 2        | Aman Verma   | Mouse         | 3        |
++----------+--------------+---------------+----------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 43 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            43. JOIN with GROUP BY
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display the total quantity ordered for each product.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT p.product_name, SUM(o.quantity) AS total_qty
+FROM orders o
+JOIN products p ON o.product_id = p.product_id
+GROUP BY p.product_name;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+---------------+-----------+
+| product_name  | total_qty |
++---------------+-----------+
+| Laptop        | 1         |
+| Mouse         | 3         |
++---------------+-----------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 44 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            44. JOIN with Aggregate Functions
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the total order value (price * quantity) for each order.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT o.order_id, p.product_name, (p.price * o.quantity) AS total_value
+FROM orders o
+JOIN products p ON o.product_id = p.product_id;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+----------+---------------+-------------+
+| order_id | product_name  | total_value |
++----------+---------------+-------------+
+| 1        | Laptop        | 55000       |
+| 2        | Mouse         | 1500        |
++----------+---------------+-------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 45 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            45. LEFT JOIN to Find Unmatched Records
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find departments that have no employees assigned.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT d.dept_name
+FROM departments d
+LEFT JOIN employees e ON d.dept_id = e.dept_id
+WHERE e.emp_id IS NULL;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+-----------+
+| dept_name |
++-----------+
+| Finance   |
++-----------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 46 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            46. JOIN with Aliases
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Rewrite the employee-department join using short table aliases.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT e.name AS employee_name, d.dept_name AS department_name
+FROM employees AS e
+JOIN departments AS d ON e.dept_id = d.dept_id;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+---------------+-----------------+
+| employee_name | department_name |
++---------------+-----------------+
+| Rahul Sharma  | IT              |
+| Priya Singh   | HR              |
+| Aman Verma    | IT              |
++---------------+-----------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 47 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            47. JOIN with ORDER BY
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display employees with their department, sorted by salary descending.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT e.name, d.dept_name, e.salary
+FROM employees e
+JOIN departments d ON e.dept_id = d.dept_id
+ORDER BY e.salary DESC;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-----------+--------+
+| name         | dept_name | salary |
++--------------+-----------+--------+
+| Karan Mehta  | IT        | 72000  |
+| Aman Verma   | IT        | 60000  |
+| Rahul Sharma | IT        | 55000  |
+| Priya Singh  | HR        | 42000  |
++--------------+-----------+--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 48 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            48. Natural JOIN
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Join employees and departments automatically using their common column name.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, dept_name
+FROM employees
+NATURAL JOIN departments;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-----------+
+| name         | dept_name |
++--------------+-----------+
+| Rahul Sharma | IT        |
+| Priya Singh  | HR        |
+| Aman Verma   | IT        |
++--------------+-----------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 49 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            49. Subquery in WHERE
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find employees who earn more than the average salary.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, salary
+FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees);</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+-------------+--------+
+| name        | salary |
++-------------+--------+
+| Aman Verma  | 60000  |
+| Karan Mehta | 72000  |
++-------------+--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 50 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            50. Subquery with IN
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find employees who belong to departments located in Pune.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name FROM employees
+WHERE dept_id IN (
+    SELECT dept_id FROM departments WHERE location = 'Pune'
+);</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+
+| name         |
++--------------+
+| Rahul Sharma |
+| Aman Verma   |
+| Karan Mehta  |
++--------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 51 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            51. Subquery with EXISTS
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find departments that have at least one employee using EXISTS.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT dept_name FROM departments d
+WHERE EXISTS (
+    SELECT 1 FROM employees e WHERE e.dept_id = d.dept_id
+);</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+-----------+
+| dept_name |
++-----------+
+| IT        |
+| HR        |
++-----------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 52 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            52. Correlated Subquery
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find employees who earn more than the average salary of their own department.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT e1.name, e1.department, e1.salary
+FROM employees e1
+WHERE e1.salary > (
+    SELECT AVG(e2.salary)
+    FROM employees e2
+    WHERE e2.department = e1.department
+);</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+-------------+------------+--------+
+| name        | department | salary |
++-------------+------------+--------+
+| Karan Mehta | IT         | 72000  |
++-------------+------------+--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 53 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            53. Subquery in SELECT
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display each employee's salary along with the company average salary.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, salary,
+    (SELECT AVG(salary) FROM employees) AS company_avg
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+-------------+
+| name         | salary | company_avg |
++--------------+--------+-------------+
+| Rahul Sharma | 55000  | 53400.00    |
+| Priya Singh  | 42000  | 53400.00    |
+| Aman Verma   | 60000  | 53400.00    |
++--------------+--------+-------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 54 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            54. Subquery in FROM
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use a subquery in the FROM clause to display departments with average salary above 40000.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT dept_avg.department, dept_avg.avg_salary
+FROM (
+    SELECT department, AVG(salary) AS avg_salary
+    FROM employees
+    GROUP BY department
+) AS dept_avg
+WHERE dept_avg.avg_salary > 40000;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+------------+------------+
+| department | avg_salary |
++------------+------------+
+| IT         | 62333.33   |
+| HR         | 42000.00   |
++------------+------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 55 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            55. Subquery with Comparison Operators
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the employee(s) with the highest salary using a subquery.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, salary FROM employees
+WHERE salary = (SELECT MAX(salary) FROM employees);</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+-------------+--------+
+| name        | salary |
++-------------+--------+
+| Karan Mehta | 72000  |
++-------------+--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 56 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            56. Find Second Highest Salary
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the second highest salary among employees.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT MAX(salary) AS second_highest
+FROM employees
+WHERE salary < (SELECT MAX(salary) FROM employees);</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+----------------+
+| second_highest |
++----------------+
+| 60000          |
++----------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 57 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            57. Find Employees Earning Above Average
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> List employee names and salaries who earn above the overall average, sorted descending.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, salary
+FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees)
+ORDER BY salary DESC;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+-------------+--------+
+| name        | salary |
++-------------+--------+
+| Karan Mehta | 72000  |
+| Aman Verma  | 60000  |
++-------------+--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 58 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            58. Find Departments with Most Employees
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the department that has the maximum number of employees.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT department, COUNT(*) AS total
+FROM employees
+GROUP BY department
+ORDER BY total DESC
+LIMIT 1;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+------------+-------+
+| department | total |
++------------+-------+
+| IT         | 3     |
++------------+-------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 59 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            59. CONCAT Strings
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display employee name along with department in a single column.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT CONCAT(name, ' - ', department) AS employee_info
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+---------------------------+
+| employee_info              |
++---------------------------+
+| Rahul Sharma - IT          |
+| Priya Singh - HR           |
+| Aman Verma - IT            |
++---------------------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 60 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            60. UPPER and LOWER
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display employee names in uppercase and department in lowercase.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT UPPER(name) AS name_upper, LOWER(department) AS dept_lower
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+---------------+------------+
+| name_upper    | dept_lower |
++---------------+------------+
+| RAHUL SHARMA  | it         |
+| PRIYA SINGH   | hr         |
++---------------+------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 61 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            61. LENGTH of String
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display the length of each employee's name.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, LENGTH(name) AS name_length
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-------------+
+| name         | name_length |
++--------------+-------------+
+| Rahul Sharma | 12          |
+| Priya Singh  | 11          |
++--------------+-------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 62 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            62. SUBSTRING
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display the first 5 characters of each employee's name.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, SUBSTRING(name, 1, 5) AS short_name
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+------------+
+| name         | short_name |
++--------------+------------+
+| Rahul Sharma | Rahul      |
+| Priya Singh  | Priya      |
++--------------+------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 63 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            63. TRIM Whitespace
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Remove leading and trailing spaces from a string.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT TRIM('   Rahul Sharma   ') AS trimmed_name;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+
+| trimmed_name |
++--------------+
+| Rahul Sharma |
++--------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 64 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            64. REPLACE String
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Replace "Pune" with "Pune City" in the city column.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, REPLACE(city, 'Pune', 'Pune City') AS updated_city
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------------+
+| name         | updated_city |
++--------------+--------------+
+| Rahul Sharma | Pune City    |
+| Priya Singh  | Mumbai       |
++--------------+--------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 65 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            65. REVERSE String
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display each employee's name reversed.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, REVERSE(name) AS reversed_name
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+---------------+
+| name         | reversed_name |
++--------------+---------------+
+| Rahul Sharma | amrahS luhaR  |
++--------------+---------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 66 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            66. LEFT and RIGHT
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display the first 3 and last 3 characters of each employee's name.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name,
+    LEFT(name, 3) AS first_three,
+    RIGHT(name, 3) AS last_three
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-------------+------------+
+| name         | first_three | last_three |
++--------------+-------------+------------+
+| Rahul Sharma | Rah         | rma        |
++--------------+-------------+------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 67 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            67. LPAD and RPAD
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Pad employee IDs to 5 digits with leading zeros.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT emp_id, LPAD(emp_id, 5, '0') AS padded_id
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------+-----------+
+| emp_id | padded_id |
++--------+-----------+
+| 1      | 00001     |
+| 2      | 00002     |
++--------+-----------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 68 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            68. FIND_IN_SET
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check the position of "IT" in a comma-separated list of departments.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT FIND_IN_SET('IT', 'HR,IT,Sales,Finance') AS position;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+----------+
+| position |
++----------+
+| 2        |
++----------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 69 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            69. ROUND a Number
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Round the average salary to 0 decimal places.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT ROUND(AVG(salary), 0) AS avg_salary_rounded
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------------+
+| avg_salary_rounded |
++--------------------+
+| 53400              |
++--------------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 70 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            70. CEIL and FLOOR
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display the ceiling and floor values of the average salary.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT CEIL(AVG(salary)) AS ceil_avg, FLOOR(AVG(salary)) AS floor_avg
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+----------+-----------+
+| ceil_avg | floor_avg |
++----------+-----------+
+| 53400    | 53400     |
++----------+-----------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 71 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            71. ABS Value
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the absolute value of -150.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT ABS(-150) AS absolute_value;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+----------------+
+| absolute_value |
++----------------+
+| 150            |
++----------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 72 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            72. MOD Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the remainder when 17 is divided by 5.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT MOD(17, 5) AS remainder;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+-----------+
+| remainder |
++-----------+
+| 2         |
++-----------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 73 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            73. POWER Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find 2 raised to the power 8.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT POWER(2, 8) AS result;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------+
+| result |
++--------+
+| 256    |
++--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 74 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            74. NOW and CURDATE
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display the current date and time.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT NOW() AS current_datetime, CURDATE() AS current_date;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+---------------------+--------------+
+| current_datetime    | current_date |
++---------------------+--------------+
+| 2026-08-28 10:15:32 | 2026-08-28   |
++---------------------+--------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 75 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            75. DATE_FORMAT
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display each employee's join date in "DD-MM-YYYY" format.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, DATE_FORMAT(join_date, '%d-%m-%Y') AS formatted_date
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+----------------+
+| name         | formatted_date |
++--------------+----------------+
+| Rahul Sharma | 15-01-2022     |
+| Priya Singh  | 10-06-2021     |
++--------------+----------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 76 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            76. DATEDIFF
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find how many days each employee has worked till today.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, DATEDIFF(CURDATE(), join_date) AS days_worked
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-------------+
+| name         | days_worked |
++--------------+-------------+
+| Rahul Sharma | 1686        |
+| Priya Singh  | 1905        |
++--------------+-------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 77 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            77. DATE_ADD and DATE_SUB
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Add 30 days to and subtract 30 days from each employee's join date.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name,
+    DATE_ADD(join_date, INTERVAL 30 DAY) AS after_30_days,
+    DATE_SUB(join_date, INTERVAL 30 DAY) AS before_30_days
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+---------------+----------------+
+| name         | after_30_days | before_30_days |
++--------------+---------------+----------------+
+| Rahul Sharma | 2022-02-14    | 2021-12-16     |
++--------------+---------------+----------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 78 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            78. YEAR, MONTH, DAY Extraction
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Extract year, month, and day from each employee's join date.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name,
+    YEAR(join_date) AS join_year,
+    MONTH(join_date) AS join_month,
+    DAY(join_date) AS join_day
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-----------+------------+----------+
+| name         | join_year | join_month | join_day |
++--------------+-----------+------------+----------+
+| Rahul Sharma | 2022      | 1          | 15       |
++--------------+-----------+------------+----------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 79 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            79. Add a Column (ALTER TABLE)
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Add a new column "email" to the employees table.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>ALTER TABLE employees
+ADD COLUMN email VARCHAR(100);</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 0 rows affected
+Records: 0  Duplicates: 0  Warnings: 0</div></div>
+        </div>
+    </div>
+
+
+    <!-- 80 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            80. Drop a Column
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Remove the "email" column from the employees table.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>ALTER TABLE employees
+DROP COLUMN email;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 0 rows affected</div></div>
+        </div>
+    </div>
+
+
+    <!-- 81 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            81. Modify Column Type
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Change the data type of the "city" column to VARCHAR(50).</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>ALTER TABLE employees
+MODIFY COLUMN city VARCHAR(50);</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 0 rows affected
+Records: 0  Duplicates: 0  Warnings: 0</div></div>
+        </div>
+    </div>
+
+
+    <!-- 82 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            82. Rename a Table
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Rename the "employees" table to "staff".</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>RENAME TABLE employees TO staff;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 0 rows affected</div></div>
+        </div>
+    </div>
+
+
+    <!-- 83 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            83. Add PRIMARY KEY
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Add a primary key constraint to the "emp_id" column.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>ALTER TABLE employees
+ADD PRIMARY KEY (emp_id);</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 0 rows affected
+Records: 0  Duplicates: 0  Warnings: 0</div></div>
+        </div>
+    </div>
+
+
+    <!-- 84 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            84. Add FOREIGN KEY
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Add a foreign key linking "dept_id" in employees to departments.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>ALTER TABLE employees
+ADD CONSTRAINT fk_dept
+FOREIGN KEY (dept_id) REFERENCES departments(dept_id);</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 0 rows affected
+Records: 0  Duplicates: 0  Warnings: 0</div></div>
+        </div>
+    </div>
+
+
+    <!-- 85 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            85. Add UNIQUE Constraint
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Add a unique constraint on the "email" column.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>ALTER TABLE employees
+ADD CONSTRAINT uq_email UNIQUE (email);</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 0 rows affected
+Records: 0  Duplicates: 0  Warnings: 0</div></div>
+        </div>
+    </div>
+
+
+    <!-- 86 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            86. Create INDEX
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create an index on the "department" column to speed up searches.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>CREATE INDEX idx_department
+ON employees (department);</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 0 rows affected
+Records: 0  Duplicates: 0  Warnings: 0</div></div>
+        </div>
+    </div>
+
+
+    <!-- 87 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            87. Drop INDEX
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Drop the index "idx_department" from the employees table.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>DROP INDEX idx_department ON employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 0 rows affected</div></div>
+        </div>
+    </div>
+
+
+    <!-- 88 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            88. TRUNCATE Table
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Remove all records from the "orders" table instantly.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>TRUNCATE TABLE orders;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 0 rows affected</div></div>
+        </div>
+    </div>
+
+
+    <!-- 89 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            89. Create a VIEW
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a view that shows employee names with their department names.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>CREATE VIEW employee_view AS
+SELECT e.name, d.dept_name
+FROM employees e
+JOIN departments d ON e.dept_id = d.dept_id;
+
+SELECT * FROM employee_view;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-----------+
+| name         | dept_name |
++--------------+-----------+
+| Rahul Sharma | IT        |
+| Priya Singh  | HR        |
++--------------+-----------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 90 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            90. Create a Stored Procedure
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a stored procedure to fetch all employees of a given department.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>DELIMITER //
+
+CREATE PROCEDURE GetEmployeesByDept(IN dept_name_in VARCHAR(30))
+BEGIN
+    SELECT * FROM employees WHERE department = dept_name_in;
+END //
+
+DELIMITER ;
+
+CALL GetEmployeesByDept('IT');</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------+--------------+------------+--------+
+| emp_id | name         | department | salary |
++--------+--------------+------------+--------+
+| 1      | Rahul Sharma | IT         | 55000  |
+| 3      | Aman Verma   | IT         | 60000  |
++--------+--------------+------------+--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 91 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            91. Create a Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a function that returns the annual salary of an employee (monthly salary * 12).</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>DELIMITER //
+
+CREATE FUNCTION AnnualSalary(monthly_salary DECIMAL(10,2))
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+    RETURN monthly_salary * 12;
+END //
+
+DELIMITER ;
+
+SELECT name, AnnualSalary(salary) AS annual_salary FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+---------------+
+| name         | annual_salary |
++--------------+---------------+
+| Rahul Sharma | 660000.00     |
+| Priya Singh  | 504000.00     |
++--------------+---------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 92 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            92. Create a BEFORE INSERT Trigger
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a trigger that sets join_date to today's date if it is not provided.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>DELIMITER //
+
+CREATE TRIGGER before_employee_insert
+BEFORE INSERT ON employees
+FOR EACH ROW
+BEGIN
+    IF NEW.join_date IS NULL THEN
+        SET NEW.join_date = CURDATE();
+    END IF;
+END //
+
+DELIMITER ;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 0 rows affected
+Trigger created successfully</div></div>
+        </div>
+    </div>
+
+
+    <!-- 93 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            93. Transaction with COMMIT
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use a transaction to insert a record and commit the change.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>START TRANSACTION;
+
+INSERT INTO employees (name, department, salary, join_date, city)
+VALUES ('Neha Joshi', 'Sales', 41000, '2024-04-01', 'Pune');
+
+COMMIT;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 1 row affected
+Transaction committed successfully</div></div>
+        </div>
+    </div>
+
+
+    <!-- 94 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            94. Transaction with ROLLBACK
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use a transaction to delete a record and then roll it back.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>START TRANSACTION;
+
+DELETE FROM employees WHERE name = 'Neha Joshi';
+
+ROLLBACK;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 1 row affected
+Transaction rolled back, record restored</div></div>
+        </div>
+    </div>
+
+
+    <!-- 95 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            95. CASE Expression in SELECT
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Categorize employees as "High", "Medium" or "Low" salary using CASE.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, salary,
+    CASE
+        WHEN salary >= 60000 THEN 'High'
+        WHEN salary >= 45000 THEN 'Medium'
+        ELSE 'Low'
+    END AS salary_grade
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+--------------+
+| name         | salary | salary_grade |
++--------------+--------+--------------+
+| Rahul Sharma | 55000  | Medium       |
+| Priya Singh  | 42000  | Low          |
+| Aman Verma   | 60000  | High         |
+| Karan Mehta  | 72000  | High         |
++--------------+--------+--------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 96 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            96. IF Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use the IF function to mark employees as "Senior" or "Junior" based on salary.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, salary,
+    IF(salary >= 55000, 'Senior', 'Junior') AS level
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+--------+
+| name         | salary | level  |
++--------------+--------+--------+
+| Rahul Sharma | 55000  | Senior |
+| Priya Singh  | 42000  | Junior |
+| Aman Verma   | 60000  | Senior |
++--------------+--------+--------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 97 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            97. COALESCE Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Display employee city, showing "Unknown" when the city value is NULL.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name, COALESCE(city, 'Unknown') AS city
+FROM employees;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+---------+
+| name         | city    |
++--------------+---------+
+| Rahul Sharma | Pune    |
+| Sneha Patil  | Unknown |
++--------------+---------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 98 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            98. UNION Two Queries
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Combine the names of employees from the IT department and HR department using UNION.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>SELECT name FROM employees WHERE department = 'IT'
+UNION
+SELECT name FROM employees WHERE department = 'HR';</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+
+| name         |
++--------------+
+| Rahul Sharma |
+| Aman Verma   |
+| Karan Mehta  |
+| Priya Singh  |
++--------------+</div></div>
+        </div>
+    </div>
+
+
+    <!-- 99 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            99. Create User and Grant Privileges
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a new MySQL user and grant it read access to the company database.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>CREATE USER 'report_user'@'localhost' IDENTIFIED BY 'StrongPass123';
+
+GRANT SELECT ON company.* TO 'report_user'@'localhost';
+
+FLUSH PRIVILEGES;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Query OK, 0 rows affected
+User 'report_user'@'localhost' created
+Privileges granted</div></div>
+        </div>
+    </div>
+
+
+    <!-- 100 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            100. Export Data with SELECT INTO OUTFILE
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a MySQL query to export all employee records into a CSV file on the server.
+            </div>
+
+            <strong class="solution-title">Solution:</strong>
+
+<pre>SELECT emp_id, name, department, salary, join_date, city
+FROM employees
+INTO OUTFILE '/var/lib/mysql-files/employees_export.csv'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';</pre>
+
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Query OK, 5 rows affected
+
+File created: employees_export.csv
+"1","Rahul Sharma","IT","55000","2022-01-15","Pune"
+"2","Priya Singh","HR","42000","2021-06-10","Mumbai"
+"3","Aman Verma","IT","60000","2020-03-22","Pune"
+"4","Sneha Patil","Sales","38000","2023-02-05","Nashik"
+"5","Karan Mehta","IT","72000","2019-11-30","Pune"</div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+<footer>
+    © 2026 Cursor Computers Academy
+</footer>
+
+
+<script>
+
+    const buttons = document.querySelectorAll(".accordion-header");
+
+    buttons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            const accordion = this.parentElement;
+            const content = accordion.querySelector(".content");
+
+            accordion.classList.toggle("active");
+            content.classList.toggle("show");
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
