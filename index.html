@@ -3,12 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programming</title>
+
+    <title>Cursor Computers Academy</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        /* Header */
+        header {
+            background: #ffffff;
+            padding: 22px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        header h1 {
+            font-size: 26px;
+            color: #1f2937;
+            letter-spacing: 1px;
+            text-transform: capitalize;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .topic-card {
+            background: #ffffff;
+            padding: 22px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .topic-card a {
+            display: block;
+            text-decoration: none;
+            color: #2563eb;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 15px 18px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .topic-card a:hover {
+            background: #eef4ff;
+            color: #174ea6;
+            transform: translateX(5px);
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 21px;
+            }
+
+            main {
+                margin-top: 30px;
+            }
+
+            .topic-card a {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <a href="python_theory.html">Python Programming</a>
+    <header>
+        <h1>Cursor Computers Academy</h1>
+    </header>
+
+    <main>
+        <div class="topic-card">
+            <a href="python_theory.html">
+                Python Programming
+            </a>
+        </div>
+    </main>
 
 </body>
 </html>
