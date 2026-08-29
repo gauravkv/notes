@@ -1131,7 +1131,15 @@ strong {
             class="topic"
             onclick="showTopic('numpy_data', this)">
 
-       Numpy
+                   Numpy
+
+             </button>
+
+           <button
+            class="topic"
+            onclick="showTopic('pandas_data', this)">
+
+                   Pandas
 
              </button>
 
@@ -16507,7 +16515,995 @@ Lowest Sales: 12000
     generation, and matrix calculations. NumPy is an important
     foundation for libraries such as Pandas and many machine
     learning tools.
-</p>` 
+</p>` ,
+
+      pandas_data : `<h1>
+    Pandas Data
+</h1>
+
+<div class="subtitle">
+    Store, organize, analyze, and manipulate data using Pandas.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is Pandas?
+</h2>
+
+<p>
+    <b>Pandas</b> is a Python library used for working with
+    structured data. It is commonly used for data analysis,
+    data cleaning, and data manipulation.
+</p>
+
+<p>
+    Pandas mainly provides two important data structures:
+    <b>Series</b> and <b>DataFrame</b>.
+</p>
+
+
+<h2>
+    Installing Pandas
+</h2>
+
+${codeBlock(`pip install pandas`, "Command")}
+
+
+<h2>
+    Importing Pandas
+</h2>
+
+${codeBlock(`import pandas as pd`, "Python")}
+
+
+<h2>
+    Pandas Series
+</h2>
+
+<p>
+    A <b>Series</b> is a one-dimensional data structure that
+    can store values along with an index.
+</p>
+
+${codeBlock(`import pandas as pd
+
+marks = pd.Series([80, 75, 90, 85])
+
+print(marks)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+0    80<br>
+1    75<br>
+2    90<br>
+3    85<br>
+dtype: int64
+</div>
+
+
+<h2>
+    Creating a Series with Custom Index
+</h2>
+
+${codeBlock(`import pandas as pd
+
+marks = pd.Series(
+    [80, 75, 90],
+    index=["Rahul", "Amit", "Priya"]
+)
+
+print(marks)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul    80<br>
+Amit     75<br>
+Priya    90
+</div>
+
+
+<h2>
+    Accessing Series Values
+</h2>
+
+${codeBlock(`import pandas as pd
+
+marks = pd.Series([80, 75, 90])
+
+print(marks[0])
+print(marks[2])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+80<br>
+90
+</div>
+
+
+<h2>
+    Creating a DataFrame
+</h2>
+
+<p>
+    A <b>DataFrame</b> is a two-dimensional data structure
+    consisting of rows and columns.
+</p>
+
+${codeBlock(`import pandas as pd
+
+data = {
+    "Name": ["Rahul", "Amit", "Priya"],
+    "Age": [20, 21, 19],
+    "Course": ["Python", "Java", "C++"]
+}
+
+df = pd.DataFrame(data)
+
+print(df)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+       Name  Age  Course<br>
+0     Rahul   20  Python<br>
+1      Amit   21  Java<br>
+2     Priya   19  C++
+</div>
+
+
+<h2>
+    DataFrame from a List
+</h2>
+
+${codeBlock(`import pandas as pd
+
+data = [
+    ["Rahul", 20, "Python"],
+    ["Amit", 21, "Java"],
+    ["Priya", 19, "C++"]
+]
+
+df = pd.DataFrame(
+    data,
+    columns=["Name", "Age", "Course"]
+)
+
+print(df)`, "Python")}
+
+
+<h2>
+    Checking Data
+</h2>
+
+<p>
+    The <b>head()</b> method displays the first few rows of
+    a DataFrame.
+</p>
+
+${codeBlock(`import pandas as pd
+
+data = {
+    "Name": ["Rahul", "Amit", "Priya", "Rohan", "Neha"],
+    "Age": [20, 21, 19, 22, 20],
+    "Marks": [85, 78, 92, 75, 88]
+}
+
+df = pd.DataFrame(data)
+
+print(df.head(3))`, "Python")}
+
+
+<h2>
+    tail()
+</h2>
+
+<p>
+    The <b>tail()</b> method displays the last few rows.
+</p>
+
+${codeBlock(`print(df.tail(2))`, "Python")}
+
+
+<h2>
+    Checking DataFrame Information
+</h2>
+
+<p>
+    The <b>info()</b> method provides information about the
+    DataFrame, including columns, data types, and non-null values.
+</p>
+
+${codeBlock(`df.info()`, "Python")}
+
+
+<h2>
+    Describing Numerical Data
+</h2>
+
+<p>
+    The <b>describe()</b> method provides statistical information
+    such as count, mean, minimum, maximum, and quartiles.
+</p>
+
+${codeBlock(`print(df.describe())`, "Python")}
+
+
+<h2>
+    Checking Columns
+</h2>
+
+${codeBlock(`print(df.columns)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Index(['Name', 'Age', 'Marks'], dtype='object')
+</div>
+
+
+<h2>
+    Selecting a Column
+</h2>
+
+${codeBlock(`print(df["Name"])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+0    Rahul<br>
+1     Amit<br>
+2    Priya<br>
+3    Rohan<br>
+4     Neha
+</div>
+
+
+<h2>
+    Selecting Multiple Columns
+</h2>
+
+${codeBlock(`print(df[["Name", "Marks"]])`, "Python")}
+
+
+<h2>
+    Selecting a Row using loc
+</h2>
+
+<p>
+    The <b>loc[]</b> method is used to access rows and columns
+    using labels.
+</p>
+
+${codeBlock(`print(df.loc[0])`, "Python")}
+
+
+<h2>
+    Selecting a Row using iloc
+</h2>
+
+<p>
+    The <b>iloc[]</b> method is used to access rows and columns
+    using integer positions.
+</p>
+
+${codeBlock(`print(df.iloc[0])`, "Python")}
+
+
+<h2>
+    Selecting Specific Rows and Columns
+</h2>
+
+${codeBlock(`print(df.loc[0:2, ["Name", "Marks"]])`, "Python")}
+
+
+<h2>
+    Filtering Data
+</h2>
+
+<p>
+    Pandas allows us to filter rows based on conditions.
+</p>
+
+${codeBlock(`result = df[df["Marks"] > 80]
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Name  Age  Marks<br>
+0  Rahul   20     85<br>
+2  Priya   19     92<br>
+4   Neha   20     88
+</div>
+
+
+<h2>
+    Filtering with Multiple Conditions
+</h2>
+
+${codeBlock(`result = df[
+    (df["Marks"] > 80) &
+    (df["Age"] >= 20)
+]
+
+print(result)`, "Python")}
+
+
+<h2>
+    Adding a New Column
+</h2>
+
+${codeBlock(`df["Result"] = "Pass"
+
+print(df)`, "Python")}
+
+
+<h2>
+    Creating a Column using Calculation
+</h2>
+
+${codeBlock(`df["Bonus"] = df["Marks"] + 5
+
+print(df[["Name", "Marks", "Bonus"]])`, "Python")}
+
+
+<h2>
+    Updating a Column
+</h2>
+
+${codeBlock(`df["Marks"] = df["Marks"] + 5
+
+print(df)`, "Python")}
+
+
+<h2>
+    Updating a Specific Value
+</h2>
+
+${codeBlock(`df.loc[0, "Marks"] = 95
+
+print(df.loc[0])`, "Python")}
+
+
+<h2>
+    Adding a Row
+</h2>
+
+<p>
+    The <b>loc[]</b> method can be used to add a new row.
+</p>
+
+${codeBlock(`df.loc[len(df)] = [
+    "Karan",
+    21,
+    82
+]
+
+print(df)`, "Python")}
+
+
+<h2>
+    Deleting a Column
+</h2>
+
+<p>
+    The <b>drop()</b> method can be used to remove a column.
+</p>
+
+${codeBlock(`df = df.drop("Age", axis=1)
+
+print(df)`, "Python")}
+
+
+<h2>
+    Deleting a Row
+</h2>
+
+${codeBlock(`df = df.drop(2)
+
+print(df)`, "Python")}
+
+
+<h2>
+    Sorting Data
+</h2>
+
+<p>
+    The <b>sort_values()</b> method sorts the DataFrame based
+    on a column.
+</p>
+
+${codeBlock(`result = df.sort_values("Marks")
+
+print(result)`, "Python")}
+
+
+<h2>
+    Sorting in Descending Order
+</h2>
+
+${codeBlock(`result = df.sort_values(
+    "Marks",
+    ascending=False
+)
+
+print(result)`, "Python")}
+
+
+<h2>
+    Finding Maximum Value
+</h2>
+
+${codeBlock(`print(df["Marks"].max())`, "Python")}
+
+
+<h2>
+    Finding Minimum Value
+</h2>
+
+${codeBlock(`print(df["Marks"].min())`, "Python")}
+
+
+<h2>
+    Finding Average
+</h2>
+
+${codeBlock(`print(df["Marks"].mean())`, "Python")}
+
+
+<h2>
+    Finding Total
+</h2>
+
+${codeBlock(`print(df["Marks"].sum())`, "Python")}
+
+
+<h2>
+    Counting Values
+</h2>
+
+<p>
+    The <b>value_counts()</b> method counts how many times
+    each value occurs in a column.
+</p>
+
+${codeBlock(`data = {
+    "Course": [
+        "Python",
+        "Java",
+        "Python",
+        "C++",
+        "Python"
+    ]
+}
+
+df = pd.DataFrame(data)
+
+print(df["Course"].value_counts())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Course<br>
+Python    3<br>
+Java      1<br>
+C++       1
+</div>
+
+
+<h2>
+    Checking Missing Values
+</h2>
+
+<p>
+    The <b>isnull()</b> method checks for missing values.
+</p>
+
+${codeBlock(`import pandas as pd
+
+data = {
+    "Name": ["Rahul", "Amit", "Priya"],
+    "Marks": [80, None, 90]
+}
+
+df = pd.DataFrame(data)
+
+print(df.isnull())`, "Python")}
+
+
+<h2>
+    Counting Missing Values
+</h2>
+
+${codeBlock(`print(df.isnull().sum())`, "Python")}
+
+
+<h2>
+    Removing Missing Values
+</h2>
+
+<p>
+    The <b>dropna()</b> method removes rows containing missing
+    values.
+</p>
+
+${codeBlock(`df = df.dropna()
+
+print(df)`, "Python")}
+
+
+<h2>
+    Filling Missing Values
+</h2>
+
+<p>
+    The <b>fillna()</b> method replaces missing values with
+    a specified value.
+</p>
+
+${codeBlock(`df["Marks"] = df["Marks"].fillna(0)
+
+print(df)`, "Python")}
+
+
+<h2>
+    Filling Missing Values with Mean
+</h2>
+
+${codeBlock(`data = {
+    "Name": ["Rahul", "Amit", "Priya"],
+    "Marks": [80, None, 90]
+}
+
+df = pd.DataFrame(data)
+
+mean_marks = df["Marks"].mean()
+
+df["Marks"] = df["Marks"].fillna(mean_marks)
+
+print(df)`, "Python")}
+
+
+<h2>
+    Renaming Columns
+</h2>
+
+<p>
+    The <b>rename()</b> method is used to change column names.
+</p>
+
+${codeBlock(`df = df.rename(
+    columns={
+        "Marks": "Score"
+    }
+)
+
+print(df)`, "Python")}
+
+
+<h2>
+    Changing Data Type
+</h2>
+
+<p>
+    The <b>astype()</b> method is used to convert a column
+    into another data type.
+</p>
+
+${codeBlock(`data = {
+    "Age": ["20", "21", "19"]
+}
+
+df = pd.DataFrame(data)
+
+df["Age"] = df["Age"].astype(int)
+
+print(df["Age"].dtype)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+int64
+</div>
+
+
+<h2>
+    Unique Values
+</h2>
+
+<p>
+    The <b>unique()</b> method returns the unique values
+    from a column.
+</p>
+
+${codeBlock(`data = {
+    "Course": [
+        "Python",
+        "Java",
+        "Python",
+        "C++"
+    ]
+}
+
+df = pd.DataFrame(data)
+
+print(df["Course"].unique())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+['Python' 'Java' 'C++']
+</div>
+
+
+<h2>
+    Checking Number of Rows and Columns
+</h2>
+
+<p>
+    The <b>shape</b> attribute returns the number of rows
+    and columns.
+</p>
+
+${codeBlock(`print(df.shape)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(4, 1)
+</div>
+
+
+<h2>
+    Reading CSV Data
+</h2>
+
+<p>
+    The <b>read_csv()</b> function is used to read data from
+    a CSV file.
+</p>
+
+${codeBlock(`import pandas as pd
+
+df = pd.read_csv("students.csv")
+
+print(df)`, "Python")}
+
+
+<h2>
+    Reading Excel Data
+</h2>
+
+<p>
+    The <b>read_excel()</b> function is used to read data
+    from an Excel file.
+</p>
+
+${codeBlock(`import pandas as pd
+
+df = pd.read_excel("students.xlsx")
+
+print(df)`, "Python")}
+
+
+<h2>
+    Saving Data to CSV
+</h2>
+
+<p>
+    The <b>to_csv()</b> method saves a DataFrame as a CSV file.
+</p>
+
+${codeBlock(`df.to_csv(
+    "students_output.csv",
+    index=False
+)`, "Python")}
+
+
+<h2>
+    Saving Data to Excel
+</h2>
+
+<p>
+    The <b>to_excel()</b> method saves a DataFrame as an
+    Excel file.
+</p>
+
+${codeBlock(`df.to_excel(
+    "students_output.xlsx",
+    index=False
+)`, "Python")}
+
+
+<h2>
+    Grouping Data
+</h2>
+
+<p>
+    The <b>groupby()</b> method is used to group data based
+    on a column.
+</p>
+
+${codeBlock(`data = {
+    "Department": [
+        "IT",
+        "HR",
+        "IT",
+        "HR",
+        "Sales"
+    ],
+    "Salary": [
+        40000,
+        35000,
+        50000,
+        45000,
+        30000
+    ]
+}
+
+df = pd.DataFrame(data)
+
+result = df.groupby("Department")["Salary"].mean()
+
+print(result)`, "Python")}
+
+
+<h2>
+    Combining DataFrames
+</h2>
+
+<p>
+    The <b>concat()</b> function combines multiple DataFrames.
+</p>
+
+${codeBlock(`df1 = pd.DataFrame({
+    "Name": ["Rahul", "Amit"]
+})
+
+df2 = pd.DataFrame({
+    "Name": ["Priya", "Rohan"]
+})
+
+result = pd.concat([df1, df2])
+
+print(result)`, "Python")}
+
+
+<h2>
+    Merging DataFrames
+</h2>
+
+<p>
+    The <b>merge()</b> function combines DataFrames using
+    a common column.
+</p>
+
+${codeBlock(`students = pd.DataFrame({
+    "ID": [1, 2, 3],
+    "Name": ["Rahul", "Amit", "Priya"]
+})
+
+marks = pd.DataFrame({
+    "ID": [1, 2, 3],
+    "Marks": [85, 78, 92]
+})
+
+result = pd.merge(
+    students,
+    marks,
+    on="ID"
+)
+
+print(result)`, "Python")}
+
+
+<h2>
+    Applying a Function
+</h2>
+
+<p>
+    The <b>apply()</b> method can be used to apply a function
+    to values in a column.
+</p>
+
+${codeBlock(`data = {
+    "Marks": [40, 55, 70, 85]
+}
+
+df = pd.DataFrame(data)
+
+def add_bonus(mark):
+    return mark + 5
+
+
+df["Final Marks"] = df["Marks"].apply(add_bonus)
+
+print(df)`, "Python")}
+
+
+<h2>
+    Practical Example: Student Data Analysis
+</h2>
+
+${codeBlock(`import pandas as pd
+
+data = {
+    "Name": ["Rahul", "Amit", "Priya", "Rohan", "Neha"],
+    "Age": [20, 21, 19, 22, 20],
+    "Marks": [85, 78, 92, 75, 88],
+    "Course": [
+        "Python",
+        "Java",
+        "Python",
+        "C++",
+        "Python"
+    ]
+}
+
+df = pd.DataFrame(data)
+
+
+print("Student Data")
+print(df)
+
+
+print("\\nAverage Marks:")
+print(df["Marks"].mean())
+
+
+print("\\nHighest Marks:")
+print(df["Marks"].max())
+
+
+print("\\nStudents with Marks above 80:")
+print(df[df["Marks"] > 80])
+
+
+print("\\nSorted by Marks:")
+print(df.sort_values(
+    "Marks",
+    ascending=False
+))`, "Python")}
+
+
+<h2>
+    Common Pandas Methods
+</h2>
+
+<table>
+    <tr>
+        <th>Method / Attribute</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>Series()</td>
+        <td>Creates a Series.</td>
+    </tr>
+    <tr>
+        <td>DataFrame()</td>
+        <td>Creates a DataFrame.</td>
+    </tr>
+    <tr>
+        <td>head()</td>
+        <td>Returns the first rows.</td>
+    </tr>
+    <tr>
+        <td>tail()</td>
+        <td>Returns the last rows.</td>
+    </tr>
+    <tr>
+        <td>info()</td>
+        <td>Displays DataFrame information.</td>
+    </tr>
+    <tr>
+        <td>describe()</td>
+        <td>Displays statistical information.</td>
+    </tr>
+    <tr>
+        <td>loc[]</td>
+        <td>Accesses data using labels.</td>
+    </tr>
+    <tr>
+        <td>iloc[]</td>
+        <td>Accesses data using positions.</td>
+    </tr>
+    <tr>
+        <td>drop()</td>
+        <td>Removes rows or columns.</td>
+    </tr>
+    <tr>
+        <td>sort_values()</td>
+        <td>Sorts data.</td>
+    </tr>
+    <tr>
+        <td>isnull()</td>
+        <td>Checks missing values.</td>
+    </tr>
+    <tr>
+        <td>fillna()</td>
+        <td>Fills missing values.</td>
+    </tr>
+    <tr>
+        <td>dropna()</td>
+        <td>Removes missing values.</td>
+    </tr>
+    <tr>
+        <td>groupby()</td>
+        <td>Groups data.</td>
+    </tr>
+    <tr>
+        <td>value_counts()</td>
+        <td>Counts unique values.</td>
+    </tr>
+    <tr>
+        <td>merge()</td>
+        <td>Merges DataFrames.</td>
+    </tr>
+    <tr>
+        <td>concat()</td>
+        <td>Combines DataFrames.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Pandas is mainly used for data analysis and manipulation.</li>
+    <li><b>Series</b> is a one-dimensional data structure.</li>
+    <li><b>DataFrame</b> is a two-dimensional data structure.</li>
+    <li>Use <b>read_csv()</b> to read CSV files.</li>
+    <li>Use <b>read_excel()</b> to read Excel files.</li>
+    <li>Use <b>to_csv()</b> and <b>to_excel()</b> to save data.</li>
+    <li>Use <b>loc[]</b> and <b>iloc[]</b> to access data.</li>
+    <li>Use conditions to filter rows.</li>
+    <li>Use <b>dropna()</b> and <b>fillna()</b> to handle missing values.</li>
+    <li>Use <b>groupby()</b> to perform grouped analysis.</li>
+    <li>Pandas works very well with NumPy and visualization libraries.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Pandas provides powerful tools for working with structured
+    data. Its Series and DataFrame structures make it easy to
+    store, filter, clean, analyze, transform, and export data.
+    Pandas is widely used in data analysis, data science,
+    machine learning, and business analytics.
+</p>`
 };
 
 
