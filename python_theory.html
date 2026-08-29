@@ -1093,6 +1093,14 @@ strong {
 
              </button>
 
+           <button
+            class="topic"
+            onclick="showTopic('inheritance', this)">
+
+         Inheritance 
+
+             </button>
+
 
           
 
@@ -12994,6 +13002,784 @@ Honda City
     object is an instance created from that class. Using classes
     allows programs to organize related data and behavior into
     reusable and structured components.
+</p>`,
+
+
+      inheritance : `<h1>
+    Inheritance
+</h1>
+
+<div class="subtitle">
+    Reuse properties and methods of an existing class in a new class.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is Inheritance?
+</h2>
+
+<p>
+    <b>Inheritance</b> is an Object-Oriented Programming concept
+    that allows one class to acquire the properties and methods
+    of another class.
+</p>
+
+<p>
+    The existing class is called the <b>Parent Class</b> or
+    <b>Base Class</b>, while the new class is called the
+    <b>Child Class</b> or <b>Derived Class</b>.
+</p>
+
+
+<h2>
+    Basic Inheritance
+</h2>
+
+<p>
+    A child class can inherit from a parent class by passing the
+    parent class name inside parentheses.
+</p>
+
+${codeBlock(`class Animal:
+
+    def eat(self):
+        print("Animal is eating")
+
+
+class Dog(Animal):
+
+    def bark(self):
+        print("Dog is barking")
+
+
+dog = Dog()
+
+dog.eat()
+dog.bark()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Animal is eating<br>
+Dog is barking
+</div>
+
+
+<h2>
+    Parent Class and Child Class
+</h2>
+
+${codeBlock(`class Vehicle:
+
+    def start(self):
+        print("Vehicle started")
+
+
+class Car(Vehicle):
+
+    def drive(self):
+        print("Car is driving")
+
+
+car = Car()
+
+car.start()
+car.drive()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Vehicle started<br>
+Car is driving
+</div>
+
+
+<h2>
+    Inheriting Attributes
+</h2>
+
+<p>
+    A child class can also use attributes defined in the
+    parent class.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name):
+        self.name = name
+
+
+class CollegeStudent(Student):
+
+    def show(self):
+        print("Name:", self.name)
+
+
+student = CollegeStudent("Rahul")
+
+student.show()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Name: Rahul
+</div>
+
+
+<h2>
+    Adding New Features to Child Class
+</h2>
+
+<p>
+    A child class can use inherited features and also define
+    its own attributes and methods.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name):
+        self.name = name
+
+    def display_name(self):
+        print("Name:", self.name)
+
+
+class CollegeStudent(Student):
+
+    def __init__(self, name, course):
+        super().__init__(name)
+        self.course = course
+
+    def display_course(self):
+        print("Course:", self.course)
+
+
+student = CollegeStudent("Rahul", "Python")
+
+student.display_name()
+student.display_course()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Name: Rahul<br>
+Course: Python
+</div>
+
+
+<h2>
+    The super() Function
+</h2>
+
+<p>
+    The <b>super()</b> function is used to call methods or the
+    constructor of the parent class from the child class.
+</p>
+
+${codeBlock(`class Person:
+
+    def __init__(self, name):
+        self.name = name
+
+
+class Student(Person):
+
+    def __init__(self, name, course):
+        super().__init__(name)
+        self.course = course
+
+
+student = Student("Rahul", "Python")
+
+print(student.name)
+print(student.course)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+Python
+</div>
+
+
+<h2>
+    Method Overriding
+</h2>
+
+<p>
+    A child class can provide its own implementation of a method
+    that already exists in the parent class. This is called
+    <b>method overriding</b>.
+</p>
+
+${codeBlock(`class Animal:
+
+    def sound(self):
+        print("Animal makes a sound")
+
+
+class Dog(Animal):
+
+    def sound(self):
+        print("Dog barks")
+
+
+animal = Animal()
+dog = Dog()
+
+animal.sound()
+dog.sound()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Animal makes a sound<br>
+Dog barks
+</div>
+
+
+<h2>
+    Using Parent Method with super()
+</h2>
+
+<p>
+    A child class can override a method while still calling the
+    original parent method using <b>super()</b>.
+</p>
+
+${codeBlock(`class Animal:
+
+    def sound(self):
+        print("Animal makes a sound")
+
+
+class Dog(Animal):
+
+    def sound(self):
+        super().sound()
+        print("Dog barks")
+
+
+dog = Dog()
+
+dog.sound()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Animal makes a sound<br>
+Dog barks
+</div>
+
+
+<h2>
+    Single Inheritance
+</h2>
+
+<p>
+    When one child class inherits from one parent class, it is
+    called <b>single inheritance</b>.
+</p>
+
+${codeBlock(`class Parent:
+
+    def show_parent(self):
+        print("Parent class")
+
+
+class Child(Parent):
+
+    def show_child(self):
+        print("Child class")
+
+
+obj = Child()
+
+obj.show_parent()
+obj.show_child()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Parent class<br>
+Child class
+</div>
+
+
+<h2>
+    Multilevel Inheritance
+</h2>
+
+<p>
+    When a class inherits from another child class, creating a
+    chain of inheritance, it is called <b>multilevel inheritance</b>.
+</p>
+
+${codeBlock(`class Grandparent:
+
+    def show_grandparent(self):
+        print("Grandparent")
+
+
+class Parent(Grandparent):
+
+    def show_parent(self):
+        print("Parent")
+
+
+class Child(Parent):
+
+    def show_child(self):
+        print("Child")
+
+
+obj = Child()
+
+obj.show_grandparent()
+obj.show_parent()
+obj.show_child()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Grandparent<br>
+Parent<br>
+Child
+</div>
+
+
+<h2>
+    Multiple Inheritance
+</h2>
+
+<p>
+    When one child class inherits from more than one parent class,
+    it is called <b>multiple inheritance</b>.
+</p>
+
+${codeBlock(`class Father:
+
+    def father_method(self):
+        print("Father method")
+
+
+class Mother:
+
+    def mother_method(self):
+        print("Mother method")
+
+
+class Child(Father, Mother):
+
+    def child_method(self):
+        print("Child method")
+
+
+obj = Child()
+
+obj.father_method()
+obj.mother_method()
+obj.child_method()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Father method<br>
+Mother method<br>
+Child method
+</div>
+
+
+<h2>
+    Hierarchical Inheritance
+</h2>
+
+<p>
+    When multiple child classes inherit from the same parent class,
+    it is called <b>hierarchical inheritance</b>.
+</p>
+
+${codeBlock(`class Animal:
+
+    def eat(self):
+        print("Animal is eating")
+
+
+class Dog(Animal):
+
+    def bark(self):
+        print("Dog is barking")
+
+
+class Cat(Animal):
+
+    def meow(self):
+        print("Cat is meowing")
+
+
+dog = Dog()
+cat = Cat()
+
+dog.eat()
+dog.bark()
+
+cat.eat()
+cat.meow()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Animal is eating<br>
+Dog is barking<br>
+Animal is eating<br>
+Cat is meowing
+</div>
+
+
+<h2>
+    Hybrid Inheritance
+</h2>
+
+<p>
+    <b>Hybrid inheritance</b> is a combination of two or more
+    types of inheritance.
+</p>
+
+${codeBlock(`class A:
+
+    def method_a(self):
+        print("Class A")
+
+
+class B(A):
+
+    def method_b(self):
+        print("Class B")
+
+
+class C(A):
+
+    def method_c(self):
+        print("Class C")
+
+
+class D(B, C):
+
+    def method_d(self):
+        print("Class D")
+
+
+obj = D()
+
+obj.method_a()
+obj.method_b()
+obj.method_c()
+obj.method_d()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Class A<br>
+Class B<br>
+Class C<br>
+Class D
+</div>
+
+
+<h2>
+    Checking Inheritance with isinstance()
+</h2>
+
+<p>
+    The <b>isinstance()</b> function checks whether an object
+    belongs to a particular class or its inherited classes.
+</p>
+
+${codeBlock(`class Animal:
+    pass
+
+
+class Dog(Animal):
+    pass
+
+
+dog = Dog()
+
+print(isinstance(dog, Dog))
+print(isinstance(dog, Animal))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+True
+</div>
+
+
+<h2>
+    Checking Inheritance with issubclass()
+</h2>
+
+<p>
+    The <b>issubclass()</b> function checks whether one class
+    is derived from another class.
+</p>
+
+${codeBlock(`class Animal:
+    pass
+
+
+class Dog(Animal):
+    pass
+
+
+print(issubclass(Dog, Animal))
+print(issubclass(Animal, Dog))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+False
+</div>
+
+
+<h2>
+    Inheritance with Methods and Attributes
+</h2>
+
+${codeBlock(`class Employee:
+
+    company = "ABC Ltd."
+
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    def display(self):
+        print("Name:", self.name)
+        print("Salary:", self.salary)
+
+
+class Manager(Employee):
+
+    def show_role(self):
+        print("Role: Manager")
+
+
+manager = Manager("Rahul", 50000)
+
+print(manager.company)
+
+manager.display()
+manager.show_role()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+ABC Ltd.<br>
+Name: Rahul<br>
+Salary: 50000<br>
+Role: Manager
+</div>
+
+
+<h2>
+    Practical Example: Bank Account
+</h2>
+
+<p>
+    Inheritance can be useful when multiple classes share common
+    functionality.
+</p>
+
+${codeBlock(`class BankAccount:
+
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+
+    def display_balance(self):
+        print("Balance:", self.balance)
+
+
+class SavingsAccount(BankAccount):
+
+    def add_interest(self):
+        self.balance += self.balance * 0.05
+
+
+account = SavingsAccount("Rahul", 10000)
+
+account.deposit(2000)
+account.add_interest()
+
+account.display_balance()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+12600.0
+</div>
+
+
+<h2>
+    Practical Example: Vehicles
+</h2>
+
+${codeBlock(`class Vehicle:
+
+    def __init__(self, brand):
+        self.brand = brand
+
+    def start(self):
+        print(self.brand, "has started")
+
+
+class Car(Vehicle):
+
+    def drive(self):
+        print(self.brand, "is driving")
+
+
+class Bike(Vehicle):
+
+    def ride(self):
+        print(self.brand, "is riding")
+
+
+car = Car("Toyota")
+bike = Bike("Honda")
+
+car.start()
+car.drive()
+
+bike.start()
+bike.ride()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Toyota has started<br>
+Toyota is driving<br>
+Honda has started<br>
+Honda is riding
+</div>
+
+
+<h2>
+    Advantages of Inheritance
+</h2>
+
+<ul>
+    <li>Promotes code reusability.</li>
+    <li>Reduces duplicate code.</li>
+    <li>Allows existing classes to be extended.</li>
+    <li>Makes programs easier to organize.</li>
+    <li>Supports method overriding.</li>
+    <li>Helps represent relationships between objects.</li>
+</ul>
+
+
+<h2>
+    Types of Inheritance
+</h2>
+
+<table>
+    <tr>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>Single</td>
+        <td>One child inherits from one parent.</td>
+    </tr>
+    <tr>
+        <td>Multiple</td>
+        <td>One child inherits from multiple parents.</td>
+    </tr>
+    <tr>
+        <td>Multilevel</td>
+        <td>A class inherits through a chain of classes.</td>
+    </tr>
+    <tr>
+        <td>Hierarchical</td>
+        <td>Multiple child classes inherit from one parent.</td>
+    </tr>
+    <tr>
+        <td>Hybrid</td>
+        <td>Combination of two or more inheritance types.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Inheritance allows a child class to reuse a parent class.</li>
+    <li>The parent class is also called the base class.</li>
+    <li>The child class is also called the derived class.</li>
+    <li>Use parentheses after the child class name to inherit from a class.</li>
+    <li>The <b>super()</b> function can access parent class functionality.</li>
+    <li>A child class can override a parent method.</li>
+    <li>Python supports single, multiple, multilevel, hierarchical, and hybrid inheritance.</li>
+    <li><b>isinstance()</b> checks whether an object belongs to a class.</li>
+    <li><b>issubclass()</b> checks whether one class inherits from another.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Inheritance allows one class to reuse and extend the properties
+    and methods of another class. It improves code reusability and
+    helps create a clear relationship between classes. Python
+    supports different forms of inheritance and provides features
+    such as <b>super()</b>, method overriding, <b>isinstance()</b>,
+    and <b>issubclass()</b> to work with inherited classes.
 </p>`
 };
 
