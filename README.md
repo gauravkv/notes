@@ -156,6 +156,15 @@ Or simply open any `.html` file directly in your browser — no server required.
 
 ---
 
+## Contributors
+
+| Name | GitHub |
+|------|--------|
+| Gaurav | [@gauravkv](https://github.com/gauravkv) |
+| Tirth Patel | [@TirthWillLearn](https://github.com/TirthWillLearn) |
+
+---
+
 ## License
 
 This project is maintained by **Cursor Computers Academy**.
