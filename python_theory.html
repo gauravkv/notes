@@ -1127,6 +1127,14 @@ strong {
 
              </button>
 
+            <button
+            class="topic"
+            onclick="showTopic('numpy_data', this)">
+
+       Numpy
+
+             </button>
+
 
           
 
@@ -15243,7 +15251,1263 @@ connection.close()`, "Python")}
     inserting, retrieving, updating, and deleting data. This makes
     Python with MySQL useful for developing database-driven
     applications.
-</p>`
+</p>`,
+
+      numpy_data : `<h1>
+    NumPy
+</h1>
+
+<div class="subtitle">
+    Perform fast numerical calculations and work with arrays in Python.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is NumPy?
+</h2>
+
+<p>
+    <b>NumPy</b> stands for <b>Numerical Python</b>. It is a popular
+    Python library used for numerical calculations, scientific
+    computing, and working with arrays.
+</p>
+
+<p>
+    NumPy provides a powerful data structure called an
+    <b>ndarray</b>, which allows us to efficiently store and
+    process large amounts of numerical data.
+</p>
+
+
+<h2>
+    Installing NumPy
+</h2>
+
+<p>
+    NumPy can be installed using pip.
+</p>
+
+${codeBlock(`pip install numpy`, "Command")}
+
+
+<h2>
+    Importing NumPy
+</h2>
+
+<p>
+    NumPy is commonly imported using the alias <b>np</b>.
+</p>
+
+${codeBlock(`import numpy as np`, "Python")}
+
+
+<h2>
+    Creating a NumPy Array
+</h2>
+
+<p>
+    The <b>np.array()</b> function is used to create a NumPy array.
+</p>
+
+${codeBlock(`import numpy as np
+
+numbers = np.array([10, 20, 30, 40, 50])
+
+print(numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[10 20 30 40 50]
+</div>
+
+
+<h2>
+    Accessing Array Elements
+</h2>
+
+<p>
+    Array elements can be accessed using their index.
+    Indexing starts from <b>0</b>.
+</p>
+
+${codeBlock(`import numpy as np
+
+numbers = np.array([10, 20, 30, 40, 50])
+
+print(numbers[0])
+print(numbers[2])
+print(numbers[4])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+10<br>
+30<br>
+50
+</div>
+
+
+<h2>
+    Negative Indexing
+</h2>
+
+<p>
+    Negative indexes access elements from the end of the array.
+</p>
+
+${codeBlock(`import numpy as np
+
+numbers = np.array([10, 20, 30, 40, 50])
+
+print(numbers[-1])
+print(numbers[-2])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+50<br>
+40
+</div>
+
+
+<h2>
+    Array Slicing
+</h2>
+
+<p>
+    Slicing is used to select a range of elements from an array.
+</p>
+
+${codeBlock(`import numpy as np
+
+numbers = np.array([10, 20, 30, 40, 50])
+
+print(numbers[1:4])
+print(numbers[:3])
+print(numbers[2:])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[20 30 40]<br>
+[10 20 30]<br>
+[30 40 50]
+</div>
+
+
+<h2>
+    Changing Array Elements
+</h2>
+
+<p>
+    Array elements can be changed using their index.
+</p>
+
+${codeBlock(`import numpy as np
+
+numbers = np.array([10, 20, 30, 40])
+
+numbers[1] = 25
+
+print(numbers)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[10 25 30 40]
+</div>
+
+
+<h2>
+    One-Dimensional Array
+</h2>
+
+<p>
+    An array containing a single row of elements is called a
+    <b>one-dimensional array</b>.
+</p>
+
+${codeBlock(`import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+
+print(arr)
+print(arr.ndim)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[1 2 3 4 5]<br>
+1
+</div>
+
+
+<h2>
+    Two-Dimensional Array
+</h2>
+
+<p>
+    A two-dimensional array contains rows and columns.
+</p>
+
+${codeBlock(`import numpy as np
+
+arr = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+
+print(arr)
+print(arr.ndim)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[[1 2 3]<br>
+ [4 5 6]]<br>
+2
+</div>
+
+
+<h2>
+    Accessing Elements in a 2D Array
+</h2>
+
+<p>
+    Two indexes are used to access an element:
+    <b>row</b> and <b>column</b>.
+</p>
+
+${codeBlock(`import numpy as np
+
+arr = np.array([
+    [10, 20, 30],
+    [40, 50, 60]
+])
+
+print(arr[0, 1])
+print(arr[1, 2])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+20<br>
+60
+</div>
+
+
+<h2>
+    Creating a 3D Array
+</h2>
+
+${codeBlock(`import numpy as np
+
+arr = np.array([
+    [
+        [1, 2],
+        [3, 4]
+    ],
+    [
+        [5, 6],
+        [7, 8]
+    ]
+])
+
+print(arr)
+print(arr.ndim)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+2
+</div>
+
+
+<h2>
+    Checking Array Dimensions
+</h2>
+
+<p>
+    The <b>ndim</b> attribute returns the number of dimensions
+    of an array.
+</p>
+
+${codeBlock(`import numpy as np
+
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([[1, 2], [3, 4]])
+
+print(arr1.ndim)
+print(arr2.ndim)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1<br>
+2
+</div>
+
+
+<h2>
+    Checking Array Shape
+</h2>
+
+<p>
+    The <b>shape</b> attribute returns the size of each dimension.
+</p>
+
+${codeBlock(`import numpy as np
+
+arr = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+
+print(arr.shape)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(2, 3)
+</div>
+
+
+<h2>
+    Checking Number of Elements
+</h2>
+
+<p>
+    The <b>size</b> attribute returns the total number of elements.
+</p>
+
+${codeBlock(`import numpy as np
+
+arr = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+
+print(arr.size)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+6
+</div>
+
+
+<h2>
+    Checking Data Type
+</h2>
+
+<p>
+    The <b>dtype</b> attribute returns the data type of the
+    elements in an array.
+</p>
+
+${codeBlock(`import numpy as np
+
+arr = np.array([10, 20, 30])
+
+print(arr.dtype)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+int64
+</div>
+
+
+<h2>
+    Specifying Data Type
+</h2>
+
+<p>
+    The <b>dtype</b> parameter can be used to specify the data type.
+</p>
+
+${codeBlock(`import numpy as np
+
+arr = np.array([10, 20, 30], dtype=float)
+
+print(arr)
+print(arr.dtype)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[10. 20. 30.]<br>
+float64
+</div>
+
+
+<h2>
+    zeros()
+</h2>
+
+<p>
+    The <b>zeros()</b> function creates an array filled with zeros.
+</p>
+
+${codeBlock(`import numpy as np
+
+arr = np.zeros(5)
+
+print(arr)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[0. 0. 0. 0. 0.]
+</div>
+
+
+<h2>
+    ones()
+</h2>
+
+<p>
+    The <b>ones()</b> function creates an array filled with ones.
+</p>
+
+${codeBlock(`import numpy as np
+
+arr = np.ones(5)
+
+print(arr)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[1. 1. 1. 1. 1.]
+</div>
+
+
+<h2>
+    zeros() with 2D Array
+</h2>
+
+${codeBlock(`import numpy as np
+
+arr = np.zeros((2, 3))
+
+print(arr)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[[0. 0. 0.]<br>
+ [0. 0. 0.]]
+</div>
+
+
+<h2>
+    arange()
+</h2>
+
+<p>
+    The <b>arange()</b> function creates an array containing
+    evenly spaced values within a given range.
+</p>
+
+${codeBlock(`import numpy as np
+
+arr = np.arange(1, 10)
+
+print(arr)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[1 2 3 4 5 6 7 8 9]
+</div>
+
+
+<h2>
+    arange() with Step
+</h2>
+
+${codeBlock(`import numpy as np
+
+arr = np.arange(0, 20, 5)
+
+print(arr)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[ 0  5 10 15]
+</div>
+
+
+<h2>
+    linspace()
+</h2>
+
+<p>
+    The <b>linspace()</b> function creates a specified number
+    of evenly spaced values between two numbers.
+</p>
+
+${codeBlock(`import numpy as np
+
+arr = np.linspace(0, 10, 5)
+
+print(arr)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[ 0.   2.5  5.   7.5 10. ]
+</div>
+
+
+<h2>
+    Reshaping an Array
+</h2>
+
+<p>
+    The <b>reshape()</b> method changes the shape of an array
+    without changing its data.
+</p>
+
+${codeBlock(`import numpy as np
+
+arr = np.arange(1, 7)
+
+new_arr = arr.reshape(2, 3)
+
+print(new_arr)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[[1 2 3]<br>
+ [4 5 6]]
+</div>
+
+
+<h2>
+    Flattening an Array
+</h2>
+
+<p>
+    The <b>flatten()</b> method converts a multi-dimensional
+    array into a one-dimensional array.
+</p>
+
+${codeBlock(`import numpy as np
+
+arr = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+
+new_arr = arr.flatten()
+
+print(new_arr)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[1 2 3 4 5 6]
+</div>
+
+
+<h2>
+    Array Addition
+</h2>
+
+<p>
+    NumPy allows mathematical operations to be performed
+    directly on arrays.
+</p>
+
+${codeBlock(`import numpy as np
+
+a = np.array([10, 20, 30])
+b = np.array([1, 2, 3])
+
+print(a + b)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[11 22 33]
+</div>
+
+
+<h2>
+    Array Subtraction
+</h2>
+
+${codeBlock(`import numpy as np
+
+a = np.array([10, 20, 30])
+b = np.array([1, 2, 3])
+
+print(a - b)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[ 9 18 27]
+</div>
+
+
+<h2>
+    Array Multiplication
+</h2>
+
+${codeBlock(`import numpy as np
+
+a = np.array([10, 20, 30])
+b = np.array([2, 3, 4])
+
+print(a * b)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[ 20  60 120]
+</div>
+
+
+<h2>
+    Array Division
+</h2>
+
+${codeBlock(`import numpy as np
+
+a = np.array([10, 20, 30])
+b = np.array([2, 4, 5])
+
+print(a / b)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[5. 5. 6.]
+</div>
+
+
+<h2>
+    Mathematical Operations with a Scalar
+</h2>
+
+<p>
+    A scalar value can be directly applied to every element
+    of a NumPy array.
+</p>
+
+${codeBlock(`import numpy as np
+
+numbers = np.array([10, 20, 30])
+
+print(numbers + 5)
+print(numbers * 2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[15 25 35]<br>
+[20 40 60]
+</div>
+
+
+<h2>
+    Sum of Elements
+</h2>
+
+<p>
+    The <b>sum()</b> function calculates the total of all
+    elements in an array.
+</p>
+
+${codeBlock(`import numpy as np
+
+numbers = np.array([10, 20, 30, 40])
+
+print(np.sum(numbers))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+100
+</div>
+
+
+<h2>
+    Minimum and Maximum
+</h2>
+
+${codeBlock(`import numpy as np
+
+numbers = np.array([10, 50, 20, 80, 30])
+
+print(np.min(numbers))
+print(np.max(numbers))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+10<br>
+80
+</div>
+
+
+<h2>
+    Mean
+</h2>
+
+<p>
+    The <b>mean()</b> function calculates the average of
+    the elements.
+</p>
+
+${codeBlock(`import numpy as np
+
+marks = np.array([70, 80, 90, 60])
+
+print(np.mean(marks))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+75.0
+</div>
+
+
+<h2>
+    Median
+</h2>
+
+${codeBlock(`import numpy as np
+
+numbers = np.array([10, 20, 30, 40, 50])
+
+print(np.median(numbers))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30.0
+</div>
+
+
+<h2>
+    Standard Deviation
+</h2>
+
+<p>
+    The <b>std()</b> function calculates the standard deviation
+    of an array.
+</p>
+
+${codeBlock(`import numpy as np
+
+numbers = np.array([10, 20, 30, 40, 50])
+
+print(np.std(numbers))`, "Python")}
+
+
+<h2>
+    Sorting an Array
+</h2>
+
+<p>
+    The <b>sort()</b> function returns the sorted values of an array.
+</p>
+
+${codeBlock(`import numpy as np
+
+numbers = np.array([50, 10, 40, 20, 30])
+
+print(np.sort(numbers))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[10 20 30 40 50]
+</div>
+
+
+<h2>
+    Searching in an Array
+</h2>
+
+<p>
+    The <b>where()</b> function returns the indexes where
+    a condition is true.
+</p>
+
+${codeBlock(`import numpy as np
+
+numbers = np.array([10, 20, 30, 20, 40])
+
+result = np.where(numbers == 20)
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(array([1, 3]),)
+</div>
+
+
+<h2>
+    Filtering an Array
+</h2>
+
+<p>
+    Boolean conditions can be used to filter NumPy arrays.
+</p>
+
+${codeBlock(`import numpy as np
+
+numbers = np.array([10, 20, 30, 40, 50])
+
+result = numbers[numbers > 25]
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[30 40 50]
+</div>
+
+
+<h2>
+    Random Numbers
+</h2>
+
+<p>
+    NumPy provides the <b>random</b> module for generating
+    random numbers.
+</p>
+
+${codeBlock(`import numpy as np
+
+numbers = np.random.randint(1, 101, 5)
+
+print(numbers)`, "Python")}
+
+<p>
+    The output will contain five random integers between
+    <b>1</b> and <b>100</b>.
+</p>
+
+
+<h2>
+    Random Float Values
+</h2>
+
+${codeBlock(`import numpy as np
+
+numbers = np.random.rand(5)
+
+print(numbers)`, "Python")}
+
+<p>
+    <b>rand()</b> generates random floating-point values
+    between 0 and 1.
+</p>
+
+
+<h2>
+    Matrix Multiplication
+</h2>
+
+<p>
+    NumPy provides <b>matmul()</b> for matrix multiplication.
+</p>
+
+${codeBlock(`import numpy as np
+
+a = np.array([
+    [1, 2],
+    [3, 4]
+])
+
+b = np.array([
+    [5, 6],
+    [7, 8]
+])
+
+result = np.matmul(a, b)
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[[19 22]<br>
+ [43 50]]
+</div>
+
+
+<h2>
+    Transpose of an Array
+</h2>
+
+<p>
+    The <b>T</b> attribute can be used to transpose a
+    two-dimensional array.
+</p>
+
+${codeBlock(`import numpy as np
+
+arr = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+
+print(arr.T)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[[1 4]<br>
+ [2 5]<br>
+ [3 6]]
+</div>
+
+
+<h2>
+    Joining Arrays
+</h2>
+
+<p>
+    The <b>concatenate()</b> function combines arrays.
+</p>
+
+${codeBlock(`import numpy as np
+
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+result = np.concatenate((a, b))
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[1 2 3 4 5 6]
+</div>
+
+
+<h2>
+    Splitting Arrays
+</h2>
+
+<p>
+    The <b>split()</b> function divides an array into multiple
+    smaller arrays.
+</p>
+
+${codeBlock(`import numpy as np
+
+numbers = np.array([1, 2, 3, 4, 5, 6])
+
+result = np.split(numbers, 3)
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[array([1, 2]), array([3, 4]), array([5, 6])]
+</div>
+
+
+<h2>
+    Copying an Array
+</h2>
+
+<p>
+    The <b>copy()</b> method creates an independent copy of
+    an array.
+</p>
+
+${codeBlock(`import numpy as np
+
+original = np.array([10, 20, 30])
+
+copy = original.copy()
+
+copy[0] = 100
+
+print(original)
+print(copy)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[10 20 30]<br>
+[100  20  30]
+</div>
+
+
+<h2>
+    Practical Example: Student Marks
+</h2>
+
+<p>
+    NumPy can be used to perform calculations on student marks.
+</p>
+
+${codeBlock(`import numpy as np
+
+marks = np.array([75, 80, 65, 90, 85])
+
+print("Total:", np.sum(marks))
+print("Average:", np.mean(marks))
+print("Highest:", np.max(marks))
+print("Lowest:", np.min(marks))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Total: 395<br>
+Average: 79.0<br>
+Highest: 90<br>
+Lowest: 65
+</div>
+
+
+<h2>
+    Practical Example: Sales Data
+</h2>
+
+${codeBlock(`import numpy as np
+
+sales = np.array([12000, 15000, 18000, 14000, 20000])
+
+print("Total Sales:", np.sum(sales))
+print("Average Sales:", np.mean(sales))
+print("Highest Sales:", np.max(sales))
+print("Lowest Sales:", np.min(sales))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Total Sales: 79000<br>
+Average Sales: 15800.0<br>
+Highest Sales: 20000<br>
+Lowest Sales: 12000
+</div>
+
+
+<h2>
+    NumPy Array vs Python List
+</h2>
+
+<table>
+    <tr>
+        <th>Python List</th>
+        <th>NumPy Array</th>
+    </tr>
+    <tr>
+        <td>General-purpose collection.</td>
+        <td>Designed for numerical operations.</td>
+    </tr>
+    <tr>
+        <td>Usually slower for large numerical calculations.</td>
+        <td>Generally faster for numerical calculations.</td>
+    </tr>
+    <tr>
+        <td>Supports different data types.</td>
+        <td>Usually stores elements of a common data type.</td>
+    </tr>
+    <tr>
+        <td>Basic mathematical operations require loops or other logic.</td>
+        <td>Supports vectorized mathematical operations.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Common NumPy Functions
+</h2>
+
+<table>
+    <tr>
+        <th>Function / Attribute</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>array()</td>
+        <td>Creates a NumPy array.</td>
+    </tr>
+    <tr>
+        <td>zeros()</td>
+        <td>Creates an array filled with zeros.</td>
+    </tr>
+    <tr>
+        <td>ones()</td>
+        <td>Creates an array filled with ones.</td>
+    </tr>
+    <tr>
+        <td>arange()</td>
+        <td>Creates values within a range.</td>
+    </tr>
+    <tr>
+        <td>linspace()</td>
+        <td>Creates evenly spaced values.</td>
+    </tr>
+    <tr>
+        <td>reshape()</td>
+        <td>Changes the shape of an array.</td>
+    </tr>
+    <tr>
+        <td>flatten()</td>
+        <td>Converts an array into one dimension.</td>
+    </tr>
+    <tr>
+        <td>sum()</td>
+        <td>Calculates the total.</td>
+    </tr>
+    <tr>
+        <td>mean()</td>
+        <td>Calculates the average.</td>
+    </tr>
+    <tr>
+        <td>min()</td>
+        <td>Finds the minimum value.</td>
+    </tr>
+    <tr>
+        <td>max()</td>
+        <td>Finds the maximum value.</td>
+    </tr>
+    <tr>
+        <td>sort()</td>
+        <td>Sorts array elements.</td>
+    </tr>
+    <tr>
+        <td>where()</td>
+        <td>Finds indexes based on a condition.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>NumPy stands for <b>Numerical Python</b>.</li>
+    <li>Import NumPy using <b>import numpy as np</b>.</li>
+    <li>NumPy's main data structure is the <b>ndarray</b>.</li>
+    <li>Use <b>array()</b> to create an array.</li>
+    <li>Use <b>shape</b> to check rows and columns.</li>
+    <li>Use <b>ndim</b> to check the number of dimensions.</li>
+    <li>Use <b>size</b> to find the total number of elements.</li>
+    <li>Use <b>dtype</b> to check the data type.</li>
+    <li>NumPy supports vectorized mathematical operations.</li>
+    <li>NumPy is widely used in data science, machine learning, and scientific computing.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    NumPy is a powerful Python library for numerical computing.
+    It provides efficient arrays and functions for mathematical
+    operations, statistics, array manipulation, random number
+    generation, and matrix calculations. NumPy is an important
+    foundation for libraries such as Pandas and many machine
+    learning tools.
+</p>` 
 };
 
 
