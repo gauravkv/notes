@@ -1,0 +1,6033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Core Java Theory - Cursor Computers Academy</title>
+
+
+<style>
+
+/* SITE NAV */
+.site-nav {
+    background: #ffffff; border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.site-nav-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    position: relative;
+}
+.site-nav-links {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+.site-nav-link {
+    color: #374151;
+    text-decoration: none;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+.site-nav-link:hover, .site-nav-link.active {
+    color: #4f46e5;
+    background: #f0f5ff;
+}
+.site-nav-dropdown {
+    position: relative;
+}
+.site-nav-menu {
+    display: none; border: 1px solid #e5e7eb;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #ffffff;
+    min-width: 160px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 0 0 8px 8px;
+    z-index: 1001;
+}
+.site-nav-dropdown:hover .site-nav-menu {
+    display: block;
+}
+.site-nav-menu a { border-bottom: 1px solid #f3f4f6;
+    display: block;
+    color: #374151;
+    text-decoration: none;
+    padding: 11px 18px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+.site-nav-menu a:hover {
+    background: #f0f5ff;
+    color: #4f46e5;
+}
+.site-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: #374151;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 12px;
+    margin-left: auto;
+}
+@media (max-width: 600px) {
+    .site-hamburger { display: block; }
+            .site-nav-brand { display: block; flex: 1; }
+    .site-nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #ffffff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        z-index: 1002;
+    }
+    .site-nav-links.open { display: flex; }
+    .site-nav-link { text-align: left; width: 100%; display: block; border-bottom: 1px solid #e5e7eb; }
+    .site-nav-menu {
+        position: static;
+        box-shadow: none;
+        border-radius: 0;
+    }
+    .site-nav-menu a { border-bottom: 1px solid #f3f4f6; padding-left: 36px; }
+    .site-nav-dropdown { width: 100%; } .site-nav-dropdown:hover .site-nav-menu { display: none; }
+    .site-nav-dropdown.open .site-nav-menu { display: block; }
+}
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+
+    background: #f5f7fa;
+
+    color: #252a34;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+
+    height: 64px;
+
+    background: linear-gradient(135deg, #172554, #2563eb);
+
+    border-bottom: none;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    position: sticky;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 100;
+}
+
+
+.logo {
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+
+.language {
+
+    font-size: 14px;
+
+    color: rgba(255,255,255,0.85);
+}
+
+
+/* =====================================================
+   MOBILE MENU BUTTON
+===================================================== */
+
+.menu-btn {
+
+    display: none;
+
+    border: none;
+
+    background: rgba(255,255,255,0.2);
+
+    color: #ffffff;
+
+    padding: 8px 12px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   MAIN LAYOUT
+===================================================== */
+
+.main {
+
+    display: flex;
+
+    position: fixed;
+
+    top: 64px;
+
+    bottom: 0;
+
+    left: 0;
+
+    right: 0;
+}
+
+
+/* =====================================================
+   LEFT SIDEBAR
+===================================================== */
+
+.sidebar {
+
+    width: 18%;
+
+    min-width: 150px;
+
+    background: #ffffff;
+
+    border-right: 1px solid #e2e6ed;
+
+    overflow-y: auto;
+
+    padding: 25px 15px;
+}
+
+
+.sidebar-title {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #8a93a3;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    padding: 0 12px;
+
+    margin-bottom: 12px;
+}
+
+
+/* =====================================================
+   TOPIC BUTTON
+===================================================== */
+
+.topic {
+
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    text-align: left;
+
+    padding: 12px 14px;
+
+    margin-bottom: 4px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    color: #505866;
+
+    font-size: 14px;
+
+    transition: all 0.2s;
+}
+
+
+.topic:hover {
+
+    background: #f3f4ff;
+
+    color: #4f46e5;
+}
+
+
+.topic.active {
+
+    background: rgba(255,255,255,0.2);
+
+    color: #ffffff;
+
+
+}
+
+
+/* =====================================================
+   RIGHT CONTENT AREA
+===================================================== */
+
+.content-area {
+
+    width: 82%;
+
+    overflow-y: auto;
+
+    padding: 2px;
+}
+
+
+/* =====================================================
+   CONTENT CARD
+===================================================== */
+
+.content {
+
+    width: min(1600px, 100%);
+
+    margin: 0 10;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e6ed;
+
+    border-radius: 14px;
+
+    padding: 45px;
+
+    box-shadow:
+        0 8px 30px rgba(30, 36, 48, 0.06);
+}
+
+
+/* =====================================================
+   TYPOGRAPHY
+===================================================== */
+
+h1 {
+
+    margin: 0;
+
+    font-size: 36px;
+
+    line-height: 1.2;
+
+    color: #202532;
+}
+
+
+.subtitle {
+
+    margin-top: 10px;
+
+    color: #687386;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+
+.divider {
+
+    height: 1px;
+
+    background: #e5e8ee;
+
+    margin: 28px 0;
+}
+
+
+h2 {
+
+    font-size: 24px;
+
+    margin-top: 32px;
+
+    margin-bottom: 10px;
+
+    color: #252a34;
+}
+
+
+p {
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    color: #3f4652;
+
+    margin: 12px 0;
+}
+
+
+strong {
+
+    color: #303744;
+}
+
+
+/* =====================================================
+   LIST
+===================================================== */
+
+.topic-list {
+
+    padding-left: 22px;
+
+    color: #3f4652;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+
+.topic-list li {
+
+    margin-bottom: 2px;
+}
+
+
+/* =====================================================
+   CODE HEADER
+===================================================== */
+
+.code-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: #171b24;
+
+    color: #aeb6c5;
+
+    padding: 10px 15px;
+
+    border-radius: 9px 9px 0 0;
+
+    font-size: 13px;
+
+    margin-top: 20px;
+}
+
+
+/* =====================================================
+   COPY BUTTON
+===================================================== */
+
+.copy-btn {
+
+    border: none;
+
+    background: #292f3c;
+
+    color: #dce1ea;
+
+    padding: 6px 11px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    transition: 0.2s;
+}
+
+
+.copy-btn:hover {
+
+    background: #3a4252;
+}
+
+
+/* =====================================================
+   CODE BOX
+===================================================== */
+
+.code-box {
+
+    background: #1e2430;
+
+    padding: 20px;
+
+    border-radius: 0 0 9px 9px;
+
+    overflow-x: auto;
+
+    box-shadow:
+        0 8px 20px rgba(20, 25, 35, 0.12);
+}
+
+
+.code-box pre {
+
+    margin: 0;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    color: #e6eaf0;
+
+    white-space: pre;
+}
+
+
+/* =====================================================
+   SYNTAX COLORS
+===================================================== */
+
+.keyword {
+    color: #c792ea;
+}
+
+.function {
+    color: #82aaff;
+}
+
+.string {
+    color: #c3e88d;
+}
+
+.number {
+    color: #f78c6c;
+}
+
+.comment {
+    color: #697386;
+}
+
+
+/* =====================================================
+   OUTPUT
+===================================================== */
+
+.output-title {
+
+    margin-top: 25px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #687386;
+}
+
+
+.output {
+
+    margin-top: 8px;
+
+    background: #f8f9fb;
+
+    border: 1px solid #e2e6ed;
+
+    border-radius: 8px;
+
+    padding: 14px 18px;
+
+    font-family:
+        Consolas,
+        monospace;
+
+    font-size: 14px;
+
+    color: #303744;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   INFO BOX
+===================================================== */
+
+.info {
+
+    margin-top: 25px;
+
+    padding: 17px 20px;
+
+    background: #f3f4ff;
+
+    border-left: 4px solid #6366f1;
+
+    border-radius: 6px;
+
+    color: #454a65;
+
+    line-height: 1.6;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   MOBILE OVERLAY
+===================================================== */
+
+.overlay {
+
+    display: none;
+}
+
+
+/* =====================================================
+   MOBILE DESIGN
+===================================================== */
+
+@media (max-width: 700px) {
+
+
+    /* ---------------------------------------------
+       NAVBAR
+    --------------------------------------------- */
+
+    .navbar {
+
+        padding: 0 16px;
+    }
+
+
+    .menu-btn {
+
+        display: block;
+    }
+
+
+    .language {
+
+        display: none;
+    }
+
+
+    /* ---------------------------------------------
+       MAIN
+    --------------------------------------------- */
+
+    .main {
+
+        position: static;
+
+        display: block;
+
+        margin-top: 0;
+    }
+
+
+    /* ---------------------------------------------
+       SIDEBAR / DRAWER
+    --------------------------------------------- */
+
+    .sidebar {
+
+        position: fixed;
+
+        top: 64px;
+
+        left: 0;
+
+        bottom: 0;
+
+        width: 280px;
+
+        min-width: 0;
+
+        z-index: 200;
+
+        transform: translateX(-100%);
+
+        transition:
+            transform 0.25s ease;
+
+        box-shadow:
+            5px 0 25px rgba(0,0,0,0.12);
+
+        overflow-y: auto;
+
+        padding: 22px 15px;
+    }
+
+
+    .sidebar.open {
+
+        transform: translateX(0);
+    }
+
+
+    /* ---------------------------------------------
+       DARK OVERLAY
+    --------------------------------------------- */
+
+    .overlay {
+
+        position: fixed;
+
+        display: none;
+
+        top: 64px;
+
+        left: 0;
+
+        right: 0;
+
+        bottom: 0;
+
+        background:
+            rgba(0,0,0,0.35);
+
+        z-index: 150;
+    }
+
+
+    .overlay.show {
+
+        display: block;
+    }
+
+
+    /* ---------------------------------------------
+       CONTENT
+    --------------------------------------------- */
+
+    .content-area {
+
+        width: 100%;
+
+        padding: 20px 12px;
+
+        overflow: visible;
+    }
+
+
+    .content {
+
+        width: 100%;
+
+        padding: 28px 20px;
+
+        border-radius: 10px;
+    }
+
+
+    h1 {
+
+        font-size: 30px;
+    }
+
+
+    h2 {
+
+        font-size: 22px;
+    }
+
+
+    p {
+
+        font-size: 16px;
+
+        line-height: 1.7;
+    }
+
+
+    .code-box {
+
+        padding: 15px;
+    }
+
+
+    .code-box pre {
+
+        font-size: 13px;
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .logo {
+
+        font-size: 17px;
+    }
+
+
+    .menu-btn {
+
+        font-size: 12px;
+
+        padding: 7px 10px;
+    }
+
+
+    .content {
+
+        padding: 24px 16px;
+    }
+
+
+    h1 {
+
+        font-size: 27px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<!-- ===================================================
+     NAVBAR
+=================================================== -->
+
+<nav class="navbar">
+
+
+    <div class="logo">
+
+        Coding Notes
+
+    </div>
+
+
+    <!-- Mobile only -->
+
+    <button
+        class="menu-btn"
+        onclick="toggleMenu()">
+
+        ☰ Topics
+
+    </button>
+
+
+    <div class="language">
+
+        Core Java
+
+    </div>
+
+
+</nav>
+
+<nav class="site-nav">
+    <div class="site-nav-inner">
+        <span class="site-nav-brand">Core Java Theory</span>
+        <div class="site-nav-links" id="siteNavLinks">
+            <a href="index.html" class="site-nav-link">Home</a>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Python &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="python_theory.html">Theory</a>
+                    <a href="python_programs.html">Programs</a>
+                    <a href="python_quiz.html">Quiz</a>
+                </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">MySQL &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="mysql_theory.html">Theory</a>
+                    <a href="mysql_programs.html">Programs</a>
+                    <a href="mysql_quiz.html">Quiz</a>
+                </div>
+            </div>
+                <div class="site-nav-dropdown">
+                    <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Java &#9662;</span>
+                    <div class="site-nav-menu">
+                        <a href="corejava_theory.html">Theory</a>
+                        <a href="corejava_programs.html">Programs</a>
+                        <a href="corejava_quiz.html">Quiz</a>
+                    </div>
+                </div>
+
+        </div>
+        <button class="site-hamburger" onclick="document.getElementById('siteNavLinks').classList.toggle('open')">&#9776;</button>
+    </div>
+</nav>
+
+
+
+<!-- ===================================================
+     MAIN
+=================================================== -->
+
+<div class="main">
+
+
+    <!-- =================================================
+         LEFT TOPICS
+    ================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar">
+
+
+        <div class="sidebar-title">
+
+            Core Java Topics
+
+        </div>
+
+
+        <button
+            class="topic active"
+            onclick="showTopic('intro', this)">
+
+            Introduction
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('installing', this)">
+
+            Installing Java
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('helloworld', this)">
+
+            Hello World
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('datatypes', this)">
+
+            Data Types
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('variables', this)">
+
+            Variables
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('operators', this)">
+
+            Operators
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('strings', this)">
+
+            Strings
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('userinput', this)">
+
+            User Input
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('typecasting', this)">
+
+            Type Casting
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('ifelse', this)">
+
+            If...Else
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('switchcase', this)">
+
+            Switch Statement
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('whileloop', this)">
+
+            While Loop
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('forloop', this)">
+
+            For Loop
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('breakcontiunue', this)">
+
+            Break & Continue
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('arrays', this)">
+
+            Arrays
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('multidimensionalarrays', this)">
+
+            Multi-Dim Arrays
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('methods', this)">
+
+            Methods
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('methodoverloading', this)">
+
+            Method Overloading
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('oop', this)">
+
+            OOP Concepts
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('classes', this)">
+
+            Classes & Objects
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('constructors', this)">
+
+            Constructors
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('encapsulation', this)">
+
+            Encapsulation
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('inheritance', this)">
+
+            Inheritance
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('polymorphism', this)">
+
+            Polymorphism
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('abstraction', this)">
+
+            Abstraction
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('interfaces', this)">
+
+            Interfaces
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('exceptions', this)">
+
+            Exception Handling
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('collections', this)">
+
+            Collections
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('filehandling', this)">
+
+            File Handling
+
+        </button>
+
+        <button
+            class="topic"
+            onclick="showTopic('packages', this)">
+
+            Packages
+
+        </button>
+
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MOBILE OVERLAY
+    ================================================== -->
+
+    <div
+        class="overlay"
+        id="overlay"
+        onclick="closeMenu()">
+    </div>
+
+
+
+    <!-- =================================================
+         RIGHT CONTENT
+    ================================================== -->
+
+    <section class="content-area">
+
+
+        <div
+            class="content"
+            id="content">
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   TOPIC CONTENT
+===================================================== */
+
+const topics = {
+
+
+/* =====================================================
+   INTRODUCTION
+===================================================== */
+
+intro: `
+
+<h1>
+    Introduction to Java
+</h1>
+
+<div class="subtitle">
+    Learn the fundamentals of Java programming and understand why
+    Java is one of the most widely used programming languages in the world.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is Java?
+</h2>
+
+<p>
+    Java is a high-level, class-based, object-oriented programming
+    language that is designed to have as few implementation dependencies
+    as possible. It was developed by James Gosling at Sun Microsystems
+    and released in 1995.
+</p>
+
+<p>
+    Java follows the principle of <strong>"Write Once, Run Anywhere"
+    (WORA)</strong>, meaning that compiled Java code can run on all
+    platforms that support Java without the need for recompilation.
+</p>
+
+
+<h2>
+    Why Learn Java?
+</h2>
+
+<p>
+    Java is one of the most popular programming languages in the world.
+    It is used to build enterprise applications, Android apps, web
+    applications, and much more. Java's strong typing, robust standard
+    library, and platform independence make it an excellent choice for
+    both beginners and professionals.
+</p>
+
+<ul class="topic-list">
+    <li>Platform independent - runs on any device with a JVM</li>
+    <li>Object-oriented programming language</li>
+    <li>Strong memory management and garbage collection</li>
+    <li>Large ecosystem of libraries and frameworks</li>
+    <li>Widely used in enterprise and Android development</li>
+    <li>Excellent community support and documentation</li>
+</ul>
+
+
+<h2>
+    How Java Works
+</h2>
+
+<p>
+    Java programs are first compiled into <strong>bytecode</strong>
+    by the Java compiler (<b>javac</b>). This bytecode is then
+    executed by the <strong>Java Virtual Machine (JVM)</strong>,
+    which translates it into machine code specific to the operating
+    system. This is what makes Java platform independent.
+</p>
+
+<div class="info">
+
+<strong>Java Compilation Process:</strong><br><br>
+
+Source Code (.java) &rarr; Compiler (javac) &rarr; Bytecode (.class) &rarr; JVM &rarr; Machine Code
+
+</div>
+
+
+<h2>
+    Features of Java
+</h2>
+
+<ul class="topic-list">
+    <li><strong>Simple:</strong> Java has a clean and easy-to-understand syntax based on C++.</li>
+    <li><strong>Object-Oriented:</strong> Everything in Java is associated with classes and objects.</li>
+    <li><strong>Platform Independent:</strong> Java bytecode runs on any platform with a JVM.</li>
+    <li><strong>Secure:</strong> Java provides a secure environment with no explicit pointers and a security manager.</li>
+    <li><strong>Robust:</strong> Java has strong memory management, exception handling, and type checking.</li>
+    <li><strong>Multithreaded:</strong> Java supports multithreading for concurrent execution.</li>
+</ul>
+
+
+<h2>
+    Your First Java Program
+</h2>
+
+<p>
+    Here is the simplest Java program that prints a message to the
+    screen. Every Java program must have a <strong>main</strong> method
+    inside a <strong>class</strong>.
+</p>
+
+\${codeBlock(\`public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Hello, World!
+</div>
+
+
+<div class="info">
+
+<strong>Key Points:</strong><br>
+Every Java application must have a <b>main()</b> method.
+The class name must match the file name (Main.java).
+Java is case-sensitive.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   INSTALLING JAVA
+===================================================== */
+
+installing: `
+
+<h1>
+    Installing Java (JDK)
+</h1>
+
+<div class="subtitle">
+    Learn how to download and install the Java Development Kit (JDK)
+    on your computer to start writing Java programs.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is JDK?
+</h2>
+
+<p>
+    The <strong>Java Development Kit (JDK)</strong> is a software
+    development environment used for developing Java applications.
+    It includes the Java Runtime Environment (JRE), the Java compiler
+    (javac), and other development tools.
+</p>
+
+<ul class="topic-list">
+    <li><strong>JDK (Java Development Kit):</strong> Complete development kit for writing and running Java programs.</li>
+    <li><strong>JRE (Java Runtime Environment):</strong> Provides the libraries and JVM needed to run Java programs.</li>
+    <li><strong>JVM (Java Virtual Machine):</strong> Executes Java bytecode on any platform.</li>
+</ul>
+
+
+<h2>
+    Steps to Install JDK
+</h2>
+
+<p>
+    Follow these steps to install the JDK on your computer:
+</p>
+
+<ul class="topic-list">
+    <li>Go to the official Oracle website or download OpenJDK.</li>
+    <li>Download the JDK installer for your operating system (Windows, macOS, or Linux).</li>
+    <li>Run the installer and follow the installation wizard.</li>
+    <li>Set the <strong>JAVA_HOME</strong> environment variable to the JDK installation path.</li>
+    <li>Add the JDK <strong>bin</strong> directory to your system <strong>PATH</strong>.</li>
+</ul>
+
+
+<h2>
+    Verify Installation
+</h2>
+
+<p>
+    After installing, open a terminal or command prompt and type the
+    following commands to verify that Java is installed correctly:
+</p>
+
+\${codeBlock(\`java -version
+javac -version\`, "Terminal")}
+
+
+<div class="output-title">
+    Output (example)
+</div>
+
+<div class="output">
+    java version "17.0.2" 2022-01-18 LTS<br>
+    javac 17.0.2
+</div>
+
+
+<h2>
+    Writing Your First Program
+</h2>
+
+<p>
+    You can write Java programs in any text editor or IDE. Popular
+    IDEs for Java include <strong>IntelliJ IDEA</strong>,
+    <strong>Eclipse</strong>, and <strong>VS Code</strong>.
+</p>
+
+<p>
+    Create a file called <strong>Main.java</strong> and write your code.
+    Then compile and run it using the terminal:
+</p>
+
+\${codeBlock(\`javac Main.java
+java Main\`, "Terminal")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+The file name must match the public class name exactly.
+For example, a class named <b>Main</b> must be saved as <b>Main.java</b>.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   HELLO WORLD
+===================================================== */
+
+helloworld: `
+
+<h1>
+    Hello World Program
+</h1>
+
+<div class="subtitle">
+    Understand the structure of a basic Java program by writing
+    and running your first Hello World application.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The Hello World Program
+</h2>
+
+<p>
+    The Hello World program is the simplest Java program. It
+    demonstrates the basic structure of a Java application
+    including the class declaration, the main method, and
+    the print statement.
+</p>
+
+\${codeBlock(\`public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Hello, World!
+</div>
+
+
+<h2>
+    Understanding the Code
+</h2>
+
+<ul class="topic-list">
+    <li><strong>public class HelloWorld:</strong> Declares a public class named HelloWorld. The file must be named HelloWorld.java.</li>
+    <li><strong>public static void main(String[] args):</strong> The main method is the entry point of every Java application.</li>
+    <li><strong>System.out.println():</strong> Prints text to the console followed by a new line.</li>
+</ul>
+
+
+<h2>
+    print vs println
+</h2>
+
+<p>
+    Java provides two methods for printing output:
+</p>
+
+\${codeBlock(\`System.out.println("Hello");  // prints with new line
+System.out.print("Hello");    // prints without new line
+System.out.print(" World");   // continues on same line\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Hello<br>
+    Hello World
+</div>
+
+
+<h2>
+    Printing Multiple Lines
+</h2>
+
+\${codeBlock(\`public class Main {
+    public static void main(String[] args) {
+        System.out.println("Line 1");
+        System.out.println("Line 2");
+        System.out.println("Line 3");
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Line 1<br>
+    Line 2<br>
+    Line 3
+</div>
+
+
+<div class="info">
+
+<strong>Remember:</strong><br>
+Every Java statement must end with a semicolon <b>;</b>
+Java is case-sensitive: <b>System</b> is not the same as <b>system</b>.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   DATA TYPES
+===================================================== */
+
+datatypes: `
+
+<h1>
+    Data Types
+</h1>
+
+<div class="subtitle">
+    Learn about the different data types in Java used to store
+    various kinds of information in variables.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What are Data Types?
+</h2>
+
+<p>
+    Data types specify the type and size of data that a variable
+    can hold. Java is a <strong>statically typed</strong> language,
+    which means you must declare the data type of a variable before
+    using it.
+</p>
+
+<p>
+    Java has two categories of data types:
+    <strong>Primitive</strong> data types and
+    <strong>Non-Primitive</strong> (Reference) data types.
+</p>
+
+
+<h2>
+    Primitive Data Types
+</h2>
+
+<p>
+    Java has 8 primitive data types:
+</p>
+
+<ul class="topic-list">
+    <li><strong>byte:</strong> 8-bit integer (-128 to 127)</li>
+    <li><strong>short:</strong> 16-bit integer (-32,768 to 32,767)</li>
+    <li><strong>int:</strong> 32-bit integer (most commonly used)</li>
+    <li><strong>long:</strong> 64-bit integer (for large numbers)</li>
+    <li><strong>float:</strong> 32-bit decimal number</li>
+    <li><strong>double:</strong> 64-bit decimal number (most commonly used for decimals)</li>
+    <li><strong>char:</strong> Single 16-bit Unicode character</li>
+    <li><strong>boolean:</strong> true or false</li>
+</ul>
+
+
+<h2>
+    Examples of Primitive Types
+</h2>
+
+\${codeBlock(\`int age = 25;
+double salary = 55000.50;
+char grade = 'A';
+boolean isJavaFun = true;
+long population = 1400000000L;
+float pi = 3.14f;
+byte smallNum = 100;
+short mediumNum = 30000;\`, "Java")}
+
+
+<h2>
+    Non-Primitive Data Types
+</h2>
+
+<p>
+    Non-primitive data types are also called <strong>reference types</strong>.
+    They refer to objects and include Strings, Arrays, Classes, and Interfaces.
+    Unlike primitive types, they can be <b>null</b>.
+</p>
+
+\${codeBlock(\`String name = "Rahul";
+int[] numbers = {1, 2, 3, 4, 5};\`, "Java")}
+
+
+<h2>
+    Difference Between Primitive and Non-Primitive
+</h2>
+
+<ul class="topic-list">
+    <li>Primitive types are predefined in Java; non-primitive types are created by the programmer (except String).</li>
+    <li>Primitive types always have a value; non-primitive types can be <b>null</b>.</li>
+    <li>Primitive types start with a lowercase letter; non-primitive types start with an uppercase letter.</li>
+</ul>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use <b>int</b> for whole numbers, <b>double</b> for decimals,
+<b>String</b> for text, and <b>boolean</b> for true/false values.
+These are the most commonly used data types.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+variables: `
+
+<h1>
+    Variables
+</h1>
+
+<div class="subtitle">
+    Learn how to declare, initialize, and use variables to store
+    data in Java programs.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Variable?
+</h2>
+
+<p>
+    A variable is a named container that stores a value in memory.
+    In Java, every variable must be declared with a specific data
+    type before it can be used.
+</p>
+
+<p>
+    The syntax for declaring a variable is:<br>
+    <strong>dataType variableName = value;</strong>
+</p>
+
+
+<h2>
+    Declaring and Initializing Variables
+</h2>
+
+\${codeBlock(\`// Declaration
+int age;
+
+// Initialization
+age = 25;
+
+// Declaration and initialization together
+String name = "Rahul";
+double salary = 50000.0;\`, "Java")}
+
+
+<h2>
+    Printing Variables
+</h2>
+
+\${codeBlock(\`String name = "Rahul";
+int age = 20;
+
+System.out.println("Name: " + name);
+System.out.println("Age: " + age);\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Name: Rahul<br>
+    Age: 20
+</div>
+
+
+<h2>
+    Types of Variables
+</h2>
+
+<p>
+    Java has three types of variables:
+</p>
+
+<ul class="topic-list">
+    <li><strong>Local Variables:</strong> Declared inside a method and accessible only within that method.</li>
+    <li><strong>Instance Variables:</strong> Declared inside a class but outside any method. Each object has its own copy.</li>
+    <li><strong>Static Variables:</strong> Declared with the <b>static</b> keyword. Shared among all objects of a class.</li>
+</ul>
+
+\${codeBlock(\`public class Student {
+    // Instance variable
+    String name;
+
+    // Static variable
+    static String school = "ABC School";
+
+    public void display() {
+        // Local variable
+        int marks = 95;
+        System.out.println(name + " scored " + marks);
+    }
+}\`, "Java")}
+
+
+<h2>
+    Variable Naming Rules
+</h2>
+
+<ul class="topic-list">
+    <li>Variable names can contain letters, digits, underscores, and dollar signs.</li>
+    <li>Must begin with a letter, underscore, or dollar sign (not a digit).</li>
+    <li>Variable names are case-sensitive (<b>age</b> and <b>Age</b> are different).</li>
+    <li>Cannot use Java reserved keywords (like <b>int</b>, <b>class</b>, <b>public</b>).</li>
+    <li>Use camelCase for variable names (e.g., <b>firstName</b>, <b>totalMarks</b>).</li>
+</ul>
+
+
+<h2>
+    Constants (final keyword)
+</h2>
+
+<p>
+    If you want a variable's value to remain unchanged, declare it
+    with the <strong>final</strong> keyword. This creates a constant.
+</p>
+
+\${codeBlock(\`final double PI = 3.14159;
+final String COUNTRY = "India";
+
+// PI = 3.14;  // This will cause an error!\`, "Java")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use meaningful variable names that describe the data they hold.
+For example, use <b>studentName</b> instead of <b>sn</b>.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   OPERATORS
+===================================================== */
+
+operators: `
+
+<h1>
+    Operators
+</h1>
+
+<div class="subtitle">
+    Learn about the different types of operators in Java used to
+    perform operations on variables and values.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What are Operators?
+</h2>
+
+<p>
+    Operators are special symbols that perform operations on
+    variables and values. Java supports several types of operators
+    for arithmetic, comparison, logical, and other operations.
+</p>
+
+
+<h2>
+    Arithmetic Operators
+</h2>
+
+<p>
+    Used to perform basic mathematical operations.
+</p>
+
+\${codeBlock(\`int a = 10, b = 3;
+
+System.out.println("Addition: " + (a + b));       // 13
+System.out.println("Subtraction: " + (a - b));    // 7
+System.out.println("Multiplication: " + (a * b)); // 30
+System.out.println("Division: " + (a / b));       // 3
+System.out.println("Modulus: " + (a % b));         // 1\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Addition: 13<br>
+    Subtraction: 7<br>
+    Multiplication: 30<br>
+    Division: 3<br>
+    Modulus: 1
+</div>
+
+
+<h2>
+    Assignment Operators
+</h2>
+
+\${codeBlock(\`int x = 10;
+
+x += 5;   // x = x + 5  -> 15
+x -= 3;   // x = x - 3  -> 12
+x *= 2;   // x = x * 2  -> 24
+x /= 4;   // x = x / 4  -> 6
+x %= 4;   // x = x % 4  -> 2\`, "Java")}
+
+
+<h2>
+    Comparison (Relational) Operators
+</h2>
+
+<p>
+    Used to compare two values. They return a <b>boolean</b> result.
+</p>
+
+\${codeBlock(\`int a = 10, b = 20;
+
+System.out.println(a == b);  // false
+System.out.println(a != b);  // true
+System.out.println(a > b);   // false
+System.out.println(a < b);   // true
+System.out.println(a >= 10); // true
+System.out.println(a <= 5);  // false\`, "Java")}
+
+
+<h2>
+    Logical Operators
+</h2>
+
+<p>
+    Used to combine multiple boolean expressions.
+</p>
+
+\${codeBlock(\`int age = 25;
+boolean hasID = true;
+
+// AND: both conditions must be true
+System.out.println(age >= 18 && hasID);  // true
+
+// OR: at least one condition must be true
+System.out.println(age < 18 || hasID);   // true
+
+// NOT: reverses the boolean value
+System.out.println(!hasID);              // false\`, "Java")}
+
+
+<h2>
+    Increment and Decrement Operators
+</h2>
+
+\${codeBlock(\`int x = 10;
+
+x++;  // x becomes 11 (post-increment)
+x--;  // x becomes 10 (post-decrement)
+++x;  // x becomes 11 (pre-increment)
+--x;  // x becomes 10 (pre-decrement)
+
+System.out.println(x);  // 10\`, "Java")}
+
+
+<div class="info">
+
+<strong>Note:</strong><br>
+<b>++x</b> (pre-increment) increments first, then returns the value.
+<b>x++</b> (post-increment) returns the value first, then increments.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   STRINGS
+===================================================== */
+
+strings: `
+
+<h1>
+    Strings
+</h1>
+
+<div class="subtitle">
+    Learn how to create and manipulate text using the String class
+    in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a String?
+</h2>
+
+<p>
+    A String in Java is an object that represents a sequence of
+    characters. Strings are created using double quotes and are
+    <strong>immutable</strong>, meaning once created, their values
+    cannot be changed.
+</p>
+
+\${codeBlock(\`String greeting = "Hello, World!";
+String name = "Rahul";
+
+System.out.println(greeting);
+System.out.println(name);\`, "Java")}
+
+
+<h2>
+    String Length
+</h2>
+
+\${codeBlock(\`String text = "Hello, Java!";
+System.out.println("Length: " + text.length());\`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Length: 12
+</div>
+
+
+<h2>
+    String Methods
+</h2>
+
+\${codeBlock(\`String str = "Hello, World!";
+
+System.out.println(str.toUpperCase());     // HELLO, WORLD!
+System.out.println(str.toLowerCase());     // hello, world!
+System.out.println(str.trim());            // removes extra spaces
+System.out.println(str.indexOf("World"));  // 7
+System.out.println(str.charAt(0));         // H
+System.out.println(str.contains("World")); // true
+System.out.println(str.replace("World", "Java")); // Hello, Java!
+System.out.println(str.substring(0, 5));   // Hello\`, "Java")}
+
+
+<h2>
+    String Concatenation
+</h2>
+
+<p>
+    You can join strings using the <strong>+</strong> operator or
+    the <strong>concat()</strong> method.
+</p>
+
+\${codeBlock(\`String firstName = "Rahul";
+String lastName = "Sharma";
+
+// Using + operator
+String fullName = firstName + " " + lastName;
+System.out.println(fullName);
+
+// Using concat()
+String result = firstName.concat(" ").concat(lastName);
+System.out.println(result);\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Rahul Sharma<br>
+    Rahul Sharma
+</div>
+
+
+<h2>
+    Comparing Strings
+</h2>
+
+<p>
+    Use <strong>equals()</strong> to compare string content,
+    not the <b>==</b> operator (which compares references).
+</p>
+
+\${codeBlock(\`String a = "Hello";
+String b = "Hello";
+String c = new String("Hello");
+
+System.out.println(a.equals(b));           // true
+System.out.println(a.equals(c));           // true
+System.out.println(a.equalsIgnoreCase("hello")); // true\`, "Java")}
+
+
+<div class="info">
+
+<strong>Important:</strong><br>
+Always use <b>.equals()</b> to compare strings in Java.
+The <b>==</b> operator compares memory references, not the actual content.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   USER INPUT
+===================================================== */
+
+userinput: `
+
+<h1>
+    User Input (Scanner)
+</h1>
+
+<div class="subtitle">
+    Learn how to read input from the user using the Scanner class in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The Scanner Class
+</h2>
+
+<p>
+    The <strong>Scanner</strong> class is used to get user input
+    in Java. It is part of the <b>java.util</b> package and must
+    be imported before use.
+</p>
+
+\${codeBlock(\`import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+
+        System.out.println("Hello, " + name + "!");
+        scanner.close();
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Enter your name: Rahul<br>
+    Hello, Rahul!
+</div>
+
+
+<h2>
+    Reading Different Data Types
+</h2>
+
+\${codeBlock(\`import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter an integer: ");
+        int num = sc.nextInt();
+
+        System.out.print("Enter a double: ");
+        double dec = sc.nextDouble();
+
+        System.out.print("Enter a word: ");
+        String word = sc.next();
+
+        System.out.println("Integer: " + num);
+        System.out.println("Double: " + dec);
+        System.out.println("Word: " + word);
+
+        sc.close();
+    }
+}\`, "Java")}
+
+
+<h2>
+    Scanner Methods
+</h2>
+
+<ul class="topic-list">
+    <li><strong>nextLine():</strong> Reads a full line of text.</li>
+    <li><strong>next():</strong> Reads a single word (stops at space).</li>
+    <li><strong>nextInt():</strong> Reads an integer value.</li>
+    <li><strong>nextDouble():</strong> Reads a double value.</li>
+    <li><strong>nextFloat():</strong> Reads a float value.</li>
+    <li><strong>nextLong():</strong> Reads a long value.</li>
+    <li><strong>nextBoolean():</strong> Reads a boolean value.</li>
+</ul>
+
+
+<h2>
+    Complete Example
+</h2>
+
+\${codeBlock(\`import java.util.Scanner;
+
+public class StudentInfo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter student name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter age: ");
+        int age = sc.nextInt();
+
+        System.out.print("Enter marks: ");
+        double marks = sc.nextDouble();
+
+        System.out.println("\\nStudent Details:");
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Marks: " + marks);
+
+        sc.close();
+    }
+}\`, "Java")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Always close the Scanner using <b>scanner.close()</b> when you are done
+to free up system resources. Be careful when mixing <b>nextLine()</b>
+with other methods like <b>nextInt()</b> as the newline character may
+cause issues.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   TYPE CASTING
+===================================================== */
+
+typecasting: `
+
+<h1>
+    Type Casting
+</h1>
+
+<div class="subtitle">
+    Learn how to convert data from one type to another in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is Type Casting?
+</h2>
+
+<p>
+    Type casting is the process of converting a value from one
+    data type to another. Java supports two types of casting:
+    <strong>Widening</strong> (automatic) and
+    <strong>Narrowing</strong> (manual).
+</p>
+
+
+<h2>
+    Widening Casting (Automatic)
+</h2>
+
+<p>
+    Widening casting happens automatically when converting a smaller
+    type to a larger type. No data is lost in this process.
+</p>
+
+<p>
+    <strong>byte &rarr; short &rarr; int &rarr; long &rarr; float &rarr; double</strong>
+</p>
+
+\${codeBlock(\`int myInt = 100;
+double myDouble = myInt;  // Automatic casting
+
+System.out.println("int value: " + myInt);
+System.out.println("double value: " + myDouble);\`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    int value: 100<br>
+    double value: 100.0
+</div>
+
+
+<h2>
+    Narrowing Casting (Manual)
+</h2>
+
+<p>
+    Narrowing casting must be done manually by placing the target
+    type in parentheses before the value. Data may be lost in this
+    process.
+</p>
+
+\${codeBlock(\`double myDouble = 9.78;
+int myInt = (int) myDouble;  // Manual casting
+
+System.out.println("double value: " + myDouble);
+System.out.println("int value: " + myInt);\`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    double value: 9.78<br>
+    int value: 9
+</div>
+
+
+<h2>
+    String to Number Conversion
+</h2>
+
+\${codeBlock(\`String numStr = "42";
+String decStr = "3.14";
+
+int num = Integer.parseInt(numStr);
+double dec = Double.parseDouble(decStr);
+
+System.out.println(num + 8);   // 50
+System.out.println(dec + 1);   // 4.14\`, "Java")}
+
+
+<h2>
+    Number to String Conversion
+</h2>
+
+\${codeBlock(\`int num = 42;
+double dec = 3.14;
+
+String str1 = String.valueOf(num);
+String str2 = Integer.toString(num);
+String str3 = "" + num;  // concatenation trick
+
+System.out.println(str1);  // "42"
+System.out.println(str2);  // "42"
+System.out.println(str3);  // "42"\`, "Java")}
+
+
+<div class="info">
+
+<strong>Remember:</strong><br>
+Widening casting is safe and automatic. Narrowing casting requires
+explicit syntax and may result in data loss (decimal parts are truncated,
+not rounded).
+
+</div>
+
+`,
+
+
+/* =====================================================
+   IF...ELSE
+===================================================== */
+
+ifelse: `
+
+<h1>
+    If...Else
+</h1>
+
+<div class="subtitle">
+    Learn how to make decisions in your Java programs using
+    conditional statements.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The if Statement
+</h2>
+
+<p>
+    The <strong>if</strong> statement executes a block of code
+    only if a specified condition is <b>true</b>.
+</p>
+
+\${codeBlock(\`int age = 18;
+
+if (age >= 18) {
+    System.out.println("You are eligible to vote.");
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    You are eligible to vote.
+</div>
+
+
+<h2>
+    if...else Statement
+</h2>
+
+<p>
+    The <strong>else</strong> block executes when the if condition
+    is <b>false</b>.
+</p>
+
+\${codeBlock(\`int age = 15;
+
+if (age >= 18) {
+    System.out.println("You can vote.");
+} else {
+    System.out.println("You cannot vote yet.");
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    You cannot vote yet.
+</div>
+
+
+<h2>
+    if...else if...else Statement
+</h2>
+
+<p>
+    Use <strong>else if</strong> to check multiple conditions.
+</p>
+
+\${codeBlock(\`int marks = 75;
+
+if (marks >= 90) {
+    System.out.println("Grade: A");
+} else if (marks >= 80) {
+    System.out.println("Grade: B");
+} else if (marks >= 70) {
+    System.out.println("Grade: C");
+} else if (marks >= 60) {
+    System.out.println("Grade: D");
+} else {
+    System.out.println("Grade: F");
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Grade: C
+</div>
+
+
+<h2>
+    Nested if Statements
+</h2>
+
+\${codeBlock(\`int age = 25;
+boolean hasLicense = true;
+
+if (age >= 18) {
+    if (hasLicense) {
+        System.out.println("You can drive.");
+    } else {
+        System.out.println("Get a license first.");
+    }
+} else {
+    System.out.println("You are too young to drive.");
+}\`, "Java")}
+
+
+<h2>
+    Ternary Operator
+</h2>
+
+<p>
+    The ternary operator is a shorthand for simple if...else
+    statements.
+</p>
+
+\${codeBlock(\`int age = 20;
+String result = (age >= 18) ? "Adult" : "Minor";
+System.out.println(result);\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Adult
+</div>
+
+
+<div class="info">
+
+<strong>Syntax:</strong><br>
+<b>variable = (condition) ? valueIfTrue : valueIfFalse;</b>
+
+</div>
+
+`,
+
+
+/* =====================================================
+   SWITCH STATEMENT
+===================================================== */
+
+switchcase: `
+
+<h1>
+    Switch Statement
+</h1>
+
+<div class="subtitle">
+    Learn how to use the switch statement to select one of many
+    code blocks to execute.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Switch Statement?
+</h2>
+
+<p>
+    The <strong>switch</strong> statement is used to select one of
+    many code blocks to be executed. It is an alternative to long
+    if...else if chains when you need to compare a variable against
+    multiple values.
+</p>
+
+
+<h2>
+    Basic Switch Example
+</h2>
+
+\${codeBlock(\`int day = 3;
+
+switch (day) {
+    case 1:
+        System.out.println("Monday");
+        break;
+    case 2:
+        System.out.println("Tuesday");
+        break;
+    case 3:
+        System.out.println("Wednesday");
+        break;
+    case 4:
+        System.out.println("Thursday");
+        break;
+    case 5:
+        System.out.println("Friday");
+        break;
+    default:
+        System.out.println("Weekend");
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Wednesday
+</div>
+
+
+<h2>
+    The break Keyword
+</h2>
+
+<p>
+    The <strong>break</strong> keyword stops the execution of the
+    switch block. Without it, Java will continue executing the next
+    cases (called "fall-through").
+</p>
+
+\${codeBlock(\`int num = 2;
+
+switch (num) {
+    case 1:
+        System.out.println("One");
+    case 2:
+        System.out.println("Two");
+    case 3:
+        System.out.println("Three");
+    default:
+        System.out.println("Default");
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output (without break - fall-through)
+</div>
+
+<div class="output">
+    Two<br>
+    Three<br>
+    Default
+</div>
+
+
+<h2>
+    The default Keyword
+</h2>
+
+<p>
+    The <strong>default</strong> case runs when no other case matches.
+    It is similar to the <b>else</b> block in if...else statements.
+</p>
+
+
+<h2>
+    Switch with Strings
+</h2>
+
+\${codeBlock(\`String fruit = "Mango";
+
+switch (fruit) {
+    case "Apple":
+        System.out.println("You chose Apple.");
+        break;
+    case "Mango":
+        System.out.println("You chose Mango.");
+        break;
+    case "Banana":
+        System.out.println("You chose Banana.");
+        break;
+    default:
+        System.out.println("Unknown fruit.");
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    You chose Mango.
+</div>
+
+
+<div class="info">
+
+<strong>Note:</strong><br>
+Switch works with <b>byte</b>, <b>short</b>, <b>int</b>, <b>char</b>,
+<b>String</b>, and <b>enum</b> types. It does not work with
+<b>float</b>, <b>double</b>, <b>long</b>, or <b>boolean</b>.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   WHILE LOOP
+===================================================== */
+
+whileloop: `
+
+<h1>
+    While Loop
+</h1>
+
+<div class="subtitle">
+    Learn how to repeat a block of code using the while loop in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The while Loop
+</h2>
+
+<p>
+    The <strong>while</strong> loop repeats a block of code as long
+    as a specified condition is <b>true</b>. The condition is checked
+    before each iteration.
+</p>
+
+\${codeBlock(\`int i = 1;
+
+while (i <= 5) {
+    System.out.println("Count: " + i);
+    i++;
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Count: 1<br>
+    Count: 2<br>
+    Count: 3<br>
+    Count: 4<br>
+    Count: 5
+</div>
+
+
+<h2>
+    The do...while Loop
+</h2>
+
+<p>
+    The <strong>do...while</strong> loop is similar to the while loop,
+    but it executes the code block <strong>at least once</strong>
+    before checking the condition.
+</p>
+
+\${codeBlock(\`int i = 1;
+
+do {
+    System.out.println("Count: " + i);
+    i++;
+} while (i <= 5);\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Count: 1<br>
+    Count: 2<br>
+    Count: 3<br>
+    Count: 4<br>
+    Count: 5
+</div>
+
+
+<h2>
+    Difference: while vs do...while
+</h2>
+
+<p>
+    The key difference is that <b>do...while</b> always executes at
+    least once, even if the condition is false from the start.
+</p>
+
+\${codeBlock(\`int x = 10;
+
+// This will NOT execute
+while (x < 5) {
+    System.out.println("while: " + x);
+}
+
+// This WILL execute once
+do {
+    System.out.println("do-while: " + x);
+} while (x < 5);\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    do-while: 10
+</div>
+
+
+<h2>
+    Sum of Numbers Using while
+</h2>
+
+\${codeBlock(\`int sum = 0;
+int i = 1;
+
+while (i <= 10) {
+    sum += i;
+    i++;
+}
+
+System.out.println("Sum of 1 to 10: " + sum);\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Sum of 1 to 10: 55
+</div>
+
+
+<div class="info">
+
+<strong>Warning:</strong><br>
+Be careful to update the loop variable inside the loop body.
+Forgetting to do so will create an <b>infinite loop</b> that
+never stops running.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   FOR LOOP
+===================================================== */
+
+forloop: `
+
+<h1>
+    For Loop
+</h1>
+
+<div class="subtitle">
+    Learn how to use the for loop to iterate a specific number of times in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The for Loop
+</h2>
+
+<p>
+    The <strong>for</strong> loop is used when you know in advance
+    how many times you want to execute a block of code. It combines
+    initialization, condition, and update in a single line.
+</p>
+
+\${codeBlock(\`for (int i = 1; i <= 5; i++) {
+    System.out.println("Iteration: " + i);
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Iteration: 1<br>
+    Iteration: 2<br>
+    Iteration: 3<br>
+    Iteration: 4<br>
+    Iteration: 5
+</div>
+
+
+<h2>
+    Parts of a for Loop
+</h2>
+
+<ul class="topic-list">
+    <li><strong>Initialization:</strong> Executed once at the beginning (e.g., <b>int i = 1</b>).</li>
+    <li><strong>Condition:</strong> Checked before each iteration (e.g., <b>i &lt;= 5</b>).</li>
+    <li><strong>Update:</strong> Executed after each iteration (e.g., <b>i++</b>).</li>
+</ul>
+
+
+<h2>
+    Multiplication Table
+</h2>
+
+\${codeBlock(\`int num = 5;
+
+for (int i = 1; i <= 10; i++) {
+    System.out.println(num + " x " + i + " = " + (num * i));
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    5 x 1 = 5<br>
+    5 x 2 = 10<br>
+    5 x 3 = 15<br>
+    5 x 4 = 20<br>
+    5 x 5 = 25<br>
+    5 x 6 = 30<br>
+    5 x 7 = 35<br>
+    5 x 8 = 40<br>
+    5 x 9 = 45<br>
+    5 x 10 = 50
+</div>
+
+
+<h2>
+    Enhanced for Loop (for-each)
+</h2>
+
+<p>
+    The <strong>for-each</strong> loop is used to iterate through
+    elements of an array or collection without using an index.
+</p>
+
+\${codeBlock(\`String[] fruits = {"Apple", "Banana", "Mango", "Orange"};
+
+for (String fruit : fruits) {
+    System.out.println(fruit);
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Apple<br>
+    Banana<br>
+    Mango<br>
+    Orange
+</div>
+
+
+<h2>
+    Nested for Loops
+</h2>
+
+\${codeBlock(\`for (int i = 1; i <= 3; i++) {
+    for (int j = 1; j <= 3; j++) {
+        System.out.print(i + "," + j + "  ");
+    }
+    System.out.println();
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    1,1  1,2  1,3<br>
+    2,1  2,2  2,3<br>
+    3,1  3,2  3,3
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use the regular <b>for</b> loop when you need the index variable.
+Use the <b>for-each</b> loop when you just need to access each element.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   BREAK AND CONTINUE
+===================================================== */
+
+breakcontiunue: `
+
+<h1>
+    Break and Continue
+</h1>
+
+<div class="subtitle">
+    Learn how to control loop execution using the break and continue
+    statements in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The break Statement
+</h2>
+
+<p>
+    The <strong>break</strong> statement is used to exit a loop
+    immediately, skipping any remaining iterations.
+</p>
+
+\${codeBlock(\`for (int i = 1; i <= 10; i++) {
+    if (i == 5) {
+        break;  // Exit loop when i is 5
+    }
+    System.out.println("i = " + i);
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    i = 1<br>
+    i = 2<br>
+    i = 3<br>
+    i = 4
+</div>
+
+
+<h2>
+    The continue Statement
+</h2>
+
+<p>
+    The <strong>continue</strong> statement skips the current
+    iteration and moves to the next iteration of the loop.
+</p>
+
+\${codeBlock(\`for (int i = 1; i <= 5; i++) {
+    if (i == 3) {
+        continue;  // Skip when i is 3
+    }
+    System.out.println("i = " + i);
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    i = 1<br>
+    i = 2<br>
+    i = 4<br>
+    i = 5
+</div>
+
+
+<h2>
+    break in a while Loop
+</h2>
+
+\${codeBlock(\`int i = 0;
+
+while (true) {
+    if (i == 5) {
+        break;
+    }
+    System.out.println("Count: " + i);
+    i++;
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Count: 0<br>
+    Count: 1<br>
+    Count: 2<br>
+    Count: 3<br>
+    Count: 4
+</div>
+
+
+<h2>
+    continue - Print Only Even Numbers
+</h2>
+
+\${codeBlock(\`for (int i = 1; i <= 10; i++) {
+    if (i % 2 != 0) {
+        continue;  // Skip odd numbers
+    }
+    System.out.println(i);
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    2<br>
+    4<br>
+    6<br>
+    8<br>
+    10
+</div>
+
+
+<div class="info">
+
+<strong>Summary:</strong><br>
+<b>break</b> stops the entire loop.
+<b>continue</b> skips the current iteration and moves to the next one.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   ARRAYS
+===================================================== */
+
+arrays: `
+
+<h1>
+    Arrays
+</h1>
+
+<div class="subtitle">
+    Learn how to store and work with multiple values of the same
+    type using arrays in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is an Array?
+</h2>
+
+<p>
+    An array is a container that holds a fixed number of values of a
+    single type. The elements of an array are stored in contiguous
+    memory locations and accessed using an index starting from <b>0</b>.
+</p>
+
+
+<h2>
+    Declaring and Initializing Arrays
+</h2>
+
+\${codeBlock(\`// Method 1: Declare and then assign values
+int[] numbers = new int[5];
+numbers[0] = 10;
+numbers[1] = 20;
+numbers[2] = 30;
+numbers[3] = 40;
+numbers[4] = 50;
+
+// Method 2: Declare and initialize together
+int[] marks = {85, 90, 78, 92, 88};
+
+// Method 3: Using new keyword with values
+String[] names = new String[]{"Rahul", "Priya", "Amit"};\`, "Java")}
+
+
+<h2>
+    Accessing Array Elements
+</h2>
+
+\${codeBlock(\`int[] marks = {85, 90, 78, 92, 88};
+
+System.out.println("First element: " + marks[0]);
+System.out.println("Third element: " + marks[2]);
+System.out.println("Array length: " + marks.length);\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    First element: 85<br>
+    Third element: 78<br>
+    Array length: 5
+</div>
+
+
+<h2>
+    Looping Through an Array
+</h2>
+
+\${codeBlock(\`int[] marks = {85, 90, 78, 92, 88};
+
+// Using for loop
+for (int i = 0; i < marks.length; i++) {
+    System.out.println("marks[" + i + "] = " + marks[i]);
+}
+
+System.out.println();
+
+// Using for-each loop
+for (int mark : marks) {
+    System.out.println("Score: " + mark);
+}\`, "Java")}
+
+
+<h2>
+    Finding Sum and Average
+</h2>
+
+\${codeBlock(\`int[] numbers = {10, 20, 30, 40, 50};
+int sum = 0;
+
+for (int num : numbers) {
+    sum += num;
+}
+
+double average = (double) sum / numbers.length;
+
+System.out.println("Sum: " + sum);
+System.out.println("Average: " + average);\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Sum: 150<br>
+    Average: 30.0
+</div>
+
+
+<h2>
+    Finding Maximum and Minimum
+</h2>
+
+\${codeBlock(\`int[] numbers = {45, 12, 78, 34, 90, 23};
+
+int max = numbers[0];
+int min = numbers[0];
+
+for (int num : numbers) {
+    if (num > max) max = num;
+    if (num < min) min = num;
+}
+
+System.out.println("Maximum: " + max);
+System.out.println("Minimum: " + min);\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Maximum: 90<br>
+    Minimum: 12
+</div>
+
+
+<div class="info">
+
+<strong>Important:</strong><br>
+Array indices start at <b>0</b> and go up to <b>length - 1</b>.
+Accessing an index outside this range will throw an
+<b>ArrayIndexOutOfBoundsException</b>.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   MULTI-DIMENSIONAL ARRAYS
+===================================================== */
+
+multidimensionalarrays: `
+
+<h1>
+    Multi-Dimensional Arrays
+</h1>
+
+<div class="subtitle">
+    Learn how to create and work with multi-dimensional arrays
+    (arrays of arrays) in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a 2D Array?
+</h2>
+
+<p>
+    A two-dimensional array is an array of arrays. It is like a
+    table with rows and columns. You can think of it as a grid
+    where data is stored in rows and columns.
+</p>
+
+
+<h2>
+    Declaring a 2D Array
+</h2>
+
+\${codeBlock(\`// Method 1: Using new keyword
+int[][] matrix = new int[3][4];  // 3 rows, 4 columns
+
+// Method 2: Initialize with values
+int[][] grid = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};\`, "Java")}
+
+
+<h2>
+    Accessing Elements
+</h2>
+
+\${codeBlock(\`int[][] grid = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+System.out.println("Element at [0][0]: " + grid[0][0]);  // 1
+System.out.println("Element at [1][2]: " + grid[1][2]);  // 6
+System.out.println("Element at [2][1]: " + grid[2][1]);  // 8\`, "Java")}
+
+
+<h2>
+    Looping Through a 2D Array
+</h2>
+
+\${codeBlock(\`int[][] grid = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+for (int i = 0; i < grid.length; i++) {
+    for (int j = 0; j < grid[i].length; j++) {
+        System.out.print(grid[i][j] + " ");
+    }
+    System.out.println();
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    1 2 3<br>
+    4 5 6<br>
+    7 8 9
+</div>
+
+
+<h2>
+    Sum of All Elements
+</h2>
+
+\${codeBlock(\`int[][] matrix = {
+    {10, 20, 30},
+    {40, 50, 60}
+};
+
+int sum = 0;
+
+for (int[] row : matrix) {
+    for (int val : row) {
+        sum += val;
+    }
+}
+
+System.out.println("Total sum: " + sum);\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Total sum: 210
+</div>
+
+
+<h2>
+    Student Marks Example
+</h2>
+
+\${codeBlock(\`String[] students = {"Rahul", "Priya", "Amit"};
+int[][] marks = {
+    {85, 90, 78},   // Rahul's marks
+    {92, 88, 95},   // Priya's marks
+    {70, 75, 80}    // Amit's marks
+};
+
+for (int i = 0; i < students.length; i++) {
+    int total = 0;
+    for (int mark : marks[i]) {
+        total += mark;
+    }
+    System.out.println(students[i] + " - Total: " + total);
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Rahul - Total: 253<br>
+    Priya - Total: 275<br>
+    Amit - Total: 225
+</div>
+
+
+<div class="info">
+
+<strong>Note:</strong><br>
+In Java, 2D arrays can have rows of different lengths
+(called <b>jagged arrays</b>). Each row is itself a separate array.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   METHODS
+===================================================== */
+
+methods: `
+
+<h1>
+    Methods
+</h1>
+
+<div class="subtitle">
+    Learn how to create and use methods to organize and reuse code
+    in Java programs.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Method?
+</h2>
+
+<p>
+    A method is a block of code that performs a specific task. Methods
+    help organize code into reusable pieces. A method runs only when
+    it is called.
+</p>
+
+<p>
+    The syntax for defining a method is:<br>
+    <strong>returnType methodName(parameters) { // body }</strong>
+</p>
+
+
+<h2>
+    Creating and Calling a Method
+</h2>
+
+\${codeBlock(\`public class Main {
+
+    // Define a method
+    static void greet() {
+        System.out.println("Hello! Welcome to Java.");
+    }
+
+    public static void main(String[] args) {
+        greet();  // Call the method
+        greet();  // Call it again
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Hello! Welcome to Java.<br>
+    Hello! Welcome to Java.
+</div>
+
+
+<h2>
+    Method with Parameters
+</h2>
+
+\${codeBlock(\`public class Main {
+
+    static void greetUser(String name) {
+        System.out.println("Hello, " + name + "!");
+    }
+
+    public static void main(String[] args) {
+        greetUser("Rahul");
+        greetUser("Priya");
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Hello, Rahul!<br>
+    Hello, Priya!
+</div>
+
+
+<h2>
+    Method with Return Value
+</h2>
+
+\${codeBlock(\`public class Main {
+
+    static int add(int a, int b) {
+        return a + b;
+    }
+
+    static double calculateArea(double radius) {
+        return 3.14159 * radius * radius;
+    }
+
+    public static void main(String[] args) {
+        int sum = add(10, 20);
+        System.out.println("Sum: " + sum);
+
+        double area = calculateArea(5.0);
+        System.out.println("Area: " + area);
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Sum: 30<br>
+    Area: 78.53975
+</div>
+
+
+<h2>
+    Method with Multiple Parameters
+</h2>
+
+\${codeBlock(\`public class Main {
+
+    static void displayStudent(String name, int age, double marks) {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Marks: " + marks);
+        System.out.println("---");
+    }
+
+    public static void main(String[] args) {
+        displayStudent("Rahul", 20, 85.5);
+        displayStudent("Priya", 19, 92.0);
+    }
+}\`, "Java")}
+
+
+<div class="info">
+
+<strong>Key Points:</strong><br>
+Use <b>void</b> when a method does not return a value.
+Use a specific type (<b>int</b>, <b>double</b>, <b>String</b>, etc.)
+when the method returns a value. The <b>static</b> keyword allows
+calling the method without creating an object.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   METHOD OVERLOADING
+===================================================== */
+
+methodoverloading: `
+
+<h1>
+    Method Overloading
+</h1>
+
+<div class="subtitle">
+    Learn how to define multiple methods with the same name but
+    different parameters in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is Method Overloading?
+</h2>
+
+<p>
+    Method overloading means having multiple methods in the same class
+    with the <strong>same name</strong> but <strong>different parameter
+    lists</strong> (different number of parameters, different types, or
+    different order of types).
+</p>
+
+<p>
+    This is a form of <strong>compile-time polymorphism</strong>. Java
+    determines which method to call based on the arguments passed.
+</p>
+
+
+<h2>
+    Overloading by Number of Parameters
+</h2>
+
+\${codeBlock(\`public class Calculator {
+
+    static int add(int a, int b) {
+        return a + b;
+    }
+
+    static int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(add(10, 20));       // 30
+        System.out.println(add(10, 20, 30));   // 60
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    30<br>
+    60
+</div>
+
+
+<h2>
+    Overloading by Parameter Type
+</h2>
+
+\${codeBlock(\`public class Calculator {
+
+    static int multiply(int a, int b) {
+        return a * b;
+    }
+
+    static double multiply(double a, double b) {
+        return a * b;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(multiply(5, 3));       // 15
+        System.out.println(multiply(2.5, 4.0));   // 10.0
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    15<br>
+    10.0
+</div>
+
+
+<h2>
+    Practical Example
+</h2>
+
+\${codeBlock(\`public class Display {
+
+    static void show(String name) {
+        System.out.println("Name: " + name);
+    }
+
+    static void show(String name, int age) {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+
+    static void show(String name, int age, String city) {
+        System.out.println("Name: " + name + ", Age: " + age + ", City: " + city);
+    }
+
+    public static void main(String[] args) {
+        show("Rahul");
+        show("Priya", 20);
+        show("Amit", 22, "Mumbai");
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Name: Rahul<br>
+    Name: Priya, Age: 20<br>
+    Name: Amit, Age: 22, City: Mumbai
+</div>
+
+
+<div class="info">
+
+<strong>Important:</strong><br>
+Method overloading is determined by parameter differences, NOT by
+return type alone. Two methods with the same name and parameters but
+different return types will cause a compilation error.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   OOP CONCEPTS
+===================================================== */
+
+oop: `
+
+<h1>
+    OOP Concepts
+</h1>
+
+<div class="subtitle">
+    Understand the four fundamental principles of Object-Oriented
+    Programming in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is OOP?
+</h2>
+
+<p>
+    <strong>Object-Oriented Programming (OOP)</strong> is a programming
+    paradigm based on the concept of "objects" which contain data
+    (fields/attributes) and code (methods). Java is an object-oriented
+    language where everything is associated with classes and objects.
+</p>
+
+
+<h2>
+    Four Pillars of OOP
+</h2>
+
+<ul class="topic-list">
+    <li><strong>Encapsulation:</strong> Wrapping data and methods together in a single unit (class) and restricting direct access to some components.</li>
+    <li><strong>Inheritance:</strong> A mechanism where one class acquires the properties and behaviors of another class.</li>
+    <li><strong>Polymorphism:</strong> The ability of an object to take on many forms. The same method can behave differently based on the object.</li>
+    <li><strong>Abstraction:</strong> Hiding complex implementation details and showing only the essential features to the user.</li>
+</ul>
+
+
+<h2>
+    Classes and Objects
+</h2>
+
+<p>
+    A <strong>class</strong> is a blueprint or template for creating
+    objects. An <strong>object</strong> is an instance of a class.
+</p>
+
+\${codeBlock(\`// Class (Blueprint)
+class Car {
+    String brand;
+    String color;
+    int speed;
+
+    void drive() {
+        System.out.println(brand + " is driving at " + speed + " km/h");
+    }
+}
+
+// Creating Objects
+public class Main {
+    public static void main(String[] args) {
+        Car car1 = new Car();
+        car1.brand = "Toyota";
+        car1.color = "Red";
+        car1.speed = 120;
+        car1.drive();
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Toyota is driving at 120 km/h
+</div>
+
+
+<h2>
+    Benefits of OOP
+</h2>
+
+<ul class="topic-list">
+    <li><strong>Modularity:</strong> Code is organized into separate classes.</li>
+    <li><strong>Reusability:</strong> Classes can be reused across different programs.</li>
+    <li><strong>Maintainability:</strong> Easier to update and maintain code.</li>
+    <li><strong>Security:</strong> Data is protected through encapsulation.</li>
+    <li><strong>Scalability:</strong> Easy to add new features without breaking existing code.</li>
+</ul>
+
+
+<div class="info">
+
+<strong>Remember:</strong><br>
+OOP is not just a set of rules. It is a way of thinking about and
+organizing your code. The four pillars (Encapsulation, Inheritance,
+Polymorphism, Abstraction) work together to create clean, modular,
+and maintainable software.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   CLASSES AND OBJECTS
+===================================================== */
+
+classes: `
+
+<h1>
+    Classes and Objects
+</h1>
+
+<div class="subtitle">
+    Learn how to create classes and objects, the building blocks of
+    Java programming.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Class?
+</h2>
+
+<p>
+    A <strong>class</strong> is a blueprint or template that defines
+    the properties (attributes) and behaviors (methods) that objects
+    of that type will have. Think of a class as a design plan for
+    creating objects.
+</p>
+
+
+<h2>
+    What is an Object?
+</h2>
+
+<p>
+    An <strong>object</strong> is an instance of a class. When you
+    create an object, memory is allocated and the object gets its
+    own copy of the instance variables defined in the class.
+</p>
+
+
+<h2>
+    Creating a Class and Object
+</h2>
+
+\${codeBlock(\`class Student {
+    // Attributes (fields)
+    String name;
+    int age;
+    double marks;
+
+    // Method
+    void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Marks: " + marks);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an object
+        Student s1 = new Student();
+        s1.name = "Rahul";
+        s1.age = 20;
+        s1.marks = 85.5;
+        s1.display();
+
+        System.out.println("---");
+
+        // Create another object
+        Student s2 = new Student();
+        s2.name = "Priya";
+        s2.age = 19;
+        s2.marks = 92.0;
+        s2.display();
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Name: Rahul<br>
+    Age: 20<br>
+    Marks: 85.5<br>
+    ---<br>
+    Name: Priya<br>
+    Age: 19<br>
+    Marks: 92.0
+</div>
+
+
+<h2>
+    Multiple Methods in a Class
+</h2>
+
+\${codeBlock(\`class Calculator {
+    int num1, num2;
+
+    void setValues(int a, int b) {
+        num1 = a;
+        num2 = b;
+    }
+
+    int add() {
+        return num1 + num2;
+    }
+
+    int subtract() {
+        return num1 - num2;
+    }
+
+    int multiply() {
+        return num1 * num2;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        calc.setValues(10, 5);
+
+        System.out.println("Sum: " + calc.add());
+        System.out.println("Difference: " + calc.subtract());
+        System.out.println("Product: " + calc.multiply());
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Sum: 15<br>
+    Difference: 5<br>
+    Product: 50
+</div>
+
+
+<div class="info">
+
+<strong>Key Points:</strong><br>
+Each object has its own copy of instance variables.
+Objects are created using the <b>new</b> keyword.
+Methods define the behavior of objects.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   CONSTRUCTORS
+===================================================== */
+
+constructors: `
+
+<h1>
+    Constructors
+</h1>
+
+<div class="subtitle">
+    Learn how to use constructors to initialize objects when they
+    are created in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Constructor?
+</h2>
+
+<p>
+    A <strong>constructor</strong> is a special method that is called
+    automatically when an object is created. It is used to initialize
+    the object's attributes. A constructor has the same name as the
+    class and does not have a return type.
+</p>
+
+
+<h2>
+    Default Constructor
+</h2>
+
+<p>
+    A constructor with no parameters is called a
+    <strong>default constructor</strong>.
+</p>
+
+\${codeBlock(\`class Student {
+    String name;
+    int age;
+
+    // Default constructor
+    Student() {
+        name = "Unknown";
+        age = 0;
+        System.out.println("Constructor called!");
+    }
+
+    void display() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.display();
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Constructor called!<br>
+    Name: Unknown, Age: 0
+</div>
+
+
+<h2>
+    Parameterized Constructor
+</h2>
+
+<p>
+    A constructor that accepts parameters to set initial values.
+</p>
+
+\${codeBlock(\`class Student {
+    String name;
+    int age;
+
+    // Parameterized constructor
+    Student(String n, int a) {
+        name = n;
+        age = a;
+    }
+
+    void display() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s1 = new Student("Rahul", 20);
+        Student s2 = new Student("Priya", 19);
+
+        s1.display();
+        s2.display();
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Name: Rahul, Age: 20<br>
+    Name: Priya, Age: 19
+</div>
+
+
+<h2>
+    Constructor Overloading
+</h2>
+
+<p>
+    A class can have multiple constructors with different parameter lists.
+</p>
+
+\${codeBlock(\`class Student {
+    String name;
+    int age;
+    String city;
+
+    Student() {
+        name = "Unknown";
+        age = 0;
+        city = "Not set";
+    }
+
+    Student(String n, int a) {
+        name = n;
+        age = a;
+        city = "Not set";
+    }
+
+    Student(String n, int a, String c) {
+        name = n;
+        age = a;
+        city = c;
+    }
+
+    void display() {
+        System.out.println(name + ", " + age + ", " + city);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s1 = new Student();
+        Student s2 = new Student("Rahul", 20);
+        Student s3 = new Student("Priya", 19, "Mumbai");
+
+        s1.display();
+        s2.display();
+        s3.display();
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Unknown, 0, Not set<br>
+    Rahul, 20, Not set<br>
+    Priya, 19, Mumbai
+</div>
+
+
+<h2>
+    The this Keyword
+</h2>
+
+<p>
+    The <strong>this</strong> keyword refers to the current object.
+    It is commonly used when parameter names match field names.
+</p>
+
+\${codeBlock(\`class Student {
+    String name;
+    int age;
+
+    Student(String name, int age) {
+        this.name = name;  // 'this.name' refers to the field
+        this.age = age;    // 'name' refers to the parameter
+    }
+
+    void display() {
+        System.out.println("Name: " + this.name + ", Age: " + this.age);
+    }
+}\`, "Java")}
+
+
+<div class="info">
+
+<strong>Key Points:</strong><br>
+Constructors are called automatically when <b>new</b> is used.
+They have the same name as the class and no return type.
+Use <b>this</b> to distinguish between fields and parameters with the same name.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   ENCAPSULATION
+===================================================== */
+
+encapsulation: `
+
+<h1>
+    Encapsulation
+</h1>
+
+<div class="subtitle">
+    Learn how to protect data by bundling it with methods and
+    controlling access using encapsulation in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is Encapsulation?
+</h2>
+
+<p>
+    <strong>Encapsulation</strong> is the process of wrapping data
+    (variables) and code (methods) together as a single unit. It
+    restricts direct access to some of the object's components and
+    provides controlled access through <strong>getter</strong> and
+    <strong>setter</strong> methods.
+</p>
+
+<p>
+    In Java, encapsulation is achieved by declaring variables as
+    <strong>private</strong> and providing public getter and setter
+    methods to access and modify them.
+</p>
+
+
+<h2>
+    Without Encapsulation (Problem)
+</h2>
+
+\${codeBlock(\`class Student {
+    String name;
+    int age;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.age = -5;  // Invalid value! No protection.
+        System.out.println("Age: " + s.age);
+    }
+}\`, "Java")}
+
+
+<h2>
+    With Encapsulation (Solution)
+</h2>
+
+\${codeBlock(\`class Student {
+    private String name;
+    private int age;
+
+    // Getter for name
+    public String getName() {
+        return name;
+    }
+
+    // Setter for name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter for age
+    public int getAge() {
+        return age;
+    }
+
+    // Setter for age with validation
+    public void setAge(int age) {
+        if (age > 0 && age < 120) {
+            this.age = age;
+        } else {
+            System.out.println("Invalid age!");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.setName("Rahul");
+        s.setAge(20);
+
+        System.out.println("Name: " + s.getName());
+        System.out.println("Age: " + s.getAge());
+
+        s.setAge(-5);  // Invalid! Will print error message.
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Name: Rahul<br>
+    Age: 20<br>
+    Invalid age!
+</div>
+
+
+<h2>
+    Access Modifiers
+</h2>
+
+<ul class="topic-list">
+    <li><strong>private:</strong> Accessible only within the same class.</li>
+    <li><strong>default (no modifier):</strong> Accessible within the same package.</li>
+    <li><strong>protected:</strong> Accessible within the same package and subclasses.</li>
+    <li><strong>public:</strong> Accessible from anywhere.</li>
+</ul>
+
+
+<h2>
+    Benefits of Encapsulation
+</h2>
+
+<ul class="topic-list">
+    <li>Data protection through access control.</li>
+    <li>Flexibility to change internal implementation without affecting external code.</li>
+    <li>Ability to add validation in setter methods.</li>
+    <li>Better control over what data can be read or modified.</li>
+</ul>
+
+
+<div class="info">
+
+<strong>Best Practice:</strong><br>
+Always make instance variables <b>private</b> and provide
+<b>public</b> getter and setter methods. This is a fundamental
+principle of good Java design.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   INHERITANCE
+===================================================== */
+
+inheritance: `
+
+<h1>
+    Inheritance
+</h1>
+
+<div class="subtitle">
+    Learn how to create new classes based on existing classes using
+    inheritance in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is Inheritance?
+</h2>
+
+<p>
+    <strong>Inheritance</strong> is a mechanism where one class
+    (child/subclass) inherits the fields and methods of another class
+    (parent/superclass). It promotes code reuse and establishes a
+    relationship between classes.
+</p>
+
+<p>
+    In Java, inheritance is achieved using the <strong>extends</strong>
+    keyword.
+</p>
+
+
+<h2>
+    Basic Inheritance Example
+</h2>
+
+\${codeBlock(\`// Parent class (Superclass)
+class Animal {
+    String name;
+
+    void eat() {
+        System.out.println(name + " is eating.");
+    }
+
+    void sleep() {
+        System.out.println(name + " is sleeping.");
+    }
+}
+
+// Child class (Subclass)
+class Dog extends Animal {
+    void bark() {
+        System.out.println(name + " is barking.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.name = "Buddy";
+        dog.eat();    // Inherited from Animal
+        dog.sleep();  // Inherited from Animal
+        dog.bark();   // Own method
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Buddy is eating.<br>
+    Buddy is sleeping.<br>
+    Buddy is barking.
+</div>
+
+
+<h2>
+    Using super Keyword
+</h2>
+
+<p>
+    The <strong>super</strong> keyword refers to the parent class.
+    It is used to call the parent's constructor or methods.
+</p>
+
+\${codeBlock(\`class Person {
+    String name;
+    int age;
+
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    void display() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+}
+
+class Student extends Person {
+    double marks;
+
+    Student(String name, int age, double marks) {
+        super(name, age);  // Call parent constructor
+        this.marks = marks;
+    }
+
+    void display() {
+        super.display();  // Call parent method
+        System.out.println("Marks: " + marks);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student("Rahul", 20, 85.5);
+        s.display();
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Name: Rahul, Age: 20<br>
+    Marks: 85.5
+</div>
+
+
+<h2>
+    Types of Inheritance in Java
+</h2>
+
+<ul class="topic-list">
+    <li><strong>Single Inheritance:</strong> One child class inherits from one parent class.</li>
+    <li><strong>Multilevel Inheritance:</strong> A chain of inheritance (A &rarr; B &rarr; C).</li>
+    <li><strong>Hierarchical Inheritance:</strong> Multiple child classes inherit from one parent.</li>
+</ul>
+
+<p>
+    <strong>Note:</strong> Java does NOT support multiple inheritance
+    with classes (a class cannot extend two classes). However, it can
+    be achieved using interfaces.
+</p>
+
+
+<h2>
+    Multilevel Inheritance Example
+</h2>
+
+\${codeBlock(\`class Animal {
+    void eat() {
+        System.out.println("Animal eats food.");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog barks.");
+    }
+}
+
+class Puppy extends Dog {
+    void play() {
+        System.out.println("Puppy plays.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Puppy p = new Puppy();
+        p.eat();   // From Animal
+        p.bark();  // From Dog
+        p.play();  // Own method
+    }
+}\`, "Java")}
+
+
+<div class="info">
+
+<strong>Key Points:</strong><br>
+Use <b>extends</b> for class inheritance.
+Use <b>super()</b> to call parent constructor.
+Use <b>super.method()</b> to call parent method.
+Java supports single and multilevel inheritance but not multiple
+inheritance with classes.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   POLYMORPHISM
+===================================================== */
+
+polymorphism: `
+
+<h1>
+    Polymorphism
+</h1>
+
+<div class="subtitle">
+    Learn how polymorphism allows objects to take many forms in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is Polymorphism?
+</h2>
+
+<p>
+    <strong>Polymorphism</strong> means "many forms." In Java, it
+    allows a single action to behave differently based on the
+    object performing it. There are two types of polymorphism:
+</p>
+
+<ul class="topic-list">
+    <li><strong>Compile-time Polymorphism:</strong> Achieved through method overloading.</li>
+    <li><strong>Runtime Polymorphism:</strong> Achieved through method overriding.</li>
+</ul>
+
+
+<h2>
+    Method Overriding (Runtime Polymorphism)
+</h2>
+
+<p>
+    When a child class provides its own implementation of a method
+    that is already defined in the parent class, it is called
+    <strong>method overriding</strong>.
+</p>
+
+\${codeBlock(\`class Animal {
+    void makeSound() {
+        System.out.println("Animal makes a sound.");
+    }
+}
+
+class Dog extends Animal {
+    void makeSound() {
+        System.out.println("Dog barks: Woof!");
+    }
+}
+
+class Cat extends Animal {
+    void makeSound() {
+        System.out.println("Cat meows: Meow!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal a1 = new Dog();
+        Animal a2 = new Cat();
+        Animal a3 = new Animal();
+
+        a1.makeSound();
+        a2.makeSound();
+        a3.makeSound();
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Dog barks: Woof!<br>
+    Cat meows: Meow!<br>
+    Animal makes a sound.
+</div>
+
+
+<h2>
+    Why is This Useful?
+</h2>
+
+<p>
+    Polymorphism allows you to write code that works with the parent
+    type but automatically uses the correct child implementation at
+    runtime. This makes your code more flexible and extensible.
+</p>
+
+\${codeBlock(\`class Shape {
+    double getArea() {
+        return 0;
+    }
+}
+
+class Circle extends Shape {
+    double radius;
+
+    Circle(double radius) {
+        this.radius = radius;
+    }
+
+    double getArea() {
+        return 3.14159 * radius * radius;
+    }
+}
+
+class Rectangle extends Shape {
+    double length, width;
+
+    Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    double getArea() {
+        return length * width;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Shape[] shapes = {
+            new Circle(5),
+            new Rectangle(4, 6),
+            new Circle(3)
+        };
+
+        for (Shape s : shapes) {
+            System.out.println("Area: " + s.getArea());
+        }
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Area: 78.53975<br>
+    Area: 24.0<br>
+    Area: 28.27431
+</div>
+
+
+<h2>
+    @Override Annotation
+</h2>
+
+<p>
+    Use the <strong>@Override</strong> annotation to indicate that a
+    method is overriding a parent class method. This helps catch errors
+    at compile time.
+</p>
+
+\${codeBlock(\`class Animal {
+    void makeSound() {
+        System.out.println("Some sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("Woof!");
+    }
+}\`, "Java")}
+
+
+<div class="info">
+
+<strong>Key Difference:</strong><br>
+<b>Overloading</b> = same method name, different parameters (compile-time).<br>
+<b>Overriding</b> = same method name and parameters in parent and child (runtime).
+
+</div>
+
+`,
+
+
+/* =====================================================
+   ABSTRACTION
+===================================================== */
+
+abstraction: `
+
+<h1>
+    Abstraction
+</h1>
+
+<div class="subtitle">
+    Learn how to hide complex implementation details and show only
+    essential features using abstraction in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is Abstraction?
+</h2>
+
+<p>
+    <strong>Abstraction</strong> is the process of hiding internal
+    implementation details and showing only the necessary functionality
+    to the user. In Java, abstraction is achieved using
+    <strong>abstract classes</strong> and <strong>interfaces</strong>.
+</p>
+
+
+<h2>
+    Abstract Classes
+</h2>
+
+<p>
+    An <strong>abstract class</strong> is a class that cannot be
+    instantiated (you cannot create objects of it). It can have both
+    abstract methods (without body) and regular methods (with body).
+</p>
+
+\${codeBlock(\`abstract class Animal {
+    String name;
+
+    // Abstract method (no body)
+    abstract void makeSound();
+
+    // Regular method
+    void sleep() {
+        System.out.println(name + " is sleeping.");
+    }
+}
+
+class Dog extends Animal {
+    Dog(String name) {
+        this.name = name;
+    }
+
+    // Must implement abstract method
+    void makeSound() {
+        System.out.println(name + " says: Woof!");
+    }
+}
+
+class Cat extends Animal {
+    Cat(String name) {
+        this.name = name;
+    }
+
+    void makeSound() {
+        System.out.println(name + " says: Meow!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog("Buddy");
+        Cat cat = new Cat("Whiskers");
+
+        dog.makeSound();
+        dog.sleep();
+        cat.makeSound();
+        cat.sleep();
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Buddy says: Woof!<br>
+    Buddy is sleeping.<br>
+    Whiskers says: Meow!<br>
+    Whiskers is sleeping.
+</div>
+
+
+<h2>
+    Abstract Class with Constructor
+</h2>
+
+\${codeBlock(\`abstract class Shape {
+    String color;
+
+    Shape(String color) {
+        this.color = color;
+    }
+
+    abstract double getArea();
+
+    void displayColor() {
+        System.out.println("Color: " + color);
+    }
+}
+
+class Circle extends Shape {
+    double radius;
+
+    Circle(String color, double radius) {
+        super(color);
+        this.radius = radius;
+    }
+
+    double getArea() {
+        return 3.14159 * radius * radius;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Circle c = new Circle("Red", 5);
+        c.displayColor();
+        System.out.println("Area: " + c.getArea());
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Color: Red<br>
+    Area: 78.53975
+</div>
+
+
+<h2>
+    Rules for Abstract Classes
+</h2>
+
+<ul class="topic-list">
+    <li>An abstract class cannot be instantiated.</li>
+    <li>It can have abstract and non-abstract methods.</li>
+    <li>It can have constructors and instance variables.</li>
+    <li>If a class has an abstract method, the class must be declared abstract.</li>
+    <li>A subclass must implement all abstract methods or be declared abstract itself.</li>
+</ul>
+
+
+<div class="info">
+
+<strong>When to Use:</strong><br>
+Use abstract classes when you want to share code among closely related
+classes. Use interfaces when unrelated classes need to share a contract
+(set of methods).
+
+</div>
+
+`,
+
+
+/* =====================================================
+   INTERFACES
+===================================================== */
+
+interfaces: `
+
+<h1>
+    Interfaces
+</h1>
+
+<div class="subtitle">
+    Learn how to define contracts for classes using interfaces in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is an Interface?
+</h2>
+
+<p>
+    An <strong>interface</strong> is a completely abstract type that
+    defines a set of methods that a class must implement. It is like
+    a contract that specifies what a class should do, without
+    specifying how.
+</p>
+
+<p>
+    Interfaces are declared using the <strong>interface</strong>
+    keyword. A class uses the <strong>implements</strong> keyword
+    to implement an interface.
+</p>
+
+
+<h2>
+    Basic Interface Example
+</h2>
+
+\${codeBlock(\`interface Drawable {
+    void draw();  // abstract method (no body)
+}
+
+class Circle implements Drawable {
+    public void draw() {
+        System.out.println("Drawing a Circle.");
+    }
+}
+
+class Rectangle implements Drawable {
+    public void draw() {
+        System.out.println("Drawing a Rectangle.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Drawable d1 = new Circle();
+        Drawable d2 = new Rectangle();
+
+        d1.draw();
+        d2.draw();
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Drawing a Circle.<br>
+    Drawing a Rectangle.
+</div>
+
+
+<h2>
+    Interface with Multiple Methods
+</h2>
+
+\${codeBlock(\`interface Animal {
+    void eat();
+    void makeSound();
+    void sleep();
+}
+
+class Dog implements Animal {
+    public void eat() {
+        System.out.println("Dog eats bones.");
+    }
+
+    public void makeSound() {
+        System.out.println("Dog barks.");
+    }
+
+    public void sleep() {
+        System.out.println("Dog sleeps in kennel.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.eat();
+        dog.makeSound();
+        dog.sleep();
+    }
+}\`, "Java")}
+
+
+<h2>
+    Multiple Interfaces
+</h2>
+
+<p>
+    A class can implement multiple interfaces, which is how Java
+    achieves a form of multiple inheritance.
+</p>
+
+\${codeBlock(\`interface Printable {
+    void print();
+}
+
+interface Showable {
+    void show();
+}
+
+class Document implements Printable, Showable {
+    public void print() {
+        System.out.println("Printing document...");
+    }
+
+    public void show() {
+        System.out.println("Showing document...");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Document doc = new Document();
+        doc.print();
+        doc.show();
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Printing document...<br>
+    Showing document...
+</div>
+
+
+<h2>
+    Default Methods in Interfaces
+</h2>
+
+<p>
+    Since Java 8, interfaces can have <strong>default methods</strong>
+    with a body. Classes can use these methods without overriding them.
+</p>
+
+\${codeBlock(\`interface Vehicle {
+    void start();
+
+    default void honk() {
+        System.out.println("Beep beep!");
+    }
+}
+
+class Car implements Vehicle {
+    public void start() {
+        System.out.println("Car is starting...");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car car = new Car();
+        car.start();
+        car.honk();  // Uses default method
+    }
+}\`, "Java")}
+
+
+<div class="info">
+
+<strong>Interface vs Abstract Class:</strong><br>
+<b>Interface:</b> Can only have abstract and default methods; supports multiple implementation; uses <b>implements</b>.<br>
+<b>Abstract Class:</b> Can have both abstract and regular methods, constructors, and fields; single inheritance; uses <b>extends</b>.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   EXCEPTION HANDLING
+===================================================== */
+
+exceptions: `
+
+<h1>
+    Exception Handling
+</h1>
+
+<div class="subtitle">
+    Learn how to handle runtime errors gracefully using try-catch
+    blocks in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is an Exception?
+</h2>
+
+<p>
+    An <strong>exception</strong> is an event that occurs during the
+    execution of a program that disrupts the normal flow of instructions.
+    Java provides a powerful mechanism to handle these runtime errors
+    so the program does not crash unexpectedly.
+</p>
+
+
+<h2>
+    try...catch Block
+</h2>
+
+<p>
+    The <strong>try</strong> block contains code that might throw an
+    exception. The <strong>catch</strong> block handles the exception.
+</p>
+
+\${codeBlock(\`public class Main {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 0;
+            System.out.println(result);
+        } catch (ArithmeticException e) {
+            System.out.println("Error: Cannot divide by zero!");
+            System.out.println("Message: " + e.getMessage());
+        }
+
+        System.out.println("Program continues...");
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Error: Cannot divide by zero!<br>
+    Message: / by zero<br>
+    Program continues...
+</div>
+
+
+<h2>
+    Multiple catch Blocks
+</h2>
+
+\${codeBlock(\`public class Main {
+    public static void main(String[] args) {
+        try {
+            int[] numbers = {1, 2, 3};
+            System.out.println(numbers[10]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array index error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("General error: " + e.getMessage());
+        }
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Array index error: Index 10 out of bounds for length 3
+</div>
+
+
+<h2>
+    finally Block
+</h2>
+
+<p>
+    The <strong>finally</strong> block always executes, whether an
+    exception occurred or not. It is used for cleanup code.
+</p>
+
+\${codeBlock(\`public class Main {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 2;
+            System.out.println("Result: " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            System.out.println("Finally block always executes.");
+        }
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Result: 5<br>
+    Finally block always executes.
+</div>
+
+
+<h2>
+    throw and throws Keywords
+</h2>
+
+<p>
+    Use <strong>throw</strong> to manually throw an exception. Use
+    <strong>throws</strong> to declare that a method may throw an
+    exception.
+</p>
+
+\${codeBlock(\`public class Main {
+
+    static void checkAge(int age) throws IllegalArgumentException {
+        if (age < 18) {
+            throw new IllegalArgumentException("Age must be 18 or above.");
+        }
+        System.out.println("Access granted.");
+    }
+
+    public static void main(String[] args) {
+        try {
+            checkAge(15);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            checkAge(20);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Error: Age must be 18 or above.<br>
+    Access granted.
+</div>
+
+
+<h2>
+    Common Exception Types
+</h2>
+
+<ul class="topic-list">
+    <li><strong>ArithmeticException:</strong> Division by zero.</li>
+    <li><strong>NullPointerException:</strong> Accessing a null reference.</li>
+    <li><strong>ArrayIndexOutOfBoundsException:</strong> Invalid array index.</li>
+    <li><strong>NumberFormatException:</strong> Invalid number conversion.</li>
+    <li><strong>IOException:</strong> Input/output errors.</li>
+    <li><strong>ClassNotFoundException:</strong> Class not found at runtime.</li>
+</ul>
+
+
+<div class="info">
+
+<strong>Best Practice:</strong><br>
+Always catch specific exceptions before general ones.
+Use <b>finally</b> for cleanup (closing files, connections).
+Do not use exceptions for normal flow control.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   COLLECTIONS FRAMEWORK
+===================================================== */
+
+collections: `
+
+<h1>
+    Collections Framework
+</h1>
+
+<div class="subtitle">
+    Learn about Java's Collections Framework for storing and
+    manipulating groups of objects.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is the Collections Framework?
+</h2>
+
+<p>
+    The <strong>Collections Framework</strong> is a set of classes and
+    interfaces in Java that provides a way to store and manipulate
+    groups of objects. It is part of the <b>java.util</b> package and
+    provides dynamic data structures that can grow and shrink in size.
+</p>
+
+
+<h2>
+    ArrayList
+</h2>
+
+<p>
+    An <strong>ArrayList</strong> is a resizable array. Unlike regular
+    arrays, it can grow and shrink dynamically.
+</p>
+
+\${codeBlock(\`import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<String> fruits = new ArrayList<>();
+
+        // Adding elements
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Mango");
+        fruits.add("Orange");
+
+        System.out.println("Fruits: " + fruits);
+        System.out.println("Size: " + fruits.size());
+        System.out.println("First: " + fruits.get(0));
+
+        // Remove an element
+        fruits.remove("Banana");
+        System.out.println("After removal: " + fruits);
+
+        // Check if element exists
+        System.out.println("Has Mango? " + fruits.contains("Mango"));
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Fruits: [Apple, Banana, Mango, Orange]<br>
+    Size: 4<br>
+    First: Apple<br>
+    After removal: [Apple, Mango, Orange]<br>
+    Has Mango? true
+</div>
+
+
+<h2>
+    Looping Through an ArrayList
+</h2>
+
+\${codeBlock(\`import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.add(10);
+        numbers.add(20);
+        numbers.add(30);
+        numbers.add(40);
+
+        // for-each loop
+        for (int num : numbers) {
+            System.out.println(num);
+        }
+    }
+}\`, "Java")}
+
+
+<h2>
+    HashMap
+</h2>
+
+<p>
+    A <strong>HashMap</strong> stores data in key-value pairs.
+    Each key is unique and maps to a specific value.
+</p>
+
+\${codeBlock(\`import java.util.HashMap;
+
+public class Main {
+    public static void main(String[] args) {
+        HashMap<String, Integer> marks = new HashMap<>();
+
+        marks.put("Rahul", 85);
+        marks.put("Priya", 92);
+        marks.put("Amit", 78);
+
+        System.out.println("Marks: " + marks);
+        System.out.println("Rahul's marks: " + marks.get("Rahul"));
+        System.out.println("Size: " + marks.size());
+
+        // Check if key exists
+        System.out.println("Has Priya? " + marks.containsKey("Priya"));
+
+        // Remove an entry
+        marks.remove("Amit");
+        System.out.println("After removal: " + marks);
+    }
+}\`, "Java")}
+
+
+<h2>
+    HashSet
+</h2>
+
+<p>
+    A <strong>HashSet</strong> stores unique elements only. Duplicate
+    values are automatically ignored.
+</p>
+
+\${codeBlock(\`import java.util.HashSet;
+
+public class Main {
+    public static void main(String[] args) {
+        HashSet<String> cities = new HashSet<>();
+
+        cities.add("Mumbai");
+        cities.add("Delhi");
+        cities.add("Mumbai");  // Duplicate - ignored
+        cities.add("Chennai");
+
+        System.out.println("Cities: " + cities);
+        System.out.println("Size: " + cities.size());
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Cities: [Chennai, Delhi, Mumbai]<br>
+    Size: 3
+</div>
+
+
+<h2>
+    Common Collection Types
+</h2>
+
+<ul class="topic-list">
+    <li><strong>ArrayList:</strong> Ordered, allows duplicates, dynamic size.</li>
+    <li><strong>LinkedList:</strong> Ordered, allows duplicates, efficient insert/delete.</li>
+    <li><strong>HashMap:</strong> Key-value pairs, no duplicate keys.</li>
+    <li><strong>HashSet:</strong> Unique elements only, unordered.</li>
+    <li><strong>TreeSet:</strong> Unique elements, sorted order.</li>
+    <li><strong>TreeMap:</strong> Key-value pairs, sorted by keys.</li>
+</ul>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use <b>ArrayList</b> when you need an ordered list with index access.
+Use <b>HashMap</b> when you need key-value lookup.
+Use <b>HashSet</b> when you need unique elements.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   FILE HANDLING
+===================================================== */
+
+filehandling: `
+
+<h1>
+    File Handling
+</h1>
+
+<div class="subtitle">
+    Learn how to read from and write to files in Java using the
+    java.io and java.nio packages.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    File Handling in Java
+</h2>
+
+<p>
+    Java provides several classes for file handling. The most commonly
+    used classes are <strong>File</strong>, <strong>FileWriter</strong>,
+    <strong>FileReader</strong>, <strong>BufferedReader</strong>, and
+    <strong>Scanner</strong>. These are part of the <b>java.io</b>
+    package.
+</p>
+
+
+<h2>
+    Creating a File
+</h2>
+
+\${codeBlock(\`import java.io.File;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            File file = new File("test.txt");
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+}\`, "Java")}
+
+
+<h2>
+    Writing to a File
+</h2>
+
+\${codeBlock(\`import java.io.FileWriter;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            FileWriter writer = new FileWriter("test.txt");
+            writer.write("Hello, Java!\\n");
+            writer.write("File handling is easy.\\n");
+            writer.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+}\`, "Java")}
+
+
+<h2>
+    Reading a File
+</h2>
+
+\${codeBlock(\`import java.io.File;
+import java.util.Scanner;
+import java.io.FileNotFoundException;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            File file = new File("test.txt");
+            Scanner reader = new Scanner(file);
+
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                System.out.println(line);
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found.");
+            e.printStackTrace();
+        }
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Hello, Java!<br>
+    File handling is easy.
+</div>
+
+
+<h2>
+    Reading with BufferedReader
+</h2>
+
+\${codeBlock(\`import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("test.txt"));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+            br.close();
+        } catch (IOException e) {
+            System.out.println("Error reading file.");
+            e.printStackTrace();
+        }
+    }
+}\`, "Java")}
+
+
+<h2>
+    File Information
+</h2>
+
+\${codeBlock(\`import java.io.File;
+
+public class Main {
+    public static void main(String[] args) {
+        File file = new File("test.txt");
+
+        if (file.exists()) {
+            System.out.println("Name: " + file.getName());
+            System.out.println("Path: " + file.getAbsolutePath());
+            System.out.println("Size: " + file.length() + " bytes");
+            System.out.println("Readable: " + file.canRead());
+            System.out.println("Writable: " + file.canWrite());
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+}\`, "Java")}
+
+
+<h2>
+    Deleting a File
+</h2>
+
+\${codeBlock(\`import java.io.File;
+
+public class Main {
+    public static void main(String[] args) {
+        File file = new File("test.txt");
+
+        if (file.delete()) {
+            System.out.println("Deleted: " + file.getName());
+        } else {
+            System.out.println("Failed to delete the file.");
+        }
+    }
+}\`, "Java")}
+
+
+<div class="info">
+
+<strong>Best Practice:</strong><br>
+Always use <b>try-catch</b> blocks when working with files to handle
+<b>IOException</b> and <b>FileNotFoundException</b>. Always close
+file readers and writers after use to free system resources.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   PACKAGES
+===================================================== */
+
+packages: `
+
+<h1>
+    Packages
+</h1>
+
+<div class="subtitle">
+    Learn how to organize your Java classes into packages for better
+    code management and reusability.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Package?
+</h2>
+
+<p>
+    A <strong>package</strong> in Java is a namespace that organizes
+    classes and interfaces into groups. Packages help avoid naming
+    conflicts and make it easier to locate and manage related classes.
+</p>
+
+<p>
+    Think of a package as a folder in your file system that contains
+    related Java files.
+</p>
+
+
+<h2>
+    Types of Packages
+</h2>
+
+<ul class="topic-list">
+    <li><strong>Built-in Packages:</strong> Provided by Java (e.g., java.util, java.io, java.lang).</li>
+    <li><strong>User-defined Packages:</strong> Created by the programmer to organize their code.</li>
+</ul>
+
+
+<h2>
+    Importing Built-in Packages
+</h2>
+
+\${codeBlock(\`// Import a specific class
+import java.util.Scanner;
+import java.util.ArrayList;
+
+// Import all classes from a package
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<String> list = new ArrayList<>();
+
+        list.add("Java");
+        list.add("Python");
+        System.out.println(list);
+    }
+}\`, "Java")}
+
+
+<h2>
+    Creating a User-defined Package
+</h2>
+
+<p>
+    To create your own package, use the <strong>package</strong>
+    keyword at the top of your Java file.
+</p>
+
+\${codeBlock(\`// File: mypackage/Calculator.java
+package mypackage;
+
+public class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public int subtract(int a, int b) {
+        return a - b;
+    }
+
+    public int multiply(int a, int b) {
+        return a * b;
+    }
+}\`, "Java")}
+
+
+<h2>
+    Using Your Package
+</h2>
+
+\${codeBlock(\`// File: Main.java
+import mypackage.Calculator;
+
+public class Main {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+
+        System.out.println("Add: " + calc.add(10, 5));
+        System.out.println("Subtract: " + calc.subtract(10, 5));
+        System.out.println("Multiply: " + calc.multiply(10, 5));
+    }
+}\`, "Java")}
+
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+    Add: 15<br>
+    Subtract: 5<br>
+    Multiply: 50
+</div>
+
+
+<h2>
+    Commonly Used Java Packages
+</h2>
+
+<ul class="topic-list">
+    <li><strong>java.lang:</strong> Fundamental classes (String, Math, System) - imported automatically.</li>
+    <li><strong>java.util:</strong> Utility classes (Scanner, ArrayList, HashMap, Collections).</li>
+    <li><strong>java.io:</strong> Input/output classes (File, FileReader, BufferedReader).</li>
+    <li><strong>java.math:</strong> Mathematical classes (BigDecimal, BigInteger).</li>
+    <li><strong>java.time:</strong> Date and time classes (LocalDate, LocalTime).</li>
+    <li><strong>java.net:</strong> Networking classes (URL, Socket).</li>
+</ul>
+
+
+<h2>
+    Compiling with Packages
+</h2>
+
+\${codeBlock(\`// Compile the package class
+javac -d . mypackage/Calculator.java
+
+// Compile the main class
+javac Main.java
+
+// Run the program
+java Main\`, "Terminal")}
+
+
+<div class="info">
+
+<strong>Naming Convention:</strong><br>
+Package names are written in all lowercase letters.
+They typically follow a reverse domain name convention
+(e.g., <b>com.company.project</b>). The <b>java.lang</b>
+package is imported automatically in every Java program.
+
+</div>
+
+`
+};
+
+
+/* =====================================================
+   CREATE CODE BLOCK
+===================================================== */
+
+function codeBlock(code, language) {
+
+    const id =
+        "code_" +
+        Math.random()
+        .toString(36)
+        .substring(2, 9);
+
+
+    return `
+
+        <div class="code-header">
+
+            <span>
+                ${language}
+            </span>
+
+            <button
+                class="copy-btn"
+                onclick="copyCode('${id}', this)">
+
+                Copy
+
+            </button>
+
+        </div>
+
+
+        <div class="code-box">
+
+            <pre id="${id}">${escapeHTML(code.trim())}</pre>
+
+        </div>
+
+    `;
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text) {
+
+    return text
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;");
+
+}
+
+
+/* =====================================================
+   SHOW TOPIC
+===================================================== */
+
+function showTopic(topic, button) {
+
+
+    document.getElementById("content").innerHTML =
+        topics[topic];
+
+
+    /* Remove active class */
+
+    document
+        .querySelectorAll(".topic")
+        .forEach(function(item) {
+
+            item.classList.remove("active");
+
+        });
+
+
+    /* Add active class */
+
+    button.classList.add("active");
+
+
+    /* Scroll content to top */
+
+    document
+        .querySelector(".content-area")
+        .scrollTop = 0;
+
+
+    /* Close mobile menu */
+
+    if (window.innerWidth <= 700) {
+
+        closeMenu();
+
+    }
+
+}
+
+
+/* =====================================================
+   COPY CODE
+===================================================== */
+
+function copyCode(id, button) {
+
+    const code =
+        document.getElementById(id).innerText;
+
+
+    navigator.clipboard.writeText(code);
+
+
+    button.innerText = "Copied!";
+
+
+    setTimeout(function() {
+
+        button.innerText = "Copy";
+
+    }, 1500);
+
+}
+
+
+/* =====================================================
+   OPEN / CLOSE MOBILE MENU
+===================================================== */
+
+function toggleMenu() {
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const overlay =
+        document.getElementById("overlay");
+
+
+    sidebar.classList.toggle("open");
+
+    overlay.classList.toggle("show");
+
+}
+
+
+function closeMenu() {
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const overlay =
+        document.getElementById("overlay");
+
+
+    sidebar.classList.remove("open");
+
+    overlay.classList.remove("show");
+
+}
+
+
+/* =====================================================
+   LOAD FIRST TOPIC
+===================================================== */
+
+showTopic(
+    "intro",
+    document.querySelector(".topic")
+);
+
+</script>
+
+
+<script>document.querySelectorAll(".site-nav-menu a").forEach(function(a){a.addEventListener("click",function(){document.getElementById("siteNavLinks").classList.remove("open");document.querySelectorAll(".site-nav-dropdown").forEach(function(d){d.classList.remove("open")});})});</script>
+<footer style="text-align:center; margin-top:40px; padding:20px; background:#172554; color:white;">&copy; 2026 Cursor Computers Academy</footer>
+</body>
+</html>
