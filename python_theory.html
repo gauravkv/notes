@@ -1109,6 +1109,17 @@ strong {
 
              </button>
 
+          
+           <button
+            class="topic"
+            onclick="showTopic('python_mysql', this)">
+
+        Python with MySQL
+
+             </button>
+
+
+          
 
           
 
@@ -14382,6 +14393,847 @@ print(n1 + n2)`, "Python")}
     methods like <b>__add__()</b>, <b>__sub__()</b>,
     <b>__mul__()</b>, and <b>__eq__()</b>. This feature makes
     user-defined classes more intuitive and easier to use.
+</p>`,
+
+      python_mysql : `<h1>
+    Python with MySQL
+</h1>
+
+<div class="subtitle">
+    Connect Python with MySQL and perform database operations.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is MySQL?
+</h2>
+
+<p>
+    <b>MySQL</b> is a relational database management system used
+    to store and manage data in tables.
+</p>
+
+<p>
+    Python can connect to MySQL and perform operations such as
+    creating tables, inserting records, retrieving data, updating
+    records, and deleting records.
+</p>
+
+
+<h2>
+    MySQL Connector
+</h2>
+
+<p>
+    To connect Python with MySQL, we can use the
+    <b>mysql-connector-python</b> package.
+</p>
+
+<p>
+    Install it using the following command:
+</p>
+
+${codeBlock(`pip install mysql-connector-python`, "Command")}
+
+
+<h2>
+    Importing MySQL Connector
+</h2>
+
+${codeBlock(`import mysql.connector`, "Python")}
+
+
+<h2>
+    Connecting to MySQL
+</h2>
+
+<p>
+    The <b>connect()</b> function is used to establish a connection
+    between Python and MySQL.
+</p>
+
+${codeBlock(`import mysql.connector
+
+connection = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="your_password"
+)
+
+print("Connected successfully")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Connected successfully
+</div>
+
+
+<h2>
+    Connection Parameters
+</h2>
+
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>host</td>
+        <td>Specifies the MySQL server location.</td>
+    </tr>
+    <tr>
+        <td>user</td>
+        <td>Specifies the MySQL username.</td>
+    </tr>
+    <tr>
+        <td>password</td>
+        <td>Specifies the MySQL password.</td>
+    </tr>
+    <tr>
+        <td>database</td>
+        <td>Specifies the database to use.</td>
+    </tr>
+    <tr>
+        <td>port</td>
+        <td>Specifies the MySQL server port.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Connecting to a Database
+</h2>
+
+<p>
+    If the database already exists, specify its name using the
+    <b>database</b> parameter.
+</p>
+
+${codeBlock(`import mysql.connector
+
+connection = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="your_password",
+    database="college"
+)
+
+print("Connected successfully")`, "Python")}
+
+
+<h2>
+    Creating a Database
+</h2>
+
+<p>
+    A database can be created using the <b>CREATE DATABASE</b>
+    SQL statement.
+</p>
+
+${codeBlock(`import mysql.connector
+
+connection = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="your_password"
+)
+
+cursor = connection.cursor()
+
+cursor.execute("CREATE DATABASE college")
+
+print("Database created")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Database created
+</div>
+
+
+<h2>
+    Creating a Cursor
+</h2>
+
+<p>
+    A <b>cursor</b> is used to execute SQL statements and retrieve
+    results from the database.
+</p>
+
+${codeBlock(`cursor = connection.cursor()`, "Python")}
+
+
+<h2>
+    Executing SQL Statements
+</h2>
+
+<p>
+    The <b>execute()</b> method is used to execute an SQL query.
+</p>
+
+${codeBlock(`cursor.execute("CREATE DATABASE college")`, "Python")}
+
+
+<h2>
+    Creating a Table
+</h2>
+
+${codeBlock(`import mysql.connector
+
+connection = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="your_password",
+    database="college"
+)
+
+cursor = connection.cursor()
+
+query = """
+CREATE TABLE students (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    age INT,
+    course VARCHAR(100)
+)
+"""
+
+cursor.execute(query)
+
+print("Table created")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Table created
+</div>
+
+
+<h2>
+    Inserting Data
+</h2>
+
+<p>
+    The <b>INSERT INTO</b> statement is used to add records to
+    a table.
+</p>
+
+${codeBlock(`query = """
+INSERT INTO students (name, age, course)
+VALUES ('Rahul', 20, 'Python')
+"""
+
+cursor.execute(query)
+
+connection.commit()
+
+print("Record inserted")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Record inserted
+</div>
+
+
+<h2>
+    Why commit()?
+</h2>
+
+<p>
+    The <b>commit()</b> method saves changes permanently to the
+    database.
+</p>
+
+${codeBlock(`connection.commit()`, "Python")}
+
+<p>
+    Operations such as <b>INSERT</b>, <b>UPDATE</b>, and
+    <b>DELETE</b> should generally be followed by
+    <b>commit()</b>.
+</p>
+
+
+<h2>
+    Inserting Data using Parameters
+</h2>
+
+<p>
+    Instead of directly placing values inside an SQL query,
+    parameters can be used. This is safer and helps prevent
+    SQL injection.
+</p>
+
+${codeBlock(`query = """
+INSERT INTO students (name, age, course)
+VALUES (%s, %s, %s)
+"""
+
+values = ("Amit", 21, "Java")
+
+cursor.execute(query, values)
+
+connection.commit()
+
+print("Record inserted")`, "Python")}
+
+
+<h2>
+    Inserting Multiple Records
+</h2>
+
+<p>
+    The <b>executemany()</b> method can be used to insert
+    multiple records.
+</p>
+
+${codeBlock(`query = """
+INSERT INTO students (name, age, course)
+VALUES (%s, %s, %s)
+"""
+
+students = [
+    ("Rahul", 20, "Python"),
+    ("Amit", 21, "Java"),
+    ("Priya", 19, "C++")
+]
+
+cursor.executemany(query, students)
+
+connection.commit()
+
+print("Records inserted")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Records inserted
+</div>
+
+
+<h2>
+    Reading Data
+</h2>
+
+<p>
+    The <b>SELECT</b> statement is used to retrieve records from
+    a table.
+</p>
+
+${codeBlock(`query = "SELECT * FROM students"
+
+cursor.execute(query)
+
+rows = cursor.fetchall()
+
+for row in rows:
+    print(row)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(1, 'Rahul', 20, 'Python')<br>
+(2, 'Amit', 21, 'Java')<br>
+(3, 'Priya', 19, 'C++')
+</div>
+
+
+<h2>
+    fetchone()
+</h2>
+
+<p>
+    The <b>fetchone()</b> method returns one record from the
+    result.
+</p>
+
+${codeBlock(`cursor.execute("SELECT * FROM students")
+
+row = cursor.fetchone()
+
+print(row)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(1, 'Rahul', 20, 'Python')
+</div>
+
+
+<h2>
+    fetchmany()
+</h2>
+
+<p>
+    The <b>fetchmany()</b> method returns a specified number
+    of records.
+</p>
+
+${codeBlock(`cursor.execute("SELECT * FROM students")
+
+rows = cursor.fetchmany(2)
+
+for row in rows:
+    print(row)`, "Python")}
+
+
+<h2>
+    fetchall()
+</h2>
+
+<p>
+    The <b>fetchall()</b> method returns all remaining records
+    from the query result.
+</p>
+
+${codeBlock(`cursor.execute("SELECT * FROM students")
+
+rows = cursor.fetchall()
+
+for row in rows:
+    print(row)`, "Python")}
+
+
+<h2>
+    Selecting Specific Columns
+</h2>
+
+${codeBlock(`query = "SELECT name, course FROM students"
+
+cursor.execute(query)
+
+for row in cursor.fetchall():
+    print(row)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+('Rahul', 'Python')<br>
+('Amit', 'Java')<br>
+('Priya', 'C++')
+</div>
+
+
+<h2>
+    Using WHERE Clause
+</h2>
+
+<p>
+    The <b>WHERE</b> clause is used to retrieve records that
+    satisfy a condition.
+</p>
+
+${codeBlock(`query = """
+SELECT * FROM students
+WHERE age > %s
+"""
+
+cursor.execute(query, (20,))
+
+for row in cursor.fetchall():
+    print(row)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(2, 'Amit', 21, 'Java')
+</div>
+
+
+<h2>
+    Updating Data
+</h2>
+
+<p>
+    The <b>UPDATE</b> statement is used to modify existing records.
+</p>
+
+${codeBlock(`query = """
+UPDATE students
+SET course = %s
+WHERE name = %s
+"""
+
+values = ("Python", "Amit")
+
+cursor.execute(query, values)
+
+connection.commit()
+
+print("Record updated")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Record updated
+</div>
+
+
+<h2>
+    Deleting Data
+</h2>
+
+<p>
+    The <b>DELETE</b> statement is used to remove records from
+    a table.
+</p>
+
+${codeBlock(`query = """
+DELETE FROM students
+WHERE name = %s
+"""
+
+cursor.execute(query, ("Priya",))
+
+connection.commit()
+
+print("Record deleted")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Record deleted
+</div>
+
+
+<h2>
+    Getting Number of Affected Rows
+</h2>
+
+<p>
+    The <b>rowcount</b> property returns the number of rows
+    affected by an operation.
+</p>
+
+${codeBlock(`query = """
+UPDATE students
+SET age = age + 1
+WHERE course = %s
+"""
+
+cursor.execute(query, ("Python",))
+
+connection.commit()
+
+print(cursor.rowcount)`, "Python")}
+
+
+<h2>
+    Sorting Data
+</h2>
+
+<p>
+    SQL's <b>ORDER BY</b> clause can be used while retrieving
+    data through Python.
+</p>
+
+${codeBlock(`query = """
+SELECT * FROM students
+ORDER BY age DESC
+"""
+
+cursor.execute(query)
+
+for row in cursor.fetchall():
+    print(row)`, "Python")}
+
+
+<h2>
+    Searching Data with LIKE
+</h2>
+
+<p>
+    The <b>LIKE</b> operator can be used to search for
+    matching text.
+</p>
+
+${codeBlock(`query = """
+SELECT * FROM students
+WHERE name LIKE %s
+"""
+
+cursor.execute(query, ("R%",))
+
+for row in cursor.fetchall():
+    print(row)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(1, 'Rahul', 20, 'Python')
+</div>
+
+
+<h2>
+    Counting Records
+</h2>
+
+${codeBlock(`query = "SELECT COUNT(*) FROM students"
+
+cursor.execute(query)
+
+result = cursor.fetchone()
+
+print("Total students:", result[0])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Total students: 2
+</div>
+
+
+<h2>
+    Using Database Functions
+</h2>
+
+<p>
+    MySQL functions such as <b>AVG()</b>, <b>MAX()</b>,
+    <b>MIN()</b>, and <b>SUM()</b> can also be used through
+    Python.
+</p>
+
+${codeBlock(`query = "SELECT AVG(age) FROM students"
+
+cursor.execute(query)
+
+result = cursor.fetchone()
+
+print("Average age:", result[0])`, "Python")}
+
+
+<h2>
+    Handling Database Errors
+</h2>
+
+<p>
+    Database operations can fail because of incorrect credentials,
+    missing databases, invalid SQL, or connection problems.
+    Python provides exceptions for handling these errors.
+</p>
+
+${codeBlock(`import mysql.connector
+
+try:
+
+    connection = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="your_password",
+        database="college"
+    )
+
+    print("Connected successfully")
+
+except mysql.connector.Error as error:
+
+    print("Error:", error)`, "Python")}
+
+
+<h2>
+    Closing the Cursor and Connection
+</h2>
+
+<p>
+    After completing database operations, the cursor and database
+    connection should be closed.
+</p>
+
+${codeBlock(`cursor.close()
+connection.close()
+
+print("Connection closed")`, "Python")}
+
+
+<h2>
+    Complete Example
+</h2>
+
+<p>
+    The following example connects Python with MySQL, inserts
+    a student, retrieves the data, and closes the connection.
+</p>
+
+${codeBlock(`import mysql.connector
+
+connection = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="your_password",
+    database="college"
+)
+
+cursor = connection.cursor()
+
+
+# Insert record
+query = """
+INSERT INTO students (name, age, course)
+VALUES (%s, %s, %s)
+"""
+
+values = ("Rohan", 22, "Python")
+
+cursor.execute(query, values)
+
+connection.commit()
+
+
+# Display records
+cursor.execute("SELECT * FROM students")
+
+rows = cursor.fetchall()
+
+for row in rows:
+    print(row)
+
+
+# Close connection
+cursor.close()
+connection.close()`, "Python")}
+
+
+<h2>
+    CRUD Operations
+</h2>
+
+<p>
+    CRUD stands for the four basic database operations:
+</p>
+
+<table>
+    <tr>
+        <th>Operation</th>
+        <th>SQL</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>Create</td>
+        <td>INSERT</td>
+        <td>Add new records.</td>
+    </tr>
+    <tr>
+        <td>Read</td>
+        <td>SELECT</td>
+        <td>Retrieve records.</td>
+    </tr>
+    <tr>
+        <td>Update</td>
+        <td>UPDATE</td>
+        <td>Modify existing records.</td>
+    </tr>
+    <tr>
+        <td>Delete</td>
+        <td>DELETE</td>
+        <td>Remove records.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Practical Example: Student Management
+</h2>
+
+<p>
+    Python and MySQL can be combined to create a simple
+    student management system.
+</p>
+
+${codeBlock(`import mysql.connector
+
+connection = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="your_password",
+    database="college"
+)
+
+cursor = connection.cursor()
+
+
+name = input("Enter student name: ")
+age = int(input("Enter age: "))
+course = input("Enter course: ")
+
+
+query = """
+INSERT INTO students (name, age, course)
+VALUES (%s, %s, %s)
+"""
+
+values = (name, age, course)
+
+cursor.execute(query, values)
+
+connection.commit()
+
+print("Student added successfully")
+
+
+cursor.close()
+connection.close()`, "Python")}
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Install <b>mysql-connector-python</b> to connect Python with MySQL.</li>
+    <li>Use <b>connect()</b> to establish a database connection.</li>
+    <li>Use <b>cursor()</b> to create a cursor.</li>
+    <li>Use <b>execute()</b> to execute SQL queries.</li>
+    <li>Use <b>commit()</b> to save INSERT, UPDATE, and DELETE changes.</li>
+    <li>Use <b>fetchone()</b> to retrieve one record.</li>
+    <li>Use <b>fetchmany()</b> to retrieve a specified number of records.</li>
+    <li>Use <b>fetchall()</b> to retrieve all records.</li>
+    <li>Use SQL parameters such as <b>%s</b> instead of directly joining user input into queries.</li>
+    <li>Use <b>try-except</b> to handle database errors.</li>
+    <li>Close the cursor and connection after completing database operations.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Python can communicate with MySQL using the
+    <b>mysql-connector-python</b> package. A database connection
+    is created using <b>connect()</b>, while a cursor executes SQL
+    queries. Python can perform complete CRUD operations including
+    inserting, retrieving, updating, and deleting data. This makes
+    Python with MySQL useful for developing database-driven
+    applications.
 </p>`
 };
 
