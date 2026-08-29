@@ -1101,6 +1101,14 @@ strong {
 
              </button>
 
+           <button
+            class="topic"
+            onclick="showTopic('Operator_overloading', this)">
+
+         Operator Overloading 
+
+             </button>
+
 
           
 
@@ -13780,6 +13788,600 @@ Honda is riding
     supports different forms of inheritance and provides features
     such as <b>super()</b>, method overriding, <b>isinstance()</b>,
     and <b>issubclass()</b> to work with inherited classes.
+</p>`,
+
+      Operator_overloading : `<h1>
+    Operator Overloading
+</h1>
+
+<div class="subtitle">
+    Customize the behavior of operators for user-defined objects in Python.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is Operator Overloading?
+</h2>
+
+<p>
+    <b>Operator Overloading</b> allows operators such as
+    <b>+</b>, <b>-</b>, <b>*</b>, <b>/</b>, <b>==</b>, and others
+    to work with objects of user-defined classes.
+</p>
+
+<p>
+    Python provides special methods, also known as
+    <b>magic methods</b> or <b>dunder methods</b>, to define
+    how operators behave for objects.
+</p>
+
+
+<h2>
+    Why Operator Overloading?
+</h2>
+
+<p>
+    Operator overloading makes objects behave like built-in
+    data types and improves code readability.
+</p>
+
+${codeBlock(`a = 10
+b = 20
+
+print(a + b)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30
+</div>
+
+<p>
+    The <b>+</b> operator is already overloaded for integers.
+    We can define similar behavior for our own classes.
+</p>
+
+
+<h2>
+    Special Methods
+</h2>
+
+<p>
+    Python uses special methods to implement operator overloading.
+</p>
+
+<table>
+    <tr>
+        <th>Operator</th>
+        <th>Method</th>
+    </tr>
+    <tr>
+        <td>+</td>
+        <td>__add__()</td>
+    </tr>
+    <tr>
+        <td>-</td>
+        <td>__sub__()</td>
+    </tr>
+    <tr>
+        <td>*</td>
+        <td>__mul__()</td>
+    </tr>
+    <tr>
+        <td>/</td>
+        <td>__truediv__()</td>
+    </tr>
+    <tr>
+        <td>%</td>
+        <td>__mod__()</td>
+    </tr>
+    <tr>
+        <td>==</td>
+        <td>__eq__()</td>
+    </tr>
+    <tr>
+        <td>&lt;</td>
+        <td>__lt__()</td>
+    </tr>
+    <tr>
+        <td>&gt;</td>
+        <td>__gt__()</td>
+    </tr>
+</table>
+
+
+<h2>
+    Overloading the + Operator
+</h2>
+
+<p>
+    The <b>__add__()</b> method is called when the
+    <b>+</b> operator is used between objects.
+</p>
+
+${codeBlock(`class Number:
+
+    def __init__(self, value):
+        self.value = value
+
+    def __add__(self, other):
+        return self.value + other.value
+
+
+num1 = Number(10)
+num2 = Number(20)
+
+print(num1 + num2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30
+</div>
+
+
+<h2>
+    Overloading the - Operator
+</h2>
+
+${codeBlock(`class Number:
+
+    def __init__(self, value):
+        self.value = value
+
+    def __sub__(self, other):
+        return self.value - other.value
+
+
+num1 = Number(50)
+num2 = Number(20)
+
+print(num1 - num2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30
+</div>
+
+
+<h2>
+    Overloading the * Operator
+</h2>
+
+${codeBlock(`class Number:
+
+    def __init__(self, value):
+        self.value = value
+
+    def __mul__(self, other):
+        return self.value * other.value
+
+
+num1 = Number(10)
+num2 = Number(5)
+
+print(num1 * num2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+50
+</div>
+
+
+<h2>
+    Overloading the / Operator
+</h2>
+
+${codeBlock(`class Number:
+
+    def __init__(self, value):
+        self.value = value
+
+    def __truediv__(self, other):
+        return self.value / other.value
+
+
+num1 = Number(20)
+num2 = Number(4)
+
+print(num1 / num2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+5.0
+</div>
+
+
+<h2>
+    Overloading the % Operator
+</h2>
+
+${codeBlock(`class Number:
+
+    def __init__(self, value):
+        self.value = value
+
+    def __mod__(self, other):
+        return self.value % other.value
+
+
+num1 = Number(17)
+num2 = Number(5)
+
+print(num1 % num2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+2
+</div>
+
+
+<h2>
+    Overloading the == Operator
+</h2>
+
+<p>
+    The <b>__eq__()</b> method is used to compare objects
+    using the <b>==</b> operator.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, marks):
+        self.marks = marks
+
+    def __eq__(self, other):
+        return self.marks == other.marks
+
+
+student1 = Student(80)
+student2 = Student(80)
+
+print(student1 == student2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h2>
+    Overloading the > Operator
+</h2>
+
+${codeBlock(`class Student:
+
+    def __init__(self, marks):
+        self.marks = marks
+
+    def __gt__(self, other):
+        return self.marks > other.marks
+
+
+student1 = Student(90)
+student2 = Student(75)
+
+print(student1 > student2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h2>
+    Overloading the < Operator
+</h2>
+
+${codeBlock(`class Student:
+
+    def __init__(self, marks):
+        self.marks = marks
+
+    def __lt__(self, other):
+        return self.marks < other.marks
+
+
+student1 = Student(60)
+student2 = Student(80)
+
+print(student1 < student2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h2>
+    Using __str__()
+</h2>
+
+<p>
+    The <b>__str__()</b> method defines what should be displayed
+    when an object is printed.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return self.name
+
+
+student = Student("Rahul")
+
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul
+</div>
+
+
+<h2>
+    Operator Overloading with Complex Numbers
+</h2>
+
+<p>
+    A practical example is adding two complex numbers.
+</p>
+
+${codeBlock(`class Complex:
+
+    def __init__(self, real, imaginary):
+        self.real = real
+        self.imaginary = imaginary
+
+    def __add__(self, other):
+        return Complex(
+            self.real + other.real,
+            self.imaginary + other.imaginary
+        )
+
+    def __str__(self):
+        return f"{self.real} + {self.imaginary}i"
+
+
+c1 = Complex(2, 3)
+c2 = Complex(4, 5)
+
+result = c1 + c2
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+6 + 8i
+</div>
+
+
+<h2>
+    Operator Overloading with Employee Objects
+</h2>
+
+<p>
+    Two employee objects can be added to calculate the total salary.
+</p>
+
+${codeBlock(`class Employee:
+
+    def __init__(self, salary):
+        self.salary = salary
+
+    def __add__(self, other):
+        return self.salary + other.salary
+
+
+employee1 = Employee(30000)
+employee2 = Employee(25000)
+
+print(employee1 + employee2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+55000
+</div>
+
+
+<h2>
+    Multiple Operators in One Class
+</h2>
+
+${codeBlock(`class Number:
+
+    def __init__(self, value):
+        self.value = value
+
+    def __add__(self, other):
+        return self.value + other.value
+
+    def __sub__(self, other):
+        return self.value - other.value
+
+    def __mul__(self, other):
+        return self.value * other.value
+
+
+n1 = Number(20)
+n2 = Number(10)
+
+print(n1 + n2)
+print(n1 - n2)
+print(n1 * n2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30<br>
+10<br>
+200
+</div>
+
+
+<h2>
+    How Operator Overloading Works
+</h2>
+
+<p>
+    When Python encounters an operator between objects,
+    it automatically calls the corresponding special method.
+</p>
+
+${codeBlock(`class Number:
+
+    def __init__(self, value):
+        self.value = value
+
+    def __add__(self, other):
+        return self.value + other.value
+
+
+n1 = Number(10)
+n2 = Number(20)
+
+print(n1.__add__(n2))
+print(n1 + n2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30<br>
+30
+</div>
+
+
+<h2>
+    Common Operator Methods
+</h2>
+
+<table>
+    <tr>
+        <th>Method</th>
+        <th>Operator</th>
+    </tr>
+    <tr>
+        <td>__add__()</td>
+        <td>+</td>
+    </tr>
+    <tr>
+        <td>__sub__()</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>__mul__()</td>
+        <td>*</td>
+    </tr>
+    <tr>
+        <td>__truediv__()</td>
+        <td>/</td>
+    </tr>
+    <tr>
+        <td>__mod__()</td>
+        <td>%</td>
+    </tr>
+    <tr>
+        <td>__eq__()</td>
+        <td>==</td>
+    </tr>
+    <tr>
+        <td>__lt__()</td>
+        <td>&lt;</td>
+    </tr>
+    <tr>
+        <td>__gt__()</td>
+        <td>&gt;</td>
+    </tr>
+    <tr>
+        <td>__str__()</td>
+        <td>print()</td>
+    </tr>
+</table>
+
+
+<h2>
+    Advantages of Operator Overloading
+</h2>
+
+<ul>
+    <li>Makes code more readable.</li>
+    <li>Allows objects to behave like built-in types.</li>
+    <li>Improves code reusability.</li>
+    <li>Provides meaningful operations for custom classes.</li>
+    <li>Reduces the need for extra methods.</li>
+</ul>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Operator overloading is achieved using special methods.</li>
+    <li>Special methods are also called magic methods or dunder methods.</li>
+    <li>The <b>__add__()</b> method overloads the + operator.</li>
+    <li>The <b>__sub__()</b> method overloads the - operator.</li>
+    <li>The <b>__mul__()</b> method overloads the * operator.</li>
+    <li>The <b>__truediv__()</b> method overloads the / operator.</li>
+    <li>The <b>__eq__()</b> method overloads the == operator.</li>
+    <li>The <b>__str__()</b> method controls object display.</li>
+    <li>Operator overloading allows custom objects to support common operators.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Operator overloading allows Python objects to work with
+    operators such as <b>+</b>, <b>-</b>, <b>*</b>, <b>/</b>,
+    and comparison operators. It is implemented using special
+    methods like <b>__add__()</b>, <b>__sub__()</b>,
+    <b>__mul__()</b>, and <b>__eq__()</b>. This feature makes
+    user-defined classes more intuitive and easier to use.
 </p>`
 };
 
