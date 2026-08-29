@@ -797,12 +797,13 @@
             var html = '<div class="q-num">Question ' + (i + 1) + ' of ' + questions.length + '</div>';
             html += '<div class="q-text">' + q.question + '</div>';
 
+            var labels = ['A', 'B', 'C', 'D'];
             q.options.forEach(function(opt, j) {
                 var cls = 'answer-row';
-                var prefix = '';
-                if (j === q.answer) { cls += ' correct-answer'; prefix = '✓ '; }
-                if (j === userAns && !isCorrect) { cls += ' user-wrong'; prefix = '✗ '; }
-                html += '<div class="' + cls + '">' + prefix + opt + '</div>';
+                var suffix = '';
+                if (j === q.answer) { cls += ' correct-answer'; suffix = ' ✓'; }
+                if (j === userAns && !isCorrect) { cls += ' user-wrong'; suffix = ' ✗'; }
+                html += '<div class="' + cls + '">' + labels[j] + ') ' + opt + suffix + '</div>';
             });
 
             if (isTimeout) {
