@@ -819,6 +819,7 @@
         quizScreen.classList.remove("hide");
         resultScreen.classList.remove("show");
         document.getElementById("reviewScreen").classList.remove("show");
+        shuffleQuestions();
         loadQuestion();
     });
 
@@ -863,9 +864,20 @@
         document.getElementById('resultScreen').classList.add('show');
     });
 
+    function shuffleQuestions() {
+        for (var i = questions.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = questions[i];
+            questions[i] = questions[j];
+            questions[j] = temp;
+        }
+    }
+
+    shuffleQuestions();
     loadQuestion();
 
 </script>
 
+<script>document.querySelectorAll(".site-nav-menu a").forEach(function(a){a.addEventListener("click",function(){document.getElementById("siteNavLinks").classList.remove("open");document.querySelectorAll(".site-nav-dropdown").forEach(function(d){d.classList.remove("open")});})});</script>
 </body>
 </html>
