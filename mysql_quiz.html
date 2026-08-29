@@ -72,13 +72,6 @@
             background: #f0f5ff;
             color: #4f46e5;
         }
-        .site-nav-brand {
-            display: none;
-            font-size: 15px;
-            font-weight: 700;
-            color: #1f2937;
-            padding: 12px 15px;
-        }
         .site-hamburger {
             display: none;
             background: none;
@@ -91,7 +84,6 @@
         }
         @media (max-width: 600px) {
             .site-hamburger { display: block; }
-            .site-nav-brand { display: block; flex: 1; }
             .site-nav-links {
                 display: none;
                 flex-direction: column;
@@ -125,30 +117,26 @@
             font-family: Arial, sans-serif;
             background: #f4f6f8;
             color: #222;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
 
         /* HEADER */
         header {
-            background: linear-gradient(135deg, #172554, #2563eb);
-            color: white;
+            background: #ffffff;
+            padding: 22px 15px;
             text-align: center;
-            padding: 24px 15px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
         }
 
         header h1 {
-            margin: 0;
-            font-size: 28px;
+            font-size: 27px;
+            color: #1f2937;
             letter-spacing: 1px;
         }
 
         header p {
-            margin: 8px 0 0;
-            font-size: 16px;
-            opacity: 0.9;
+            margin-top: 7px;
+            color: #6b7280;
+            font-size: 14px;
         }
 
         /* MAIN */
@@ -379,20 +367,17 @@
         /* FOOTER */
         footer {
             text-align: center;
-            margin-top: auto;
-            padding: 20px;
-            background: #172554;
-            color: white;
+            padding: 25px;
+            color: #6b7280;
+            font-size: 13px;
         }
 
         /* MOBILE */
         @media (max-width: 600px) {
 
             header h1 {
-                font-size: 23px;
+                font-size: 21px;
             }
-
-            header p { display: none; }
 
             .page-title h2 {
                 font-size: 21px;
@@ -435,7 +420,6 @@
 
 <nav class="site-nav">
     <div class="site-nav-inner">
-        <span class="site-nav-brand">MySQL Quiz</span>
         <div class="site-nav-links" id="siteNavLinks">
             <a href="index.html" class="site-nav-link">Home</a>
             <div class="site-nav-dropdown">
@@ -454,15 +438,6 @@
                     <a href="mysql_quiz.html">Quiz</a>
                 </div>
             </div>
-                <div class="site-nav-dropdown">
-                    <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Java &#9662;</span>
-                    <div class="site-nav-menu">
-                        <a href="corejava_theory.html">Theory</a>
-                        <a href="corejava_programs.html">Programs</a>
-                        <a href="corejava_quiz.html">Quiz</a>
-                    </div>
-                </div>
-
         </div>
         <button class="site-hamburger" onclick="document.getElementById('siteNavLinks').classList.toggle('open')">☰</button>
     </div>
@@ -844,7 +819,6 @@
         quizScreen.classList.remove("hide");
         resultScreen.classList.remove("show");
         document.getElementById("reviewScreen").classList.remove("show");
-        shuffleQuestions();
         loadQuestion();
     });
 
@@ -889,20 +863,9 @@
         document.getElementById('resultScreen').classList.add('show');
     });
 
-    function shuffleQuestions() {
-        for (var i = questions.length - 1; i > 0; i--) {
-            var j = Math.floor(Math.random() * (i + 1));
-            var temp = questions[i];
-            questions[i] = questions[j];
-            questions[j] = temp;
-        }
-    }
-
-    shuffleQuestions();
     loadQuestion();
 
 </script>
 
-<script>document.querySelectorAll(".site-nav-menu a").forEach(function(a){a.addEventListener("click",function(){document.getElementById("siteNavLinks").classList.remove("open");document.querySelectorAll(".site-nav-dropdown").forEach(function(d){d.classList.remove("open")});})});</script>
 </body>
 </html>

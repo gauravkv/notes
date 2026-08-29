@@ -7,7 +7,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>MySQL Theory - Cursor Computers Academy</title>
+<title>MySQL Coding Notes</title>
 
 
 <style>
@@ -89,7 +89,6 @@
 }
 @media (max-width: 600px) {
     .site-hamburger { display: block; }
-            .site-nav-brand { display: block; flex: 1; }
     .site-nav-links {
         display: none;
         flex-direction: column;
@@ -151,9 +150,9 @@ body {
 
     height: 64px;
 
-    background: linear-gradient(135deg, #172554, #2563eb);
+    background: #ffffff;
 
-    border-bottom: none;
+    border-bottom: 1px solid #e2e6ed;
 
     display: flex;
 
@@ -179,7 +178,7 @@ body {
 
     font-weight: 700;
 
-    color: #ffffff;
+    color: #252a34;
 }
 
 
@@ -187,7 +186,7 @@ body {
 
     font-size: 14px;
 
-    color: rgba(255,255,255,0.85);
+    color: #687386;
 }
 
 
@@ -201,9 +200,9 @@ body {
 
     border: none;
 
-    background: rgba(255,255,255,0.2);
+    background: #eef0ff;
 
-    color: #ffffff;
+    color: #4f46e5;
 
     padding: 8px 12px;
 
@@ -315,9 +314,9 @@ body {
 
 .topic.active {
 
-    background: rgba(255,255,255,0.2);
+    background: #eef0ff;
 
-    color: #ffffff;
+    color: #4f46e5;
 
     
 }
@@ -892,7 +891,6 @@ strong {
 
 <nav class="site-nav">
     <div class="site-nav-inner">
-        <span class="site-nav-brand">MySQL Theory</span>
         <div class="site-nav-links" id="siteNavLinks">
             <a href="index.html" class="site-nav-link">Home</a>
             <div class="site-nav-dropdown">
@@ -911,15 +909,6 @@ strong {
                     <a href="mysql_quiz.html">Quiz</a>
                 </div>
             </div>
-                <div class="site-nav-dropdown">
-                    <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Java &#9662;</span>
-                    <div class="site-nav-menu">
-                        <a href="corejava_theory.html">Theory</a>
-                        <a href="corejava_programs.html">Programs</a>
-                        <a href="corejava_quiz.html">Quiz</a>
-                    </div>
-                </div>
-
         </div>
         <button class="site-hamburger" onclick="document.getElementById('siteNavLinks').classList.toggle('open')">&#9776;</button>
     </div>
@@ -5076,7 +5065,5 @@ showTopic(
 
 
 
-<script>document.querySelectorAll(".site-nav-menu a").forEach(function(a){a.addEventListener("click",function(){document.getElementById("siteNavLinks").classList.remove("open");document.querySelectorAll(".site-nav-dropdown").forEach(function(d){d.classList.remove("open")});})});</script>
-<footer style="text-align:center; margin-top:auto; padding:20px; background:#172554; color:white;">&copy; 2026 Cursor Computers Academy</footer>
 </body>
 </html>
