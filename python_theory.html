@@ -1143,6 +1143,14 @@ strong {
 
              </button>
 
+           <button
+            class="topic"
+            onclick="showTopic('matplotlib_data', this)">
+
+                   Matplotlib
+
+             </button>
+
 
           
 
@@ -17503,6 +17511,897 @@ print(df.sort_values(
     store, filter, clean, analyze, transform, and export data.
     Pandas is widely used in data analysis, data science,
     machine learning, and business analytics.
+</p>`,
+
+      matplotlib_data : `<h1>
+    Matplotlib
+</h1>
+
+<div class="subtitle">
+    Create charts and visualizations using Python.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is Matplotlib?
+</h2>
+
+<p>
+    <b>Matplotlib</b> is a Python library used to create
+    graphs, charts, and data visualizations.
+</p>
+
+<p>
+    It is commonly used with libraries such as
+    <b>NumPy</b> and <b>Pandas</b> for analyzing and
+    visualizing data.
+</p>
+
+
+<h2>
+    Installing Matplotlib
+</h2>
+
+<p>
+    Matplotlib can be installed using pip.
+</p>
+
+${codeBlock(`pip install matplotlib`, "Command")}
+
+
+<h2>
+    Importing Matplotlib
+</h2>
+
+<p>
+    The <b>pyplot</b> module is commonly imported using
+    the alias <b>plt</b>.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt`, "Python")}
+
+
+<h2>
+    Creating a Simple Line Chart
+</h2>
+
+<p>
+    The <b>plot()</b> function is used to create a line chart.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 15, 30, 25]
+
+plt.plot(x, y)
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Adding a Title
+</h2>
+
+<p>
+    The <b>title()</b> function adds a title to the chart.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 15, 30, 25]
+
+plt.plot(x, y)
+
+plt.title("Sales Report")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Adding X and Y Labels
+</h2>
+
+<p>
+    The <b>xlabel()</b> and <b>ylabel()</b> functions are used
+    to label the X-axis and Y-axis.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+months = [1, 2, 3, 4, 5]
+sales = [100, 150, 120, 180, 200]
+
+plt.plot(months, sales)
+
+plt.title("Monthly Sales")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Adding Grid
+</h2>
+
+<p>
+    The <b>grid()</b> function adds grid lines to a chart.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 15, 30, 25]
+
+plt.plot(x, y)
+
+plt.title("Sales")
+plt.xlabel("Month")
+plt.ylabel("Amount")
+
+plt.grid()
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Changing Line Style
+</h2>
+
+<p>
+    Matplotlib provides different line styles such as
+    dashed, dotted, and solid lines.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 15, 30, 25]
+
+plt.plot(x, y, linestyle="--")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Adding Markers
+</h2>
+
+<p>
+    Markers can be used to highlight individual data points.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 15, 30, 25]
+
+plt.plot(
+    x,
+    y,
+    marker="o"
+)
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Line Chart with Markers
+</h2>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+sales = [120, 150, 130, 180, 200]
+
+plt.plot(
+    months,
+    sales,
+    marker="o"
+)
+
+plt.title("Monthly Sales")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Multiple Lines
+</h2>
+
+<p>
+    Multiple data series can be displayed on the same chart.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+
+sales_2025 = [100, 120, 150, 140, 180]
+sales_2026 = [120, 140, 160, 170, 200]
+
+plt.plot(
+    months,
+    sales_2025,
+    marker="o",
+    label="2025"
+)
+
+plt.plot(
+    months,
+    sales_2026,
+    marker="o",
+    label="2026"
+)
+
+plt.title("Sales Comparison")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+
+plt.legend()
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Legend
+</h2>
+
+<p>
+    The <b>legend()</b> function identifies different data
+    series displayed in a chart.
+</p>
+
+${codeBlock(`plt.legend()`, "Python")}
+
+
+<h2>
+    Bar Chart
+</h2>
+
+<p>
+    The <b>bar()</b> function is used to create a bar chart.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+courses = ["Python", "Java", "C++", "PHP"]
+students = [40, 30, 25, 20]
+
+plt.bar(courses, students)
+
+plt.title("Students by Course")
+plt.xlabel("Course")
+plt.ylabel("Students")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Horizontal Bar Chart
+</h2>
+
+<p>
+    The <b>barh()</b> function creates a horizontal bar chart.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+courses = ["Python", "Java", "C++", "PHP"]
+students = [40, 30, 25, 20]
+
+plt.barh(courses, students)
+
+plt.title("Students by Course")
+plt.xlabel("Students")
+plt.ylabel("Course")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Bar Chart with Values
+</h2>
+
+<p>
+    Values can be displayed above each bar using
+    <b>bar_label()</b>.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+courses = ["Python", "Java", "C++"]
+students = [40, 30, 25]
+
+bars = plt.bar(courses, students)
+
+plt.bar_label(bars)
+
+plt.title("Students by Course")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Scatter Plot
+</h2>
+
+<p>
+    A <b>scatter plot</b> is useful for showing the relationship
+    between two numerical variables.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+hours = [1, 2, 3, 4, 5, 6]
+marks = [40, 45, 55, 65, 75, 85]
+
+plt.scatter(hours, marks)
+
+plt.title("Study Hours vs Marks")
+plt.xlabel("Study Hours")
+plt.ylabel("Marks")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Pie Chart
+</h2>
+
+<p>
+    The <b>pie()</b> function is used to create a pie chart.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+courses = ["Python", "Java", "C++", "PHP"]
+students = [40, 30, 20, 10]
+
+plt.pie(
+    students,
+    labels=courses
+)
+
+plt.title("Course Distribution")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Pie Chart with Percentages
+</h2>
+
+<p>
+    The <b>autopct</b> parameter displays percentages
+    inside the pie chart.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+courses = ["Python", "Java", "C++", "PHP"]
+students = [40, 30, 20, 10]
+
+plt.pie(
+    students,
+    labels=courses,
+    autopct="%1.1f%%"
+)
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Histogram
+</h2>
+
+<p>
+    A <b>histogram</b> shows the distribution of numerical data.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+marks = [
+    45, 50, 52, 55, 60,
+    62, 65, 68, 70, 72,
+    75, 78, 80, 85, 90
+]
+
+plt.hist(marks)
+
+plt.title("Marks Distribution")
+plt.xlabel("Marks")
+plt.ylabel("Number of Students")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Histogram with Bins
+</h2>
+
+<p>
+    The <b>bins</b> parameter controls how data is divided
+    into intervals.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+marks = [
+    45, 50, 52, 55, 60,
+    62, 65, 68, 70, 72,
+    75, 78, 80, 85, 90
+]
+
+plt.hist(
+    marks,
+    bins=5
+)
+
+plt.title("Marks Distribution")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Box Plot
+</h2>
+
+<p>
+    A <b>box plot</b> is useful for understanding the distribution
+    of data and identifying possible outliers.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+marks = [
+    45, 50, 55, 60, 62,
+    65, 68, 70, 72, 75,
+    78, 80, 85, 90
+]
+
+plt.boxplot(marks)
+
+plt.title("Marks Distribution")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Plotting NumPy Data
+</h2>
+
+<p>
+    Matplotlib works directly with NumPy arrays.
+</p>
+
+${codeBlock(`import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.arange(1, 11)
+y = x ** 2
+
+plt.plot(x, y)
+
+plt.title("Square of Numbers")
+plt.xlabel("Number")
+plt.ylabel("Square")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Plotting Pandas Data
+</h2>
+
+<p>
+    Matplotlib can also be used with Pandas DataFrames.
+</p>
+
+${codeBlock(`import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    "Month": ["Jan", "Feb", "Mar", "Apr", "May"],
+    "Sales": [100, 150, 130, 180, 200]
+}
+
+df = pd.DataFrame(data)
+
+plt.plot(
+    df["Month"],
+    df["Sales"],
+    marker="o"
+)
+
+plt.title("Monthly Sales")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Saving a Chart
+</h2>
+
+<p>
+    The <b>savefig()</b> function saves a chart as an image file.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 15, 30, 25]
+
+plt.plot(x, y)
+
+plt.title("Sales Report")
+
+plt.savefig("sales.png")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Setting Figure Size
+</h2>
+
+<p>
+    The <b>figsize</b> parameter controls the width and height
+    of the chart.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+plt.figure(figsize=(8, 5))
+
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 15, 30, 25]
+
+plt.plot(x, y)
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Multiple Charts
+</h2>
+
+<p>
+    The <b>subplots()</b> function can be used to create
+    multiple charts in one figure.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(1, 2)
+
+axes[0].plot(
+    [1, 2, 3, 4],
+    [10, 20, 15, 25]
+)
+
+axes[0].set_title("Line Chart")
+
+
+axes[1].bar(
+    ["A", "B", "C"],
+    [20, 35, 25]
+)
+
+axes[1].set_title("Bar Chart")
+
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Custom X-Axis and Y-Axis Range
+</h2>
+
+<p>
+    The <b>xlim()</b> and <b>ylim()</b> functions control
+    the visible range of the axes.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 15, 30, 25]
+
+plt.plot(x, y)
+
+plt.xlim(1, 5)
+plt.ylim(0, 35)
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Adding Text to a Chart
+</h2>
+
+<p>
+    The <b>text()</b> function adds custom text at a specific
+    position on the chart.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 15, 30, 25]
+
+plt.plot(x, y)
+
+plt.text(
+    3,
+    15,
+    "Important Point"
+)
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Adding Annotations
+</h2>
+
+<p>
+    The <b>annotate()</b> function can be used to point out
+    a specific data point.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+sales = [100, 150, 130, 180, 200]
+
+plt.plot(
+    months,
+    sales,
+    marker="o"
+)
+
+plt.annotate(
+    "Highest Sales",
+    xy=("May", 200)
+)
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Practical Example: Monthly Sales
+</h2>
+
+<p>
+    Matplotlib can be used to visualize business data such as
+    monthly sales.
+</p>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun"
+]
+
+sales = [
+    12000,
+    15000,
+    14000,
+    18000,
+    22000,
+    25000
+]
+
+plt.plot(
+    months,
+    sales,
+    marker="o"
+)
+
+plt.title("Monthly Sales Report")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+
+plt.grid()
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Practical Example: Student Marks
+</h2>
+
+${codeBlock(`import matplotlib.pyplot as plt
+
+students = [
+    "Rahul",
+    "Amit",
+    "Priya",
+    "Rohan",
+    "Neha"
+]
+
+marks = [
+    85,
+    78,
+    92,
+    75,
+    88
+]
+
+plt.bar(
+    students,
+    marks
+)
+
+plt.title("Student Marks")
+plt.xlabel("Student")
+plt.ylabel("Marks")
+
+plt.show()`, "Python")}
+
+
+<h2>
+    Common Matplotlib Charts
+</h2>
+
+<table>
+    <tr>
+        <th>Chart</th>
+        <th>Function</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>Line Chart</td>
+        <td>plot()</td>
+        <td>Shows trends over time.</td>
+    </tr>
+    <tr>
+        <td>Bar Chart</td>
+        <td>bar()</td>
+        <td>Compares categories.</td>
+    </tr>
+    <tr>
+        <td>Horizontal Bar</td>
+        <td>barh()</td>
+        <td>Compares categories horizontally.</td>
+    </tr>
+    <tr>
+        <td>Scatter Plot</td>
+        <td>scatter()</td>
+        <td>Shows relationships between variables.</td>
+    </tr>
+    <tr>
+        <td>Pie Chart</td>
+        <td>pie()</td>
+        <td>Shows proportions.</td>
+    </tr>
+    <tr>
+        <td>Histogram</td>
+        <td>hist()</td>
+        <td>Shows data distribution.</td>
+    </tr>
+    <tr>
+        <td>Box Plot</td>
+        <td>boxplot()</td>
+        <td>Shows distribution and possible outliers.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Common Matplotlib Functions
+</h2>
+
+<table>
+    <tr>
+        <th>Function</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>plot()</td>
+        <td>Creates a line chart.</td>
+    </tr>
+    <tr>
+        <td>bar()</td>
+        <td>Creates a bar chart.</td>
+    </tr>
+    <tr>
+        <td>barh()</td>
+        <td>Creates a horizontal bar chart.</td>
+    </tr>
+    <tr>
+        <td>scatter()</td>
+        <td>Creates a scatter plot.</td>
+    </tr>
+    <tr>
+        <td>pie()</td>
+        <td>Creates a pie chart.</td>
+    </tr>
+    <tr>
+        <td>hist()</td>
+        <td>Creates a histogram.</td>
+    </tr>
+    <tr>
+        <td>boxplot()</td>
+        <td>Creates a box plot.</td>
+    </tr>
+    <tr>
+        <td>title()</td>
+        <td>Adds a chart title.</td>
+    </tr>
+    <tr>
+        <td>xlabel()</td>
+        <td>Adds an X-axis label.</td>
+    </tr>
+    <tr>
+        <td>ylabel()</td>
+        <td>Adds a Y-axis label.</td>
+    </tr>
+    <tr>
+        <td>legend()</td>
+        <td>Displays a legend.</td>
+    </tr>
+    <tr>
+        <td>grid()</td>
+        <td>Displays grid lines.</td>
+    </tr>
+    <tr>
+        <td>show()</td>
+        <td>Displays the chart.</td>
+    </tr>
+    <tr>
+        <td>savefig()</td>
+        <td>Saves the chart as an image.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Matplotlib is used for data visualization in Python.</li>
+    <li>Import pyplot using <b>import matplotlib.pyplot as plt</b>.</li>
+    <li>Use <b>plot()</b> for line charts.</li>
+    <li>Use <b>bar()</b> for bar charts.</li>
+    <li>Use <b>scatter()</b> for scatter plots.</li>
+    <li>Use <b>pie()</b> for pie charts.</li>
+    <li>Use <b>hist()</b> for histograms.</li>
+    <li>Use <b>boxplot()</b> for box plots.</li>
+    <li>Use <b>title()</b>, <b>xlabel()</b>, and <b>ylabel()</b> to describe a chart.</li>
+    <li>Use <b>legend()</b> when displaying multiple data series.</li>
+    <li>Use <b>savefig()</b> to save a chart as an image.</li>
+    <li>Matplotlib works well with NumPy and Pandas.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Matplotlib is one of the most commonly used Python libraries
+    for data visualization. It provides functions for creating
+    line charts, bar charts, scatter plots, pie charts,
+    histograms, and box plots. It is especially useful for
+    understanding patterns, trends, comparisons, and
+    distributions in data.
 </p>`
 };
 
