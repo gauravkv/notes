@@ -1094,6 +1094,41 @@ strong {
 
              </button>
 
+           <button
+            class="topic"
+            onclick="showTopic('class_object', this)">
+
+           Class and Object
+
+             </button>
+
+           <button
+            class="topic"
+            onclick="showTopic('inheritance', this)">
+
+         Inheritance 
+
+             </button>
+
+           <button
+            class="topic"
+            onclick="showTopic('Operator_overloading', this)">
+
+         Operator Overloading 
+
+             </button>
+
+          
+           <button
+            class="topic"
+            onclick="showTopic('python_mysql', this)">
+
+        Python with MySQL
+
+             </button>
+
+
+          
 
           
 
@@ -12184,6 +12219,3030 @@ Course: Python`, "Text")}
     <b>with</b> statement provides a safe and convenient way to
     work with files, while modules such as <b>csv</b> and
     <b>json</b> make it possible to work with structured data.
+</p>`,
+
+      class_object : `<h1>
+    Classes &amp; Objects
+</h1>
+
+<div class="subtitle">
+    Create objects and organize data and behavior using classes in Python.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Class?
+</h2>
+
+<p>
+    A <b>class</b> is a blueprint or template used to create
+    objects. It defines the data and functions that an object
+    will contain.
+</p>
+
+<p>
+    For example, a <b>Student</b> class can contain information
+    such as name, age, and course, along with functions related
+    to a student.
+</p>
+
+
+<h2>
+    Creating a Class
+</h2>
+
+<p>
+    The <b>class</b> keyword is used to create a class.
+</p>
+
+${codeBlock(`class Student:
+    name = "Rahul"
+    age = 20
+
+print(Student.name)
+print(Student.age)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+20
+</div>
+
+
+<h2>
+    What is an Object?
+</h2>
+
+<p>
+    An <b>object</b> is an instance of a class. It is created
+    from the class and can access the data and functions defined
+    inside the class.
+</p>
+
+
+<h2>
+    Creating an Object
+</h2>
+
+${codeBlock(`class Student:
+    name = "Rahul"
+    age = 20
+
+
+student1 = Student()
+
+print(student1.name)
+print(student1.age)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+20
+</div>
+
+
+<h2>
+    Multiple Objects
+</h2>
+
+<p>
+    A single class can be used to create multiple objects.
+    Each object can represent a different entity.
+</p>
+
+${codeBlock(`class Student:
+    pass
+
+
+student1 = Student()
+student2 = Student()
+
+student1.name = "Rahul"
+student2.name = "Amit"
+
+print(student1.name)
+print(student2.name)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+Amit
+</div>
+
+
+<h2>
+    The __init__() Method
+</h2>
+
+<p>
+    The <b>__init__()</b> method is a special method that is
+    automatically called when an object is created.
+</p>
+
+<p>
+    It is commonly used to initialize the object's data.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self):
+        self.name = "Rahul"
+        self.age = 20
+
+
+student1 = Student()
+
+print(student1.name)
+print(student1.age)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+20
+</div>
+
+
+<h2>
+    The self Parameter
+</h2>
+
+<p>
+    The <b>self</b> parameter represents the current object.
+    It is used to access variables and methods belonging to
+    that object.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+student1 = Student("Rahul", 20)
+
+print(student1.name)
+print(student1.age)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+20
+</div>
+
+
+<h2>
+    Passing Values to an Object
+</h2>
+
+<p>
+    Values can be passed when creating an object. These values
+    are received by the <b>__init__()</b> method.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+student1 = Student("Rahul", 20)
+student2 = Student("Amit", 21)
+
+print(student1.name, student1.age)
+print(student2.name, student2.age)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul 20<br>
+Amit 21
+</div>
+
+
+<h2>
+    Creating Methods
+</h2>
+
+<p>
+    A function defined inside a class is called a
+    <b>method</b>. Methods define the behavior of objects.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def display(self):
+        print("Name:", self.name)
+        print("Age:", self.age)
+
+
+student1 = Student("Rahul", 20)
+
+student1.display()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Name: Rahul<br>
+Age: 20
+</div>
+
+
+<h2>
+    Method with Parameters
+</h2>
+
+<p>
+    A class method can accept additional parameters just like
+    a normal function.
+</p>
+
+${codeBlock(`class Calculator:
+
+    def add(self, a, b):
+        return a + b
+
+
+calculator = Calculator()
+
+result = calculator.add(10, 20)
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30
+</div>
+
+
+<h2>
+    Object Attributes
+</h2>
+
+<p>
+    Variables that belong to an object are called
+    <b>object attributes</b> or <b>instance attributes</b>.
+</p>
+
+${codeBlock(`class Employee:
+
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+
+employee1 = Employee("Rahul", 30000)
+
+print(employee1.name)
+print(employee1.salary)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+30000
+</div>
+
+
+<h2>
+    Changing Object Attributes
+</h2>
+
+<p>
+    Object attributes can be changed after the object has been
+    created.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+student = Student("Rahul", 20)
+
+student.age = 21
+
+print(student.age)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+21
+</div>
+
+
+<h2>
+    Adding New Attributes
+</h2>
+
+<p>
+    New attributes can also be added to an individual object.
+</p>
+
+${codeBlock(`class Student:
+    pass
+
+
+student = Student()
+
+student.name = "Rahul"
+student.age = 20
+student.course = "Python"
+
+print(student.name)
+print(student.age)
+print(student.course)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+20<br>
+Python
+</div>
+
+
+<h2>
+    Class Attributes
+</h2>
+
+<p>
+    A variable defined directly inside a class is called a
+    <b>class attribute</b>. It is shared by objects of that class.
+</p>
+
+${codeBlock(`class Student:
+
+    school = "ABC School"
+
+    def __init__(self, name):
+        self.name = name
+
+
+student1 = Student("Rahul")
+student2 = Student("Amit")
+
+print(student1.school)
+print(student2.school)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+ABC School<br>
+ABC School
+</div>
+
+
+<h2>
+    Instance Attribute vs Class Attribute
+</h2>
+
+<table>
+    <tr>
+        <th>Instance Attribute</th>
+        <th>Class Attribute</th>
+    </tr>
+    <tr>
+        <td>Belongs to an individual object.</td>
+        <td>Belongs to the class.</td>
+    </tr>
+    <tr>
+        <td>Usually defined using self.</td>
+        <td>Defined directly inside the class.</td>
+    </tr>
+    <tr>
+        <td>Can have different values for different objects.</td>
+        <td>Commonly shared by objects.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Accessing Class Attributes
+</h2>
+
+<p>
+    Class attributes can be accessed using either the class name
+    or an object.
+</p>
+
+${codeBlock(`class Student:
+
+    school = "ABC School"
+
+
+student1 = Student()
+
+print(Student.school)
+print(student1.school)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+ABC School<br>
+ABC School
+</div>
+
+
+<h2>
+    Deleting an Object Attribute
+</h2>
+
+<p>
+    The <b>del</b> keyword can be used to remove an attribute
+    from an object.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+student = Student("Rahul", 20)
+
+del student.age
+
+print(student.name)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul
+</div>
+
+
+<h2>
+    Deleting an Object
+</h2>
+
+<p>
+    The <b>del</b> keyword can also be used to delete an object.
+</p>
+
+${codeBlock(`class Student:
+    pass
+
+
+student = Student()
+
+del student`, "Python")}
+
+
+<h2>
+    String Representation using __str__()
+</h2>
+
+<p>
+    The <b>__str__()</b> method defines what should be returned
+    when an object is converted to a string or printed.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __str__(self):
+        return f"{self.name} - {self.age}"
+
+
+student = Student("Rahul", 20)
+
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul - 20
+</div>
+
+
+<h2>
+    Comparing Objects
+</h2>
+
+<p>
+    Objects can be compared using comparison operators when
+    appropriate attributes are used for comparison.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
+
+
+student1 = Student("Rahul", 85)
+student2 = Student("Amit", 75)
+
+print(student1.marks > student2.marks)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h2>
+    Object as a Function Argument
+</h2>
+
+<p>
+    An object can be passed as an argument to a function.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
+
+
+def display(student):
+    print(student.name)
+    print(student.marks)
+
+
+student1 = Student("Rahul", 90)
+
+display(student1)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+90
+</div>
+
+
+<h2>
+    Returning an Object
+</h2>
+
+<p>
+    A function or method can also return an object.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+def create_student():
+    return Student("Rahul", 20)
+
+
+student = create_student()
+
+print(student.name)
+print(student.age)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+20
+</div>
+
+
+<h2>
+    Practical Example: Bank Account
+</h2>
+
+<p>
+    Classes are useful for representing real-world entities.
+    For example, a bank account can have an account holder,
+    balance, deposit, and withdrawal operations.
+</p>
+
+${codeBlock(`class BankAccount:
+
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+
+    def withdraw(self, amount):
+        if amount <= self.balance:
+            self.balance -= amount
+        else:
+            print("Insufficient balance")
+
+    def display(self):
+        print("Name:", self.name)
+        print("Balance:", self.balance)
+
+
+account = BankAccount("Rahul", 5000)
+
+account.deposit(2000)
+account.withdraw(1000)
+
+account.display()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Name: Rahul<br>
+Balance: 6000
+</div>
+
+
+<h2>
+    Practical Example: Student
+</h2>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
+
+    def calculate_result(self):
+        if self.marks >= 40:
+            return "Pass"
+        else:
+            return "Fail"
+
+
+student1 = Student("Rahul", 75)
+student2 = Student("Amit", 35)
+
+print(student1.name, student1.calculate_result())
+print(student2.name, student2.calculate_result())`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul Pass<br>
+Amit Fail
+</div>
+
+
+<h2>
+    Class and Object Relationship
+</h2>
+
+${codeBlock(`class Car:
+
+    def __init__(self, brand, model):
+        self.brand = brand
+        self.model = model
+
+    def display(self):
+        print(self.brand, self.model)
+
+
+car1 = Car("Toyota", "Fortuner")
+car2 = Car("Honda", "City")
+
+car1.display()
+car2.display()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Toyota Fortuner<br>
+Honda City
+</div>
+
+
+<h2>
+    Class vs Object
+</h2>
+
+<table>
+    <tr>
+        <th>Class</th>
+        <th>Object</th>
+    </tr>
+    <tr>
+        <td>Blueprint or template.</td>
+        <td>Instance of a class.</td>
+    </tr>
+    <tr>
+        <td>Defines attributes and methods.</td>
+        <td>Uses the attributes and methods.</td>
+    </tr>
+    <tr>
+        <td>Does not represent one specific entity.</td>
+        <td>Represents a specific entity.</td>
+    </tr>
+    <tr>
+        <td>Example: Student</td>
+        <td>Example: student1</td>
+    </tr>
+</table>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>A <b>class</b> is a blueprint for creating objects.</li>
+    <li>An <b>object</b> is an instance of a class.</li>
+    <li>Use the <b>class</b> keyword to create a class.</li>
+    <li>Use <b>__init__()</b> to initialize object data.</li>
+    <li><b>self</b> represents the current object.</li>
+    <li>Functions defined inside a class are called methods.</li>
+    <li>Instance attributes belong to individual objects.</li>
+    <li>Class attributes are shared by objects of the class.</li>
+    <li>A class can be used to create multiple objects.</li>
+    <li>Classes help represent real-world entities in programs.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Classes and objects are fundamental concepts of
+    object-oriented programming in Python. A class acts as a
+    blueprint that defines attributes and methods, while an
+    object is an instance created from that class. Using classes
+    allows programs to organize related data and behavior into
+    reusable and structured components.
+</p>`,
+
+
+      inheritance : `<h1>
+    Inheritance
+</h1>
+
+<div class="subtitle">
+    Reuse properties and methods of an existing class in a new class.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is Inheritance?
+</h2>
+
+<p>
+    <b>Inheritance</b> is an Object-Oriented Programming concept
+    that allows one class to acquire the properties and methods
+    of another class.
+</p>
+
+<p>
+    The existing class is called the <b>Parent Class</b> or
+    <b>Base Class</b>, while the new class is called the
+    <b>Child Class</b> or <b>Derived Class</b>.
+</p>
+
+
+<h2>
+    Basic Inheritance
+</h2>
+
+<p>
+    A child class can inherit from a parent class by passing the
+    parent class name inside parentheses.
+</p>
+
+${codeBlock(`class Animal:
+
+    def eat(self):
+        print("Animal is eating")
+
+
+class Dog(Animal):
+
+    def bark(self):
+        print("Dog is barking")
+
+
+dog = Dog()
+
+dog.eat()
+dog.bark()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Animal is eating<br>
+Dog is barking
+</div>
+
+
+<h2>
+    Parent Class and Child Class
+</h2>
+
+${codeBlock(`class Vehicle:
+
+    def start(self):
+        print("Vehicle started")
+
+
+class Car(Vehicle):
+
+    def drive(self):
+        print("Car is driving")
+
+
+car = Car()
+
+car.start()
+car.drive()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Vehicle started<br>
+Car is driving
+</div>
+
+
+<h2>
+    Inheriting Attributes
+</h2>
+
+<p>
+    A child class can also use attributes defined in the
+    parent class.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name):
+        self.name = name
+
+
+class CollegeStudent(Student):
+
+    def show(self):
+        print("Name:", self.name)
+
+
+student = CollegeStudent("Rahul")
+
+student.show()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Name: Rahul
+</div>
+
+
+<h2>
+    Adding New Features to Child Class
+</h2>
+
+<p>
+    A child class can use inherited features and also define
+    its own attributes and methods.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name):
+        self.name = name
+
+    def display_name(self):
+        print("Name:", self.name)
+
+
+class CollegeStudent(Student):
+
+    def __init__(self, name, course):
+        super().__init__(name)
+        self.course = course
+
+    def display_course(self):
+        print("Course:", self.course)
+
+
+student = CollegeStudent("Rahul", "Python")
+
+student.display_name()
+student.display_course()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Name: Rahul<br>
+Course: Python
+</div>
+
+
+<h2>
+    The super() Function
+</h2>
+
+<p>
+    The <b>super()</b> function is used to call methods or the
+    constructor of the parent class from the child class.
+</p>
+
+${codeBlock(`class Person:
+
+    def __init__(self, name):
+        self.name = name
+
+
+class Student(Person):
+
+    def __init__(self, name, course):
+        super().__init__(name)
+        self.course = course
+
+
+student = Student("Rahul", "Python")
+
+print(student.name)
+print(student.course)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul<br>
+Python
+</div>
+
+
+<h2>
+    Method Overriding
+</h2>
+
+<p>
+    A child class can provide its own implementation of a method
+    that already exists in the parent class. This is called
+    <b>method overriding</b>.
+</p>
+
+${codeBlock(`class Animal:
+
+    def sound(self):
+        print("Animal makes a sound")
+
+
+class Dog(Animal):
+
+    def sound(self):
+        print("Dog barks")
+
+
+animal = Animal()
+dog = Dog()
+
+animal.sound()
+dog.sound()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Animal makes a sound<br>
+Dog barks
+</div>
+
+
+<h2>
+    Using Parent Method with super()
+</h2>
+
+<p>
+    A child class can override a method while still calling the
+    original parent method using <b>super()</b>.
+</p>
+
+${codeBlock(`class Animal:
+
+    def sound(self):
+        print("Animal makes a sound")
+
+
+class Dog(Animal):
+
+    def sound(self):
+        super().sound()
+        print("Dog barks")
+
+
+dog = Dog()
+
+dog.sound()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Animal makes a sound<br>
+Dog barks
+</div>
+
+
+<h2>
+    Single Inheritance
+</h2>
+
+<p>
+    When one child class inherits from one parent class, it is
+    called <b>single inheritance</b>.
+</p>
+
+${codeBlock(`class Parent:
+
+    def show_parent(self):
+        print("Parent class")
+
+
+class Child(Parent):
+
+    def show_child(self):
+        print("Child class")
+
+
+obj = Child()
+
+obj.show_parent()
+obj.show_child()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Parent class<br>
+Child class
+</div>
+
+
+<h2>
+    Multilevel Inheritance
+</h2>
+
+<p>
+    When a class inherits from another child class, creating a
+    chain of inheritance, it is called <b>multilevel inheritance</b>.
+</p>
+
+${codeBlock(`class Grandparent:
+
+    def show_grandparent(self):
+        print("Grandparent")
+
+
+class Parent(Grandparent):
+
+    def show_parent(self):
+        print("Parent")
+
+
+class Child(Parent):
+
+    def show_child(self):
+        print("Child")
+
+
+obj = Child()
+
+obj.show_grandparent()
+obj.show_parent()
+obj.show_child()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Grandparent<br>
+Parent<br>
+Child
+</div>
+
+
+<h2>
+    Multiple Inheritance
+</h2>
+
+<p>
+    When one child class inherits from more than one parent class,
+    it is called <b>multiple inheritance</b>.
+</p>
+
+${codeBlock(`class Father:
+
+    def father_method(self):
+        print("Father method")
+
+
+class Mother:
+
+    def mother_method(self):
+        print("Mother method")
+
+
+class Child(Father, Mother):
+
+    def child_method(self):
+        print("Child method")
+
+
+obj = Child()
+
+obj.father_method()
+obj.mother_method()
+obj.child_method()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Father method<br>
+Mother method<br>
+Child method
+</div>
+
+
+<h2>
+    Hierarchical Inheritance
+</h2>
+
+<p>
+    When multiple child classes inherit from the same parent class,
+    it is called <b>hierarchical inheritance</b>.
+</p>
+
+${codeBlock(`class Animal:
+
+    def eat(self):
+        print("Animal is eating")
+
+
+class Dog(Animal):
+
+    def bark(self):
+        print("Dog is barking")
+
+
+class Cat(Animal):
+
+    def meow(self):
+        print("Cat is meowing")
+
+
+dog = Dog()
+cat = Cat()
+
+dog.eat()
+dog.bark()
+
+cat.eat()
+cat.meow()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Animal is eating<br>
+Dog is barking<br>
+Animal is eating<br>
+Cat is meowing
+</div>
+
+
+<h2>
+    Hybrid Inheritance
+</h2>
+
+<p>
+    <b>Hybrid inheritance</b> is a combination of two or more
+    types of inheritance.
+</p>
+
+${codeBlock(`class A:
+
+    def method_a(self):
+        print("Class A")
+
+
+class B(A):
+
+    def method_b(self):
+        print("Class B")
+
+
+class C(A):
+
+    def method_c(self):
+        print("Class C")
+
+
+class D(B, C):
+
+    def method_d(self):
+        print("Class D")
+
+
+obj = D()
+
+obj.method_a()
+obj.method_b()
+obj.method_c()
+obj.method_d()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Class A<br>
+Class B<br>
+Class C<br>
+Class D
+</div>
+
+
+<h2>
+    Checking Inheritance with isinstance()
+</h2>
+
+<p>
+    The <b>isinstance()</b> function checks whether an object
+    belongs to a particular class or its inherited classes.
+</p>
+
+${codeBlock(`class Animal:
+    pass
+
+
+class Dog(Animal):
+    pass
+
+
+dog = Dog()
+
+print(isinstance(dog, Dog))
+print(isinstance(dog, Animal))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+True
+</div>
+
+
+<h2>
+    Checking Inheritance with issubclass()
+</h2>
+
+<p>
+    The <b>issubclass()</b> function checks whether one class
+    is derived from another class.
+</p>
+
+${codeBlock(`class Animal:
+    pass
+
+
+class Dog(Animal):
+    pass
+
+
+print(issubclass(Dog, Animal))
+print(issubclass(Animal, Dog))`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True<br>
+False
+</div>
+
+
+<h2>
+    Inheritance with Methods and Attributes
+</h2>
+
+${codeBlock(`class Employee:
+
+    company = "ABC Ltd."
+
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    def display(self):
+        print("Name:", self.name)
+        print("Salary:", self.salary)
+
+
+class Manager(Employee):
+
+    def show_role(self):
+        print("Role: Manager")
+
+
+manager = Manager("Rahul", 50000)
+
+print(manager.company)
+
+manager.display()
+manager.show_role()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+ABC Ltd.<br>
+Name: Rahul<br>
+Salary: 50000<br>
+Role: Manager
+</div>
+
+
+<h2>
+    Practical Example: Bank Account
+</h2>
+
+<p>
+    Inheritance can be useful when multiple classes share common
+    functionality.
+</p>
+
+${codeBlock(`class BankAccount:
+
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+
+    def display_balance(self):
+        print("Balance:", self.balance)
+
+
+class SavingsAccount(BankAccount):
+
+    def add_interest(self):
+        self.balance += self.balance * 0.05
+
+
+account = SavingsAccount("Rahul", 10000)
+
+account.deposit(2000)
+account.add_interest()
+
+account.display_balance()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+12600.0
+</div>
+
+
+<h2>
+    Practical Example: Vehicles
+</h2>
+
+${codeBlock(`class Vehicle:
+
+    def __init__(self, brand):
+        self.brand = brand
+
+    def start(self):
+        print(self.brand, "has started")
+
+
+class Car(Vehicle):
+
+    def drive(self):
+        print(self.brand, "is driving")
+
+
+class Bike(Vehicle):
+
+    def ride(self):
+        print(self.brand, "is riding")
+
+
+car = Car("Toyota")
+bike = Bike("Honda")
+
+car.start()
+car.drive()
+
+bike.start()
+bike.ride()`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Toyota has started<br>
+Toyota is driving<br>
+Honda has started<br>
+Honda is riding
+</div>
+
+
+<h2>
+    Advantages of Inheritance
+</h2>
+
+<ul>
+    <li>Promotes code reusability.</li>
+    <li>Reduces duplicate code.</li>
+    <li>Allows existing classes to be extended.</li>
+    <li>Makes programs easier to organize.</li>
+    <li>Supports method overriding.</li>
+    <li>Helps represent relationships between objects.</li>
+</ul>
+
+
+<h2>
+    Types of Inheritance
+</h2>
+
+<table>
+    <tr>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>Single</td>
+        <td>One child inherits from one parent.</td>
+    </tr>
+    <tr>
+        <td>Multiple</td>
+        <td>One child inherits from multiple parents.</td>
+    </tr>
+    <tr>
+        <td>Multilevel</td>
+        <td>A class inherits through a chain of classes.</td>
+    </tr>
+    <tr>
+        <td>Hierarchical</td>
+        <td>Multiple child classes inherit from one parent.</td>
+    </tr>
+    <tr>
+        <td>Hybrid</td>
+        <td>Combination of two or more inheritance types.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Inheritance allows a child class to reuse a parent class.</li>
+    <li>The parent class is also called the base class.</li>
+    <li>The child class is also called the derived class.</li>
+    <li>Use parentheses after the child class name to inherit from a class.</li>
+    <li>The <b>super()</b> function can access parent class functionality.</li>
+    <li>A child class can override a parent method.</li>
+    <li>Python supports single, multiple, multilevel, hierarchical, and hybrid inheritance.</li>
+    <li><b>isinstance()</b> checks whether an object belongs to a class.</li>
+    <li><b>issubclass()</b> checks whether one class inherits from another.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Inheritance allows one class to reuse and extend the properties
+    and methods of another class. It improves code reusability and
+    helps create a clear relationship between classes. Python
+    supports different forms of inheritance and provides features
+    such as <b>super()</b>, method overriding, <b>isinstance()</b>,
+    and <b>issubclass()</b> to work with inherited classes.
+</p>`,
+
+      Operator_overloading : `<h1>
+    Operator Overloading
+</h1>
+
+<div class="subtitle">
+    Customize the behavior of operators for user-defined objects in Python.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is Operator Overloading?
+</h2>
+
+<p>
+    <b>Operator Overloading</b> allows operators such as
+    <b>+</b>, <b>-</b>, <b>*</b>, <b>/</b>, <b>==</b>, and others
+    to work with objects of user-defined classes.
+</p>
+
+<p>
+    Python provides special methods, also known as
+    <b>magic methods</b> or <b>dunder methods</b>, to define
+    how operators behave for objects.
+</p>
+
+
+<h2>
+    Why Operator Overloading?
+</h2>
+
+<p>
+    Operator overloading makes objects behave like built-in
+    data types and improves code readability.
+</p>
+
+${codeBlock(`a = 10
+b = 20
+
+print(a + b)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30
+</div>
+
+<p>
+    The <b>+</b> operator is already overloaded for integers.
+    We can define similar behavior for our own classes.
+</p>
+
+
+<h2>
+    Special Methods
+</h2>
+
+<p>
+    Python uses special methods to implement operator overloading.
+</p>
+
+<table>
+    <tr>
+        <th>Operator</th>
+        <th>Method</th>
+    </tr>
+    <tr>
+        <td>+</td>
+        <td>__add__()</td>
+    </tr>
+    <tr>
+        <td>-</td>
+        <td>__sub__()</td>
+    </tr>
+    <tr>
+        <td>*</td>
+        <td>__mul__()</td>
+    </tr>
+    <tr>
+        <td>/</td>
+        <td>__truediv__()</td>
+    </tr>
+    <tr>
+        <td>%</td>
+        <td>__mod__()</td>
+    </tr>
+    <tr>
+        <td>==</td>
+        <td>__eq__()</td>
+    </tr>
+    <tr>
+        <td>&lt;</td>
+        <td>__lt__()</td>
+    </tr>
+    <tr>
+        <td>&gt;</td>
+        <td>__gt__()</td>
+    </tr>
+</table>
+
+
+<h2>
+    Overloading the + Operator
+</h2>
+
+<p>
+    The <b>__add__()</b> method is called when the
+    <b>+</b> operator is used between objects.
+</p>
+
+${codeBlock(`class Number:
+
+    def __init__(self, value):
+        self.value = value
+
+    def __add__(self, other):
+        return self.value + other.value
+
+
+num1 = Number(10)
+num2 = Number(20)
+
+print(num1 + num2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30
+</div>
+
+
+<h2>
+    Overloading the - Operator
+</h2>
+
+${codeBlock(`class Number:
+
+    def __init__(self, value):
+        self.value = value
+
+    def __sub__(self, other):
+        return self.value - other.value
+
+
+num1 = Number(50)
+num2 = Number(20)
+
+print(num1 - num2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30
+</div>
+
+
+<h2>
+    Overloading the * Operator
+</h2>
+
+${codeBlock(`class Number:
+
+    def __init__(self, value):
+        self.value = value
+
+    def __mul__(self, other):
+        return self.value * other.value
+
+
+num1 = Number(10)
+num2 = Number(5)
+
+print(num1 * num2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+50
+</div>
+
+
+<h2>
+    Overloading the / Operator
+</h2>
+
+${codeBlock(`class Number:
+
+    def __init__(self, value):
+        self.value = value
+
+    def __truediv__(self, other):
+        return self.value / other.value
+
+
+num1 = Number(20)
+num2 = Number(4)
+
+print(num1 / num2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+5.0
+</div>
+
+
+<h2>
+    Overloading the % Operator
+</h2>
+
+${codeBlock(`class Number:
+
+    def __init__(self, value):
+        self.value = value
+
+    def __mod__(self, other):
+        return self.value % other.value
+
+
+num1 = Number(17)
+num2 = Number(5)
+
+print(num1 % num2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+2
+</div>
+
+
+<h2>
+    Overloading the == Operator
+</h2>
+
+<p>
+    The <b>__eq__()</b> method is used to compare objects
+    using the <b>==</b> operator.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, marks):
+        self.marks = marks
+
+    def __eq__(self, other):
+        return self.marks == other.marks
+
+
+student1 = Student(80)
+student2 = Student(80)
+
+print(student1 == student2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h2>
+    Overloading the > Operator
+</h2>
+
+${codeBlock(`class Student:
+
+    def __init__(self, marks):
+        self.marks = marks
+
+    def __gt__(self, other):
+        return self.marks > other.marks
+
+
+student1 = Student(90)
+student2 = Student(75)
+
+print(student1 > student2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h2>
+    Overloading the < Operator
+</h2>
+
+${codeBlock(`class Student:
+
+    def __init__(self, marks):
+        self.marks = marks
+
+    def __lt__(self, other):
+        return self.marks < other.marks
+
+
+student1 = Student(60)
+student2 = Student(80)
+
+print(student1 < student2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+True
+</div>
+
+
+<h2>
+    Using __str__()
+</h2>
+
+<p>
+    The <b>__str__()</b> method defines what should be displayed
+    when an object is printed.
+</p>
+
+${codeBlock(`class Student:
+
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return self.name
+
+
+student = Student("Rahul")
+
+print(student)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Rahul
+</div>
+
+
+<h2>
+    Operator Overloading with Complex Numbers
+</h2>
+
+<p>
+    A practical example is adding two complex numbers.
+</p>
+
+${codeBlock(`class Complex:
+
+    def __init__(self, real, imaginary):
+        self.real = real
+        self.imaginary = imaginary
+
+    def __add__(self, other):
+        return Complex(
+            self.real + other.real,
+            self.imaginary + other.imaginary
+        )
+
+    def __str__(self):
+        return f"{self.real} + {self.imaginary}i"
+
+
+c1 = Complex(2, 3)
+c2 = Complex(4, 5)
+
+result = c1 + c2
+
+print(result)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+6 + 8i
+</div>
+
+
+<h2>
+    Operator Overloading with Employee Objects
+</h2>
+
+<p>
+    Two employee objects can be added to calculate the total salary.
+</p>
+
+${codeBlock(`class Employee:
+
+    def __init__(self, salary):
+        self.salary = salary
+
+    def __add__(self, other):
+        return self.salary + other.salary
+
+
+employee1 = Employee(30000)
+employee2 = Employee(25000)
+
+print(employee1 + employee2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+55000
+</div>
+
+
+<h2>
+    Multiple Operators in One Class
+</h2>
+
+${codeBlock(`class Number:
+
+    def __init__(self, value):
+        self.value = value
+
+    def __add__(self, other):
+        return self.value + other.value
+
+    def __sub__(self, other):
+        return self.value - other.value
+
+    def __mul__(self, other):
+        return self.value * other.value
+
+
+n1 = Number(20)
+n2 = Number(10)
+
+print(n1 + n2)
+print(n1 - n2)
+print(n1 * n2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30<br>
+10<br>
+200
+</div>
+
+
+<h2>
+    How Operator Overloading Works
+</h2>
+
+<p>
+    When Python encounters an operator between objects,
+    it automatically calls the corresponding special method.
+</p>
+
+${codeBlock(`class Number:
+
+    def __init__(self, value):
+        self.value = value
+
+    def __add__(self, other):
+        return self.value + other.value
+
+
+n1 = Number(10)
+n2 = Number(20)
+
+print(n1.__add__(n2))
+print(n1 + n2)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+30<br>
+30
+</div>
+
+
+<h2>
+    Common Operator Methods
+</h2>
+
+<table>
+    <tr>
+        <th>Method</th>
+        <th>Operator</th>
+    </tr>
+    <tr>
+        <td>__add__()</td>
+        <td>+</td>
+    </tr>
+    <tr>
+        <td>__sub__()</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>__mul__()</td>
+        <td>*</td>
+    </tr>
+    <tr>
+        <td>__truediv__()</td>
+        <td>/</td>
+    </tr>
+    <tr>
+        <td>__mod__()</td>
+        <td>%</td>
+    </tr>
+    <tr>
+        <td>__eq__()</td>
+        <td>==</td>
+    </tr>
+    <tr>
+        <td>__lt__()</td>
+        <td>&lt;</td>
+    </tr>
+    <tr>
+        <td>__gt__()</td>
+        <td>&gt;</td>
+    </tr>
+    <tr>
+        <td>__str__()</td>
+        <td>print()</td>
+    </tr>
+</table>
+
+
+<h2>
+    Advantages of Operator Overloading
+</h2>
+
+<ul>
+    <li>Makes code more readable.</li>
+    <li>Allows objects to behave like built-in types.</li>
+    <li>Improves code reusability.</li>
+    <li>Provides meaningful operations for custom classes.</li>
+    <li>Reduces the need for extra methods.</li>
+</ul>
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Operator overloading is achieved using special methods.</li>
+    <li>Special methods are also called magic methods or dunder methods.</li>
+    <li>The <b>__add__()</b> method overloads the + operator.</li>
+    <li>The <b>__sub__()</b> method overloads the - operator.</li>
+    <li>The <b>__mul__()</b> method overloads the * operator.</li>
+    <li>The <b>__truediv__()</b> method overloads the / operator.</li>
+    <li>The <b>__eq__()</b> method overloads the == operator.</li>
+    <li>The <b>__str__()</b> method controls object display.</li>
+    <li>Operator overloading allows custom objects to support common operators.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Operator overloading allows Python objects to work with
+    operators such as <b>+</b>, <b>-</b>, <b>*</b>, <b>/</b>,
+    and comparison operators. It is implemented using special
+    methods like <b>__add__()</b>, <b>__sub__()</b>,
+    <b>__mul__()</b>, and <b>__eq__()</b>. This feature makes
+    user-defined classes more intuitive and easier to use.
+</p>`,
+
+      python_mysql : `<h1>
+    Python with MySQL
+</h1>
+
+<div class="subtitle">
+    Connect Python with MySQL and perform database operations.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is MySQL?
+</h2>
+
+<p>
+    <b>MySQL</b> is a relational database management system used
+    to store and manage data in tables.
+</p>
+
+<p>
+    Python can connect to MySQL and perform operations such as
+    creating tables, inserting records, retrieving data, updating
+    records, and deleting records.
+</p>
+
+
+<h2>
+    MySQL Connector
+</h2>
+
+<p>
+    To connect Python with MySQL, we can use the
+    <b>mysql-connector-python</b> package.
+</p>
+
+<p>
+    Install it using the following command:
+</p>
+
+${codeBlock(`pip install mysql-connector-python`, "Command")}
+
+
+<h2>
+    Importing MySQL Connector
+</h2>
+
+${codeBlock(`import mysql.connector`, "Python")}
+
+
+<h2>
+    Connecting to MySQL
+</h2>
+
+<p>
+    The <b>connect()</b> function is used to establish a connection
+    between Python and MySQL.
+</p>
+
+${codeBlock(`import mysql.connector
+
+connection = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="your_password"
+)
+
+print("Connected successfully")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Connected successfully
+</div>
+
+
+<h2>
+    Connection Parameters
+</h2>
+
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>host</td>
+        <td>Specifies the MySQL server location.</td>
+    </tr>
+    <tr>
+        <td>user</td>
+        <td>Specifies the MySQL username.</td>
+    </tr>
+    <tr>
+        <td>password</td>
+        <td>Specifies the MySQL password.</td>
+    </tr>
+    <tr>
+        <td>database</td>
+        <td>Specifies the database to use.</td>
+    </tr>
+    <tr>
+        <td>port</td>
+        <td>Specifies the MySQL server port.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Connecting to a Database
+</h2>
+
+<p>
+    If the database already exists, specify its name using the
+    <b>database</b> parameter.
+</p>
+
+${codeBlock(`import mysql.connector
+
+connection = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="your_password",
+    database="college"
+)
+
+print("Connected successfully")`, "Python")}
+
+
+<h2>
+    Creating a Database
+</h2>
+
+<p>
+    A database can be created using the <b>CREATE DATABASE</b>
+    SQL statement.
+</p>
+
+${codeBlock(`import mysql.connector
+
+connection = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="your_password"
+)
+
+cursor = connection.cursor()
+
+cursor.execute("CREATE DATABASE college")
+
+print("Database created")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Database created
+</div>
+
+
+<h2>
+    Creating a Cursor
+</h2>
+
+<p>
+    A <b>cursor</b> is used to execute SQL statements and retrieve
+    results from the database.
+</p>
+
+${codeBlock(`cursor = connection.cursor()`, "Python")}
+
+
+<h2>
+    Executing SQL Statements
+</h2>
+
+<p>
+    The <b>execute()</b> method is used to execute an SQL query.
+</p>
+
+${codeBlock(`cursor.execute("CREATE DATABASE college")`, "Python")}
+
+
+<h2>
+    Creating a Table
+</h2>
+
+${codeBlock(`import mysql.connector
+
+connection = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="your_password",
+    database="college"
+)
+
+cursor = connection.cursor()
+
+query = """
+CREATE TABLE students (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    age INT,
+    course VARCHAR(100)
+)
+"""
+
+cursor.execute(query)
+
+print("Table created")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Table created
+</div>
+
+
+<h2>
+    Inserting Data
+</h2>
+
+<p>
+    The <b>INSERT INTO</b> statement is used to add records to
+    a table.
+</p>
+
+${codeBlock(`query = """
+INSERT INTO students (name, age, course)
+VALUES ('Rahul', 20, 'Python')
+"""
+
+cursor.execute(query)
+
+connection.commit()
+
+print("Record inserted")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Record inserted
+</div>
+
+
+<h2>
+    Why commit()?
+</h2>
+
+<p>
+    The <b>commit()</b> method saves changes permanently to the
+    database.
+</p>
+
+${codeBlock(`connection.commit()`, "Python")}
+
+<p>
+    Operations such as <b>INSERT</b>, <b>UPDATE</b>, and
+    <b>DELETE</b> should generally be followed by
+    <b>commit()</b>.
+</p>
+
+
+<h2>
+    Inserting Data using Parameters
+</h2>
+
+<p>
+    Instead of directly placing values inside an SQL query,
+    parameters can be used. This is safer and helps prevent
+    SQL injection.
+</p>
+
+${codeBlock(`query = """
+INSERT INTO students (name, age, course)
+VALUES (%s, %s, %s)
+"""
+
+values = ("Amit", 21, "Java")
+
+cursor.execute(query, values)
+
+connection.commit()
+
+print("Record inserted")`, "Python")}
+
+
+<h2>
+    Inserting Multiple Records
+</h2>
+
+<p>
+    The <b>executemany()</b> method can be used to insert
+    multiple records.
+</p>
+
+${codeBlock(`query = """
+INSERT INTO students (name, age, course)
+VALUES (%s, %s, %s)
+"""
+
+students = [
+    ("Rahul", 20, "Python"),
+    ("Amit", 21, "Java"),
+    ("Priya", 19, "C++")
+]
+
+cursor.executemany(query, students)
+
+connection.commit()
+
+print("Records inserted")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Records inserted
+</div>
+
+
+<h2>
+    Reading Data
+</h2>
+
+<p>
+    The <b>SELECT</b> statement is used to retrieve records from
+    a table.
+</p>
+
+${codeBlock(`query = "SELECT * FROM students"
+
+cursor.execute(query)
+
+rows = cursor.fetchall()
+
+for row in rows:
+    print(row)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(1, 'Rahul', 20, 'Python')<br>
+(2, 'Amit', 21, 'Java')<br>
+(3, 'Priya', 19, 'C++')
+</div>
+
+
+<h2>
+    fetchone()
+</h2>
+
+<p>
+    The <b>fetchone()</b> method returns one record from the
+    result.
+</p>
+
+${codeBlock(`cursor.execute("SELECT * FROM students")
+
+row = cursor.fetchone()
+
+print(row)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(1, 'Rahul', 20, 'Python')
+</div>
+
+
+<h2>
+    fetchmany()
+</h2>
+
+<p>
+    The <b>fetchmany()</b> method returns a specified number
+    of records.
+</p>
+
+${codeBlock(`cursor.execute("SELECT * FROM students")
+
+rows = cursor.fetchmany(2)
+
+for row in rows:
+    print(row)`, "Python")}
+
+
+<h2>
+    fetchall()
+</h2>
+
+<p>
+    The <b>fetchall()</b> method returns all remaining records
+    from the query result.
+</p>
+
+${codeBlock(`cursor.execute("SELECT * FROM students")
+
+rows = cursor.fetchall()
+
+for row in rows:
+    print(row)`, "Python")}
+
+
+<h2>
+    Selecting Specific Columns
+</h2>
+
+${codeBlock(`query = "SELECT name, course FROM students"
+
+cursor.execute(query)
+
+for row in cursor.fetchall():
+    print(row)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+('Rahul', 'Python')<br>
+('Amit', 'Java')<br>
+('Priya', 'C++')
+</div>
+
+
+<h2>
+    Using WHERE Clause
+</h2>
+
+<p>
+    The <b>WHERE</b> clause is used to retrieve records that
+    satisfy a condition.
+</p>
+
+${codeBlock(`query = """
+SELECT * FROM students
+WHERE age > %s
+"""
+
+cursor.execute(query, (20,))
+
+for row in cursor.fetchall():
+    print(row)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(2, 'Amit', 21, 'Java')
+</div>
+
+
+<h2>
+    Updating Data
+</h2>
+
+<p>
+    The <b>UPDATE</b> statement is used to modify existing records.
+</p>
+
+${codeBlock(`query = """
+UPDATE students
+SET course = %s
+WHERE name = %s
+"""
+
+values = ("Python", "Amit")
+
+cursor.execute(query, values)
+
+connection.commit()
+
+print("Record updated")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Record updated
+</div>
+
+
+<h2>
+    Deleting Data
+</h2>
+
+<p>
+    The <b>DELETE</b> statement is used to remove records from
+    a table.
+</p>
+
+${codeBlock(`query = """
+DELETE FROM students
+WHERE name = %s
+"""
+
+cursor.execute(query, ("Priya",))
+
+connection.commit()
+
+print("Record deleted")`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Record deleted
+</div>
+
+
+<h2>
+    Getting Number of Affected Rows
+</h2>
+
+<p>
+    The <b>rowcount</b> property returns the number of rows
+    affected by an operation.
+</p>
+
+${codeBlock(`query = """
+UPDATE students
+SET age = age + 1
+WHERE course = %s
+"""
+
+cursor.execute(query, ("Python",))
+
+connection.commit()
+
+print(cursor.rowcount)`, "Python")}
+
+
+<h2>
+    Sorting Data
+</h2>
+
+<p>
+    SQL's <b>ORDER BY</b> clause can be used while retrieving
+    data through Python.
+</p>
+
+${codeBlock(`query = """
+SELECT * FROM students
+ORDER BY age DESC
+"""
+
+cursor.execute(query)
+
+for row in cursor.fetchall():
+    print(row)`, "Python")}
+
+
+<h2>
+    Searching Data with LIKE
+</h2>
+
+<p>
+    The <b>LIKE</b> operator can be used to search for
+    matching text.
+</p>
+
+${codeBlock(`query = """
+SELECT * FROM students
+WHERE name LIKE %s
+"""
+
+cursor.execute(query, ("R%",))
+
+for row in cursor.fetchall():
+    print(row)`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+(1, 'Rahul', 20, 'Python')
+</div>
+
+
+<h2>
+    Counting Records
+</h2>
+
+${codeBlock(`query = "SELECT COUNT(*) FROM students"
+
+cursor.execute(query)
+
+result = cursor.fetchone()
+
+print("Total students:", result[0])`, "Python")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Total students: 2
+</div>
+
+
+<h2>
+    Using Database Functions
+</h2>
+
+<p>
+    MySQL functions such as <b>AVG()</b>, <b>MAX()</b>,
+    <b>MIN()</b>, and <b>SUM()</b> can also be used through
+    Python.
+</p>
+
+${codeBlock(`query = "SELECT AVG(age) FROM students"
+
+cursor.execute(query)
+
+result = cursor.fetchone()
+
+print("Average age:", result[0])`, "Python")}
+
+
+<h2>
+    Handling Database Errors
+</h2>
+
+<p>
+    Database operations can fail because of incorrect credentials,
+    missing databases, invalid SQL, or connection problems.
+    Python provides exceptions for handling these errors.
+</p>
+
+${codeBlock(`import mysql.connector
+
+try:
+
+    connection = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="your_password",
+        database="college"
+    )
+
+    print("Connected successfully")
+
+except mysql.connector.Error as error:
+
+    print("Error:", error)`, "Python")}
+
+
+<h2>
+    Closing the Cursor and Connection
+</h2>
+
+<p>
+    After completing database operations, the cursor and database
+    connection should be closed.
+</p>
+
+${codeBlock(`cursor.close()
+connection.close()
+
+print("Connection closed")`, "Python")}
+
+
+<h2>
+    Complete Example
+</h2>
+
+<p>
+    The following example connects Python with MySQL, inserts
+    a student, retrieves the data, and closes the connection.
+</p>
+
+${codeBlock(`import mysql.connector
+
+connection = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="your_password",
+    database="college"
+)
+
+cursor = connection.cursor()
+
+
+# Insert record
+query = """
+INSERT INTO students (name, age, course)
+VALUES (%s, %s, %s)
+"""
+
+values = ("Rohan", 22, "Python")
+
+cursor.execute(query, values)
+
+connection.commit()
+
+
+# Display records
+cursor.execute("SELECT * FROM students")
+
+rows = cursor.fetchall()
+
+for row in rows:
+    print(row)
+
+
+# Close connection
+cursor.close()
+connection.close()`, "Python")}
+
+
+<h2>
+    CRUD Operations
+</h2>
+
+<p>
+    CRUD stands for the four basic database operations:
+</p>
+
+<table>
+    <tr>
+        <th>Operation</th>
+        <th>SQL</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>Create</td>
+        <td>INSERT</td>
+        <td>Add new records.</td>
+    </tr>
+    <tr>
+        <td>Read</td>
+        <td>SELECT</td>
+        <td>Retrieve records.</td>
+    </tr>
+    <tr>
+        <td>Update</td>
+        <td>UPDATE</td>
+        <td>Modify existing records.</td>
+    </tr>
+    <tr>
+        <td>Delete</td>
+        <td>DELETE</td>
+        <td>Remove records.</td>
+    </tr>
+</table>
+
+
+<h2>
+    Practical Example: Student Management
+</h2>
+
+<p>
+    Python and MySQL can be combined to create a simple
+    student management system.
+</p>
+
+${codeBlock(`import mysql.connector
+
+connection = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="your_password",
+    database="college"
+)
+
+cursor = connection.cursor()
+
+
+name = input("Enter student name: ")
+age = int(input("Enter age: "))
+course = input("Enter course: ")
+
+
+query = """
+INSERT INTO students (name, age, course)
+VALUES (%s, %s, %s)
+"""
+
+values = (name, age, course)
+
+cursor.execute(query, values)
+
+connection.commit()
+
+print("Student added successfully")
+
+
+cursor.close()
+connection.close()`, "Python")}
+
+
+<h2>
+    Important Points to Remember
+</h2>
+
+<ul>
+    <li>Install <b>mysql-connector-python</b> to connect Python with MySQL.</li>
+    <li>Use <b>connect()</b> to establish a database connection.</li>
+    <li>Use <b>cursor()</b> to create a cursor.</li>
+    <li>Use <b>execute()</b> to execute SQL queries.</li>
+    <li>Use <b>commit()</b> to save INSERT, UPDATE, and DELETE changes.</li>
+    <li>Use <b>fetchone()</b> to retrieve one record.</li>
+    <li>Use <b>fetchmany()</b> to retrieve a specified number of records.</li>
+    <li>Use <b>fetchall()</b> to retrieve all records.</li>
+    <li>Use SQL parameters such as <b>%s</b> instead of directly joining user input into queries.</li>
+    <li>Use <b>try-except</b> to handle database errors.</li>
+    <li>Close the cursor and connection after completing database operations.</li>
+</ul>
+
+
+<h2>
+    Summary
+</h2>
+
+<p>
+    Python can communicate with MySQL using the
+    <b>mysql-connector-python</b> package. A database connection
+    is created using <b>connect()</b>, while a cursor executes SQL
+    queries. Python can perform complete CRUD operations including
+    inserting, retrieving, updating, and deleting data. This makes
+    Python with MySQL useful for developing database-driven
+    applications.
 </p>`
 };
 
