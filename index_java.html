@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cursor Computers Academy</title>
+    <title>Core Java - Cursor Computers Academy</title>
 
     <style>
         * {
@@ -22,62 +22,107 @@
         /* Header */
         header {
             background: #ffffff;
-            padding: 22px 20px;
+            padding: 22px 15px;
             text-align: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
 
         header h1 {
-            font-size: 26px;
+            font-size: 27px;
             color: #1f2937;
             letter-spacing: 1px;
-            text-transform: capitalize;
+        }
+
+        header p {
+            margin-top: 7px;
+            color: #6b7280;
+            font-size: 14px;
         }
 
         /* Main Content */
         main {
-            max-width: 800px;
-            margin: 50px auto;
+            max-width: 850px;
+            margin: 45px auto;
             padding: 0 20px;
         }
 
-        .topic-card {
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title h2 {
+            font-size: 25px;
+            color: #1f2937;
+        }
+
+        .page-title p {
+            margin-top: 8px;
+            color: #6b7280;
+        }
+
+        /* Links */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-card {
             background: #ffffff;
             padding: 22px 25px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            margin-bottom: 15px;
-        }
-
-        .topic-card a {
-            display: block;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
             text-decoration: none;
-            color: #2563eb;
-            font-size: 20px;
+            color: #1f2937;
+            font-size: 19px;
             font-weight: bold;
-            padding: 15px 18px;
-            border-radius: 8px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
             transition: 0.3s;
         }
 
-        .topic-card a:hover {
-            background: #eef4ff;
-            color: #174ea6;
-            transform: translateX(5px);
+        .link-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
+            background: #f8fbff;
+        }
+
+        .arrow {
+            font-size: 22px;
+            color: #2563eb;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 40px;
+            color: #6b7280;
+            font-size: 13px;
         }
 
         /* Mobile */
         @media (max-width: 600px) {
+
             header h1 {
-                font-size: 21px;
+                font-size: 22px;
             }
 
             main {
                 margin-top: 30px;
             }
 
-            .topic-card a {
-                font-size: 18px;
+            .page-title h2 {
+                font-size: 21px;
+            }
+
+            .link-card {
+                font-size: 17px;
+                padding: 19px 20px;
             }
         }
 
@@ -185,14 +230,16 @@
 
 <body>
 
+    <!-- Header -->
     <header>
         <h1>Cursor Computers Academy</h1>
+        <p>Core Java Programming</p>
     </header>
 
     <nav class="site-nav">
         <div class="site-nav-inner">
             <div class="site-nav-links" id="siteNavLinks">
-                <a href="index.html" class="site-nav-link active">Home</a>
+                <a href="index.html" class="site-nav-link">Home</a>
                 <div class="site-nav-dropdown">
                     <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Python ▾</span>
                     <div class="site-nav-menu">
@@ -210,43 +257,53 @@
                     </div>
                 </div>
                 <div class="site-nav-dropdown">
-                    <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Java &#9662;</span>
+                    <span class="site-nav-link active" onclick="this.parentElement.classList.toggle('open')">Java ▾</span>
                     <div class="site-nav-menu">
                         <a href="corejava_theory.html">Theory</a>
                         <a href="corejava_programs.html">Programs</a>
                         <a href="corejava_quiz.html">Quiz</a>
                     </div>
                 </div>
-
             </div>
-            <button class="site-hamburger" onclick="document.getElementById('siteNavLinks').classList.toggle('open')">☰</button>
+            <button class="site-hamburger" onclick="document.getElementById('siteNavLinks').classList.toggle('open')">&#9776;</button>
         </div>
     </nav>
 
+    <!-- Main Content -->
     <main>
-        <div class="topic-card">
-            <a href="index_python.html">
-                Python Programming
+
+        <div class="links-container">
+
+            <!-- Java Theory -->
+            <a href="corejava_theory.html" class="link-card">
+                <span>Core Java Theory</span>
+                <span class="arrow">&rarr;</span>
             </a>
+
+
+            <!-- Java Programs -->
+            <a href="corejava_programs.html" class="link-card">
+                <span>Core Java Programs</span>
+                <span class="arrow">&rarr;</span>
+            </a>
+
+
+            <!-- Java Quiz -->
+            <a href="corejava_quiz.html" class="link-card">
+                <span>Core Java Quiz</span>
+                <span class="arrow">&rarr;</span>
+            </a>
+
         </div>
 
-        <div class="topic-card">
-            <a href="index_mysql.html">
-                MySQL Database
-            </a>
-        </div>
-
-
-
-
-        <div class="topic-card">
-            <a href="index_java.html">
-                Core Java
-            </a>
-        </div>
-
-        
     </main>
 
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 Cursor Computers Academy
+    </footer>
+
+<script>document.querySelectorAll(".site-nav-menu a").forEach(function(a){a.addEventListener("click",function(){document.getElementById("siteNavLinks").classList.remove("open");document.querySelectorAll(".site-nav-dropdown").forEach(function(d){d.classList.remove("open")});})});</script>
 </body>
 </html>
