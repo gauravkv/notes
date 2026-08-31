@@ -151,6 +151,44 @@
             line-height: 1.5;
         }
 
+        .output-box:has(table) {
+            background: transparent;
+            padding: 0;
+        }
+
+        table.sql-result {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+
+        table.sql-result th {
+            text-align: left;
+            padding: 10px 14px;
+            background: #1f2937;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        table.sql-result td {
+            padding: 9px 14px;
+            color: #222222;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        table.sql-result tr:last-child td {
+            border-bottom: none;
+        }
+
+        table.sql-result tr.alt {
+            background: #f9fafb;
+        }
+
         /* FOOTER */
         footer {
             text-align: center;
@@ -181,6 +219,20 @@
 
             pre {
                 font-size: 13px;
+            }
+
+            .output-box:has(table) {
+                overflow-x: auto;
+            }
+
+            table.sql-result {
+                font-size: 12px;
+            }
+
+            table.sql-result th,
+            table.sql-result td {
+                padding: 7px 10px;
+                white-space: nowrap;
             }
         }
 
@@ -350,14 +402,7 @@
 <pre>SHOW DATABASES;</pre>
             <div class="output">
                 <strong>Output:</strong>
-                <div class="output-box">+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mysql              |
-| school             |
-| company            |
-+--------------------+</div>
+                <div class="output-box"><table class="sql-result"><thead><tr><th>Database</th></tr></thead><tbody><tr><td>information_schema</td></tr><tr class="alt"><td>mysql</td></tr><tr><td>school</td></tr><tr class="alt"><td>company</td></tr></tbody></table></div>
             </div>
         </div>
     </div>
@@ -478,15 +523,7 @@ Records: 4  Duplicates: 0  Warnings: 0</div>
 <pre>SELECT * FROM employees;</pre>
             <div class="output">
                 <strong>Output:</strong>
-                <div class="output-box">+--------+--------------+------------+--------+------------+--------+
-| emp_id | name         | department | salary | join_date  | city   |
-+--------+--------------+------------+--------+------------+--------+
-| 1      | Rahul Sharma | IT         | 55000  | 2022-01-15 | Pune   |
-| 2      | Priya Singh  | HR         | 42000  | 2021-06-10 | Mumbai |
-| 3      | Aman Verma   | IT         | 60000  | 2020-03-22 | Pune   |
-| 4      | Sneha Patil  | Sales      | 38000  | 2023-02-05 | Nashik |
-| 5      | Karan Mehta  | IT         | 72000  | 2019-11-30 | Pune   |
-+--------+--------------+------------+--------+------------+--------+</div>
+                <div class="output-box"><table class="sql-result"><thead><tr><th>emp_id</th><th>name</th><th>department</th><th>salary</th><th>join_date</th><th>city</th></tr></thead><tbody><tr><td>1</td><td>Rahul Sharma</td><td>IT</td><td>55000</td><td>2022-01-15</td><td>Pune</td></tr><tr class="alt"><td>2</td><td>Priya Singh</td><td>HR</td><td>42000</td><td>2021-06-10</td><td>Mumbai</td></tr><tr><td>3</td><td>Aman Verma</td><td>IT</td><td>60000</td><td>2020-03-22</td><td>Pune</td></tr><tr class="alt"><td>4</td><td>Sneha Patil</td><td>Sales</td><td>38000</td><td>2023-02-05</td><td>Nashik</td></tr><tr><td>5</td><td>Karan Mehta</td><td>IT</td><td>72000</td><td>2019-11-30</td><td>Pune</td></tr></tbody></table></div>
             </div>
         </div>
     </div>
@@ -502,15 +539,7 @@ Records: 4  Duplicates: 0  Warnings: 0</div>
             <div class="question"><strong>Question:</strong> Select only the name and salary columns from employees.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT name, salary FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+
-| name         | salary |
-+--------------+--------+
-| Rahul Sharma | 55000  |
-| Priya Singh  | 42000  |
-| Aman Verma   | 60000  |
-| Sneha Patil  | 38000  |
-| Karan Mehta  | 72000  |
-+--------------+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>salary</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>55000</td></tr><tr class="alt"><td>Priya Singh</td><td>42000</td></tr><tr><td>Aman Verma</td><td>60000</td></tr><tr class="alt"><td>Sneha Patil</td><td>38000</td></tr><tr><td>Karan Mehta</td><td>72000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -525,13 +554,7 @@ Records: 4  Duplicates: 0  Warnings: 0</div>
             <div class="question"><strong>Question:</strong> Select employees who work in the IT department.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT * FROM employees WHERE department = 'IT';</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------+--------------+------------+--------+------------+------+
-| emp_id | name         | department | salary | join_date  | city |
-+--------+--------------+------------+--------+------------+------+
-| 1      | Rahul Sharma | IT         | 55000  | 2022-01-15 | Pune |
-| 3      | Aman Verma   | IT         | 60000  | 2020-03-22 | Pune |
-| 5      | Karan Mehta  | IT         | 72000  | 2019-11-30 | Pune |
-+--------+--------------+------------+--------+------------+------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>emp_id</th><th>name</th><th>department</th><th>salary</th><th>join_date</th><th>city</th></tr></thead><tbody><tr><td>1</td><td>Rahul Sharma</td><td>IT</td><td>55000</td><td>2022-01-15</td><td>Pune</td></tr><tr class="alt"><td>3</td><td>Aman Verma</td><td>IT</td><td>60000</td><td>2020-03-22</td><td>Pune</td></tr><tr><td>5</td><td>Karan Mehta</td><td>IT</td><td>72000</td><td>2019-11-30</td><td>Pune</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -547,12 +570,7 @@ Records: 4  Duplicates: 0  Warnings: 0</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT * FROM employees
 WHERE department = 'IT' AND salary > 55000;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------+-------------+------------+--------+------------+------+
-| emp_id | name        | department | salary | join_date  | city |
-+--------+-------------+------------+--------+------------+------+
-| 3      | Aman Verma  | IT         | 60000  | 2020-03-22 | Pune |
-| 5      | Karan Mehta | IT         | 72000  | 2019-11-30 | Pune |
-+--------+-------------+------------+--------+------------+------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>emp_id</th><th>name</th><th>department</th><th>salary</th><th>join_date</th><th>city</th></tr></thead><tbody><tr><td>3</td><td>Aman Verma</td><td>IT</td><td>60000</td><td>2020-03-22</td><td>Pune</td></tr><tr class="alt"><td>5</td><td>Karan Mehta</td><td>IT</td><td>72000</td><td>2019-11-30</td><td>Pune</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -568,13 +586,7 @@ WHERE department = 'IT' AND salary > 55000;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT name, salary FROM employees
 WHERE salary BETWEEN 40000 AND 65000;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+
-| name         | salary |
-+--------------+--------+
-| Rahul Sharma | 55000  |
-| Priya Singh  | 42000  |
-| Aman Verma   | 60000  |
-+--------------+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>salary</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>55000</td></tr><tr class="alt"><td>Priya Singh</td><td>42000</td></tr><tr><td>Aman Verma</td><td>60000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -589,11 +601,7 @@ WHERE salary BETWEEN 40000 AND 65000;</pre>
             <div class="question"><strong>Question:</strong> Select employees whose name starts with "A".</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT name FROM employees WHERE name LIKE 'A%';</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+------------+
-| name       |
-+------------+
-| Aman Verma |
-+------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th></tr></thead><tbody><tr><td>Aman Verma</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -609,12 +617,7 @@ WHERE salary BETWEEN 40000 AND 65000;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT name, department FROM employees
 WHERE department IN ('HR', 'Sales');</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+-------------+------------+
-| name        | department |
-+-------------+------------+
-| Priya Singh | HR         |
-| Sneha Patil | Sales      |
-+-------------+------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>department</th></tr></thead><tbody><tr><td>Priya Singh</td><td>HR</td></tr><tr class="alt"><td>Sneha Patil</td><td>Sales</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -629,13 +632,7 @@ WHERE department IN ('HR', 'Sales');</pre>
             <div class="question"><strong>Question:</strong> Select all distinct department names from employees.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT DISTINCT department FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+------------+
-| department |
-+------------+
-| IT         |
-| HR         |
-| Sales      |
-+------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>department</th></tr></thead><tbody><tr><td>IT</td></tr><tr class="alt"><td>HR</td></tr><tr><td>Sales</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -684,14 +681,7 @@ Rows matched: 1  Changed: 1</div></div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT name, salary FROM employees
 ORDER BY salary ASC;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+
-| name         | salary |
-+--------------+--------+
-| Priya Singh  | 42000  |
-| Rahul Sharma | 55000  |
-| Aman Verma   | 60000  |
-| Karan Mehta  | 72000  |
-+--------------+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>salary</th></tr></thead><tbody><tr><td>Priya Singh</td><td>42000</td></tr><tr class="alt"><td>Rahul Sharma</td><td>55000</td></tr><tr><td>Aman Verma</td><td>60000</td></tr><tr class="alt"><td>Karan Mehta</td><td>72000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -707,14 +697,7 @@ ORDER BY salary ASC;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT name, salary FROM employees
 ORDER BY salary DESC;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+
-| name         | salary |
-+--------------+--------+
-| Karan Mehta  | 72000  |
-| Aman Verma   | 60000  |
-| Rahul Sharma | 55000  |
-| Priya Singh  | 42000  |
-+--------------+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>salary</th></tr></thead><tbody><tr><td>Karan Mehta</td><td>72000</td></tr><tr class="alt"><td>Aman Verma</td><td>60000</td></tr><tr><td>Rahul Sharma</td><td>55000</td></tr><tr class="alt"><td>Priya Singh</td><td>42000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -730,14 +713,7 @@ ORDER BY salary DESC;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT department, name, salary FROM employees
 ORDER BY department ASC, salary DESC;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+------------+--------------+--------+
-| department | name         | salary |
-+------------+--------------+--------+
-| HR         | Priya Singh  | 42000  |
-| IT         | Karan Mehta  | 72000  |
-| IT         | Aman Verma   | 60000  |
-| IT         | Rahul Sharma | 55000  |
-+------------+--------------+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>department</th><th>name</th><th>salary</th></tr></thead><tbody><tr><td>HR</td><td>Priya Singh</td><td>42000</td></tr><tr class="alt"><td>IT</td><td>Karan Mehta</td><td>72000</td></tr><tr><td>IT</td><td>Aman Verma</td><td>60000</td></tr><tr class="alt"><td>IT</td><td>Rahul Sharma</td><td>55000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -752,12 +728,7 @@ ORDER BY department ASC, salary DESC;</pre>
             <div class="question"><strong>Question:</strong> Select only the first 2 employees from the table.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT * FROM employees LIMIT 2;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------+--------------+------------+--------+
-| emp_id | name         | department | salary |
-+--------+--------------+------------+--------+
-| 1      | Rahul Sharma | IT         | 55000  |
-| 2      | Priya Singh  | HR         | 42000  |
-+--------+--------------+------------+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>emp_id</th><th>name</th><th>department</th><th>salary</th></tr></thead><tbody><tr><td>1</td><td>Rahul Sharma</td><td>IT</td><td>55000</td></tr><tr class="alt"><td>2</td><td>Priya Singh</td><td>HR</td><td>42000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -772,12 +743,7 @@ ORDER BY department ASC, salary DESC;</pre>
             <div class="question"><strong>Question:</strong> Skip the first 2 employees and select the next 2.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT * FROM employees LIMIT 2 OFFSET 2;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------+-------------+------------+--------+
-| emp_id | name        | department | salary |
-+--------+-------------+------------+--------+
-| 3      | Aman Verma  | IT         | 60000  |
-| 4      | Sneha Patil | Sales      | 38000  |
-+--------+-------------+------------+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>emp_id</th><th>name</th><th>department</th><th>salary</th></tr></thead><tbody><tr><td>3</td><td>Aman Verma</td><td>IT</td><td>60000</td></tr><tr class="alt"><td>4</td><td>Sneha Patil</td><td>Sales</td><td>38000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -794,13 +760,7 @@ ORDER BY department ASC, salary DESC;</pre>
 <pre>SELECT name, salary FROM employees
 ORDER BY salary DESC
 LIMIT 3;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+
-| name         | salary |
-+--------------+--------+
-| Karan Mehta  | 72000  |
-| Aman Verma   | 60000  |
-| Rahul Sharma | 55000  |
-+--------------+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>salary</th></tr></thead><tbody><tr><td>Karan Mehta</td><td>72000</td></tr><tr class="alt"><td>Aman Verma</td><td>60000</td></tr><tr><td>Rahul Sharma</td><td>55000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -817,12 +777,7 @@ LIMIT 3;</pre>
 <pre>SELECT name, join_date FROM employees
 ORDER BY join_date DESC
 LIMIT 2;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+------------+
-| name         | join_date  |
-+--------------+------------+
-| Sneha Patil  | 2023-02-05 |
-| Rahul Sharma | 2022-01-15 |
-+--------------+------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>join_date</th></tr></thead><tbody><tr><td>Sneha Patil</td><td>2023-02-05</td></tr><tr class="alt"><td>Rahul Sharma</td><td>2022-01-15</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -837,11 +792,7 @@ LIMIT 2;</pre>
             <div class="question"><strong>Question:</strong> Count the total number of employees.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT COUNT(*) AS total_employees FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+-----------------+
-| total_employees |
-+-----------------+
-| 5               |
-+-----------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>total_employees</th></tr></thead><tbody><tr><td>5</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -856,11 +807,7 @@ LIMIT 2;</pre>
             <div class="question"><strong>Question:</strong> Find the total salary paid to all employees.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT SUM(salary) AS total_salary FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+
-| total_salary |
-+--------------+
-| 267000       |
-+--------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>total_salary</th></tr></thead><tbody><tr><td>267000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -875,11 +822,7 @@ LIMIT 2;</pre>
             <div class="question"><strong>Question:</strong> Find the average salary of all employees.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT AVG(salary) AS average_salary FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+----------------+
-| average_salary |
-+----------------+
-| 53400.00       |
-+----------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>average_salary</th></tr></thead><tbody><tr><td>53400.00</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -894,11 +837,7 @@ LIMIT 2;</pre>
             <div class="question"><strong>Question:</strong> Find the minimum salary among employees.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT MIN(salary) AS min_salary FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+------------+
-| min_salary |
-+------------+
-| 38000      |
-+------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>min_salary</th></tr></thead><tbody><tr><td>38000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -913,11 +852,7 @@ LIMIT 2;</pre>
             <div class="question"><strong>Question:</strong> Find the maximum salary among employees.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT MAX(salary) AS max_salary FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+------------+
-| max_salary |
-+------------+
-| 72000      |
-+------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>max_salary</th></tr></thead><tbody><tr><td>72000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -934,13 +869,7 @@ LIMIT 2;</pre>
 <pre>SELECT department, COUNT(*) AS total
 FROM employees
 GROUP BY department;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+------------+-------+
-| department | total |
-+------------+-------+
-| IT         | 3     |
-| HR         | 1     |
-| Sales      | 1     |
-+------------+-------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>department</th><th>total</th></tr></thead><tbody><tr><td>IT</td><td>3</td></tr><tr class="alt"><td>HR</td><td>1</td></tr><tr><td>Sales</td><td>1</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -957,13 +886,7 @@ GROUP BY department;</pre>
 <pre>SELECT department, SUM(salary) AS total_salary
 FROM employees
 GROUP BY department;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+------------+--------------+
-| department | total_salary |
-+------------+--------------+
-| IT         | 187000       |
-| HR         | 42000        |
-| Sales      | 38000        |
-+------------+--------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>department</th><th>total_salary</th></tr></thead><tbody><tr><td>IT</td><td>187000</td></tr><tr class="alt"><td>HR</td><td>42000</td></tr><tr><td>Sales</td><td>38000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -980,13 +903,7 @@ GROUP BY department;</pre>
 <pre>SELECT department, AVG(salary) AS avg_salary
 FROM employees
 GROUP BY department;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+------------+------------+
-| department | avg_salary |
-+------------+------------+
-| IT         | 62333.33   |
-| HR         | 42000.00   |
-| Sales      | 38000.00   |
-+------------+------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>department</th><th>avg_salary</th></tr></thead><tbody><tr><td>IT</td><td>62333.33</td></tr><tr class="alt"><td>HR</td><td>42000.00</td></tr><tr><td>Sales</td><td>38000.00</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1004,11 +921,7 @@ GROUP BY department;</pre>
 FROM employees
 GROUP BY department
 HAVING COUNT(*) > 1;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+------------+-------+
-| department | total |
-+------------+-------+
-| IT         | 3     |
-+------------+-------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>department</th><th>total</th></tr></thead><tbody><tr><td>IT</td><td>3</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1025,13 +938,7 @@ HAVING COUNT(*) > 1;</pre>
 <pre>SELECT department, city, COUNT(*) AS total
 FROM employees
 GROUP BY department, city;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+------------+--------+-------+
-| department | city   | total |
-+------------+--------+-------+
-| IT         | Pune   | 3     |
-| HR         | Mumbai | 1     |
-| Sales      | Nashik | 1     |
-+------------+--------+-------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>department</th><th>city</th><th>total</th></tr></thead><tbody><tr><td>IT</td><td>Pune</td><td>3</td></tr><tr class="alt"><td>HR</td><td>Mumbai</td><td>1</td></tr><tr><td>Sales</td><td>Nashik</td><td>1</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1046,11 +953,7 @@ GROUP BY department, city;</pre>
             <div class="question"><strong>Question:</strong> Count the number of distinct cities employees live in.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT COUNT(DISTINCT city) AS total_cities FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+
-| total_cities |
-+--------------+
-| 3            |
-+--------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>total_cities</th></tr></thead><tbody><tr><td>3</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1067,11 +970,7 @@ GROUP BY department, city;</pre>
 <pre>SELECT SUM(salary) AS it_total
 FROM employees
 WHERE department = 'IT';</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+----------+
-| it_total |
-+----------+
-| 187000   |
-+----------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>it_total</th></tr></thead><tbody><tr><td>187000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1089,12 +988,7 @@ WHERE department = 'IT';</pre>
 FROM employees
 GROUP BY department
 HAVING AVG(salary) > 40000;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+------------+------------+
-| department | avg_salary |
-+------------+------------+
-| IT         | 62333.33   |
-| HR         | 42000.00   |
-+------------+------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>department</th><th>avg_salary</th></tr></thead><tbody><tr><td>IT</td><td>62333.33</td></tr><tr class="alt"><td>HR</td><td>42000.00</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1115,14 +1009,7 @@ HAVING AVG(salary) > 40000;</pre>
 <pre>SELECT e.name, d.dept_name
 FROM employees e
 INNER JOIN departments d ON e.dept_id = d.dept_id;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+------------+
-| name         | dept_name  |
-+--------------+------------+
-| Rahul Sharma | IT         |
-| Priya Singh  | HR         |
-| Aman Verma   | IT         |
-| Karan Mehta  | IT         |
-+--------------+------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>dept_name</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>IT</td></tr><tr class="alt"><td>Priya Singh</td><td>HR</td></tr><tr><td>Aman Verma</td><td>IT</td></tr><tr class="alt"><td>Karan Mehta</td><td>IT</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1139,15 +1026,7 @@ INNER JOIN departments d ON e.dept_id = d.dept_id;</pre>
 <pre>SELECT d.dept_name, e.name
 FROM departments d
 LEFT JOIN employees e ON d.dept_id = e.dept_id;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+------------+--------------+
-| dept_name  | name         |
-+------------+--------------+
-| IT         | Rahul Sharma |
-| IT         | Aman Verma   |
-| IT         | Karan Mehta  |
-| HR         | Priya Singh  |
-| Finance    | NULL         |
-+------------+--------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>dept_name</th><th>name</th></tr></thead><tbody><tr><td>IT</td><td>Rahul Sharma</td></tr><tr class="alt"><td>IT</td><td>Aman Verma</td></tr><tr><td>IT</td><td>Karan Mehta</td></tr><tr class="alt"><td>HR</td><td>Priya Singh</td></tr><tr><td>Finance</td><td>NULL</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1164,15 +1043,7 @@ LEFT JOIN employees e ON d.dept_id = e.dept_id;</pre>
 <pre>SELECT e.name, d.dept_name
 FROM departments d
 RIGHT JOIN employees e ON d.dept_id = e.dept_id;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-----------+
-| name         | dept_name |
-+--------------+-----------+
-| Rahul Sharma | IT        |
-| Priya Singh  | HR        |
-| Aman Verma   | IT        |
-| Karan Mehta  | IT        |
-| Sneha Patil  | NULL      |
-+--------------+-----------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>dept_name</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>IT</td></tr><tr class="alt"><td>Priya Singh</td><td>HR</td></tr><tr><td>Aman Verma</td><td>IT</td></tr><tr class="alt"><td>Karan Mehta</td><td>IT</td></tr><tr><td>Sneha Patil</td><td>NULL</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1189,13 +1060,7 @@ RIGHT JOIN employees e ON d.dept_id = e.dept_id;</pre>
 <pre>SELECT e.name AS employee, m.name AS manager
 FROM employees e
 LEFT JOIN employees m ON e.manager_id = m.emp_id;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------------+
-| employee     | manager      |
-+--------------+--------------+
-| Priya Singh  | Karan Mehta  |
-| Aman Verma   | Karan Mehta  |
-| Karan Mehta  | NULL         |
-+--------------+--------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>employee</th><th>manager</th></tr></thead><tbody><tr><td>Priya Singh</td><td>Karan Mehta</td></tr><tr class="alt"><td>Aman Verma</td><td>Karan Mehta</td></tr><tr><td>Karan Mehta</td><td>NULL</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1212,14 +1077,7 @@ LEFT JOIN employees m ON e.manager_id = m.emp_id;</pre>
 <pre>SELECT p.product_name, d.dept_name
 FROM products p
 CROSS JOIN departments d;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+---------------+-----------+
-| product_name  | dept_name |
-+---------------+-----------+
-| Laptop        | IT        |
-| Laptop        | HR        |
-| Mouse         | IT        |
-| Mouse         | HR        |
-+---------------+-----------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>product_name</th><th>dept_name</th></tr></thead><tbody><tr><td>Laptop</td><td>IT</td></tr><tr class="alt"><td>Laptop</td><td>HR</td></tr><tr><td>Mouse</td><td>IT</td></tr><tr class="alt"><td>Mouse</td><td>HR</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1237,13 +1095,7 @@ CROSS JOIN departments d;</pre>
 FROM employees e
 JOIN departments d ON e.dept_id = d.dept_id
 WHERE d.dept_name = 'IT';</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-----------+
-| name         | dept_name |
-+--------------+-----------+
-| Rahul Sharma | IT        |
-| Aman Verma   | IT        |
-| Karan Mehta  | IT        |
-+--------------+-----------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>dept_name</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>IT</td></tr><tr class="alt"><td>Aman Verma</td><td>IT</td></tr><tr><td>Karan Mehta</td><td>IT</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1265,12 +1117,7 @@ WHERE d.dept_name = 'IT';</pre>
 FROM orders o
 JOIN employees e ON o.customer_name = e.name
 JOIN products p ON o.product_id = p.product_id;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+----------+--------------+---------------+----------+
-| order_id | name         | product_name  | quantity |
-+----------+--------------+---------------+----------+
-| 1        | Rahul Sharma | Laptop        | 1        |
-| 2        | Aman Verma   | Mouse         | 3        |
-+----------+--------------+---------------+----------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>order_id</th><th>name</th><th>product_name</th><th>quantity</th></tr></thead><tbody><tr><td>1</td><td>Rahul Sharma</td><td>Laptop</td><td>1</td></tr><tr class="alt"><td>2</td><td>Aman Verma</td><td>Mouse</td><td>3</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1288,12 +1135,7 @@ JOIN products p ON o.product_id = p.product_id;</pre>
 FROM orders o
 JOIN products p ON o.product_id = p.product_id
 GROUP BY p.product_name;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+---------------+-----------+
-| product_name  | total_qty |
-+---------------+-----------+
-| Laptop        | 1         |
-| Mouse         | 3         |
-+---------------+-----------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>product_name</th><th>total_qty</th></tr></thead><tbody><tr><td>Laptop</td><td>1</td></tr><tr class="alt"><td>Mouse</td><td>3</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1310,12 +1152,7 @@ GROUP BY p.product_name;</pre>
 <pre>SELECT o.order_id, p.product_name, (p.price * o.quantity) AS total_value
 FROM orders o
 JOIN products p ON o.product_id = p.product_id;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+----------+---------------+-------------+
-| order_id | product_name  | total_value |
-+----------+---------------+-------------+
-| 1        | Laptop        | 55000       |
-| 2        | Mouse         | 1500        |
-+----------+---------------+-------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>order_id</th><th>product_name</th><th>total_value</th></tr></thead><tbody><tr><td>1</td><td>Laptop</td><td>55000</td></tr><tr class="alt"><td>2</td><td>Mouse</td><td>1500</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1333,11 +1170,7 @@ JOIN products p ON o.product_id = p.product_id;</pre>
 FROM departments d
 LEFT JOIN employees e ON d.dept_id = e.dept_id
 WHERE e.emp_id IS NULL;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+-----------+
-| dept_name |
-+-----------+
-| Finance   |
-+-----------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>dept_name</th></tr></thead><tbody><tr><td>Finance</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1354,13 +1187,7 @@ WHERE e.emp_id IS NULL;</pre>
 <pre>SELECT e.name AS employee_name, d.dept_name AS department_name
 FROM employees AS e
 JOIN departments AS d ON e.dept_id = d.dept_id;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+---------------+-----------------+
-| employee_name | department_name |
-+---------------+-----------------+
-| Rahul Sharma  | IT              |
-| Priya Singh   | HR              |
-| Aman Verma    | IT              |
-+---------------+-----------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>employee_name</th><th>department_name</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>IT</td></tr><tr class="alt"><td>Priya Singh</td><td>HR</td></tr><tr><td>Aman Verma</td><td>IT</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1378,14 +1205,7 @@ JOIN departments AS d ON e.dept_id = d.dept_id;</pre>
 FROM employees e
 JOIN departments d ON e.dept_id = d.dept_id
 ORDER BY e.salary DESC;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-----------+--------+
-| name         | dept_name | salary |
-+--------------+-----------+--------+
-| Karan Mehta  | IT        | 72000  |
-| Aman Verma   | IT        | 60000  |
-| Rahul Sharma | IT        | 55000  |
-| Priya Singh  | HR        | 42000  |
-+--------------+-----------+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>dept_name</th><th>salary</th></tr></thead><tbody><tr><td>Karan Mehta</td><td>IT</td><td>72000</td></tr><tr class="alt"><td>Aman Verma</td><td>IT</td><td>60000</td></tr><tr><td>Rahul Sharma</td><td>IT</td><td>55000</td></tr><tr class="alt"><td>Priya Singh</td><td>HR</td><td>42000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1402,13 +1222,7 @@ ORDER BY e.salary DESC;</pre>
 <pre>SELECT name, dept_name
 FROM employees
 NATURAL JOIN departments;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-----------+
-| name         | dept_name |
-+--------------+-----------+
-| Rahul Sharma | IT        |
-| Priya Singh  | HR        |
-| Aman Verma   | IT        |
-+--------------+-----------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>dept_name</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>IT</td></tr><tr class="alt"><td>Priya Singh</td><td>HR</td></tr><tr><td>Aman Verma</td><td>IT</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1425,12 +1239,7 @@ NATURAL JOIN departments;</pre>
 <pre>SELECT name, salary
 FROM employees
 WHERE salary > (SELECT AVG(salary) FROM employees);</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+-------------+--------+
-| name        | salary |
-+-------------+--------+
-| Aman Verma  | 60000  |
-| Karan Mehta | 72000  |
-+-------------+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>salary</th></tr></thead><tbody><tr><td>Aman Verma</td><td>60000</td></tr><tr class="alt"><td>Karan Mehta</td><td>72000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1448,13 +1257,7 @@ WHERE salary > (SELECT AVG(salary) FROM employees);</pre>
 WHERE dept_id IN (
     SELECT dept_id FROM departments WHERE location = 'Pune'
 );</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+
-| name         |
-+--------------+
-| Rahul Sharma |
-| Aman Verma   |
-| Karan Mehta  |
-+--------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th></tr></thead><tbody><tr><td>Rahul Sharma</td></tr><tr class="alt"><td>Aman Verma</td></tr><tr><td>Karan Mehta</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1472,12 +1275,7 @@ WHERE dept_id IN (
 WHERE EXISTS (
     SELECT 1 FROM employees e WHERE e.dept_id = d.dept_id
 );</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+-----------+
-| dept_name |
-+-----------+
-| IT        |
-| HR        |
-+-----------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>dept_name</th></tr></thead><tbody><tr><td>IT</td></tr><tr class="alt"><td>HR</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1498,11 +1296,7 @@ WHERE e1.salary > (
     FROM employees e2
     WHERE e2.department = e1.department
 );</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+-------------+------------+--------+
-| name        | department | salary |
-+-------------+------------+--------+
-| Karan Mehta | IT         | 72000  |
-+-------------+------------+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>department</th><th>salary</th></tr></thead><tbody><tr><td>Karan Mehta</td><td>IT</td><td>72000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1519,13 +1313,7 @@ WHERE e1.salary > (
 <pre>SELECT name, salary,
     (SELECT AVG(salary) FROM employees) AS company_avg
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+-------------+
-| name         | salary | company_avg |
-+--------------+--------+-------------+
-| Rahul Sharma | 55000  | 53400.00    |
-| Priya Singh  | 42000  | 53400.00    |
-| Aman Verma   | 60000  | 53400.00    |
-+--------------+--------+-------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>salary</th><th>company_avg</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>55000</td><td>53400.00</td></tr><tr class="alt"><td>Priya Singh</td><td>42000</td><td>53400.00</td></tr><tr><td>Aman Verma</td><td>60000</td><td>53400.00</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1546,12 +1334,7 @@ FROM (
     GROUP BY department
 ) AS dept_avg
 WHERE dept_avg.avg_salary > 40000;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+------------+------------+
-| department | avg_salary |
-+------------+------------+
-| IT         | 62333.33   |
-| HR         | 42000.00   |
-+------------+------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>department</th><th>avg_salary</th></tr></thead><tbody><tr><td>IT</td><td>62333.33</td></tr><tr class="alt"><td>HR</td><td>42000.00</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1567,11 +1350,7 @@ WHERE dept_avg.avg_salary > 40000;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT name, salary FROM employees
 WHERE salary = (SELECT MAX(salary) FROM employees);</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+-------------+--------+
-| name        | salary |
-+-------------+--------+
-| Karan Mehta | 72000  |
-+-------------+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>salary</th></tr></thead><tbody><tr><td>Karan Mehta</td><td>72000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1588,11 +1367,7 @@ WHERE salary = (SELECT MAX(salary) FROM employees);</pre>
 <pre>SELECT MAX(salary) AS second_highest
 FROM employees
 WHERE salary < (SELECT MAX(salary) FROM employees);</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+----------------+
-| second_highest |
-+----------------+
-| 60000          |
-+----------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>second_highest</th></tr></thead><tbody><tr><td>60000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1610,12 +1385,7 @@ WHERE salary < (SELECT MAX(salary) FROM employees);</pre>
 FROM employees
 WHERE salary > (SELECT AVG(salary) FROM employees)
 ORDER BY salary DESC;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+-------------+--------+
-| name        | salary |
-+-------------+--------+
-| Karan Mehta | 72000  |
-| Aman Verma  | 60000  |
-+-------------+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>salary</th></tr></thead><tbody><tr><td>Karan Mehta</td><td>72000</td></tr><tr class="alt"><td>Aman Verma</td><td>60000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1634,11 +1404,7 @@ FROM employees
 GROUP BY department
 ORDER BY total DESC
 LIMIT 1;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+------------+-------+
-| department | total |
-+------------+-------+
-| IT         | 3     |
-+------------+-------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>department</th><th>total</th></tr></thead><tbody><tr><td>IT</td><td>3</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1654,13 +1420,7 @@ LIMIT 1;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT CONCAT(name, ' - ', department) AS employee_info
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+---------------------------+
-| employee_info              |
-+---------------------------+
-| Rahul Sharma - IT          |
-| Priya Singh - HR           |
-| Aman Verma - IT            |
-+---------------------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>employee_info</th></tr></thead><tbody><tr><td>Rahul Sharma - IT</td></tr><tr class="alt"><td>Priya Singh - HR</td></tr><tr><td>Aman Verma - IT</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1676,12 +1436,7 @@ FROM employees;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT UPPER(name) AS name_upper, LOWER(department) AS dept_lower
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+---------------+------------+
-| name_upper    | dept_lower |
-+---------------+------------+
-| RAHUL SHARMA  | it         |
-| PRIYA SINGH   | hr         |
-+---------------+------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name_upper</th><th>dept_lower</th></tr></thead><tbody><tr><td>RAHUL SHARMA</td><td>it</td></tr><tr class="alt"><td>PRIYA SINGH</td><td>hr</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1697,12 +1452,7 @@ FROM employees;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT name, LENGTH(name) AS name_length
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-------------+
-| name         | name_length |
-+--------------+-------------+
-| Rahul Sharma | 12          |
-| Priya Singh  | 11          |
-+--------------+-------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>name_length</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>12</td></tr><tr class="alt"><td>Priya Singh</td><td>11</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1718,12 +1468,7 @@ FROM employees;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT name, SUBSTRING(name, 1, 5) AS short_name
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+------------+
-| name         | short_name |
-+--------------+------------+
-| Rahul Sharma | Rahul      |
-| Priya Singh  | Priya      |
-+--------------+------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>short_name</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>Rahul</td></tr><tr class="alt"><td>Priya Singh</td><td>Priya</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1738,11 +1483,7 @@ FROM employees;</pre>
             <div class="question"><strong>Question:</strong> Remove leading and trailing spaces from a string.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT TRIM('   Rahul Sharma   ') AS trimmed_name;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+
-| trimmed_name |
-+--------------+
-| Rahul Sharma |
-+--------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>trimmed_name</th></tr></thead><tbody><tr><td>Rahul Sharma</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1758,12 +1499,7 @@ FROM employees;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT name, REPLACE(city, 'Pune', 'Pune City') AS updated_city
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------------+
-| name         | updated_city |
-+--------------+--------------+
-| Rahul Sharma | Pune City    |
-| Priya Singh  | Mumbai       |
-+--------------+--------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>updated_city</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>Pune City</td></tr><tr class="alt"><td>Priya Singh</td><td>Mumbai</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1779,11 +1515,7 @@ FROM employees;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT name, REVERSE(name) AS reversed_name
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+---------------+
-| name         | reversed_name |
-+--------------+---------------+
-| Rahul Sharma | amrahS luhaR  |
-+--------------+---------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>reversed_name</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>amrahS luhaR</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1801,11 +1533,7 @@ FROM employees;</pre>
     LEFT(name, 3) AS first_three,
     RIGHT(name, 3) AS last_three
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-------------+------------+
-| name         | first_three | last_three |
-+--------------+-------------+------------+
-| Rahul Sharma | Rah         | rma        |
-+--------------+-------------+------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>first_three</th><th>last_three</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>Rah</td><td>rma</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1821,12 +1549,7 @@ FROM employees;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT emp_id, LPAD(emp_id, 5, '0') AS padded_id
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------+-----------+
-| emp_id | padded_id |
-+--------+-----------+
-| 1      | 00001     |
-| 2      | 00002     |
-+--------+-----------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>emp_id</th><th>padded_id</th></tr></thead><tbody><tr><td>1</td><td>00001</td></tr><tr class="alt"><td>2</td><td>00002</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1841,11 +1564,7 @@ FROM employees;</pre>
             <div class="question"><strong>Question:</strong> Check the position of "IT" in a comma-separated list of departments.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT FIND_IN_SET('IT', 'HR,IT,Sales,Finance') AS position;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+----------+
-| position |
-+----------+
-| 2        |
-+----------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>position</th></tr></thead><tbody><tr><td>2</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1861,11 +1580,7 @@ FROM employees;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT ROUND(AVG(salary), 0) AS avg_salary_rounded
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------------+
-| avg_salary_rounded |
-+--------------------+
-| 53400              |
-+--------------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>avg_salary_rounded</th></tr></thead><tbody><tr><td>53400</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1881,11 +1596,7 @@ FROM employees;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT CEIL(AVG(salary)) AS ceil_avg, FLOOR(AVG(salary)) AS floor_avg
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+----------+-----------+
-| ceil_avg | floor_avg |
-+----------+-----------+
-| 53400    | 53400     |
-+----------+-----------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>ceil_avg</th><th>floor_avg</th></tr></thead><tbody><tr><td>53400</td><td>53400</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1900,11 +1611,7 @@ FROM employees;</pre>
             <div class="question"><strong>Question:</strong> Find the absolute value of -150.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT ABS(-150) AS absolute_value;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+----------------+
-| absolute_value |
-+----------------+
-| 150            |
-+----------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>absolute_value</th></tr></thead><tbody><tr><td>150</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1919,11 +1626,7 @@ FROM employees;</pre>
             <div class="question"><strong>Question:</strong> Find the remainder when 17 is divided by 5.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT MOD(17, 5) AS remainder;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+-----------+
-| remainder |
-+-----------+
-| 2         |
-+-----------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>remainder</th></tr></thead><tbody><tr><td>2</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1938,11 +1641,7 @@ FROM employees;</pre>
             <div class="question"><strong>Question:</strong> Find 2 raised to the power 8.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT POWER(2, 8) AS result;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------+
-| result |
-+--------+
-| 256    |
-+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>result</th></tr></thead><tbody><tr><td>256</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1957,11 +1656,7 @@ FROM employees;</pre>
             <div class="question"><strong>Question:</strong> Display the current date and time.</div>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT NOW() AS current_datetime, CURDATE() AS current_date;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+---------------------+--------------+
-| current_datetime    | current_date |
-+---------------------+--------------+
-| 2026-08-28 10:15:32 | 2026-08-28   |
-+---------------------+--------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>current_datetime</th><th>current_date</th></tr></thead><tbody><tr><td>2026-08-28 10:15:32</td><td>2026-08-28</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1977,12 +1672,7 @@ FROM employees;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT name, DATE_FORMAT(join_date, '%d-%m-%Y') AS formatted_date
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+----------------+
-| name         | formatted_date |
-+--------------+----------------+
-| Rahul Sharma | 15-01-2022     |
-| Priya Singh  | 10-06-2021     |
-+--------------+----------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>formatted_date</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>15-01-2022</td></tr><tr class="alt"><td>Priya Singh</td><td>10-06-2021</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -1998,12 +1688,7 @@ FROM employees;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT name, DATEDIFF(CURDATE(), join_date) AS days_worked
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-------------+
-| name         | days_worked |
-+--------------+-------------+
-| Rahul Sharma | 1686        |
-| Priya Singh  | 1905        |
-+--------------+-------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>days_worked</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>1686</td></tr><tr class="alt"><td>Priya Singh</td><td>1905</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -2021,11 +1706,7 @@ FROM employees;</pre>
     DATE_ADD(join_date, INTERVAL 30 DAY) AS after_30_days,
     DATE_SUB(join_date, INTERVAL 30 DAY) AS before_30_days
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+---------------+----------------+
-| name         | after_30_days | before_30_days |
-+--------------+---------------+----------------+
-| Rahul Sharma | 2022-02-14    | 2021-12-16     |
-+--------------+---------------+----------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>after_30_days</th><th>before_30_days</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>2022-02-14</td><td>2021-12-16</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -2044,11 +1725,7 @@ FROM employees;</pre>
     MONTH(join_date) AS join_month,
     DAY(join_date) AS join_day
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-----------+------------+----------+
-| name         | join_year | join_month | join_day |
-+--------------+-----------+------------+----------+
-| Rahul Sharma | 2022      | 1          | 15       |
-+--------------+-----------+------------+----------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>join_year</th><th>join_month</th><th>join_day</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>2022</td><td>1</td><td>15</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -2232,12 +1909,7 @@ FROM employees e
 JOIN departments d ON e.dept_id = d.dept_id;
 
 SELECT * FROM employee_view;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+-----------+
-| name         | dept_name |
-+--------------+-----------+
-| Rahul Sharma | IT        |
-| Priya Singh  | HR        |
-+--------------+-----------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>dept_name</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>IT</td></tr><tr class="alt"><td>Priya Singh</td><td>HR</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -2261,12 +1933,7 @@ END //
 DELIMITER ;
 
 CALL GetEmployeesByDept('IT');</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------+--------------+------------+--------+
-| emp_id | name         | department | salary |
-+--------+--------------+------------+--------+
-| 1      | Rahul Sharma | IT         | 55000  |
-| 3      | Aman Verma   | IT         | 60000  |
-+--------+--------------+------------+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>emp_id</th><th>name</th><th>department</th><th>salary</th></tr></thead><tbody><tr><td>1</td><td>Rahul Sharma</td><td>IT</td><td>55000</td></tr><tr class="alt"><td>3</td><td>Aman Verma</td><td>IT</td><td>60000</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -2292,12 +1959,7 @@ END //
 DELIMITER ;
 
 SELECT name, AnnualSalary(salary) AS annual_salary FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+---------------+
-| name         | annual_salary |
-+--------------+---------------+
-| Rahul Sharma | 660000.00     |
-| Priya Singh  | 504000.00     |
-+--------------+---------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>annual_salary</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>660000.00</td></tr><tr class="alt"><td>Priya Singh</td><td>504000.00</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -2386,14 +2048,7 @@ Transaction rolled back, record restored</div></div>
         ELSE 'Low'
     END AS salary_grade
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+--------------+
-| name         | salary | salary_grade |
-+--------------+--------+--------------+
-| Rahul Sharma | 55000  | Medium       |
-| Priya Singh  | 42000  | Low          |
-| Aman Verma   | 60000  | High         |
-| Karan Mehta  | 72000  | High         |
-+--------------+--------+--------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>salary</th><th>salary_grade</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>55000</td><td>Medium</td></tr><tr class="alt"><td>Priya Singh</td><td>42000</td><td>Low</td></tr><tr><td>Aman Verma</td><td>60000</td><td>High</td></tr><tr class="alt"><td>Karan Mehta</td><td>72000</td><td>High</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -2410,13 +2065,7 @@ FROM employees;</pre>
 <pre>SELECT name, salary,
     IF(salary >= 55000, 'Senior', 'Junior') AS level
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+--------+--------+
-| name         | salary | level  |
-+--------------+--------+--------+
-| Rahul Sharma | 55000  | Senior |
-| Priya Singh  | 42000  | Junior |
-| Aman Verma   | 60000  | Senior |
-+--------------+--------+--------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>salary</th><th>level</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>55000</td><td>Senior</td></tr><tr class="alt"><td>Priya Singh</td><td>42000</td><td>Junior</td></tr><tr><td>Aman Verma</td><td>60000</td><td>Senior</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -2432,12 +2081,7 @@ FROM employees;</pre>
             <strong class="solution-title">Solution:</strong>
 <pre>SELECT name, COALESCE(city, 'Unknown') AS city
 FROM employees;</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+---------+
-| name         | city    |
-+--------------+---------+
-| Rahul Sharma | Pune    |
-| Sneha Patil  | Unknown |
-+--------------+---------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th><th>city</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>Pune</td></tr><tr class="alt"><td>Sneha Patil</td><td>Unknown</td></tr></tbody></table></div></div>
         </div>
     </div>
 
@@ -2454,14 +2098,7 @@ FROM employees;</pre>
 <pre>SELECT name FROM employees WHERE department = 'IT'
 UNION
 SELECT name FROM employees WHERE department = 'HR';</pre>
-            <div class="output"><strong>Output:</strong><div class="output-box">+--------------+
-| name         |
-+--------------+
-| Rahul Sharma |
-| Aman Verma   |
-| Karan Mehta  |
-| Priya Singh  |
-+--------------+</div></div>
+            <div class="output"><strong>Output:</strong><div class="output-box"><table class="sql-result"><thead><tr><th>name</th></tr></thead><tbody><tr><td>Rahul Sharma</td></tr><tr class="alt"><td>Aman Verma</td></tr><tr><td>Karan Mehta</td></tr><tr class="alt"><td>Priya Singh</td></tr></tbody></table></div></div>
         </div>
     </div>
 
