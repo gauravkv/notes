@@ -608,6 +608,66 @@ strong {
     line-height: 1.7;
 }
 
+.output:has(table) {
+
+    background: transparent;
+
+    border: none;
+
+    padding: 0;
+}
+
+table.sql-result {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-family: Consolas, monospace;
+
+    font-size: 14px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e6ed;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+table.sql-result th {
+
+    text-align: left;
+
+    padding: 10px 14px;
+
+    background: #1f2937;
+
+    color: #ffffff;
+
+    font-weight: bold;
+}
+
+table.sql-result td {
+
+    padding: 9px 14px;
+
+    color: #303744;
+
+    border-bottom: 1px solid #e2e6ed;
+}
+
+table.sql-result tr:last-child td {
+
+    border-bottom: none;
+}
+
+table.sql-result tr.alt {
+
+    background: #f8f9fb;
+}
+
 
 /* =====================================================
    INFO BOX
@@ -810,6 +870,24 @@ strong {
     .code-box pre {
 
         font-size: 13px;
+    }
+
+    .output:has(table) {
+
+        overflow-x: auto;
+    }
+
+    table.sql-result {
+
+        font-size: 12px;
+    }
+
+    table.sql-result th,
+    table.sql-result td {
+
+        padding: 7px 10px;
+
+        white-space: nowrap;
     }
 
 }
@@ -1461,13 +1539,7 @@ SHOW DATABASES;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +-----------+<br>
-    | VERSION() |<br>
-    +-----------+<br>
-    | 8.0.36    |<br>
-    +-----------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>VERSION()</th></tr></thead><tbody><tr><td>8.0.36</td></tr></tbody></table></div>
 
 
 <div class="info">
@@ -1541,16 +1613,7 @@ ${codeBlock(`SHOW DATABASES;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +--------------------+<br>
-    | Database           |<br>
-    +--------------------+<br>
-    | information_schema |<br>
-    | mysql               |<br>
-    | performance_schema |<br>
-    | school              |<br>
-    +--------------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>Database</th></tr></thead><tbody><tr><td>information_schema</td></tr><tr class="alt"><td>mysql</td></tr><tr><td>performance_schema</td></tr><tr class="alt"><td>school</td></tr></tbody></table></div>
 
 
 <h2>
@@ -1695,17 +1758,7 @@ ${codeBlock(`DESCRIBE students;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +------------+---------------+------+-----+---------+----------------+<br>
-    | Field      | Type          | Null | Key | Default | Extra          |<br>
-    +------------+---------------+------+-----+---------+----------------+<br>
-    | student_id | int           | NO   | PRI | NULL    | auto_increment |<br>
-    | name       | varchar(50)   | NO   |     | NULL    |                |<br>
-    | age        | int           | YES  |     | NULL    |                |<br>
-    | course     | varchar(50)   | YES  |     | NULL    |                |<br>
-    | fee        | decimal(10,2) | YES  |     | NULL    |                |<br>
-    +------------+---------------+------+-----+---------+----------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>Field</th><th>Type</th><th>Null</th><th>Key</th><th>Default</th><th>Extra</th></tr></thead><tbody><tr><td>student_id</td><td>int</td><td>NO</td><td>PRI</td><td>NULL</td><td>auto_increment</td></tr><tr class="alt"><td>name</td><td>varchar(50)</td><td>NO</td><td></td><td>NULL</td><td></td></tr><tr><td>age</td><td>int</td><td>YES</td><td></td><td>NULL</td><td></td></tr><tr class="alt"><td>course</td><td>varchar(50)</td><td>YES</td><td></td><td>NULL</td><td></td></tr><tr><td>fee</td><td>decimal(10,2)</td><td>YES</td><td></td><td>NULL</td><td></td></tr></tbody></table></div>
 
 
 <h2>
@@ -1718,13 +1771,7 @@ ${codeBlock(`SHOW TABLES;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +------------------+<br>
-    | Tables_in_school |<br>
-    +------------------+<br>
-    | students         |<br>
-    +------------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>Tables_in_school</th></tr></thead><tbody><tr><td>students</td></tr></tbody></table></div>
 
 
 <h2>
@@ -1882,14 +1929,7 @@ ${codeBlock(`SELECT * FROM students;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +------------+--------------+------+-------------------+----------+<br>
-    | student_id | name         | age  | course            | fee      |<br>
-    +------------+--------------+------+-------------------+----------+<br>
-    | 1          | Rahul Sharma | 20   | Computer Science  | 45000.00 |<br>
-    | 2          | Priya Verma  | 21   | Information Tech. | 42000.00 |<br>
-    +------------+--------------+------+-------------------+----------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>student_id</th><th>name</th><th>age</th><th>course</th><th>fee</th></tr></thead><tbody><tr><td>1</td><td>Rahul Sharma</td><td>20</td><td>Computer Science</td><td>45000.00</td></tr><tr class="alt"><td>2</td><td>Priya Verma</td><td>21</td><td>Information Tech.</td><td>42000.00</td></tr></tbody></table></div>
 
 
 <h2>
@@ -1907,14 +1947,7 @@ ${codeBlock(`SELECT name, course FROM students;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +--------------+-------------------+<br>
-    | name         | course            |<br>
-    +--------------+-------------------+<br>
-    | Rahul Sharma | Computer Science  |<br>
-    | Priya Verma  | Information Tech. |<br>
-    +--------------+-------------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>name</th><th>course</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>Computer Science</td></tr><tr class="alt"><td>Priya Verma</td><td>Information Tech.</td></tr></tbody></table></div>
 
 
 <h2>
@@ -1946,15 +1979,7 @@ ${codeBlock(`SELECT DISTINCT course FROM students;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +-------------------+<br>
-    | course            |<br>
-    +-------------------+<br>
-    | Computer Science  |<br>
-    | Information Tech. |<br>
-    | Mechanical Eng.   |<br>
-    +-------------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>course</th></tr></thead><tbody><tr><td>Computer Science</td></tr><tr class="alt"><td>Information Tech.</td></tr><tr><td>Mechanical Eng.</td></tr></tbody></table></div>
 
 
 <h2>
@@ -2018,13 +2043,7 @@ SELECT * FROM students WHERE fee <= 42000;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +------------+--------------+------+-------------------+----------+<br>
-    | student_id | name         | age  | course            | fee      |<br>
-    +------------+--------------+------+-------------------+----------+<br>
-    | 1          | Rahul Sharma | 20   | Computer Science  | 45000.00 |<br>
-    +------------+--------------+------+-------------------+----------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>student_id</th><th>name</th><th>age</th><th>course</th><th>fee</th></tr></thead><tbody><tr><td>1</td><td>Rahul Sharma</td><td>20</td><td>Computer Science</td><td>45000.00</td></tr></tbody></table></div>
 
 
 <h2>
@@ -2316,15 +2335,7 @@ ORDER BY fee;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +--------------+----------+<br>
-    | name         | fee      |<br>
-    +--------------+----------+<br>
-    | Aman Gupta   | 38000.00 |<br>
-    | Priya Verma  | 42000.00 |<br>
-    | Rahul Sharma | 45000.00 |<br>
-    +--------------+----------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>name</th><th>fee</th></tr></thead><tbody><tr><td>Aman Gupta</td><td>38000.00</td></tr><tr class="alt"><td>Priya Verma</td><td>42000.00</td></tr><tr><td>Rahul Sharma</td><td>45000.00</td></tr></tbody></table></div>
 
 
 <h2>
@@ -2409,15 +2420,7 @@ LIMIT 3;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +--------------+----------+<br>
-    | name         | fee      |<br>
-    +--------------+----------+<br>
-    | Rahul Sharma | 47000.00 |<br>
-    | Sneha Reddy  | 45000.00 |<br>
-    | Priya Verma  | 42000.00 |<br>
-    +--------------+----------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>name</th><th>fee</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>47000.00</td></tr><tr class="alt"><td>Sneha Reddy</td><td>45000.00</td></tr><tr><td>Priya Verma</td><td>42000.00</td></tr></tbody></table></div>
 
 
 <h2>
@@ -2524,13 +2527,7 @@ FROM students;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +----------------+<br>
-    | total_students |<br>
-    +----------------+<br>
-    | 5              |<br>
-    +----------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>total_students</th></tr></thead><tbody><tr><td>5</td></tr></tbody></table></div>
 
 
 <h2>
@@ -2575,13 +2572,7 @@ FROM students;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +------------+-------------+<br>
-    | lowest_fee | highest_fee |<br>
-    +------------+-------------+<br>
-    | 38000.00   | 47000.00    |<br>
-    +------------+-------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>lowest_fee</th><th>highest_fee</th></tr></thead><tbody><tr><td>38000.00</td><td>47000.00</td></tr></tbody></table></div>
 
 
 <h2>
@@ -2650,15 +2641,7 @@ GROUP BY course;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +-------------------+----------------+<br>
-    | course            | total_students |<br>
-    +-------------------+----------------+<br>
-    | Computer Science  | 2              |<br>
-    | Information Tech. | 1              |<br>
-    | Electronics       | 1              |<br>
-    +-------------------+----------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>course</th><th>total_students</th></tr></thead><tbody><tr><td>Computer Science</td><td>2</td></tr><tr class="alt"><td>Information Tech.</td><td>1</td></tr><tr><td>Electronics</td><td>1</td></tr></tbody></table></div>
 
 
 <h2>
@@ -2748,13 +2731,7 @@ HAVING COUNT(*) > 1;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +-------------------+----------------+<br>
-    | course            | total_students |<br>
-    +-------------------+----------------+<br>
-    | Computer Science  | 2              |<br>
-    +-------------------+----------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>course</th><th>total_students</th></tr></thead><tbody><tr><td>Computer Science</td><td>2</td></tr></tbody></table></div>
 
 
 <h2>
@@ -2857,14 +2834,7 @@ INNER JOIN departments d ON e.dept_id = d.dept_id;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +-----------+-------------+<br>
-    | emp_name  | dept_name   |<br>
-    +-----------+-------------+<br>
-    | Aditya    | Sales       |<br>
-    | Kavya     | Marketing   |<br>
-    +-----------+-------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>emp_name</th><th>dept_name</th></tr></thead><tbody><tr><td>Aditya</td><td>Sales</td></tr><tr class="alt"><td>Kavya</td><td>Marketing</td></tr></tbody></table></div>
 
 
 <h2>
@@ -2999,14 +2969,7 @@ WHERE fee > (
     Output
 </div>
 
-<div class="output">
-    +--------------+----------+<br>
-    | name         | fee      |<br>
-    +--------------+----------+<br>
-    | Rahul Sharma | 47000.00 |<br>
-    | Sneha Reddy  | 45000.00 |<br>
-    +--------------+----------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>name</th><th>fee</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>47000.00</td></tr><tr class="alt"><td>Sneha Reddy</td><td>45000.00</td></tr></tbody></table></div>
 
 
 <h2>
@@ -3136,15 +3099,7 @@ SELECT name, city FROM alumni;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +--------------+--------+<br>
-    | name         | city   |<br>
-    +--------------+--------+<br>
-    | Rahul Sharma | Mumbai |<br>
-    | Priya Verma  | Pune   |<br>
-    | Aman Gupta   | Delhi  |<br>
-    +--------------+--------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>name</th><th>city</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>Mumbai</td></tr><tr class="alt"><td>Priya Verma</td><td>Pune</td></tr><tr><td>Aman Gupta</td><td>Delhi</td></tr></tbody></table></div>
 
 
 <h2>
@@ -3219,13 +3174,7 @@ FROM students;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +--------------------------------+<br>
-    | student_info                   |<br>
-    +--------------------------------+<br>
-    | Rahul Sharma - Computer Science|<br>
-    +--------------------------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>student_info</th></tr></thead><tbody><tr><td>Rahul Sharma - Computer Science</td></tr></tbody></table></div>
 
 
 <h2>
@@ -3253,13 +3202,7 @@ FROM students;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +--------------+-------------------+<br>
-    | upper_name   | lower_course      |<br>
-    +--------------+-------------------+<br>
-    | RAHUL SHARMA | computer science  |<br>
-    +--------------+-------------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>upper_name</th><th>lower_course</th></tr></thead><tbody><tr><td>RAHUL SHARMA</td><td>computer science</td></tr></tbody></table></div>
 
 
 <h2>
@@ -3290,13 +3233,7 @@ ${codeBlock(`SELECT TRIM('   MySQL   ') AS trimmed_text;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +--------------+<br>
-    | trimmed_text |<br>
-    +--------------+<br>
-    | MySQL        |<br>
-    +--------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>trimmed_text</th></tr></thead><tbody><tr><td>MySQL</td></tr></tbody></table></div>
 
 
 <h2>
@@ -3322,13 +3259,7 @@ ${codeBlock(`SELECT REVERSE('MySQL') AS reversed_text;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +---------------+<br>
-    | reversed_text |<br>
-    +---------------+<br>
-    | LQSyM         |<br>
-    +---------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>reversed_text</th></tr></thead><tbody><tr><td>LQSyM</td></tr></tbody></table></div>
 
 
 <div class="info">
@@ -3372,13 +3303,7 @@ ${codeBlock(`SELECT ROUND(45.6789, 2) AS rounded_value;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +---------------+<br>
-    | rounded_value |<br>
-    +---------------+<br>
-    | 45.68         |<br>
-    +---------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>rounded_value</th></tr></thead><tbody><tr><td>45.68</td></tr></tbody></table></div>
 
 
 <h2>
@@ -3396,13 +3321,7 @@ ${codeBlock(`SELECT CEIL(4.2) AS ceil_value, FLOOR(4.8) AS floor_value;`, "SQL")
     Output
 </div>
 
-<div class="output">
-    +------------+-------------+<br>
-    | ceil_value | floor_value |<br>
-    +------------+-------------+<br>
-    | 5          | 4           |<br>
-    +------------+-------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>ceil_value</th><th>floor_value</th></tr></thead><tbody><tr><td>5</td><td>4</td></tr></tbody></table></div>
 
 
 <h2>
@@ -3432,13 +3351,7 @@ ${codeBlock(`SELECT MOD(10, 3) AS remainder;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +-----------+<br>
-    | remainder |<br>
-    +-----------+<br>
-    | 1         |<br>
-    +-----------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>remainder</th></tr></thead><tbody><tr><td>1</td></tr></tbody></table></div>
 
 
 <h2>
@@ -3456,13 +3369,7 @@ ${codeBlock(`SELECT POWER(2, 5) AS power_value;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +-------------+<br>
-    | power_value |<br>
-    +-------------+<br>
-    | 32          |<br>
-    +-------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>power_value</th></tr></thead><tbody><tr><td>32</td></tr></tbody></table></div>
 
 
 <h2>
@@ -3515,13 +3422,7 @@ ${codeBlock(`SELECT NOW() AS current_datetime, CURDATE() AS current_date;`, "SQL
     Output
 </div>
 
-<div class="output">
-    +---------------------+---------------+<br>
-    | current_datetime    | current_date  |<br>
-    +---------------------+---------------+<br>
-    | 2026-08-28 10:15:32 | 2026-08-28    |<br>
-    +---------------------+---------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>current_datetime</th><th>current_date</th></tr></thead><tbody><tr><td>2026-08-28 10:15:32</td><td>2026-08-28</td></tr></tbody></table></div>
 
 
 <h2>
@@ -3550,13 +3451,7 @@ ${codeBlock(`SELECT DATE_FORMAT(NOW(), '%d-%m-%Y') AS formatted_date;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +----------------+<br>
-    | formatted_date |<br>
-    +----------------+<br>
-    | 28-08-2026     |<br>
-    +----------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>formatted_date</th></tr></thead><tbody><tr><td>28-08-2026</td></tr></tbody></table></div>
 
 
 <h2>
@@ -3574,13 +3469,7 @@ ${codeBlock(`SELECT DATEDIFF('2026-12-31', '2026-08-28') AS days_remaining;`, "S
     Output
 </div>
 
-<div class="output">
-    +----------------+<br>
-    | days_remaining |<br>
-    +----------------+<br>
-    | 125            |<br>
-    +----------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>days_remaining</th></tr></thead><tbody><tr><td>125</td></tr></tbody></table></div>
 
 
 <h2>
@@ -3614,13 +3503,7 @@ ${codeBlock(`SELECT
     Output
 </div>
 
-<div class="output">
-    +-----------+------------+----------+<br>
-    | year_part | month_part | day_part |<br>
-    +-----------+------------+----------+<br>
-    | 2026      | 8          | 28       |<br>
-    +-----------+------------+----------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>year_part</th><th>month_part</th><th>day_part</th></tr></thead><tbody><tr><td>2026</td><td>8</td><td>28</td></tr></tbody></table></div>
 
 
 <div class="info">
@@ -4065,14 +3948,7 @@ ${codeBlock(`SELECT * FROM student_summary;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +--------------+-------------------+----------+<br>
-    | name         | course            | fee      |<br>
-    +--------------+-------------------+----------+<br>
-    | Rahul Sharma | Computer Science  | 47000.00 |<br>
-    | Sneha Reddy  | Computer Science  | 45000.00 |<br>
-    +--------------+-------------------+----------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>name</th><th>course</th><th>fee</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>Computer Science</td><td>47000.00</td></tr><tr class="alt"><td>Sneha Reddy</td><td>Computer Science</td><td>45000.00</td></tr></tbody></table></div>
 
 
 <h2>
@@ -4242,13 +4118,7 @@ SELECT @value;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +--------+<br>
-    | @value |<br>
-    +--------+<br>
-    | 20     |<br>
-    +--------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>@value</th></tr></thead><tbody><tr><td>20</td></tr></tbody></table></div>
 
 
 <h2>
@@ -4332,13 +4202,7 @@ FROM students;`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +--------------+----------+------------+<br>
-    | name         | fee      | gst_amount |<br>
-    +--------------+----------+------------+<br>
-    | Rahul Sharma | 47000.00 | 8460.00    |<br>
-    +--------------+----------+------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>name</th><th>fee</th><th>gst_amount</th></tr></thead><tbody><tr><td>Rahul Sharma</td><td>47000.00</td><td>8460.00</td></tr></tbody></table></div>
 
 
 <h2>
@@ -4728,13 +4592,7 @@ ${codeBlock(`SHOW GRANTS FOR 'app_user'@'localhost';`, "SQL")}
     Output
 </div>
 
-<div class="output">
-    +---------------------------------------------------------------+<br>
-    | Grants for app_user@localhost                                 |<br>
-    +---------------------------------------------------------------+<br>
-    | GRANT SELECT, INSERT, UPDATE ON 'school'.* TO 'app_user'@'localhost' |<br>
-    +---------------------------------------------------------------+
-</div>
+<div class="output"><table class="sql-result"><thead><tr><th>Grants for app_user@localhost</th></tr></thead><tbody><tr><td>GRANT SELECT, INSERT, UPDATE ON 'school'.* TO 'app_user'@'localhost'</td></tr></tbody></table></div>
 
 
 <h2>
