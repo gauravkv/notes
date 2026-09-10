@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Core Java Quiz - Cursor Computers Academy</title>
+    <title>Advanced Java Quiz - Cursor Computers Academy</title>
 
     <style>
         * {
@@ -402,7 +402,7 @@
 
 <header>
     <h1>Cursor Computers Academy</h1>
-    <p>Core Java Programming</p>
+    <p>Advanced Java Programming</p>
 </header>
 
 <nav class="site-nav">
@@ -426,29 +426,29 @@
                 </div>
             </div>
             <div class="site-nav-dropdown">
-                <span class="site-nav-link active" onclick="this.parentElement.classList.toggle('open')">Java &#9662;</span>
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Java &#9662;</span>
                 <div class="site-nav-menu">
                     <a href="corejava_theory.html">Theory</a>
                     <a href="corejava_programs.html">Programs</a>
                     <a href="corejava_quiz.html">Quiz</a>
                 </div>
             </div>
-                <div class="site-nav-dropdown">
-                    <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">PHP &#9662;</span>
-                    <div class="site-nav-menu">
-                        <a href="php_theory.html">Theory</a>
-                        <a href="php_programs.html">Programs</a>
-                        <a href="php_quiz.html">Quiz</a>
-                    </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">PHP &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="php_theory.html">Theory</a>
+                    <a href="php_programs.html">Programs</a>
+                    <a href="php_quiz.html">Quiz</a>
                 </div>
-                <div class="site-nav-dropdown">
-                    <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Advanced Java &#9662;</span>
-                    <div class="site-nav-menu">
-                        <a href="advjava_theory.html">Theory</a>
-                        <a href="advjava_programs.html">Programs</a>
-                        <a href="advjava_quiz.html">Quiz</a>
-                    </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link active" onclick="this.parentElement.classList.toggle('open')">Advanced Java &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="advjava_theory.html">Theory</a>
+                    <a href="advjava_programs.html">Programs</a>
+                    <a href="advjava_quiz.html">Quiz</a>
                 </div>
+            </div>
         </div>
         <button class="site-hamburger" onclick="document.getElementById('siteNavLinks').classList.toggle('open')">☰</button>
     </div>
@@ -457,8 +457,8 @@
 <main>
 
     <div class="page-title">
-        <h2>Core Java Quiz</h2>
-        <p>Test your Core Java knowledge with 25 multiple choice questions.</p>
+        <h2>Advanced Java Quiz</h2>
+        <p>Test your Advanced Java knowledge with 25 multiple choice questions.</p>
     </div>
 
     <div class="quiz-card">
@@ -520,128 +520,128 @@
 
     const questions = [
         {
-            question: "Which of the following is the correct way to declare the main method in Java?",
-            options: ["public void main(String[] args)", "public static void main(String[] args)", "static public main(String args[])", "void main(String args)"],
-            answer: 1
-        },
-        {
-            question: "Which data type is used to store a single character in Java?",
-            options: ["String", "char", "Character", "letter"],
-            answer: 1
-        },
-        {
-            question: "What is the size of an int data type in Java?",
-            options: ["2 bytes", "4 bytes", "8 bytes", "Depends on the platform"],
-            answer: 1
-        },
-        {
-            question: "Which keyword is used to declare a constant variable in Java?",
-            options: ["const", "final", "static", "constant"],
-            answer: 1
-        },
-        {
-            question: "What is the default value of a boolean variable in Java?",
-            options: ["true", "false", "0", "null"],
-            answer: 1
-        },
-        {
-            question: "Which operator is used to compare two values for equality in Java?",
-            options: ["=", "==", "equals()", "!="],
-            answer: 1
-        },
-        {
-            question: "What is the output of: System.out.println(10 % 3);?",
-            options: ["3", "1", "0", "3.33"],
-            answer: 1
-        },
-        {
-            question: "Which control statement is used for multi-way branching in Java?",
-            options: ["if-else", "switch", "for", "do-while"],
-            answer: 1
-        },
-        {
-            question: "What is the correct syntax of a for loop in Java?",
-            options: ["for (int i = 0; i < 10; i++)", "for i in range(10)", "for (i = 0; i < 10)", "foreach (int i = 0; i < 10)"],
-            answer: 0
-        },
-        {
-            question: "Which loop guarantees at least one execution of its body?",
-            options: ["for loop", "while loop", "do-while loop", "enhanced for loop"],
-            answer: 2
-        },
-        {
-            question: "How do you declare an array of integers in Java?",
-            options: ["int arr[] = new int[5];", "array int arr = new int(5);", "int arr = new int[5];", "int[] arr = int[5];"],
-            answer: 0
-        },
-        {
-            question: "What is the index of the first element in a Java array?",
-            options: ["1", "0", "-1", "Depends on the array"],
-            answer: 1
-        },
-        {
-            question: "Which method is used to find the length of a String in Java?",
-            options: ["size()", "length()", "getLength()", "count()"],
-            answer: 1
-        },
-        {
-            question: "What does the method charAt(0) return for the string \"Java\"?",
-            options: ["J", "a", "v", "Java"],
-            answer: 0
-        },
-        {
-            question: "What is a method in Java?",
-            options: ["A variable that stores data", "A block of code that performs a specific task", "A class that contains objects", "A keyword used for loops"],
-            answer: 1
-        },
-        {
-            question: "Which keyword is used to create an object in Java?",
-            options: ["class", "object", "new", "create"],
-            answer: 2
-        },
-        {
-            question: "What is a constructor in Java?",
-            options: ["A method that returns a value", "A special method called when an object is created", "A static method of a class", "A method used to destroy objects"],
-            answer: 1
-        },
-        {
-            question: "Which keyword is used for inheritance in Java?",
-            options: ["inherits", "implements", "extends", "super"],
-            answer: 2
-        },
-        {
-            question: "What is polymorphism in Java?",
-            options: ["The ability to hide data", "The ability of an object to take many forms", "Creating multiple classes", "Using multiple constructors"],
-            answer: 1
-        },
-        {
-            question: "Which access modifier makes a member accessible only within the same class?",
-            options: ["public", "protected", "default", "private"],
+            question: "Which of the following is NOT a valid state in the Java thread lifecycle?",
+            options: ["NEW", "RUNNABLE", "BLOCKED", "SUSPENDED"],
             answer: 3
         },
         {
-            question: "Which keyword is used to handle exceptions in Java?",
-            options: ["try", "throw", "catch", "All of the above"],
-            answer: 3
-        },
-        {
-            question: "What is an interface in Java?",
-            options: ["A class with all implemented methods", "A blueprint with abstract methods that a class can implement", "A type of variable", "A package in Java"],
+            question: "What does calling Thread.sleep() do to the currently executing thread?",
+            options: ["Terminates it permanently", "Pauses it for a specified time without releasing locks it holds", "Releases all locks and terminates", "Moves it to the NEW state"],
             answer: 1
         },
         {
-            question: "Which keyword is used to declare an abstract class?",
-            options: ["interface", "abstract", "virtual", "static"],
+            question: "Which keyword is used to ensure that only one thread can execute a block of code at a time?",
+            options: ["volatile", "synchronized", "atomic", "transient"],
             answer: 1
         },
         {
-            question: "Which collection class in Java stores elements as key-value pairs?",
-            options: ["ArrayList", "HashSet", "HashMap", "LinkedList"],
+            question: "What is the primary purpose of the volatile keyword in Java?",
+            options: ["To make a variable thread-local", "To ensure a variable's value is always read from and written to main memory, ensuring visibility across threads", "To prevent a variable from being serialized", "To make a variable immutable"],
+            answer: 1
+        },
+        {
+            question: "What is type erasure in Java generics?",
+            options: ["A compile-time error when generics are misused", "The process by which generic type information is removed at compile time and replaced with bounds or Object", "A runtime exception thrown when generic types mismatch", "The automatic conversion of primitives to generic wrapper types"],
+            answer: 1
+        },
+        {
+            question: "Which wildcard would you use in a generic method parameter to accept a List of any subtype of Number, allowing only reading from it?",
+            options: ["List<? super Number>", "List<Number>", "List<? extends Number>", "List<?>"],
             answer: 2
         },
         {
-            question: "What is the parent class of all classes in Java?",
-            options: ["Main", "Object", "Class", "System"],
+            question: "Which internal data structure does HashMap use in Java 8 and later to store entries, and what does it switch to for buckets with many collisions?",
+            options: ["A singly linked list for all buckets, never changes", "An array of linked lists, which converts to a balanced red-black tree when a bucket exceeds a threshold (default 8)", "A binary search tree for all buckets from the start", "A hash table backed entirely by an array with no collision handling"],
+            answer: 1
+        },
+        {
+            question: "What is the key difference between ArrayList and LinkedList in terms of performance?",
+            options: ["ArrayList provides fast random access (O(1)) but slower insertion/deletion in the middle; LinkedList has fast insertion/deletion but slower random access (O(n))", "LinkedList always outperforms ArrayList in every operation", "ArrayList cannot store duplicate elements while LinkedList can", "There is no performance difference between them"],
+            answer: 0
+        },
+        {
+            question: "What is the functional interface used by lambda expressions that take no arguments and return no result?",
+            options: ["Supplier<T>", "Runnable", "Consumer<T>", "Function<T,R>"],
+            answer: 1
+        },
+        {
+            question: "In the Stream API, what is the difference between an intermediate operation and a terminal operation?",
+            options: ["Intermediate operations produce a final result; terminal operations return another stream", "Intermediate operations are lazy and return a new stream (e.g., map, filter); terminal operations trigger processing and produce a result (e.g., collect, forEach)", "There is no difference, both terms are interchangeable", "Terminal operations can be chained indefinitely while intermediate operations cannot"],
+            answer: 1
+        },
+        {
+            question: "What does the Stream API's reduce() method do?",
+            options: ["Filters elements based on a predicate", "Combines elements of a stream into a single result using an associative accumulation function", "Sorts the elements of a stream", "Converts a stream into a List"],
+            answer: 1
+        },
+        {
+            question: "What is the purpose of java.util.Optional in Java 8+?",
+            options: ["To replace all exception handling in Java", "To act as a container that may or may not hold a non-null value, helping avoid explicit null checks and NullPointerExceptions", "To optimize memory usage for primitive types", "To make variables thread-safe automatically"],
+            answer: 1
+        },
+        {
+            question: "What is the key difference between InputStream/OutputStream and Reader/Writer classes in Java I/O?",
+            options: ["InputStream/OutputStream work with byte data; Reader/Writer work with character data", "Reader/Writer are used only for network I/O", "InputStream/OutputStream are deprecated in favor of Reader/Writer", "There is no difference, they are aliases of each other"],
+            answer: 0
+        },
+        {
+            question: "What is a key advantage of java.nio (New I/O) over traditional java.io, particularly with Channels and Buffers?",
+            options: ["It removes the need for exception handling entirely", "It supports non-blocking I/O operations and more efficient buffer-based data transfer", "It only works with text files, not binary files", "It eliminates the need for closing streams"],
+            answer: 1
+        },
+        {
+            question: "Which interface must a Java class implement to allow its objects to be converted into a byte stream for serialization?",
+            options: ["Cloneable", "Serializable", "Externalizable", "Comparable"],
+            answer: 1
+        },
+        {
+            question: "Which built-in annotation indicates that a method overrides a method declared in a superclass, causing a compile error if it does not?",
+            options: ["@Deprecated", "@SuppressWarnings", "@Override", "@FunctionalInterface"],
+            answer: 2
+        },
+        {
+            question: "What does the Java Reflection API primarily allow a program to do?",
+            options: ["Compile Java source code at runtime", "Inspect and manipulate classes, methods, fields, and constructors at runtime, even private ones", "Automatically optimize bytecode for performance", "Convert Java code into other programming languages"],
+            answer: 1
+        },
+        {
+            question: "Which JDBC interface represents a precompiled SQL statement that can accept parameters and helps prevent SQL injection?",
+            options: ["Statement", "PreparedStatement", "CallableStatement", "ResultSet"],
+            answer: 1
+        },
+        {
+            question: "What is the main difference between a Servlet's doGet() and doPost() methods?",
+            options: ["doGet() handles HTTP GET requests typically used for retrieving data with parameters visible in the URL; doPost() handles HTTP POST requests used for submitting data, often not visible in the URL", "doPost() is deprecated and doGet() should be used for all requests", "doGet() can only be called once per session", "There is no functional difference between them"],
+            answer: 0
+        },
+        {
+            question: "Which design pattern ensures that a class has only one instance and provides a global point of access to it?",
+            options: ["Factory pattern", "Observer pattern", "Singleton pattern", "Builder pattern"],
+            answer: 2
+        },
+        {
+            question: "In the Factory design pattern, what is the main responsibility of the factory class?",
+            options: ["To store all instances of created objects in a cache permanently", "To encapsulate object creation logic and return instances of a common interface or superclass without exposing instantiation details to the client", "To observe changes in other objects and notify subscribers", "To ensure thread safety across the entire application"],
+            answer: 1
+        },
+        {
+            question: "In the Observer design pattern, what happens when the subject's state changes?",
+            options: ["The subject is destroyed and recreated", "All registered observers are automatically notified so they can update themselves accordingly", "Only one randomly chosen observer is notified", "The change is ignored until an observer polls for it"],
+            answer: 1
+        },
+        {
+            question: "What is the recommended practice when creating a custom checked exception in Java?",
+            options: ["Extend RuntimeException so it does not need to be declared or caught", "Extend Exception (not RuntimeException) and provide constructors that accept a message and/or a cause, following naming convention ending in 'Exception'", "Extend Throwable directly to bypass exception handling rules", "Implement the Serializable interface instead of extending any exception class"],
+            answer: 1
+        },
+        {
+            question: "Which class in the java.time API (introduced in Java 8) represents a date without a time-zone, such as a birthday?",
+            options: ["Date", "LocalDate", "Calendar", "Instant"],
+            answer: 1
+        },
+        {
+            question: "In Java regular expressions, what does the pattern \\d+ match?",
+            options: ["One or more whitespace characters", "One or more digit characters", "Zero or more word characters", "Exactly one digit"],
             answer: 1
         }
     ];

@@ -1,0 +1,3016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>100 PHP Programs - Cursor Computers Academy</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        /* HEADER */
+        header {
+            background: #ffffff;
+            padding: 22px 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        header h1 {
+            font-size: 27px;
+            color: #1f2937;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin-top: 7px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* MAIN */
+        main {
+            max-width: 950px;
+            margin: 35px auto;
+            padding: 0 15px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title h2 {
+            color: #1f2937;
+            font-size: 25px;
+        }
+
+        .page-title p {
+            margin-top: 8px;
+            color: #6b7280;
+        }
+
+        /* ACCORDION */
+        .accordion {
+            background: #ffffff;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+        }
+
+        .accordion-header {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: #ffffff;
+            padding: 18px 20px;
+            text-align: left;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            transition: 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: #f0f5ff;
+        }
+
+        .arrow {
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+
+        .accordion.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .content {
+            display: none;
+            padding: 0 20px 20px;
+            border-top: 1px solid #eeeeee;
+        }
+
+        .content.show {
+            display: block;
+        }
+
+        .question {
+            margin-top: 18px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .question strong {
+            color: #374151;
+        }
+
+        .solution-title {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #f8f8f2;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            line-height: 1.6;
+            font-size: 14px;
+            font-family: Consolas, monospace;
+        }
+
+        .output {
+            margin-top: 15px;
+        }
+
+        .output-box {
+            background: #f3f4f6;
+            padding: 14px;
+            margin-top: 8px;
+            border-radius: 8px;
+            font-family: Consolas, monospace;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 21px;
+            }
+
+            .page-title h2 {
+                font-size: 21px;
+            }
+
+            .accordion-header {
+                font-size: 15px;
+                padding: 16px;
+            }
+
+            .content {
+                padding: 0 16px 18px;
+            }
+
+            pre {
+                font-size: 13px;
+            }
+        }
+
+        /* SITE NAV */
+        .site-nav {
+            background: #ffffff; border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+        .site-nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            position: relative;
+        }
+        .site-nav-links {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        .site-nav-link {
+            color: #374151;
+            text-decoration: none;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        .site-nav-link:hover, .site-nav-link.active {
+            color: #4f46e5;
+            background: #f0f5ff;
+        }
+        .site-nav-dropdown {
+            position: relative;
+        }
+        .site-nav-menu {
+            display: none; border: 1px solid #e5e7eb;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            min-width: 160px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 0 0 8px 8px;
+            z-index: 1001;
+        }
+        .site-nav-dropdown:hover .site-nav-menu {
+            display: block;
+        }
+        .site-nav-menu a { border-bottom: 1px solid #f3f4f6;
+            display: block;
+            color: #374151;
+            text-decoration: none;
+            padding: 11px 18px;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .site-nav-menu a:hover {
+            background: #f0f5ff;
+            color: #4f46e5;
+        }
+        .site-hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: #374151;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 12px;
+            margin-left: auto;
+        }
+        @media (max-width: 600px) {
+            .site-hamburger { display: block; }
+            .site-nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: #ffffff;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                z-index: 1002;
+            }
+            .site-nav-links.open { display: flex; }
+            .site-nav-link { text-align: left; width: 100%; display: block; border-bottom: 1px solid #e5e7eb; }
+            .site-nav-menu {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .site-nav-menu a { border-bottom: 1px solid #f3f4f6; padding-left: 36px; }
+            .site-nav-dropdown { width: 100%; } .site-nav-dropdown:hover .site-nav-menu { display: none; }
+            .site-nav-dropdown.open .site-nav-menu { display: block; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Cursor Computers Academy</h1>
+    <p>PHP Programming</p>
+</header>
+
+<nav class="site-nav">
+    <div class="site-nav-inner">
+        <div class="site-nav-links" id="siteNavLinks">
+            <a href="index.html" class="site-nav-link">Home</a>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Python &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="python_theory.html">Theory</a>
+                    <a href="python_programs.html">Programs</a>
+                    <a href="python_quiz.html">Quiz</a>
+                </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">MySQL &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="mysql_theory.html">Theory</a>
+                    <a href="mysql_programs.html">Programs</a>
+                    <a href="mysql_quiz.html">Quiz</a>
+                </div>
+            </div>
+                <div class="site-nav-dropdown">
+                    <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Java &#9662;</span>
+                    <div class="site-nav-menu">
+                        <a href="corejava_theory.html">Theory</a>
+                        <a href="corejava_programs.html">Programs</a>
+                        <a href="corejava_quiz.html">Quiz</a>
+                    </div>
+                </div>
+                <div class="site-nav-dropdown">
+                    <span class="site-nav-link active" onclick="this.parentElement.classList.toggle('open')">PHP &#9662;</span>
+                    <div class="site-nav-menu">
+                        <a href="php_theory.html">Theory</a>
+                        <a href="php_programs.html">Programs</a>
+                        <a href="php_quiz.html">Quiz</a>
+                    </div>
+                </div>
+                <div class="site-nav-dropdown">
+                    <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Advanced Java &#9662;</span>
+                    <div class="site-nav-menu">
+                        <a href="advjava_theory.html">Theory</a>
+                        <a href="advjava_programs.html">Programs</a>
+                        <a href="advjava_quiz.html">Quiz</a>
+                    </div>
+                </div>
+
+        </div>
+        <button class="site-hamburger" onclick="document.getElementById('siteNavLinks').classList.toggle('open')">&#9776;</button>
+    </div>
+</nav>
+
+<main>
+
+    <div class="page-title">
+        <h2>100 PHP Programs with Solutions</h2>
+        <p>Click on any program to view the question, solution and output.</p>
+    </div>
+
+
+    <!-- 1 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            1. Print Hello World
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a PHP program to print "Hello World".
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+echo "Hello World";
+?&gt;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Hello World</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 2 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            2. PHP Variables
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a PHP program to declare variables and print them.
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$name = "Rahul";
+$age = 22;
+
+echo "Name: " . $name . "\n";
+echo "Age: " . $age;
+?&gt;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Name: Rahul
+Age: 22</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 3 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            3. Check Data Types
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question">
+                <strong>Question:</strong>
+                Write a PHP program to display the data type of different variables using var_dump().
+            </div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$a = 10;
+$b = 3.14;
+$c = "Hello";
+$d = true;
+
+var_dump($a);
+var_dump($b);
+var_dump($c);
+var_dump($d);
+?&gt;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">int(10)
+float(3.14)
+string(5) "Hello"
+bool(true)</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 4 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            4. Arithmetic Operators
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Perform basic arithmetic operations on two numbers.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$a = 15;
+$b = 4;
+
+echo "Sum: " . ($a + $b) . "\n";
+echo "Difference: " . ($a - $b) . "\n";
+echo "Product: " . ($a * $b) . "\n";
+echo "Quotient: " . ($a / $b) . "\n";
+echo "Modulus: " . ($a % $b);
+?&gt;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Sum: 19
+Difference: 11
+Product: 60
+Quotient: 3.75
+Modulus: 3</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 5 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            5. String Concatenation
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Concatenate two strings using the "." operator.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$first = "Cursor";
+$second = "Computers";
+
+$full = $first . " " . $second . " Academy";
+
+echo $full;
+?&gt;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Cursor Computers Academy</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 6 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            6. Type Casting
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Demonstrate type casting between different data types.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$str = "123";
+$num = (int) $str;
+
+$float = 9.75;
+$intVal = (int) $float;
+
+echo "Casted to int: " . $num . "\n";
+echo "Float to int: " . $intVal . "\n";
+echo gettype($num);
+?&gt;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Casted to int: 123
+Float to int: 9
+integer</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 7 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            7. Constants using define()
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Define and use a constant in PHP.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+define("SITE_NAME", "Cursor Computers Academy");
+const PI_VALUE = 3.14159;
+
+echo SITE_NAME . "\n";
+echo PI_VALUE;
+?&gt;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Cursor Computers Academy
+3.14159</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 8 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            8. Ternary Operator
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use the ternary operator to check if a number is even or odd.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$num = 7;
+
+$result = ($num % 2 == 0) ? "Even" : "Odd";
+
+echo $result;
+?&gt;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Odd</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 9 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            9. Null Coalescing Operator
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use the null coalescing operator to provide a default value.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$username = $_GET['user'] ?? "Guest";
+
+echo "Welcome, " . $username;
+?&gt;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Welcome, Guest</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 10 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            10. Increment and Decrement Operators
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Demonstrate increment and decrement operators.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$a = 5;
+
+echo $a++ . "\n";
+echo $a . "\n";
+echo ++$a . "\n";
+echo $a-- . "\n";
+echo $a;
+?&gt;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">5
+6
+7
+7
+6</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 11 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            11. Comparison Operators
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Demonstrate the difference between "==" and "===" operators.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$a = "10";
+$b = 10;
+
+var_dump($a == $b);
+var_dump($a === $b);
+?&gt;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">bool(true)
+bool(false)</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 12 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            12. Logical Operators
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use logical AND, OR and NOT operators.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$age = 25;
+$hasID = true;
+
+if ($age &gt;= 18 &amp;&amp; $hasID) {
+    echo "Entry allowed\n";
+}
+
+if ($age &lt; 18 || !$hasID) {
+    echo "Entry denied\n";
+} else {
+    echo "All conditions verified";
+}
+?&gt;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Entry allowed
+All conditions verified</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 13 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            13. String to Number Conversion
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Add a numeric string to a number in PHP.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$str = "100";
+$num = 50;
+
+$result = $str + $num;
+
+echo $result . "\n";
+echo gettype($result);
+?&gt;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">150
+integer</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 14 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            14. Multiple Variable Assignment
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Assign the same value to multiple variables in a single line.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$a = $b = $c = 10;
+
+echo "a = $a, b = $b, c = $c";
+?&gt;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">a = 10, b = 10, c = 10</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 15 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            15. Heredoc Syntax
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use heredoc syntax to print a multi-line string with variables.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$name = "Priya";
+$course = "PHP";
+
+$text = &lt;&lt;&lt;EOT
+Hello $name,
+Welcome to the $course course.
+Enjoy learning!
+EOT;
+
+echo $text;
+?&gt;</pre>
+            <div class="output">
+                <strong>Output:</strong>
+                <div class="output-box">Hello Priya,
+Welcome to the PHP course.
+Enjoy learning!</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 16 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            16. If-Else Statement
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check whether a number is positive or negative.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$num = -8;
+
+if ($num &gt;= 0) {
+    echo "Positive";
+} else {
+    echo "Negative";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Negative</div></div>
+        </div>
+    </div>
+
+
+    <!-- 17 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            17. If-Elseif-Else Statement
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Assign a grade based on marks using if-elseif-else.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$marks = 78;
+
+if ($marks &gt;= 90) {
+    $grade = "A";
+} elseif ($marks &gt;= 75) {
+    $grade = "B";
+} elseif ($marks &gt;= 60) {
+    $grade = "C";
+} else {
+    $grade = "D";
+}
+
+echo "Grade: " . $grade;
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Grade: B</div></div>
+        </div>
+    </div>
+
+
+    <!-- 18 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            18. Switch Statement
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print the day name using a switch statement.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$day = 3;
+
+switch ($day) {
+    case 1:
+        echo "Monday";
+        break;
+    case 2:
+        echo "Tuesday";
+        break;
+    case 3:
+        echo "Wednesday";
+        break;
+    default:
+        echo "Invalid day";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Wednesday</div></div>
+        </div>
+    </div>
+
+
+    <!-- 19 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            19. While Loop
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print numbers from 1 to 5 using a while loop.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$i = 1;
+
+while ($i &lt;= 5) {
+    echo $i . "\n";
+    $i++;
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">1
+2
+3
+4
+5</div></div>
+        </div>
+    </div>
+
+
+    <!-- 20 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            20. Do-While Loop
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print numbers from 1 to 5 using a do-while loop.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$i = 1;
+
+do {
+    echo $i . "\n";
+    $i++;
+} while ($i &lt;= 5);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">1
+2
+3
+4
+5</div></div>
+        </div>
+    </div>
+
+
+    <!-- 21 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            21. For Loop
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print the multiplication table of a number using a for loop.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$num = 5;
+
+for ($i = 1; $i &lt;= 10; $i++) {
+    echo "$num x $i = " . ($num * $i) . "\n";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+5 x 4 = 20
+5 x 5 = 25
+5 x 6 = 30
+5 x 7 = 35
+5 x 8 = 40
+5 x 9 = 45
+5 x 10 = 50</div></div>
+        </div>
+    </div>
+
+
+    <!-- 22 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            22. Foreach Loop
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print each element of an array using a foreach loop.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$fruits = ["Apple", "Banana", "Mango"];
+
+foreach ($fruits as $fruit) {
+    echo $fruit . "\n";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Apple
+Banana
+Mango</div></div>
+        </div>
+    </div>
+
+
+    <!-- 23 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            23. Break Statement
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Stop a loop when a specific number is found.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+for ($i = 1; $i &lt;= 10; $i++) {
+    if ($i == 6) {
+        break;
+    }
+    echo $i . "\n";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">1
+2
+3
+4
+5</div></div>
+        </div>
+    </div>
+
+
+    <!-- 24 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            24. Continue Statement
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print numbers from 1 to 10, skipping multiples of 3.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+for ($i = 1; $i &lt;= 10; $i++) {
+    if ($i % 3 == 0) {
+        continue;
+    }
+    echo $i . "\n";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">1
+2
+4
+5
+7
+8
+10</div></div>
+        </div>
+    </div>
+
+
+    <!-- 25 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            25. Nested Loops
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print a pattern of stars using nested loops.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+for ($i = 1; $i &lt;= 4; $i++) {
+    for ($j = 1; $j &lt;= $i; $j++) {
+        echo "*";
+    }
+    echo "\n";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">*
+**
+***
+****</div></div>
+        </div>
+    </div>
+
+
+    <!-- 26 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            26. Nested If Statement
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check if a number is positive and even using nested if.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$num = 8;
+
+if ($num &gt; 0) {
+    if ($num % 2 == 0) {
+        echo "Positive Even Number";
+    } else {
+        echo "Positive Odd Number";
+    }
+} else {
+    echo "Not Positive";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Positive Even Number</div></div>
+        </div>
+    </div>
+
+
+    <!-- 27 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            27. Alternative Syntax for If
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Rewrite an if-else block using PHP's alternative colon syntax (useful in templates).</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$loggedIn = true;
+
+if ($loggedIn):
+    echo "Welcome back!";
+else:
+    echo "Please log in.";
+endif;
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Welcome back!</div></div>
+        </div>
+    </div>
+
+
+    <!-- 28 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            28. Match Expression (PHP 8)
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use the PHP 8 match expression to return a message based on a status code.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$status = 404;
+
+$message = match ($status) {
+    200 =&gt; "OK",
+    404 =&gt; "Not Found",
+    500 =&gt; "Server Error",
+    default =&gt; "Unknown Status",
+};
+
+echo $message;
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Not Found</div></div>
+        </div>
+    </div>
+
+
+    <!-- 29 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            29. Infinite Loop with Break
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use an infinite while loop with a break condition to print numbers 1 to 5.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$i = 1;
+
+while (true) {
+    if ($i &gt; 5) {
+        break;
+    }
+    echo $i . "\n";
+    $i++;
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">1
+2
+3
+4
+5</div></div>
+        </div>
+    </div>
+
+
+    <!-- 30 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            30. FizzBuzz Program
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Print numbers 1 to 15, replacing multiples of 3 with "Fizz", multiples of 5 with "Buzz", and multiples of both with "FizzBuzz".</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+for ($i = 1; $i &lt;= 15; $i++) {
+    if ($i % 15 == 0) {
+        echo "FizzBuzz\n";
+    } elseif ($i % 3 == 0) {
+        echo "Fizz\n";
+    } elseif ($i % 5 == 0) {
+        echo "Buzz\n";
+    } else {
+        echo $i . "\n";
+    }
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">1
+2
+Fizz
+4
+Buzz
+Fizz
+7
+8
+Fizz
+Buzz
+11
+Fizz
+13
+14
+FizzBuzz</div></div>
+        </div>
+    </div>
+
+
+    <!-- 31 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            31. Basic Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Write a function to add two numbers and return the result.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+function add($a, $b) {
+    return $a + $b;
+}
+
+echo add(15, 25);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">40</div></div>
+        </div>
+    </div>
+
+
+    <!-- 32 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            32. Function with Default Arguments
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Write a function with a default parameter value.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+function greet($name = "Guest") {
+    echo "Hello, $name!\n";
+}
+
+greet("Rahul");
+greet();
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Hello, Rahul!
+Hello, Guest!</div></div>
+        </div>
+    </div>
+
+
+    <!-- 33 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            33. Function with Variable Arguments
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Write a variadic function that accepts any number of arguments and returns their sum.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+function sumAll(...$numbers) {
+    return array_sum($numbers);
+}
+
+echo sumAll(1, 2, 3, 4, 5);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">15</div></div>
+        </div>
+    </div>
+
+
+    <!-- 34 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            34. Recursive Function - Factorial
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Write a recursive function to calculate the factorial of a number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+function factorial($n) {
+    if ($n &lt;= 1) {
+        return 1;
+    }
+    return $n * factorial($n - 1);
+}
+
+echo factorial(5);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">120</div></div>
+        </div>
+    </div>
+
+
+    <!-- 35 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            35. Return by Reference
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Write a function that returns a value by reference so the caller can modify the original variable.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+function &amp;getValue(array &amp;$arr) {
+    return $arr[0];
+}
+
+$numbers = [10, 20, 30];
+$ref = &amp;getValue($numbers);
+$ref = 100;
+
+print_r($numbers);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Array
+(
+    [0] => 100
+    [1] => 20
+    [2] => 30
+)</div></div>
+        </div>
+    </div>
+
+
+    <!-- 36 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            36. Anonymous Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create and use an anonymous function stored in a variable.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$square = function ($n) {
+    return $n * $n;
+};
+
+echo $square(6);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">36</div></div>
+        </div>
+    </div>
+
+
+    <!-- 37 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            37. Arrow Function (PHP 7.4+)
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use an arrow function to double a number.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$double = fn($n) =&gt; $n * 2;
+
+echo $double(9);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">18</div></div>
+        </div>
+    </div>
+
+
+    <!-- 38 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            38. Function with Type Hints
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Write a function with type hints for parameters and return type.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+function multiply(int $a, int $b): int {
+    return $a * $b;
+}
+
+echo multiply(4, 5);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">20</div></div>
+        </div>
+    </div>
+
+
+    <!-- 39 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            39. Passing Array to Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Write a function that accepts an array and returns the largest value.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+function findLargest($arr) {
+    return max($arr);
+}
+
+$numbers = [12, 45, 3, 67, 21];
+
+echo findLargest($numbers);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">67</div></div>
+        </div>
+    </div>
+
+
+    <!-- 40 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            40. Function Returning an Array
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Write a function that returns multiple values as an array.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+function minMax($arr) {
+    return ["min" =&gt; min($arr), "max" =&gt; max($arr)];
+}
+
+$result = minMax([4, 9, 1, 7]);
+
+echo "Min: " . $result["min"] . "\n";
+echo "Max: " . $result["max"];
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Min: 1
+Max: 9</div></div>
+        </div>
+    </div>
+
+
+    <!-- 41 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            41. Variable Functions
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Call a function dynamically by storing its name in a variable.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+function sayHello() {
+    echo "Hello from a variable function!";
+}
+
+$funcName = "sayHello";
+$funcName();
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Hello from a variable function!</div></div>
+        </div>
+    </div>
+
+
+    <!-- 42 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            42. Recursive Fibonacci
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Write a recursive function to print the Fibonacci series up to N terms.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+function fibonacci($n) {
+    if ($n &lt; 2) {
+        return $n;
+    }
+    return fibonacci($n - 1) + fibonacci($n - 2);
+}
+
+for ($i = 0; $i &lt; 8; $i++) {
+    echo fibonacci($i) . " ";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">0 1 1 2 3 5 8 13</div></div>
+        </div>
+    </div>
+
+
+    <!-- 43 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            43. Function with Named Arguments
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Call a function using PHP 8 named arguments.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+function createUser(string $name, int $age, string $city) {
+    echo "$name is $age years old and lives in $city.";
+}
+
+createUser(age: 30, name: "Sneha", city: "Pune");
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Sneha is 30 years old and lives in Pune.</div></div>
+        </div>
+    </div>
+
+
+    <!-- 44 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            44. Static Variables in Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use a static variable inside a function to keep track of how many times it is called.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+function counter() {
+    static $count = 0;
+    $count++;
+    echo "Called $count time(s)\n";
+}
+
+counter();
+counter();
+counter();
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Called 1 time(s)
+Called 2 time(s)
+Called 3 time(s)</div></div>
+        </div>
+    </div>
+
+
+    <!-- 45 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            45. Pass by Reference
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Write a function that modifies a variable passed by reference.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+function addTax(&amp;$price) {
+    $price = $price + ($price * 0.18);
+}
+
+$price = 1000;
+addTax($price);
+
+echo "Price after tax: " . $price;
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Price after tax: 1180</div></div>
+        </div>
+    </div>
+
+
+    <!-- 46 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            46. Indexed Array
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create and display an indexed array.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$colors = ["Red", "Green", "Blue"];
+
+foreach ($colors as $index =&gt; $color) {
+    echo "$index: $color\n";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">0: Red
+1: Green
+2: Blue</div></div>
+        </div>
+    </div>
+
+
+    <!-- 47 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            47. Associative Array
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create and display an associative array.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$student = [
+    "name" =&gt; "Aman",
+    "age" =&gt; 21,
+    "course" =&gt; "PHP"
+];
+
+foreach ($student as $key =&gt; $value) {
+    echo "$key: $value\n";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">name: Aman
+age: 21
+course: PHP</div></div>
+        </div>
+    </div>
+
+
+    <!-- 48 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            48. Multidimensional Array
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create and display a multidimensional array of students.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$students = [
+    ["name" =&gt; "Rahul", "marks" =&gt; 85],
+    ["name" =&gt; "Priya", "marks" =&gt; 92]
+];
+
+foreach ($students as $student) {
+    echo $student["name"] . " scored " . $student["marks"] . "\n";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Rahul scored 85
+Priya scored 92</div></div>
+        </div>
+    </div>
+
+
+    <!-- 49 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            49. array_map Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use array_map() to square every element of an array.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$numbers = [1, 2, 3, 4, 5];
+
+$squares = array_map(function ($n) {
+    return $n * $n;
+}, $numbers);
+
+print_r($squares);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Array
+(
+    [0] => 1
+    [1] => 4
+    [2] => 9
+    [3] => 16
+    [4] => 25
+)</div></div>
+        </div>
+    </div>
+
+
+    <!-- 50 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            50. array_filter Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use array_filter() to get only the even numbers from an array.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+
+$even = array_filter($numbers, function ($n) {
+    return $n % 2 == 0;
+});
+
+print_r($even);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Array
+(
+    [1] => 2
+    [3] => 4
+    [5] => 6
+    [7] => 8
+)</div></div>
+        </div>
+    </div>
+
+
+    <!-- 51 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            51. array_reduce Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use array_reduce() to find the sum of all elements in an array.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$numbers = [10, 20, 30, 40];
+
+$sum = array_reduce($numbers, function ($carry, $item) {
+    return $carry + $item;
+}, 0);
+
+echo "Sum = " . $sum;
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Sum = 100</div></div>
+        </div>
+    </div>
+
+
+    <!-- 52 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            52. Sorting with sort()
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Sort an array in ascending order using sort().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$numbers = [40, 10, 30, 20, 50];
+
+sort($numbers);
+
+print_r($numbers);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Array
+(
+    [0] => 10
+    [1] => 20
+    [2] => 30
+    [3] => 40
+    [4] => 50
+)</div></div>
+        </div>
+    </div>
+
+
+    <!-- 53 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            53. Sorting with rsort()
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Sort an array in descending order using rsort().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$numbers = [40, 10, 30, 20, 50];
+
+rsort($numbers);
+
+print_r($numbers);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Array
+(
+    [0] => 50
+    [1] => 40
+    [2] => 30
+    [3] => 20
+    [4] => 10
+)</div></div>
+        </div>
+    </div>
+
+
+    <!-- 54 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            54. Sorting with asort()
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Sort an associative array by value while preserving keys using asort().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$ages = ["Rahul" =&gt; 25, "Priya" =&gt; 20, "Aman" =&gt; 30];
+
+asort($ages);
+
+print_r($ages);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Array
+(
+    [Priya] => 20
+    [Rahul] => 25
+    [Aman] => 30
+)</div></div>
+        </div>
+    </div>
+
+
+    <!-- 55 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            55. Sorting with ksort()
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Sort an associative array by key using ksort().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$marks = ["c" =&gt; 70, "a" =&gt; 90, "b" =&gt; 80];
+
+ksort($marks);
+
+print_r($marks);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Array
+(
+    [a] => 90
+    [b] => 80
+    [c] => 70
+)</div></div>
+        </div>
+    </div>
+
+
+    <!-- 56 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            56. usort with Custom Comparator
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Sort an array of associative arrays by "marks" using usort().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$students = [
+    ["name" =&gt; "Rahul", "marks" =&gt; 70],
+    ["name" =&gt; "Priya", "marks" =&gt; 95],
+    ["name" =&gt; "Aman", "marks" =&gt; 85]
+];
+
+usort($students, function ($a, $b) {
+    return $b["marks"] - $a["marks"];
+});
+
+foreach ($students as $s) {
+    echo $s["name"] . " - " . $s["marks"] . "\n";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Priya - 95
+Aman - 85
+Rahul - 70</div></div>
+        </div>
+    </div>
+
+
+    <!-- 57 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            57. in_array Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Check whether a value exists in an array using in_array().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$fruits = ["Apple", "Banana", "Mango"];
+
+if (in_array("Mango", $fruits)) {
+    echo "Mango is in the list";
+} else {
+    echo "Mango not found";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Mango is in the list</div></div>
+        </div>
+    </div>
+
+
+    <!-- 58 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            58. array_search Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the index of a value in an array using array_search().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$fruits = ["Apple", "Banana", "Mango"];
+
+$index = array_search("Banana", $fruits);
+
+echo "Index of Banana: " . $index;
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Index of Banana: 1</div></div>
+        </div>
+    </div>
+
+
+    <!-- 59 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            59. array_merge Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Merge two arrays using array_merge().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$a = [1, 2, 3];
+$b = [4, 5, 6];
+
+$merged = array_merge($a, $b);
+
+print_r($merged);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Array
+(
+    [0] => 1
+    [1] => 2
+    [2] => 3
+    [3] => 4
+    [4] => 5
+    [5] => 6
+)</div></div>
+        </div>
+    </div>
+
+
+    <!-- 60 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            60. array_slice Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Extract a portion of an array using array_slice().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$numbers = [10, 20, 30, 40, 50];
+
+$slice = array_slice($numbers, 1, 3);
+
+print_r($slice);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Array
+(
+    [0] => 20
+    [1] => 30
+    [2] => 40
+)</div></div>
+        </div>
+    </div>
+
+
+    <!-- 61 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            61. strlen Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the length of a string using strlen().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$text = "Cursor Computers Academy";
+
+echo "Length: " . strlen($text);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Length: 25</div></div>
+        </div>
+    </div>
+
+
+    <!-- 62 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            62. substr Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Extract part of a string using substr().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$text = "Hello World";
+
+echo substr($text, 6, 5);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">World</div></div>
+        </div>
+    </div>
+
+
+    <!-- 63 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            63. str_replace Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Replace a word in a string using str_replace().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$text = "I love Java programming";
+
+$newText = str_replace("Java", "PHP", $text);
+
+echo $newText;
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">I love PHP programming</div></div>
+        </div>
+    </div>
+
+
+    <!-- 64 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            64. explode Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Split a string into an array using explode().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$csv = "Rahul,Priya,Aman,Sneha";
+
+$names = explode(",", $csv);
+
+print_r($names);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Array
+(
+    [0] => Rahul
+    [1] => Priya
+    [2] => Aman
+    [3] => Sneha
+)</div></div>
+        </div>
+    </div>
+
+
+    <!-- 65 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            65. implode Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Join array elements into a string using implode().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$names = ["Rahul", "Priya", "Aman"];
+
+$csv = implode(", ", $names);
+
+echo $csv;
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Rahul, Priya, Aman</div></div>
+        </div>
+    </div>
+
+
+    <!-- 66 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            66. trim Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Remove leading and trailing whitespace from a string using trim().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$text = "   Hello PHP   ";
+
+$trimmed = trim($text);
+
+echo "[" . $trimmed . "]";
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">[Hello PHP]</div></div>
+        </div>
+    </div>
+
+
+    <!-- 67 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            67. strtoupper and strtolower
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Convert a string to uppercase and lowercase.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$text = "Hello PHP";
+
+echo strtoupper($text) . "\n";
+echo strtolower($text);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">HELLO PHP
+hello php</div></div>
+        </div>
+    </div>
+
+
+    <!-- 68 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            68. str_pad Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Pad a string to a fixed length using str_pad().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$num = "7";
+
+$padded = str_pad($num, 5, "0", STR_PAD_LEFT);
+
+echo $padded;
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">00007</div></div>
+        </div>
+    </div>
+
+
+    <!-- 69 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            69. sprintf Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Format a string with sprintf() to display a price with two decimal places.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$price = 499.5;
+
+$formatted = sprintf("Price: $%.2f", $price);
+
+echo $formatted;
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Price: $499.50</div></div>
+        </div>
+    </div>
+
+
+    <!-- 70 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            70. strpos Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Find the position of a substring within a string using strpos().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$text = "Welcome to PHP programming";
+
+$pos = strpos($text, "PHP");
+
+echo "Found at position: " . $pos;
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Found at position: 11</div></div>
+        </div>
+    </div>
+
+
+    <!-- 71 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            71. str_split Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Split a string into an array of characters using str_split().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$text = "PHP";
+
+$chars = str_split($text);
+
+print_r($chars);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Array
+(
+    [0] => P
+    [1] => H
+    [2] => P
+)</div></div>
+        </div>
+    </div>
+
+
+    <!-- 72 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            72. ucwords Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Capitalize the first letter of each word using ucwords().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$text = "cursor computers academy";
+
+echo ucwords($text);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Cursor Computers Academy</div></div>
+        </div>
+    </div>
+
+
+    <!-- 73 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            73. str_repeat Function
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Repeat a string a given number of times using str_repeat().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$line = str_repeat("-", 10);
+
+echo $line . "\n";
+echo str_repeat("PHP ", 3);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">----------
+PHP PHP PHP </div></div>
+        </div>
+    </div>
+
+
+    <!-- 74 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            74. Regex with preg_match
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Validate whether a string is a valid email address using preg_match().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$email = "student@example.com";
+
+if (preg_match("/^[\w.-]+@[\w.-]+\.\w+$/", $email)) {
+    echo "Valid email";
+} else {
+    echo "Invalid email";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Valid email</div></div>
+        </div>
+    </div>
+
+
+    <!-- 75 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            75. Regex with preg_replace
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Remove all digits from a string using preg_replace().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$text = "Order123Number456";
+
+$result = preg_replace("/[0-9]+/", "", $text);
+
+echo $result;
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">OrderNumber</div></div>
+        </div>
+    </div>
+
+
+    <!-- 76 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            76. Basic Class and Object
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a simple class with a property and a method.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+class Student {
+    public $name = "Rahul";
+
+    public function display() {
+        echo "Student name: " . $this-&gt;name;
+    }
+}
+
+$s1 = new Student();
+$s1-&gt;display();
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Student name: Rahul</div></div>
+        </div>
+    </div>
+
+
+    <!-- 77 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            77. Class with Constructor
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a class with a constructor to initialize properties.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+class Student {
+    public $name;
+    public $age;
+
+    public function __construct($name, $age) {
+        $this-&gt;name = $name;
+        $this-&gt;age = $age;
+    }
+
+    public function display() {
+        echo "{$this-&gt;name} is {$this-&gt;age} years old";
+    }
+}
+
+$s1 = new Student("Priya", 21);
+$s1-&gt;display();
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Priya is 21 years old</div></div>
+        </div>
+    </div>
+
+
+    <!-- 78 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            78. Class with Multiple Methods
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a Calculator class with add and subtract methods.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+class Calculator {
+    public function add($a, $b) {
+        return $a + $b;
+    }
+
+    public function subtract($a, $b) {
+        return $a - $b;
+    }
+}
+
+$calc = new Calculator();
+echo "Sum: " . $calc-&gt;add(10, 5) . "\n";
+echo "Difference: " . $calc-&gt;subtract(10, 5);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Sum: 15
+Difference: 5</div></div>
+        </div>
+    </div>
+
+
+    <!-- 79 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            79. Inheritance
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a base class Animal and a derived class Dog using inheritance.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+class Animal {
+    public function eat() {
+        echo "This animal eats food\n";
+    }
+}
+
+class Dog extends Animal {
+    public function bark() {
+        echo "The dog barks\n";
+    }
+}
+
+$dog = new Dog();
+$dog-&gt;eat();
+$dog-&gt;bark();
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">This animal eats food
+The dog barks</div></div>
+        </div>
+    </div>
+
+
+    <!-- 80 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            80. Method Overriding
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Override a parent class method in a child class.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+class Shape {
+    public function area() {
+        echo "Area not defined\n";
+    }
+}
+
+class Circle extends Shape {
+    private $radius;
+
+    public function __construct($radius) {
+        $this-&gt;radius = $radius;
+    }
+
+    public function area() {
+        echo "Area: " . (3.14 * $this-&gt;radius * $this-&gt;radius) . "\n";
+    }
+}
+
+$c = new Circle(4);
+$c-&gt;area();
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Area: 50.24</div></div>
+        </div>
+    </div>
+
+
+    <!-- 81 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            81. Interfaces
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create an interface and implement it in a class.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+interface Payable {
+    public function pay($amount);
+}
+
+class Employee implements Payable {
+    public function pay($amount) {
+        echo "Paid salary of $" . $amount;
+    }
+}
+
+$emp = new Employee();
+$emp-&gt;pay(50000);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Paid salary of $50000</div></div>
+        </div>
+    </div>
+
+
+    <!-- 82 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            82. Abstract Classes
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create an abstract class with an abstract method and implement it in a subclass.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+abstract class Vehicle {
+    abstract public function move();
+}
+
+class Car extends Vehicle {
+    public function move() {
+        echo "The car drives on the road";
+    }
+}
+
+$car = new Car();
+$car-&gt;move();
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">The car drives on the road</div></div>
+        </div>
+    </div>
+
+
+    <!-- 83 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            83. Static Properties and Methods
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use static properties and methods to count the number of created objects.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+class Counter {
+    public static $count = 0;
+
+    public function __construct() {
+        self::$count++;
+    }
+
+    public static function getCount() {
+        return self::$count;
+    }
+}
+
+$a = new Counter();
+$b = new Counter();
+$c = new Counter();
+
+echo "Total objects: " . Counter::getCount();
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Total objects: 3</div></div>
+        </div>
+    </div>
+
+
+    <!-- 84 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            84. Encapsulation with Getters and Setters
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use private properties with getter and setter methods to enforce encapsulation.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+class BankAccount {
+    private $balance = 0;
+
+    public function setBalance($amount) {
+        if ($amount &gt;= 0) {
+            $this-&gt;balance = $amount;
+        }
+    }
+
+    public function getBalance() {
+        return $this-&gt;balance;
+    }
+}
+
+$account = new BankAccount();
+$account-&gt;setBalance(5000);
+
+echo "Balance: " . $account-&gt;getBalance();
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Balance: 5000</div></div>
+        </div>
+    </div>
+
+
+    <!-- 85 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            85. Class Constants
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Define and use a constant inside a class.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+class MathHelper {
+    const PI = 3.14159;
+
+    public function circleArea($radius) {
+        return self::PI * $radius * $radius;
+    }
+}
+
+$math = new MathHelper();
+echo "Area: " . $math-&gt;circleArea(3);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Area: 28.27431</div></div>
+        </div>
+    </div>
+
+
+    <!-- 86 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            86. Traits
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use a trait to share a method between multiple classes.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+trait Greetable {
+    public function greet() {
+        echo "Hello from " . get_class($this) . "\n";
+    }
+}
+
+class Teacher {
+    use Greetable;
+}
+
+class Student {
+    use Greetable;
+}
+
+$t = new Teacher();
+$s = new Student();
+
+$t-&gt;greet();
+$s-&gt;greet();
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Hello from Teacher
+Hello from Student</div></div>
+        </div>
+    </div>
+
+
+    <!-- 87 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            87. Magic Method __toString
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use the __toString() magic method to print an object as a string.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+class Product {
+    public $name;
+    public $price;
+
+    public function __construct($name, $price) {
+        $this-&gt;name = $name;
+        $this-&gt;price = $price;
+    }
+
+    public function __toString() {
+        return "{$this-&gt;name} - $" . $this-&gt;price;
+    }
+}
+
+$p = new Product("Laptop", 55000);
+
+echo $p;
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Laptop - $55000</div></div>
+        </div>
+    </div>
+
+
+    <!-- 88 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            88. Magic Methods __get and __set
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use __get() and __set() to control access to inaccessible/private properties.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+class Config {
+    private $data = [];
+
+    public function __set($name, $value) {
+        $this-&gt;data[$name] = $value;
+    }
+
+    public function __get($name) {
+        return $this-&gt;data[$name] ?? null;
+    }
+}
+
+$config = new Config();
+$config-&gt;siteName = "Cursor Computers Academy";
+
+echo $config-&gt;siteName;
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Cursor Computers Academy</div></div>
+        </div>
+    </div>
+
+
+    <!-- 89 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            89. Polymorphism
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Demonstrate polymorphism using a common method implemented differently in multiple classes.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+abstract class Shape {
+    abstract public function area();
+}
+
+class Square extends Shape {
+    private $side;
+    public function __construct($side) { $this-&gt;side = $side; }
+    public function area() { return $this-&gt;side * $this-&gt;side; }
+}
+
+class Rectangle extends Shape {
+    private $length, $width;
+    public function __construct($length, $width) {
+        $this-&gt;length = $length;
+        $this-&gt;width = $width;
+    }
+    public function area() { return $this-&gt;length * $this-&gt;width; }
+}
+
+$shapes = [new Square(4), new Rectangle(5, 3)];
+
+foreach ($shapes as $shape) {
+    echo "Area: " . $shape-&gt;area() . "\n";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Area: 16
+Area: 15</div></div>
+        </div>
+    </div>
+
+
+    <!-- 90 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            90. Namespaces
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Use namespaces to organize classes and avoid naming conflicts.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+namespace App\Models;
+
+class User {
+    public function info() {
+        echo "This is App\\Models\\User";
+    }
+}
+
+namespace App\Main;
+
+use App\Models\User;
+
+$user = new User();
+$user-&gt;info();
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">This is App\Models\User</div></div>
+        </div>
+    </div>
+
+
+    <!-- 91 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            91. File Writing
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Write text content into a file using fopen() and fwrite().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$file = fopen("notes.txt", "w");
+fwrite($file, "Learning PHP file handling.\n");
+fwrite($file, "This is line two.");
+fclose($file);
+
+echo "File written successfully";
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">File written successfully</div></div>
+        </div>
+    </div>
+
+
+    <!-- 92 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            92. File Reading
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Read the entire content of a file using file_get_contents().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+$content = file_get_contents("notes.txt");
+
+echo $content;
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Learning PHP file handling.
+This is line two.</div></div>
+        </div>
+    </div>
+
+
+    <!-- 93 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            93. Sessions
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Start a session and store/retrieve a value using $_SESSION.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+session_start();
+
+$_SESSION["username"] = "Rahul";
+
+echo "Session username: " . $_SESSION["username"];
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Session username: Rahul</div></div>
+        </div>
+    </div>
+
+
+    <!-- 94 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            94. Cookies
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Set and read a cookie in PHP using setcookie().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+setcookie("user", "Priya", time() + 3600);
+
+if (isset($_COOKIE["user"])) {
+    echo "Cookie value: " . $_COOKIE["user"];
+} else {
+    echo "Cookie not set yet";
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Cookie not set yet</div></div>
+        </div>
+    </div>
+
+
+    <!-- 95 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            95. Exception Handling
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Handle division by zero using try-catch exception handling.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+function divide($a, $b) {
+    if ($b == 0) {
+        throw new Exception("Division by zero is not allowed");
+    }
+    return $a / $b;
+}
+
+try {
+    echo divide(10, 0);
+} catch (Exception $e) {
+    echo "Error: " . $e-&gt;getMessage();
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Error: Division by zero is not allowed</div></div>
+        </div>
+    </div>
+
+
+    <!-- 96 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            96. Custom Exceptions
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a custom exception class and use it to validate age.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+class InvalidAgeException extends Exception {}
+
+function checkAge($age) {
+    if ($age &lt; 18) {
+        throw new InvalidAgeException("Age must be 18 or above");
+    }
+    echo "Age accepted: $age";
+}
+
+try {
+    checkAge(15);
+} catch (InvalidAgeException $e) {
+    echo "Custom Error: " . $e-&gt;getMessage();
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Custom Error: Age must be 18 or above</div></div>
+        </div>
+    </div>
+
+
+    <!-- 97 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            97. Closures with use()
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Create a closure that captures a variable from the parent scope using use().</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+function makeMultiplier($factor) {
+    return function ($n) use ($factor) {
+        return $n * $factor;
+    };
+}
+
+$triple = makeMultiplier(3);
+
+echo $triple(7);
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">21</div></div>
+        </div>
+    </div>
+
+
+    <!-- 98 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            98. PDO Connect and Select Query
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Connect to a MySQL database using PDO and fetch all employee records.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+try {
+    $pdo = new PDO("mysql:host=localhost;dbname=company", "root", "");
+    $pdo-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $pdo-&gt;query("SELECT name, department FROM employees");
+
+    while ($row = $stmt-&gt;fetch(PDO::FETCH_ASSOC)) {
+        echo $row["name"] . " - " . $row["department"] . "\n";
+    }
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e-&gt;getMessage();
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Rahul Sharma - IT
+Priya Singh - HR
+Aman Verma - IT</div></div>
+        </div>
+    </div>
+
+
+    <!-- 99 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            99. PDO Insert with Prepared Statement
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Insert a new record into a MySQL table using a PDO prepared statement.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+try {
+    $pdo = new PDO("mysql:host=localhost;dbname=company", "root", "");
+    $pdo-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $pdo-&gt;prepare("INSERT INTO employees (name, department, salary) VALUES (:name, :department, :salary)");
+
+    $stmt-&gt;execute([
+        ":name" =&gt; "Karan Mehta",
+        ":department" =&gt; "IT",
+        ":salary" =&gt; 72000
+    ]);
+
+    echo "Rows inserted: " . $stmt-&gt;rowCount();
+} catch (PDOException $e) {
+    echo "Insert failed: " . $e-&gt;getMessage();
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">Rows inserted: 1</div></div>
+        </div>
+    </div>
+
+
+    <!-- 100 -->
+    <div class="accordion">
+        <button class="accordion-header">
+            100. PDO Fetch All as JSON
+            <span class="arrow">▼</span>
+        </button>
+        <div class="content">
+            <div class="question"><strong>Question:</strong> Fetch all rows from a table using PDO and encode the result as JSON.</div>
+            <strong class="solution-title">Solution:</strong>
+<pre>&lt;?php
+try {
+    $pdo = new PDO("mysql:host=localhost;dbname=company", "root", "");
+    $pdo-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $pdo-&gt;query("SELECT emp_id, name, department FROM employees");
+    $rows = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
+
+    echo json_encode($rows, JSON_PRETTY_PRINT);
+} catch (PDOException $e) {
+    echo "Query failed: " . $e-&gt;getMessage();
+}
+?&gt;</pre>
+            <div class="output"><strong>Output:</strong><div class="output-box">[
+    {
+        "emp_id": 1,
+        "name": "Rahul Sharma",
+        "department": "IT"
+    },
+    {
+        "emp_id": 2,
+        "name": "Priya Singh",
+        "department": "HR"
+    }
+]</div></div>
+        </div>
+    </div>
+
+</main>
+
+
+<footer>
+    © 2026 Cursor Computers Academy
+</footer>
+
+
+<script>
+
+    const buttons = document.querySelectorAll(".accordion-header");
+
+    buttons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            const accordion = this.parentElement;
+            const content = accordion.querySelector(".content");
+
+            accordion.classList.toggle("active");
+            content.classList.toggle("show");
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>

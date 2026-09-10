@@ -1,0 +1,3352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>100 Advanced Java Programs | Cursor Computers Academy</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f7fb;
+        color: #222;
+    }
+
+    header {
+        background: linear-gradient(135deg, #172554, #2563eb);
+        color: white;
+        text-align: center;
+        padding: 24px 15px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 28px;
+        letter-spacing: 1px;
+    }
+
+    header p {
+        margin: 8px 0 0;
+        font-size: 16px;
+        opacity: 0.9;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+
+    .page-title {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .page-title h2 {
+        color: #172554;
+        margin-bottom: 5px;
+    }
+
+    .page-title p {
+        color: #666;
+    }
+
+    .accordion {
+        background: white;
+        margin-bottom: 12px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        border: 1px solid #e5e7eb;
+    }
+
+    .accordion-header {
+        width: 100%;
+        padding: 17px 20px;
+        border: none;
+        background: white;
+        text-align: left;
+        font-size: 16px;
+        font-weight: bold;
+        color: #172554;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .accordion-header:hover {
+        background: #eff6ff;
+    }
+
+    .arrow {
+        font-size: 18px;
+        transition: transform 0.3s;
+    }
+
+    .accordion-header.active .arrow {
+        transform: rotate(90deg);
+    }
+
+    .content {
+        display: none;
+        padding: 0 20px 20px;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .content h3 {
+        color: #2563eb;
+        margin-bottom: 8px;
+    }
+
+    .content h4 {
+        color: #172554;
+        margin-bottom: 6px;
+    }
+
+    pre {
+        background: #111827;
+        color: #f9fafb;
+        padding: 16px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .output {
+        background: #f0fdf4;
+        border-left: 4px solid #16a34a;
+        padding: 12px 15px;
+        border-radius: 6px;
+        white-space: pre-wrap;
+        font-family: Consolas, monospace;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 40px;
+        padding: 20px;
+        background: #172554;
+        color: white;
+    }
+
+    @media (max-width: 600px) {
+        header h1 {
+            font-size: 23px;
+        }
+
+        .accordion-header {
+            font-size: 14px;
+            padding: 15px;
+        }
+
+        .content {
+            padding: 0 15px 15px;
+        }
+
+        pre {
+            font-size: 12px;
+        }
+    }
+
+    /* SITE NAV */
+    .site-nav {
+        background: #ffffff; border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .site-nav-inner {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        position: relative;
+    }
+    .site-nav-links {
+        display: flex;
+        align-items: center;
+        flex: 1;
+    }
+    .site-nav-link {
+        color: #374151;
+        text-decoration: none;
+        padding: 12px 18px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: 0.2s;
+        cursor: pointer;
+        border: none;
+        background: none;
+    }
+    .site-nav-link:hover, .site-nav-link.active {
+        color: #4f46e5;
+        background: #f0f5ff;
+    }
+    .site-nav-dropdown {
+        position: relative;
+    }
+    .site-nav-menu {
+        display: none; border: 1px solid #e5e7eb;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #ffffff;
+        min-width: 160px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 0 0 8px 8px;
+        z-index: 1001;
+    }
+    .site-nav-dropdown:hover .site-nav-menu {
+        display: block;
+    }
+    .site-nav-menu a { border-bottom: 1px solid #f3f4f6;
+        display: block;
+        color: #374151;
+        text-decoration: none;
+        padding: 11px 18px;
+        font-size: 14px;
+        transition: 0.2s;
+    }
+    .site-nav-menu a:hover {
+        background: #f0f5ff;
+        color: #4f46e5;
+    }
+    .site-hamburger {
+        display: none;
+        background: none;
+        border: none;
+        color: #374151;
+        font-size: 22px;
+        cursor: pointer;
+        padding: 12px;
+        margin-left: auto;
+    }
+    @media (max-width: 600px) {
+        .site-hamburger { display: block; }
+        .site-nav-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1002;
+        }
+        .site-nav-links.open { display: flex; }
+        .site-nav-link { text-align: left; width: 100%; display: block; border-bottom: 1px solid #e5e7eb; }
+        .site-nav-menu {
+            position: static;
+            box-shadow: none;
+            border-radius: 0;
+        }
+        .site-nav-menu a { border-bottom: 1px solid #f3f4f6; padding-left: 36px; }
+        .site-nav-dropdown { width: 100%; } .site-nav-dropdown:hover .site-nav-menu { display: none; }
+        .site-nav-dropdown.open .site-nav-menu { display: block; }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>CURSOR COMPUTERS ACADEMY</h1>
+    <p>Advanced Java Programming</p>
+</header>
+
+<nav class="site-nav">
+    <div class="site-nav-inner">
+        <div class="site-nav-links" id="siteNavLinks">
+            <a href="index.html" class="site-nav-link">Home</a>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Python &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="python_theory.html">Theory</a>
+                    <a href="python_programs.html">Programs</a>
+                    <a href="python_quiz.html">Quiz</a>
+                </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">MySQL &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="mysql_theory.html">Theory</a>
+                    <a href="mysql_programs.html">Programs</a>
+                    <a href="mysql_quiz.html">Quiz</a>
+                </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Java &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="corejava_theory.html">Theory</a>
+                    <a href="corejava_programs.html">Programs</a>
+                    <a href="corejava_quiz.html">Quiz</a>
+                </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">PHP &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="php_theory.html">Theory</a>
+                    <a href="php_programs.html">Programs</a>
+                    <a href="php_quiz.html">Quiz</a>
+                </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link active" onclick="this.parentElement.classList.toggle('open')">Advanced Java &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="advjava_theory.html">Theory</a>
+                    <a href="advjava_programs.html">Programs</a>
+                    <a href="advjava_quiz.html">Quiz</a>
+                </div>
+            </div>
+        </div>
+        <button class="site-hamburger" onclick="document.getElementById('siteNavLinks').classList.toggle('open')">&#9776;</button>
+    </div>
+</nav>
+
+<div class="container">
+
+<div class="page-title">
+    <h2>100 Advanced Java Programs with Solutions</h2>
+    <p>Click on any program to view the question, solution and output.</p>
+</div>
+
+
+<!-- 1 -->
+<div class="accordion">
+<button class="accordion-header">1. Create a Thread by Extending Thread Class <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread running by extending Thread class");
+    }
+
+    public static void main(String[] args) {
+        MyThread t = new MyThread();
+        t.start();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Thread running by extending Thread class</div>
+</div>
+</div>
+
+
+<!-- 2 -->
+<div class="accordion">
+<button class="accordion-header">2. Create a Thread by Implementing Runnable <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class MyRunnable implements Runnable {
+    public void run() {
+        System.out.println("Thread running using Runnable interface");
+    }
+
+    public static void main(String[] args) {
+        Thread t = new Thread(new MyRunnable());
+        t.start();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Thread running using Runnable interface</div>
+</div>
+</div>
+
+
+<!-- 3 -->
+<div class="accordion">
+<button class="accordion-header">3. Get Name of the Current Thread <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ThreadName {
+    public static void main(String[] args) {
+        Thread t = Thread.currentThread();
+        System.out.println("Current Thread: " + t.getName());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Current Thread: main</div>
+</div>
+</div>
+
+
+<!-- 4 -->
+<div class="accordion">
+<button class="accordion-header">4. Set a Custom Name for a Thread <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class CustomThreadName extends Thread {
+    public void run() {
+        System.out.println("Running thread: " + getName());
+    }
+
+    public static void main(String[] args) {
+        CustomThreadName t = new CustomThreadName();
+        t.setName("WorkerThread");
+        t.start();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Running thread: WorkerThread</div>
+</div>
+</div>
+
+
+<!-- 5 -->
+<div class="accordion">
+<button class="accordion-header">5. Get and Set Thread Priority <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ThreadPriority extends Thread {
+    public void run() {
+        System.out.println("Priority: " + getPriority());
+    }
+
+    public static void main(String[] args) {
+        ThreadPriority t = new ThreadPriority();
+        t.setPriority(Thread.MAX_PRIORITY);
+        t.start();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Priority: 10</div>
+</div>
+</div>
+
+
+<!-- 6 -->
+<div class="accordion">
+<button class="accordion-header">6. Pause Execution Using Thread.sleep() <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class SleepExample {
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println("Start");
+        Thread.sleep(1000);
+        System.out.println("End after 1 second");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Start
+End after 1 second</div>
+</div>
+</div>
+
+
+<!-- 7 -->
+<div class="accordion">
+<button class="accordion-header">7. Wait for a Thread to Finish Using join() <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class JoinExample extends Thread {
+    public void run() {
+        for (int i = 1; i &lt;= 3; i++)
+            System.out.println("Child Thread: " + i);
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        JoinExample t = new JoinExample();
+        t.start();
+        t.join();
+        System.out.println("Main thread finished after child thread");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Child Thread: 1
+Child Thread: 2
+Child Thread: 3
+Main thread finished after child thread</div>
+</div>
+</div>
+
+
+<!-- 8 -->
+<div class="accordion">
+<button class="accordion-header">8. Run Multiple Threads Concurrently <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Worker extends Thread {
+    String name;
+
+    Worker(String name) {
+        this.name = name;
+    }
+
+    public void run() {
+        System.out.println(name + " started");
+    }
+}
+
+class MultipleThreads {
+    public static void main(String[] args) throws InterruptedException {
+        Worker t1 = new Worker("Thread-A");
+        Worker t2 = new Worker("Thread-B");
+
+        t1.start();
+        t1.join();
+
+        t2.start();
+        t2.join();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Thread-A started
+Thread-B started</div>
+</div>
+</div>
+
+
+<!-- 9 -->
+<div class="accordion">
+<button class="accordion-header">9. Check Thread State Using getState() <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class ThreadState extends Thread {
+    public void run() {
+        System.out.println("Running state: " + Thread.currentThread().getState());
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        ThreadState t = new ThreadState();
+        System.out.println("Before start: " + t.getState());
+        t.start();
+        t.join();
+        System.out.println("After completion: " + t.getState());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Before start: NEW
+Running state: RUNNABLE
+After completion: TERMINATED</div>
+</div>
+</div>
+
+
+<!-- 10 -->
+<div class="accordion">
+<button class="accordion-header">10. Check if a Thread is Alive <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class AliveCheck extends Thread {
+    public void run() {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        AliveCheck t = new AliveCheck();
+        t.start();
+        System.out.println("Is alive: " + t.isAlive());
+        t.join();
+        System.out.println("Is alive after join: " + t.isAlive());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Is alive: true
+Is alive after join: false</div>
+</div>
+</div>
+
+
+<!-- 11 -->
+<div class="accordion">
+<button class="accordion-header">11. Synchronized Method to Prevent Race Condition <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Counter {
+    private int count = 0;
+
+    synchronized void increment() {
+        count++;
+    }
+
+    int getCount() {
+        return count;
+    }
+}
+
+class SyncMethod {
+    public static void main(String[] args) throws InterruptedException {
+        Counter c = new Counter();
+
+        Runnable task = () -&gt; {
+            for (int i = 0; i &lt; 1000; i++)
+                c.increment();
+        };
+
+        Thread t1 = new Thread(task);
+        Thread t2 = new Thread(task);
+
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+
+        System.out.println("Final Count = " + c.getCount());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Final Count = 2000</div>
+</div>
+</div>
+
+
+<!-- 12 -->
+<div class="accordion">
+<button class="accordion-header">12. Synchronized Block Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class SyncBlock {
+    private int count = 0;
+
+    void increment() {
+        synchronized (this) {
+            count++;
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        SyncBlock obj = new SyncBlock();
+
+        Runnable task = () -&gt; {
+            for (int i = 0; i &lt; 1000; i++)
+                obj.increment();
+        };
+
+        Thread t1 = new Thread(task);
+        Thread t2 = new Thread(task);
+
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+
+        System.out.println("Final Count = " + obj.count);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Final Count = 2000</div>
+</div>
+</div>
+
+
+<!-- 13 -->
+<div class="accordion">
+<button class="accordion-header">13. Demonstrate a Race Condition Without Synchronization <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class UnsafeCounter {
+    int count = 0;
+
+    void increment() {
+        count++;
+    }
+}
+
+class RaceCondition {
+    public static void main(String[] args) throws InterruptedException {
+        UnsafeCounter c = new UnsafeCounter();
+
+        Runnable task = () -&gt; {
+            for (int i = 0; i &lt; 10000; i++)
+                c.increment();
+        };
+
+        Thread t1 = new Thread(task);
+        Thread t2 = new Thread(task);
+
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+
+        System.out.println("Final Count = " + c.count);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Final Count = 18763
+
+(Note: Value may vary on each run due to the race condition; expected result is 20000.)</div>
+</div>
+</div>
+
+
+<!-- 14 -->
+<div class="accordion">
+<button class="accordion-header">14. Create a Daemon Thread <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class DaemonThread extends Thread {
+    public void run() {
+        System.out.println("Is daemon thread: " + Thread.currentThread().isDaemon());
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        DaemonThread t = new DaemonThread();
+        t.setDaemon(true);
+        t.start();
+        t.join();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Is daemon thread: true</div>
+</div>
+</div>
+
+
+<!-- 15 -->
+<div class="accordion">
+<button class="accordion-header">15. Inter-thread Communication Using wait() and notify() <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Message {
+    private String content;
+    private boolean available = false;
+
+    synchronized void produce(String msg) {
+        content = msg;
+        available = true;
+        notify();
+    }
+
+    synchronized String consume() throws InterruptedException {
+        while (!available)
+            wait();
+        available = false;
+        return content;
+    }
+}
+
+class WaitNotify {
+    public static void main(String[] args) throws InterruptedException {
+        Message m = new Message();
+
+        Thread consumer = new Thread(() -&gt; {
+            try {
+                System.out.println(m.consume());
+            } catch (InterruptedException e) {
+            }
+        });
+
+        Thread producer = new Thread(() -&gt; m.produce("Hello from Producer"));
+
+        consumer.start();
+        Thread.sleep(200);
+        producer.start();
+
+        producer.join();
+        consumer.join();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Hello from Producer</div>
+</div>
+</div>
+
+
+<!-- 16 -->
+<div class="accordion">
+<button class="accordion-header">16. Generic Class with a Single Type Parameter <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Box&lt;T&gt; {
+    private T value;
+
+    void set(T value) {
+        this.value = value;
+    }
+
+    T get() {
+        return value;
+    }
+
+    public static void main(String[] args) {
+        Box&lt;String&gt; box = new Box&lt;&gt;();
+        box.set("Hello Generics");
+        System.out.println(box.get());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Hello Generics</div>
+</div>
+</div>
+
+
+<!-- 17 -->
+<div class="accordion">
+<button class="accordion-header">17. Generic Class with Multiple Type Parameters <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Pair&lt;K, V&gt; {
+    K key;
+    V value;
+
+    Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    void display() {
+        System.out.println(key + " -&gt; " + value);
+    }
+
+    public static void main(String[] args) {
+        Pair&lt;String, Integer&gt; p = new Pair&lt;&gt;("Marks", 95);
+        p.display();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Marks -&gt; 95</div>
+</div>
+</div>
+
+
+<!-- 18 -->
+<div class="accordion">
+<button class="accordion-header">18. Generic Method Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class GenericMethod {
+    static &lt;T&gt; void printArray(T[] arr) {
+        for (T item : arr)
+            System.out.print(item + " ");
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Integer[] intArr = {1, 2, 3};
+        String[] strArr = {"A", "B", "C"};
+
+        printArray(intArr);
+        printArray(strArr);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">1 2 3 
+A B C </div>
+</div>
+</div>
+
+
+<!-- 19 -->
+<div class="accordion">
+<button class="accordion-header">19. Bounded Type Parameter (extends Number) <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class BoundedType {
+    static &lt;T extends Number&gt; double sum(T a, T b) {
+        return a.doubleValue() + b.doubleValue();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(sum(10, 20));
+        System.out.println(sum(5.5, 4.5));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">30.0
+10.0</div>
+</div>
+</div>
+
+
+<!-- 20 -->
+<div class="accordion">
+<button class="accordion-header">20. Generic Method with Multiple Bounds <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>interface Printable {
+    void print();
+}
+
+class Item implements Comparable&lt;Item&gt;, Printable {
+    int value;
+
+    Item(int value) {
+        this.value = value;
+    }
+
+    public int compareTo(Item o) {
+        return this.value - o.value;
+    }
+
+    public void print() {
+        System.out.println("Item: " + value);
+    }
+}
+
+class MultipleBounds {
+    static &lt;T extends Comparable&lt;T&gt; &amp; Printable&gt; void process(T obj) {
+        obj.print();
+    }
+
+    public static void main(String[] args) {
+        process(new Item(50));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Item: 50</div>
+</div>
+</div>
+
+
+<!-- 21 -->
+<div class="accordion">
+<button class="accordion-header">21. Wildcard with Upper Bound (? extends) <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.Arrays;
+
+class UpperBoundWildcard {
+    static double sumOfList(List&lt;? extends Number&gt; list) {
+        double sum = 0;
+        for (Number n : list)
+            sum += n.doubleValue();
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        List&lt;Integer&gt; intList = Arrays.asList(1, 2, 3);
+        System.out.println("Sum = " + sumOfList(intList));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Sum = 6.0</div>
+</div>
+</div>
+
+
+<!-- 22 -->
+<div class="accordion">
+<button class="accordion-header">22. Wildcard with Lower Bound (? super) <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.ArrayList;
+
+class LowerBoundWildcard {
+    static void addNumbers(List&lt;? super Integer&gt; list) {
+        list.add(10);
+        list.add(20);
+    }
+
+    public static void main(String[] args) {
+        List&lt;Number&gt; list = new ArrayList&lt;&gt;();
+        addNumbers(list);
+        System.out.println(list);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[10, 20]</div>
+</div>
+</div>
+
+
+<!-- 23 -->
+<div class="accordion">
+<button class="accordion-header">23. Unbounded Wildcard <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.Arrays;
+
+class UnboundedWildcard {
+    static void printList(List&lt;?&gt; list) {
+        for (Object o : list)
+            System.out.print(o + " ");
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        List&lt;String&gt; strList = Arrays.asList("A", "B", "C");
+        List&lt;Integer&gt; intList = Arrays.asList(1, 2, 3);
+
+        printList(strList);
+        printList(intList);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">A B C 
+1 2 3 </div>
+</div>
+</div>
+
+
+<!-- 24 -->
+<div class="accordion">
+<button class="accordion-header">24. Generic Interface Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.ArrayList;
+
+interface Container&lt;T&gt; {
+    void add(T item);
+    T get(int index);
+}
+
+class SimpleContainer&lt;T&gt; implements Container&lt;T&gt; {
+    private List&lt;T&gt; items = new ArrayList&lt;&gt;();
+
+    public void add(T item) {
+        items.add(item);
+    }
+
+    public T get(int index) {
+        return items.get(index);
+    }
+
+    public static void main(String[] args) {
+        SimpleContainer&lt;String&gt; c = new SimpleContainer&lt;&gt;();
+        c.add("Java");
+        c.add("Generics");
+
+        System.out.println(c.get(0));
+        System.out.println(c.get(1));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Java
+Generics</div>
+</div>
+</div>
+
+
+<!-- 25 -->
+<div class="accordion">
+<button class="accordion-header">25. Generic Stack Implementation <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.ArrayList;
+
+class GenericStack&lt;T&gt; {
+    private List&lt;T&gt; stack = new ArrayList&lt;&gt;();
+
+    void push(T item) {
+        stack.add(item);
+    }
+
+    T pop() {
+        return stack.remove(stack.size() - 1);
+    }
+
+    boolean isEmpty() {
+        return stack.isEmpty();
+    }
+
+    public static void main(String[] args) {
+        GenericStack&lt;Integer&gt; s = new GenericStack&lt;&gt;();
+        s.push(10);
+        s.push(20);
+        s.push(30);
+
+        while (!s.isEmpty())
+            System.out.println(s.pop());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">30
+20
+10</div>
+</div>
+</div>
+
+
+<!-- 26 -->
+<div class="accordion">
+<button class="accordion-header">26. ArrayList Add, Remove and Access Operations <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.ArrayList;
+
+class ArrayListOps {
+    public static void main(String[] args) {
+        ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+        list.add("Java");
+        list.add("Python");
+        list.add("C++");
+
+        list.remove("Python");
+        list.add(1, "PHP");
+
+        System.out.println(list);
+        System.out.println("Element at index 0: " + list.get(0));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[Java, PHP, C++]
+Element at index 0: Java</div>
+</div>
+</div>
+
+
+<!-- 27 -->
+<div class="accordion">
+<button class="accordion-header">27. LinkedList as a List and Deque <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.LinkedList;
+
+class LinkedListExample {
+    public static void main(String[] args) {
+        LinkedList&lt;Integer&gt; list = new LinkedList&lt;&gt;();
+        list.add(10);
+        list.add(20);
+        list.addFirst(5);
+        list.addLast(30);
+
+        System.out.println(list);
+        System.out.println("First: " + list.getFirst());
+        System.out.println("Last: " + list.getLast());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[5, 10, 20, 30]
+First: 5
+Last: 30</div>
+</div>
+</div>
+
+
+<!-- 28 -->
+<div class="accordion">
+<button class="accordion-header">28. HashSet Basic Operations <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.HashSet;
+
+class HashSetOps {
+    public static void main(String[] args) {
+        HashSet&lt;Integer&gt; set = new HashSet&lt;&gt;();
+        set.add(10);
+        set.add(20);
+        set.add(30);
+        set.remove(20);
+
+        System.out.println(set);
+        System.out.println("Contains 30: " + set.contains(30));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[10, 30]
+Contains 30: true</div>
+</div>
+</div>
+
+
+<!-- 29 -->
+<div class="accordion">
+<button class="accordion-header">29. TreeSet - Sorted Set Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.TreeSet;
+
+class TreeSetExample {
+    public static void main(String[] args) {
+        TreeSet&lt;Integer&gt; set = new TreeSet&lt;&gt;();
+        set.add(50);
+        set.add(10);
+        set.add(30);
+        set.add(20);
+
+        System.out.println(set);
+        System.out.println("First: " + set.first());
+        System.out.println("Last: " + set.last());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[10, 20, 30, 50]
+First: 10
+Last: 50</div>
+</div>
+</div>
+
+
+<!-- 30 -->
+<div class="accordion">
+<button class="accordion-header">30. HashMap Iteration Using entrySet() <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.HashMap;
+import java.util.Map;
+
+class HashMapIteration {
+    public static void main(String[] args) {
+        HashMap&lt;String, Integer&gt; map = new HashMap&lt;&gt;();
+        map.put("Rahul", 85);
+        map.put("Amit", 90);
+        map.put("Priya", 95);
+
+        for (Map.Entry&lt;String, Integer&gt; entry : map.entrySet())
+            System.out.println(entry.getKey() + " = " + entry.getValue());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Rahul = 85
+Amit = 90
+Priya = 95</div>
+</div>
+</div>
+
+
+<!-- 31 -->
+<div class="accordion">
+<button class="accordion-header">31. TreeMap - Sorted Map Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.TreeMap;
+
+class TreeMapExample {
+    public static void main(String[] args) {
+        TreeMap&lt;String, Integer&gt; map = new TreeMap&lt;&gt;();
+        map.put("Banana", 40);
+        map.put("Apple", 60);
+        map.put("Mango", 30);
+
+        System.out.println(map);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">{Apple=60, Banana=40, Mango=30}</div>
+</div>
+</div>
+
+
+<!-- 32 -->
+<div class="accordion">
+<button class="accordion-header">32. Implementing Comparable in a Custom Class <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+
+class Student implements Comparable&lt;Student&gt; {
+    String name;
+    int marks;
+
+    Student(String name, int marks) {
+        this.name = name;
+        this.marks = marks;
+    }
+
+    public int compareTo(Student o) {
+        return this.marks - o.marks;
+    }
+
+    public String toString() {
+        return name + ":" + marks;
+    }
+
+    public static void main(String[] args) {
+        List&lt;Student&gt; list = new ArrayList&lt;&gt;();
+        list.add(new Student("Rahul", 85));
+        list.add(new Student("Amit", 95));
+        list.add(new Student("Priya", 75));
+
+        Collections.sort(list);
+        System.out.println(list);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[Priya:75, Rahul:85, Amit:95]</div>
+</div>
+</div>
+
+
+<!-- 33 -->
+<div class="accordion">
+<button class="accordion-header">33. Implementing Comparator for Custom Sorting <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.ArrayList;
+
+class Employee {
+    String name;
+    double salary;
+
+    Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public String toString() {
+        return name + ":" + salary;
+    }
+}
+
+class ComparatorExample {
+    public static void main(String[] args) {
+        List&lt;Employee&gt; list = new ArrayList&lt;&gt;();
+        list.add(new Employee("Rahul", 45000));
+        list.add(new Employee("Amit", 60000));
+        list.add(new Employee("Priya", 50000));
+
+        list.sort((a, b) -&gt; Double.compare(b.salary, a.salary));
+
+        System.out.println(list);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[Amit:60000.0, Priya:50000.0, Rahul:45000.0]</div>
+</div>
+</div>
+
+
+<!-- 34 -->
+<div class="accordion">
+<button class="accordion-header">34. Sorting a List Using Collections.sort() <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+class CollectionsSort {
+    public static void main(String[] args) {
+        List&lt;Integer&gt; list = new ArrayList&lt;&gt;(Arrays.asList(50, 20, 40, 10, 30));
+
+        Collections.sort(list);
+
+        System.out.println(list);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[10, 20, 30, 40, 50]</div>
+</div>
+</div>
+
+
+<!-- 35 -->
+<div class="accordion">
+<button class="accordion-header">35. Collections.reverse() Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+class CollectionsReverse {
+    public static void main(String[] args) {
+        List&lt;String&gt; list = new ArrayList&lt;&gt;(Arrays.asList("Java", "Python", "PHP"));
+
+        Collections.reverse(list);
+
+        System.out.println(list);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[PHP, Python, Java]</div>
+</div>
+</div>
+
+
+<!-- 36 -->
+<div class="accordion">
+<button class="accordion-header">36. Collections.max() and Collections.min() <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.Arrays;
+import java.util.Collections;
+
+class CollectionsMaxMin {
+    public static void main(String[] args) {
+        List&lt;Integer&gt; list = Arrays.asList(10, 50, 20, 80, 30);
+
+        System.out.println("Max = " + Collections.max(list));
+        System.out.println("Min = " + Collections.min(list));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Max = 80
+Min = 10</div>
+</div>
+</div>
+
+
+<!-- 37 -->
+<div class="accordion">
+<button class="accordion-header">37. Using Collections.unmodifiableList() <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+class UnmodifiableList {
+    public static void main(String[] args) {
+        List&lt;String&gt; list = new ArrayList&lt;&gt;(Arrays.asList("Java", "Python"));
+        List&lt;String&gt; readOnly = Collections.unmodifiableList(list);
+
+        System.out.println(readOnly);
+
+        try {
+            readOnly.add("PHP");
+        } catch (UnsupportedOperationException e) {
+            System.out.println("Cannot modify: " + e);
+        }
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[Java, Python]
+Cannot modify: java.lang.UnsupportedOperationException</div>
+</div>
+</div>
+
+
+<!-- 38 -->
+<div class="accordion">
+<button class="accordion-header">38. Iterator Example for Collection Traversal <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+
+class IteratorExample {
+    public static void main(String[] args) {
+        List&lt;String&gt; list = new ArrayList&lt;&gt;(Arrays.asList("Java", "Python", "C++"));
+
+        Iterator&lt;String&gt; it = list.iterator();
+
+        while (it.hasNext()) {
+            String val = it.next();
+            if (val.equals("Python"))
+                it.remove();
+            else
+                System.out.println(val);
+        }
+
+        System.out.println("After removal: " + list);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Java
+C++
+After removal: [Java, C++]</div>
+</div>
+</div>
+
+
+<!-- 39 -->
+<div class="accordion">
+<button class="accordion-header">39. ListIterator for Bidirectional Traversal <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.ListIterator;
+
+class ListIteratorExample {
+    public static void main(String[] args) {
+        List&lt;Integer&gt; list = new ArrayList&lt;&gt;(Arrays.asList(10, 20, 30));
+
+        ListIterator&lt;Integer&gt; it = list.listIterator();
+
+        while (it.hasNext())
+            System.out.print(it.next() + " ");
+        System.out.println();
+
+        while (it.hasPrevious())
+            System.out.print(it.previous() + " ");
+        System.out.println();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">10 20 30 
+30 20 10 </div>
+</div>
+</div>
+
+
+<!-- 40 -->
+<div class="accordion">
+<button class="accordion-header">40. PriorityQueue Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.PriorityQueue;
+
+class PriorityQueueExample {
+    public static void main(String[] args) {
+        PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;();
+        pq.add(50);
+        pq.add(10);
+        pq.add(30);
+
+        while (!pq.isEmpty())
+            System.out.println(pq.poll());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">10
+30
+50</div>
+</div>
+</div>
+
+
+<!-- 41 -->
+<div class="accordion">
+<button class="accordion-header">41. Lambda Expression Basic Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>interface Greeting {
+    void greet(String name);
+}
+
+class LambdaBasic {
+    public static void main(String[] args) {
+        Greeting g = name -&gt; System.out.println("Hello, " + name);
+        g.greet("Rahul");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Hello, Rahul</div>
+</div>
+</div>
+
+
+<!-- 42 -->
+<div class="accordion">
+<button class="accordion-header">42. Custom Functional Interface with Lambda <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>@FunctionalInterface
+interface Calculator {
+    int operate(int a, int b);
+}
+
+class CustomFunctional {
+    public static void main(String[] args) {
+        Calculator add = (a, b) -&gt; a + b;
+        Calculator multiply = (a, b) -&gt; a * b;
+
+        System.out.println("Sum = " + add.operate(10, 20));
+        System.out.println("Product = " + multiply.operate(10, 20));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Sum = 30
+Product = 200</div>
+</div>
+</div>
+
+
+<!-- 43 -->
+<div class="accordion">
+<button class="accordion-header">43. Predicate Functional Interface <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.function.Predicate;
+
+class PredicateExample {
+    public static void main(String[] args) {
+        Predicate&lt;Integer&gt; isEven = n -&gt; n % 2 == 0;
+
+        System.out.println(isEven.test(10));
+        System.out.println(isEven.test(15));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">true
+false</div>
+</div>
+</div>
+
+
+<!-- 44 -->
+<div class="accordion">
+<button class="accordion-header">44. Function Functional Interface <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.function.Function;
+
+class FunctionExample {
+    public static void main(String[] args) {
+        Function&lt;Integer, Integer&gt; square = n -&gt; n * n;
+
+        System.out.println(square.apply(5));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">25</div>
+</div>
+</div>
+
+
+<!-- 45 -->
+<div class="accordion">
+<button class="accordion-header">45. Consumer Functional Interface <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.function.Consumer;
+
+class ConsumerExample {
+    public static void main(String[] args) {
+        Consumer&lt;String&gt; printer = msg -&gt; System.out.println("Message: " + msg);
+
+        printer.accept("Java Consumer Example");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Message: Java Consumer Example</div>
+</div>
+</div>
+
+
+<!-- 46 -->
+<div class="accordion">
+<button class="accordion-header">46. Supplier Functional Interface <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.function.Supplier;
+
+class SupplierExample {
+    public static void main(String[] args) {
+        Supplier&lt;String&gt; supplier = () -&gt; "Generated by Supplier";
+
+        System.out.println(supplier.get());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Generated by Supplier</div>
+</div>
+</div>
+
+
+<!-- 47 -->
+<div class="accordion">
+<button class="accordion-header">47. BiFunction Functional Interface <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.function.BiFunction;
+
+class BiFunctionExample {
+    public static void main(String[] args) {
+        BiFunction&lt;Integer, Integer, Integer&gt; add = (a, b) -&gt; a + b;
+
+        System.out.println(add.apply(15, 25));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">40</div>
+</div>
+</div>
+
+
+<!-- 48 -->
+<div class="accordion">
+<button class="accordion-header">48. Method Reference to a Static Method <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.function.Function;
+
+class MethodRefStatic {
+    static int square(int n) {
+        return n * n;
+    }
+
+    public static void main(String[] args) {
+        Function&lt;Integer, Integer&gt; sq = MethodRefStatic::square;
+
+        System.out.println(sq.apply(6));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">36</div>
+</div>
+</div>
+
+
+<!-- 49 -->
+<div class="accordion">
+<button class="accordion-header">49. Method Reference to an Instance Method <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.Arrays;
+
+class MethodRefInstance {
+    public static void main(String[] args) {
+        List&lt;String&gt; list = Arrays.asList("Java", "Python", "PHP");
+
+        list.forEach(System.out::println);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Java
+Python
+PHP</div>
+</div>
+</div>
+
+
+<!-- 50 -->
+<div class="accordion">
+<button class="accordion-header">50. Constructor Reference <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.function.Supplier;
+
+class Student {
+    Student() {
+        System.out.println("Student object created");
+    }
+}
+
+class ConstructorRef {
+    public static void main(String[] args) {
+        Supplier&lt;Student&gt; studentSupplier = Student::new;
+        studentSupplier.get();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Student object created</div>
+</div>
+</div>
+
+
+<!-- 51 -->
+<div class="accordion">
+<button class="accordion-header">51. Stream filter() Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+class StreamFilter {
+    public static void main(String[] args) {
+        List&lt;Integer&gt; list = Arrays.asList(10, 15, 20, 25, 30);
+
+        List&lt;Integer&gt; even = list.stream()
+                .filter(n -&gt; n % 2 == 0)
+                .collect(Collectors.toList());
+
+        System.out.println(even);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[10, 20, 30]</div>
+</div>
+</div>
+
+
+<!-- 52 -->
+<div class="accordion">
+<button class="accordion-header">52. Stream map() Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+class StreamMap {
+    public static void main(String[] args) {
+        List&lt;String&gt; names = Arrays.asList("java", "python", "php");
+
+        List&lt;String&gt; upper = names.stream()
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
+
+        System.out.println(upper);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[JAVA, PYTHON, PHP]</div>
+</div>
+</div>
+
+
+<!-- 53 -->
+<div class="accordion">
+<button class="accordion-header">53. Stream reduce() Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.Arrays;
+
+class StreamReduce {
+    public static void main(String[] args) {
+        List&lt;Integer&gt; list = Arrays.asList(1, 2, 3, 4, 5);
+
+        int sum = list.stream().reduce(0, Integer::sum);
+
+        System.out.println("Sum = " + sum);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Sum = 15</div>
+</div>
+</div>
+
+
+<!-- 54 -->
+<div class="accordion">
+<button class="accordion-header">54. Stream collect() to a List <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+class StreamCollect {
+    public static void main(String[] args) {
+        List&lt;Integer&gt; list = Arrays.asList(1, 2, 3, 4, 5);
+
+        List&lt;Integer&gt; squares = list.stream()
+                .map(n -&gt; n * n)
+                .collect(Collectors.toList());
+
+        System.out.println(squares);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">[1, 4, 9, 16, 25]</div>
+</div>
+</div>
+
+
+<!-- 55 -->
+<div class="accordion">
+<button class="accordion-header">55. Optional Class Example <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.Optional;
+
+class OptionalExample {
+    public static void main(String[] args) {
+        Optional&lt;String&gt; name = Optional.ofNullable(null);
+
+        System.out.println(name.isPresent());
+        System.out.println(name.orElse("Default Name"));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">false
+Default Name</div>
+</div>
+</div>
+
+
+<!-- 56 -->
+<div class="accordion">
+<button class="accordion-header">56. Write to a File Using FileWriter <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.io.FileWriter;
+import java.io.IOException;
+
+class FileWriterExample {
+    public static void main(String[] args) throws IOException {
+        FileWriter fw = new FileWriter("student.txt");
+        fw.write("Rahul\nAmit\nPriya");
+        fw.close();
+
+        System.out.println("Data written to file successfully");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Data written to file successfully</div>
+</div>
+</div>
+
+
+<!-- 57 -->
+<div class="accordion">
+<button class="accordion-header">57. Read from a File Using FileReader <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.io.FileReader;
+import java.io.IOException;
+
+class FileReaderExample {
+    public static void main(String[] args) throws IOException {
+        FileReader fr = new FileReader("student.txt");
+
+        int ch;
+        while ((ch = fr.read()) != -1)
+            System.out.print((char) ch);
+
+        fr.close();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Rahul
+Amit
+Priya</div>
+</div>
+</div>
+
+
+<!-- 58 -->
+<div class="accordion">
+<button class="accordion-header">58. Read a File Line by Line Using BufferedReader <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+class BufferedReaderExample {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("student.txt"));
+
+        String line;
+        while ((line = br.readLine()) != null)
+            System.out.println(line);
+
+        br.close();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Rahul
+Amit
+Priya</div>
+</div>
+</div>
+
+
+<!-- 59 -->
+<div class="accordion">
+<button class="accordion-header">59. Write to a File Using BufferedWriter <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+class BufferedWriterExample {
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter("marks.txt"));
+        bw.write("Marks: 95");
+        bw.newLine();
+        bw.write("Grade: A");
+        bw.close();
+
+        System.out.println("Data written using BufferedWriter");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Data written using BufferedWriter</div>
+</div>
+</div>
+
+
+<!-- 60 -->
+<div class="accordion">
+<button class="accordion-header">60. try-with-resources for Automatic Resource Closing <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+class TryWithResources {
+    public static void main(String[] args) {
+        try (BufferedReader br = new BufferedReader(new FileReader("student.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null)
+                System.out.println(line);
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Rahul
+Amit
+Priya</div>
+</div>
+</div>
+
+
+<!-- 61 -->
+<div class="accordion">
+<button class="accordion-header">61. Copy Contents of One File to Another <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+class CopyFile {
+    public static void main(String[] args) throws IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader("student.txt"));
+             BufferedWriter bw = new BufferedWriter(new FileWriter("copy.txt"))) {
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                bw.write(line);
+                bw.newLine();
+            }
+        }
+
+        System.out.println("File copied successfully");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">File copied successfully</div>
+</div>
+</div>
+
+
+<!-- 62 -->
+<div class="accordion">
+<button class="accordion-header">62. Check if a File Exists <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.io.File;
+
+class FileExists {
+    public static void main(String[] args) {
+        File file = new File("student.txt");
+
+        if (file.exists())
+            System.out.println("File exists");
+        else
+            System.out.println("File not found");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">File exists</div>
+</div>
+</div>
+
+
+<!-- 63 -->
+<div class="accordion">
+<button class="accordion-header">63. Serialize an Object to a File <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+class Student implements Serializable {
+    String name;
+    int age;
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+class SerializeExample {
+    public static void main(String[] args) throws IOException {
+        Student s = new Student("Rahul", 20);
+
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("student.ser"));
+        out.writeObject(s);
+        out.close();
+
+        System.out.println("Object serialized successfully");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Object serialized successfully</div>
+</div>
+</div>
+
+
+<!-- 64 -->
+<div class="accordion">
+<button class="accordion-header">64. Deserialize an Object from a File <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
+
+class Student implements Serializable {
+    String name;
+    int age;
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+class DeserializeExample {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        ObjectInputStream in = new ObjectInputStream(new FileInputStream("student.ser"));
+        Student s = (Student) in.readObject();
+        in.close();
+
+        System.out.println("Name: " + s.name);
+        System.out.println("Age: " + s.age);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Name: Rahul
+Age: 20</div>
+</div>
+</div>
+
+
+<!-- 65 -->
+<div class="accordion">
+<button class="accordion-header">65. Read Data Using Scanner from a File <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.io.File;
+import java.util.Scanner;
+
+class ScannerFileRead {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(new File("student.txt"));
+
+        while (sc.hasNextLine())
+            System.out.println(sc.nextLine());
+
+        sc.close();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Rahul
+Amit
+Priya</div>
+</div>
+</div>
+
+
+<!-- 66 -->
+<div class="accordion">
+<button class="accordion-header">66. Get Class Name Using getClass() <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Student {
+}
+
+class GetClassName {
+    public static void main(String[] args) {
+        Student s = new Student();
+
+        System.out.println("Class Name: " + s.getClass().getName());
+        System.out.println("Simple Name: " + s.getClass().getSimpleName());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Class Name: Student
+Simple Name: Student</div>
+</div>
+</div>
+
+
+<!-- 67 -->
+<div class="accordion">
+<button class="accordion-header">67. Get All Methods of a Class Using Reflection <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.lang.reflect.Method;
+
+class Sample {
+    void show() {
+    }
+
+    int add(int a, int b) {
+        return a + b;
+    }
+}
+
+class ReflectMethods {
+    public static void main(String[] args) {
+        Method[] methods = Sample.class.getDeclaredMethods();
+
+        for (Method m : methods)
+            System.out.println(m.getName());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">show
+add</div>
+</div>
+</div>
+
+
+<!-- 68 -->
+<div class="accordion">
+<button class="accordion-header">68. Get All Fields of a Class Using Reflection <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.lang.reflect.Field;
+
+class Employee {
+    String name;
+    double salary;
+}
+
+class ReflectFields {
+    public static void main(String[] args) {
+        Field[] fields = Employee.class.getDeclaredFields();
+
+        for (Field f : fields)
+            System.out.println(f.getName() + " : " + f.getType());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">name : class java.lang.String
+salary : double</div>
+</div>
+</div>
+
+
+<!-- 69 -->
+<div class="accordion">
+<button class="accordion-header">69. Create an Object Dynamically Using Reflection <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Product {
+    Product() {
+        System.out.println("Product object created dynamically");
+    }
+}
+
+class DynamicObject {
+    public static void main(String[] args) throws Exception {
+        Class&lt;?&gt; cls = Class.forName("Product");
+        Object obj = cls.getDeclaredConstructor().newInstance();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Product object created dynamically</div>
+</div>
+</div>
+
+
+<!-- 70 -->
+<div class="accordion">
+<button class="accordion-header">70. Invoke a Method Using Reflection <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.lang.reflect.Method;
+
+class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+}
+
+class InvokeMethod {
+    public static void main(String[] args) throws Exception {
+        Calculator c = new Calculator();
+
+        Method m = Calculator.class.getMethod("add", int.class, int.class);
+        Object result = m.invoke(c, 10, 20);
+
+        System.out.println("Result = " + result);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Result = 30</div>
+</div>
+</div>
+
+
+<!-- 71 -->
+<div class="accordion">
+<button class="accordion-header">71. Access a Private Field Using Reflection <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.lang.reflect.Field;
+
+class Account {
+    private double balance = 5000;
+}
+
+class PrivateFieldAccess {
+    public static void main(String[] args) throws Exception {
+        Account acc = new Account();
+
+        Field field = Account.class.getDeclaredField("balance");
+        field.setAccessible(true);
+
+        System.out.println("Balance: " + field.get(acc));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Balance: 5000.0</div>
+</div>
+</div>
+
+
+<!-- 72 -->
+<div class="accordion">
+<button class="accordion-header">72. Create and Use a Custom Annotation <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Retention(RetentionPolicy.RUNTIME)
+@interface Info {
+    String author();
+}
+
+@Info(author = "Rahul")
+class AnnotatedClass {
+}
+
+class CustomAnnotation {
+    public static void main(String[] args) {
+        System.out.println("Class annotated successfully");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Class annotated successfully</div>
+</div>
+</div>
+
+
+<!-- 73 -->
+<div class="accordion">
+<button class="accordion-header">73. Read Annotation Values at Runtime <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Retention(RetentionPolicy.RUNTIME)
+@interface Info {
+    String author();
+    String version() default "1.0";
+}
+
+@Info(author = "Rahul", version = "2.0")
+class AnnotatedApp {
+}
+
+class ReadAnnotation {
+    public static void main(String[] args) {
+        Info info = AnnotatedApp.class.getAnnotation(Info.class);
+
+        System.out.println("Author: " + info.author());
+        System.out.println("Version: " + info.version());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Author: Rahul
+Version: 2.0</div>
+</div>
+</div>
+
+
+<!-- 74 -->
+<div class="accordion">
+<button class="accordion-header">74. Get Constructor Information Using Reflection <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.lang.reflect.Constructor;
+
+class Book {
+    Book() {
+    }
+
+    Book(String title) {
+    }
+}
+
+class ConstructorInfo {
+    public static void main(String[] args) {
+        Constructor&lt;?&gt;[] constructors = Book.class.getDeclaredConstructors();
+
+        for (Constructor&lt;?&gt; c : constructors)
+            System.out.println("Parameters: " + c.getParameterCount());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Parameters: 0
+Parameters: 1</div>
+</div>
+</div>
+
+
+<!-- 75 -->
+<div class="accordion">
+<button class="accordion-header">75. Check if a Class Implements an Interface Using Reflection <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>interface Payable {
+}
+
+class Invoice implements Payable {
+}
+
+class InterfaceCheck {
+    public static void main(String[] args) {
+        Class&lt;?&gt;[] interfaces = Invoice.class.getInterfaces();
+
+        for (Class&lt;?&gt; i : interfaces)
+            System.out.println("Implements: " + i.getName());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Implements: Payable</div>
+</div>
+</div>
+
+
+<!-- 76 -->
+<div class="accordion">
+<button class="accordion-header">76. Load JDBC Driver and Connect to a MySQL Database <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.sql.Connection;
+import java.sql.DriverManager;
+
+class JdbcConnect {
+    public static void main(String[] args) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/college", "root", "password");
+
+            System.out.println("Connected to database successfully");
+            con.close();
+        } catch (Exception e) {
+            System.out.println("Connection failed: " + e);
+        }
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Connected to database successfully</div>
+</div>
+</div>
+
+
+<!-- 77 -->
+<div class="accordion">
+<button class="accordion-header">77. Execute a SELECT Query Using Statement <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+class SelectQuery {
+    public static void main(String[] args) throws Exception {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/college", "root", "password");
+
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM students");
+
+        while (rs.next())
+            System.out.println(rs.getInt("id") + " " + rs.getString("name"));
+
+        con.close();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">1 Rahul
+2 Amit
+3 Priya</div>
+</div>
+</div>
+
+
+<!-- 78 -->
+<div class="accordion">
+<button class="accordion-header">78. Insert Data Using PreparedStatement <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+class InsertPreparedStatement {
+    public static void main(String[] args) throws Exception {
+        Connection con = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/college", "root", "password");
+
+        PreparedStatement ps = con.prepareStatement(
+            "INSERT INTO students(name, marks) VALUES(?, ?)");
+
+        ps.setString(1, "Rahul");
+        ps.setInt(2, 85);
+
+        int rows = ps.executeUpdate();
+        System.out.println(rows + " row inserted successfully");
+
+        con.close();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">1 row inserted successfully</div>
+</div>
+</div>
+
+
+<!-- 79 -->
+<div class="accordion">
+<button class="accordion-header">79. Update Data Using PreparedStatement <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+class UpdatePreparedStatement {
+    public static void main(String[] args) throws Exception {
+        Connection con = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/college", "root", "password");
+
+        PreparedStatement ps = con.prepareStatement(
+            "UPDATE students SET marks = ? WHERE name = ?");
+
+        ps.setInt(1, 95);
+        ps.setString(2, "Rahul");
+
+        int rows = ps.executeUpdate();
+        System.out.println(rows + " row updated successfully");
+
+        con.close();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">1 row updated successfully</div>
+</div>
+</div>
+
+
+<!-- 80 -->
+<div class="accordion">
+<button class="accordion-header">80. Delete Data Using PreparedStatement <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+class DeletePreparedStatement {
+    public static void main(String[] args) throws Exception {
+        Connection con = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/college", "root", "password");
+
+        PreparedStatement ps = con.prepareStatement(
+            "DELETE FROM students WHERE name = ?");
+
+        ps.setString(1, "Amit");
+
+        int rows = ps.executeUpdate();
+        System.out.println(rows + " row deleted successfully");
+
+        con.close();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">1 row deleted successfully</div>
+</div>
+</div>
+
+
+<!-- 81 -->
+<div class="accordion">
+<button class="accordion-header">81. Handle ResultSet Metadata <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+
+class ResultSetMetadataExample {
+    public static void main(String[] args) throws Exception {
+        Connection con = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/college", "root", "password");
+
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM students");
+
+        ResultSetMetaData meta = rs.getMetaData();
+
+        for (int i = 1; i &lt;= meta.getColumnCount(); i++)
+            System.out.println(meta.getColumnName(i));
+
+        con.close();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">id
+name
+marks</div>
+</div>
+</div>
+
+
+<!-- 82 -->
+<div class="accordion">
+<button class="accordion-header">82. Use try-with-resources for a JDBC Connection <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+class JdbcTryWithResources {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/college";
+
+        try (Connection con = DriverManager.getConnection(url, "root", "password");
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT COUNT(*) AS total FROM students")) {
+
+            if (rs.next())
+                System.out.println("Total Students: " + rs.getInt("total"));
+
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Total Students: 3</div>
+</div>
+</div>
+
+
+<!-- 83 -->
+<div class="accordion">
+<button class="accordion-header">83. Execute Batch Updates Using JDBC <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+class BatchUpdateExample {
+    public static void main(String[] args) throws Exception {
+        Connection con = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/college", "root", "password");
+
+        PreparedStatement ps = con.prepareStatement(
+            "INSERT INTO students(name, marks) VALUES(?, ?)");
+
+        ps.setString(1, "Neha");
+        ps.setInt(2, 88);
+        ps.addBatch();
+
+        ps.setString(1, "Vikas");
+        ps.setInt(2, 76);
+        ps.addBatch();
+
+        int[] result = ps.executeBatch();
+        System.out.println("Records inserted: " + result.length);
+
+        con.close();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Records inserted: 2</div>
+</div>
+</div>
+
+
+<!-- 84 -->
+<div class="accordion">
+<button class="accordion-header">84. Call a Stored Procedure Using CallableStatement <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+
+class CallableStatementExample {
+    public static void main(String[] args) throws Exception {
+        Connection con = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/college", "root", "password");
+
+        CallableStatement cs = con.prepareCall("{call getStudentCount()}");
+        ResultSet rs = cs.executeQuery();
+
+        if (rs.next())
+            System.out.println("Total Students: " + rs.getInt(1));
+
+        con.close();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Total Students: 5</div>
+</div>
+</div>
+
+
+<!-- 85 -->
+<div class="accordion">
+<button class="accordion-header">85. Handle SQL Exceptions in JDBC <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+class SqlExceptionHandling {
+    public static void main(String[] args) {
+        try {
+            Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/wrongdb", "root", "password");
+        } catch (SQLException e) {
+            System.out.println("SQL Exception caught: " + e.getMessage());
+        }
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">SQL Exception caught: Unknown database 'wrongdb'</div>
+</div>
+</div>
+
+
+<!-- 86 -->
+<div class="accordion">
+<button class="accordion-header">86. Singleton Design Pattern <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Singleton {
+    private static Singleton instance = new Singleton();
+
+    private Singleton() {
+    }
+
+    public static Singleton getInstance() {
+        return instance;
+    }
+
+    void show() {
+        System.out.println("Singleton instance called");
+    }
+
+    public static void main(String[] args) {
+        Singleton s1 = Singleton.getInstance();
+        s1.show();
+
+        System.out.println(s1 == Singleton.getInstance());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Singleton instance called
+true</div>
+</div>
+</div>
+
+
+<!-- 87 -->
+<div class="accordion">
+<button class="accordion-header">87. Singleton Pattern with Lazy Initialization <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class LazySingleton {
+    private static LazySingleton instance;
+
+    private LazySingleton() {
+    }
+
+    public static synchronized LazySingleton getInstance() {
+        if (instance == null)
+            instance = new LazySingleton();
+        return instance;
+    }
+
+    public static void main(String[] args) {
+        LazySingleton s1 = LazySingleton.getInstance();
+        LazySingleton s2 = LazySingleton.getInstance();
+
+        System.out.println(s1 == s2);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">true</div>
+</div>
+</div>
+
+
+<!-- 88 -->
+<div class="accordion">
+<button class="accordion-header">88. Factory Design Pattern <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>interface Shape {
+    void draw();
+}
+
+class Circle implements Shape {
+    public void draw() {
+        System.out.println("Drawing Circle");
+    }
+}
+
+class Square implements Shape {
+    public void draw() {
+        System.out.println("Drawing Square");
+    }
+}
+
+class ShapeFactory {
+    static Shape getShape(String type) {
+        if (type.equals("CIRCLE"))
+            return new Circle();
+        else if (type.equals("SQUARE"))
+            return new Square();
+        return null;
+    }
+}
+
+class FactoryPattern {
+    public static void main(String[] args) {
+        Shape s1 = ShapeFactory.getShape("CIRCLE");
+        s1.draw();
+
+        Shape s2 = ShapeFactory.getShape("SQUARE");
+        s2.draw();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Drawing Circle
+Drawing Square</div>
+</div>
+</div>
+
+
+<!-- 89 -->
+<div class="accordion">
+<button class="accordion-header">89. Abstract Factory Design Pattern <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>interface Button {
+    void render();
+}
+
+class WindowsButton implements Button {
+    public void render() {
+        System.out.println("Rendering Windows Button");
+    }
+}
+
+class MacButton implements Button {
+    public void render() {
+        System.out.println("Rendering Mac Button");
+    }
+}
+
+abstract class GUIFactory {
+    abstract Button createButton();
+}
+
+class WindowsFactory extends GUIFactory {
+    Button createButton() {
+        return new WindowsButton();
+    }
+}
+
+class MacFactory extends GUIFactory {
+    Button createButton() {
+        return new MacButton();
+    }
+}
+
+class AbstractFactoryPattern {
+    public static void main(String[] args) {
+        GUIFactory factory = new WindowsFactory();
+        Button btn = factory.createButton();
+        btn.render();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Rendering Windows Button</div>
+</div>
+</div>
+
+
+<!-- 90 -->
+<div class="accordion">
+<button class="accordion-header">90. Observer Design Pattern <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.ArrayList;
+import java.util.List;
+
+interface Observer {
+    void update(String event);
+}
+
+class EmailSubscriber implements Observer {
+    public void update(String event) {
+        System.out.println("Email sent: " + event);
+    }
+}
+
+class NotificationCenter {
+    private List&lt;Observer&gt; observers = new ArrayList&lt;&gt;();
+
+    void subscribe(Observer o) {
+        observers.add(o);
+    }
+
+    void publish(String event) {
+        for (Observer o : observers)
+            o.update(event);
+    }
+}
+
+class ObserverPattern {
+    public static void main(String[] args) {
+        NotificationCenter center = new NotificationCenter();
+        center.subscribe(new EmailSubscriber());
+
+        center.publish("New Course Launched");
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Email sent: New Course Launched</div>
+</div>
+</div>
+
+
+<!-- 91 -->
+<div class="accordion">
+<button class="accordion-header">91. Builder Design Pattern <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class Student {
+    String name;
+    int age;
+    String course;
+
+    static class Builder {
+        Student student = new Student();
+
+        Builder setName(String name) {
+            student.name = name;
+            return this;
+        }
+
+        Builder setAge(int age) {
+            student.age = age;
+            return this;
+        }
+
+        Builder setCourse(String course) {
+            student.course = course;
+            return this;
+        }
+
+        Student build() {
+            return student;
+        }
+    }
+
+    public String toString() {
+        return name + ", " + age + ", " + course;
+    }
+}
+
+class BuilderPattern {
+    public static void main(String[] args) {
+        Student s = new Student.Builder()
+                .setName("Rahul")
+                .setAge(20)
+                .setCourse("Java")
+                .build();
+
+        System.out.println(s);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Rahul, 20, Java</div>
+</div>
+</div>
+
+
+<!-- 92 -->
+<div class="accordion">
+<button class="accordion-header">92. Strategy Design Pattern <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>interface PaymentStrategy {
+    void pay(int amount);
+}
+
+class CreditCardPayment implements PaymentStrategy {
+    public void pay(int amount) {
+        System.out.println("Paid " + amount + " using Credit Card");
+    }
+}
+
+class UpiPayment implements PaymentStrategy {
+    public void pay(int amount) {
+        System.out.println("Paid " + amount + " using UPI");
+    }
+}
+
+class ShoppingCart {
+    private PaymentStrategy strategy;
+
+    ShoppingCart(PaymentStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    void checkout(int amount) {
+        strategy.pay(amount);
+    }
+}
+
+class StrategyPattern {
+    public static void main(String[] args) {
+        ShoppingCart cart = new ShoppingCart(new UpiPayment());
+        cart.checkout(1500);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Paid 1500 using UPI</div>
+</div>
+</div>
+
+
+<!-- 93 -->
+<div class="accordion">
+<button class="accordion-header">93. Decorator Design Pattern <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>interface Coffee {
+    String getDescription();
+    double getCost();
+}
+
+class SimpleCoffee implements Coffee {
+    public String getDescription() {
+        return "Coffee";
+    }
+
+    public double getCost() {
+        return 50;
+    }
+}
+
+class MilkDecorator implements Coffee {
+    private Coffee coffee;
+
+    MilkDecorator(Coffee coffee) {
+        this.coffee = coffee;
+    }
+
+    public String getDescription() {
+        return coffee.getDescription() + " + Milk";
+    }
+
+    public double getCost() {
+        return coffee.getCost() + 10;
+    }
+}
+
+class DecoratorPattern {
+    public static void main(String[] args) {
+        Coffee coffee = new MilkDecorator(new SimpleCoffee());
+
+        System.out.println(coffee.getDescription());
+        System.out.println("Cost: " + coffee.getCost());
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Coffee + Milk
+Cost: 60.0</div>
+</div>
+</div>
+
+
+<!-- 94 -->
+<div class="accordion">
+<button class="accordion-header">94. Adapter Design Pattern <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>interface USBTypeC {
+    void connectWithTypeC();
+}
+
+class USBTypeCImpl implements USBTypeC {
+    public void connectWithTypeC() {
+        System.out.println("Connected using Type-C port");
+    }
+}
+
+class USBTypeAAdapter {
+    private USBTypeC device;
+
+    USBTypeAAdapter(USBTypeC device) {
+        this.device = device;
+    }
+
+    void connectWithTypeA() {
+        System.out.println("Adapting Type-A to Type-C");
+        device.connectWithTypeC();
+    }
+}
+
+class AdapterPattern {
+    public static void main(String[] args) {
+        USBTypeAAdapter adapter = new USBTypeAAdapter(new USBTypeCImpl());
+        adapter.connectWithTypeA();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Adapting Type-A to Type-C
+Connected using Type-C port</div>
+</div>
+</div>
+
+
+<!-- 95 -->
+<div class="accordion">
+<button class="accordion-header">95. Command Design Pattern <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>interface Command {
+    void execute();
+}
+
+class LightOnCommand implements Command {
+    public void execute() {
+        System.out.println("Light turned ON");
+    }
+}
+
+class RemoteControl {
+    private Command command;
+
+    void setCommand(Command command) {
+        this.command = command;
+    }
+
+    void pressButton() {
+        command.execute();
+    }
+}
+
+class CommandPattern {
+    public static void main(String[] args) {
+        RemoteControl remote = new RemoteControl();
+        remote.setCommand(new LightOnCommand());
+        remote.pressButton();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Light turned ON</div>
+</div>
+</div>
+
+
+<!-- 96 -->
+<div class="accordion">
+<button class="accordion-header">96. Create a Custom Checked Exception <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>class InsufficientBalanceException extends Exception {
+    InsufficientBalanceException(String message) {
+        super(message);
+    }
+}
+
+class BankAccount {
+    double balance = 1000;
+
+    void withdraw(double amount) throws InsufficientBalanceException {
+        if (amount &gt; balance)
+            throw new InsufficientBalanceException("Insufficient balance for withdrawal");
+        balance -= amount;
+        System.out.println("Withdrawal successful. Balance = " + balance);
+    }
+
+    public static void main(String[] args) {
+        BankAccount acc = new BankAccount();
+
+        try {
+            acc.withdraw(1500);
+        } catch (InsufficientBalanceException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Error: Insufficient balance for withdrawal</div>
+</div>
+</div>
+
+
+<!-- 97 -->
+<div class="accordion">
+<button class="accordion-header">97. Working with java.time.LocalDate <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.time.LocalDate;
+
+class LocalDateExample {
+    public static void main(String[] args) {
+        LocalDate today = LocalDate.of(2026, 9, 10);
+        LocalDate nextWeek = today.plusDays(7);
+
+        System.out.println("Today: " + today);
+        System.out.println("Next Week: " + nextWeek);
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Today: 2026-09-10
+Next Week: 2026-09-17</div>
+</div>
+</div>
+
+
+<!-- 98 -->
+<div class="accordion">
+<button class="accordion-header">98. Format a Date Using DateTimeFormatter <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+class DateFormatterExample {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2026, 9, 10);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        System.out.println(date.format(formatter));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">10-09-2026</div>
+</div>
+</div>
+
+
+<!-- 99 -->
+<div class="accordion">
+<button class="accordion-header">99. Validate an Email Using Regular Expressions <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>import java.util.regex.Pattern;
+
+class EmailValidation {
+    public static void main(String[] args) {
+        String email = "student@cursoracademy.com";
+        String regex = "^[\\w.+-]+@[\\w-]+\\.[a-zA-Z]{2,}$";
+
+        System.out.println(Pattern.matches(regex, email));
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">true</div>
+</div>
+</div>
+
+
+<!-- 100 -->
+<div class="accordion">
+<button class="accordion-header">100. Simple Client-Server Communication Using Sockets <span class="arrow">▶</span></button>
+<div class="content">
+<h3>Solution</h3>
+<pre>// Server.java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+class Server {
+    public static void main(String[] args) throws IOException {
+        ServerSocket server = new ServerSocket(5000);
+        System.out.println("Server started, waiting for client...");
+
+        Socket socket = server.accept();
+        BufferedReader br = new BufferedReader(
+            new InputStreamReader(socket.getInputStream()));
+
+        System.out.println("Client says: " + br.readLine());
+
+        socket.close();
+        server.close();
+    }
+}
+
+// Client.java
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
+
+class Client {
+    public static void main(String[] args) throws IOException {
+        Socket socket = new Socket("localhost", 5000);
+        PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
+
+        pw.println("Hello Server");
+
+        socket.close();
+    }
+}</pre>
+<h4>Output</h4>
+<div class="output">Server started, waiting for client...
+Client says: Hello Server</div>
+</div>
+</div>
+
+</div>
+
+<footer>
+    &copy; 2026 Cursor Computers Academy
+</footer>
+
+
+<script>
+    const buttons = document.querySelectorAll(".accordion-header");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+
+            const content = button.nextElementSibling;
+
+            button.classList.toggle("active");
+
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

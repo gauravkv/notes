@@ -1,0 +1,5894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Advanced Java Theory - Cursor Computers Academy</title>
+
+
+<style>
+
+/* SITE NAV */
+.site-nav {
+    background: #ffffff; border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.site-nav-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    position: relative;
+}
+.site-nav-links {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+.site-nav-link {
+    color: #374151;
+    text-decoration: none;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+.site-nav-link:hover, .site-nav-link.active {
+    color: #4f46e5;
+    background: #f0f5ff;
+}
+.site-nav-dropdown {
+    position: relative;
+}
+.site-nav-menu {
+    display: none; border: 1px solid #e5e7eb;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #ffffff;
+    min-width: 160px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 0 0 8px 8px;
+    z-index: 1001;
+}
+.site-nav-dropdown:hover .site-nav-menu {
+    display: block;
+}
+.site-nav-menu a { border-bottom: 1px solid #f3f4f6;
+    display: block;
+    color: #374151;
+    text-decoration: none;
+    padding: 11px 18px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+.site-nav-menu a:hover {
+    background: #f0f5ff;
+    color: #4f46e5;
+}
+.site-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: #374151;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 12px;
+    margin-left: auto;
+}
+@media (max-width: 600px) {
+    .site-hamburger { display: block; }
+    .site-nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #ffffff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        z-index: 1002;
+    }
+    .site-nav-links.open { display: flex; }
+    .site-nav-link { text-align: left; width: 100%; display: block; border-bottom: 1px solid #e5e7eb; }
+    .site-nav-menu {
+        position: static;
+        box-shadow: none;
+        border-radius: 0;
+    }
+    .site-nav-menu a { border-bottom: 1px solid #f3f4f6; padding-left: 36px; }
+    .site-nav-dropdown { width: 100%; } .site-nav-dropdown:hover .site-nav-menu { display: none; }
+    .site-nav-dropdown.open .site-nav-menu { display: block; }
+}
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+
+    background: #f5f7fa;
+
+    color: #252a34;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+
+    height: 64px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e2e6ed;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    position: sticky;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 100;
+}
+
+
+.logo {
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    color: #252a34;
+}
+
+
+.language {
+
+    font-size: 14px;
+
+    color: #687386;
+}
+
+
+/* =====================================================
+   MOBILE MENU BUTTON
+===================================================== */
+
+.menu-btn {
+
+    display: none;
+
+    border: none;
+
+    background: #eef0ff;
+
+    color: #4f46e5;
+
+    padding: 8px 12px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   MAIN LAYOUT
+===================================================== */
+
+.main {
+
+    display: flex;
+
+    position: fixed;
+
+    top: 64px;
+
+    bottom: 0;
+
+    left: 0;
+
+    right: 0;
+}
+
+
+/* =====================================================
+   LEFT SIDEBAR
+===================================================== */
+
+.sidebar {
+
+    width: 18%;
+
+    min-width: 150px;
+
+    background: #ffffff;
+
+    border-right: 1px solid #e2e6ed;
+
+    overflow-y: auto;
+
+    padding: 25px 15px;
+}
+
+
+.sidebar-title {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #8a93a3;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    padding: 0 12px;
+
+    margin-bottom: 12px;
+}
+
+
+/* =====================================================
+   TOPIC BUTTON
+===================================================== */
+
+.topic {
+
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    text-align: left;
+
+    padding: 12px 14px;
+
+    margin-bottom: 4px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    color: #505866;
+
+    font-size: 14px;
+
+    transition: all 0.2s;
+}
+
+
+.topic:hover {
+
+    background: #f3f4ff;
+
+    color: #4f46e5;
+}
+
+
+.topic.active {
+
+    background: #eef0ff;
+
+    color: #4f46e5;
+
+
+}
+
+
+/* =====================================================
+   RIGHT CONTENT AREA
+===================================================== */
+
+.content-area {
+
+    width: 82%;
+
+    overflow-y: auto;
+
+    padding: 2px;
+}
+
+
+/* =====================================================
+   CONTENT CARD
+===================================================== */
+
+.content {
+
+    width: min(1600px, 100%);
+
+    margin: 0 10;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e6ed;
+
+    border-radius: 14px;
+
+    padding: 45px;
+
+    box-shadow:
+        0 8px 30px rgba(30, 36, 48, 0.06);
+}
+
+
+/* =====================================================
+   TYPOGRAPHY
+===================================================== */
+
+h1 {
+
+    margin: 0;
+
+    font-size: 36px;
+
+    line-height: 1.2;
+
+    color: #202532;
+}
+
+
+.subtitle {
+
+    margin-top: 10px;
+
+    color: #687386;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+
+.divider {
+
+    height: 1px;
+
+    background: #e5e8ee;
+
+    margin: 28px 0;
+}
+
+
+h2 {
+
+    font-size: 24px;
+
+    margin-top: 32px;
+
+    margin-bottom: 10px;
+
+    color: #252a34;
+}
+
+
+p {
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    color: #3f4652;
+
+    margin: 12px 0;
+}
+
+
+strong {
+
+    color: #303744;
+}
+
+
+/* =====================================================
+   LIST
+===================================================== */
+
+.topic-list {
+
+    padding-left: 22px;
+
+    color: #3f4652;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+
+.topic-list li {
+
+    margin-bottom: 2px;
+}
+
+
+/* =====================================================
+   CODE HEADER
+===================================================== */
+
+.code-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: #171b24;
+
+    color: #aeb6c5;
+
+    padding: 10px 15px;
+
+    border-radius: 9px 9px 0 0;
+
+    font-size: 13px;
+
+    margin-top: 20px;
+}
+
+
+/* =====================================================
+   COPY BUTTON
+===================================================== */
+
+.copy-btn {
+
+    border: none;
+
+    background: #292f3c;
+
+    color: #dce1ea;
+
+    padding: 6px 11px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    transition: 0.2s;
+}
+
+
+.copy-btn:hover {
+
+    background: #3a4252;
+}
+
+
+/* =====================================================
+   CODE BOX
+===================================================== */
+
+.code-box {
+
+    background: #1e2430;
+
+    padding: 20px;
+
+    border-radius: 0 0 9px 9px;
+
+    overflow-x: auto;
+
+    box-shadow:
+        0 8px 20px rgba(20, 25, 35, 0.12);
+}
+
+
+.code-box pre {
+
+    margin: 0;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    color: #e6eaf0;
+
+    white-space: pre;
+}
+
+
+/* =====================================================
+   SYNTAX COLORS
+===================================================== */
+
+.keyword {
+    color: #c792ea;
+}
+
+.function {
+    color: #82aaff;
+}
+
+.string {
+    color: #c3e88d;
+}
+
+.number {
+    color: #f78c6c;
+}
+
+.comment {
+    color: #697386;
+}
+
+
+/* =====================================================
+   OUTPUT
+===================================================== */
+
+.output-title {
+
+    margin-top: 25px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #687386;
+}
+
+
+.output {
+
+    margin-top: 8px;
+
+    background: #f8f9fb;
+
+    border: 1px solid #e2e6ed;
+
+    border-radius: 8px;
+
+    padding: 14px 18px;
+
+    font-family:
+        Consolas,
+        monospace;
+
+    font-size: 14px;
+
+    color: #303744;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   INFO BOX
+===================================================== */
+
+.info {
+
+    margin-top: 25px;
+
+    padding: 17px 20px;
+
+    background: #f3f4ff;
+
+    border-left: 4px solid #6366f1;
+
+    border-radius: 6px;
+
+    color: #454a65;
+
+    line-height: 1.6;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   MOBILE OVERLAY
+===================================================== */
+
+.overlay {
+
+    display: none;
+}
+
+
+/* =====================================================
+   MOBILE DESIGN
+===================================================== */
+
+@media (max-width: 700px) {
+
+
+    /* ---------------------------------------------
+       NAVBAR
+    --------------------------------------------- */
+
+    .navbar {
+
+        padding: 0 16px;
+    }
+
+
+    .menu-btn {
+
+        display: block;
+    }
+
+
+    .language {
+
+        display: none;
+    }
+
+
+    /* ---------------------------------------------
+       MAIN
+    --------------------------------------------- */
+
+    .main {
+
+        position: static;
+
+        display: block;
+
+        margin-top: 0;
+    }
+
+
+    /* ---------------------------------------------
+       SIDEBAR / DRAWER
+    --------------------------------------------- */
+
+    .sidebar {
+
+        position: fixed;
+
+        top: 64px;
+
+        left: 0;
+
+        bottom: 0;
+
+        width: 280px;
+
+        min-width: 0;
+
+        z-index: 200;
+
+        transform: translateX(-100%);
+
+        transition:
+            transform 0.25s ease;
+
+        box-shadow:
+            5px 0 25px rgba(0,0,0,0.12);
+
+        overflow-y: auto;
+
+        padding: 22px 15px;
+    }
+
+
+    .sidebar.open {
+
+        transform: translateX(0);
+    }
+
+
+    /* ---------------------------------------------
+       DARK OVERLAY
+    --------------------------------------------- */
+
+    .overlay {
+
+        position: fixed;
+
+        display: none;
+
+        top: 64px;
+
+        left: 0;
+
+        right: 0;
+
+        bottom: 0;
+
+        background:
+            rgba(0,0,0,0.35);
+
+        z-index: 150;
+    }
+
+
+    .overlay.show {
+
+        display: block;
+    }
+
+
+    /* ---------------------------------------------
+       CONTENT
+    --------------------------------------------- */
+
+    .content-area {
+
+        width: 100%;
+
+        padding: 20px 12px;
+
+        overflow: visible;
+    }
+
+
+    .content {
+
+        width: 100%;
+
+        padding: 28px 20px;
+
+        border-radius: 10px;
+    }
+
+
+    h1 {
+
+        font-size: 30px;
+    }
+
+
+    h2 {
+
+        font-size: 22px;
+    }
+
+
+    p {
+
+        font-size: 16px;
+
+        line-height: 1.7;
+    }
+
+
+    .code-box {
+
+        padding: 15px;
+    }
+
+
+    .code-box pre {
+
+        font-size: 13px;
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .logo {
+
+        font-size: 17px;
+    }
+
+
+    .menu-btn {
+
+        font-size: 12px;
+
+        padding: 7px 10px;
+    }
+
+
+    .content {
+
+        padding: 24px 16px;
+    }
+
+
+    h1 {
+
+        font-size: 27px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<!-- ===================================================
+     NAVBAR
+=================================================== -->
+
+<nav class="navbar">
+
+
+    <div class="logo">
+
+        Coding Notes
+
+    </div>
+
+
+    <!-- Mobile only -->
+
+    <button
+        class="menu-btn"
+        onclick="toggleMenu()">
+
+        ☰ Topics
+
+    </button>
+
+
+    <div class="language">
+
+        Advanced Java
+
+    </div>
+
+
+</nav>
+
+<nav class="site-nav">
+    <div class="site-nav-inner">
+        <div class="site-nav-links" id="siteNavLinks">
+            <a href="index.html" class="site-nav-link">Home</a>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Python &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="python_theory.html">Theory</a>
+                    <a href="python_programs.html">Programs</a>
+                    <a href="python_quiz.html">Quiz</a>
+                </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">MySQL &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="mysql_theory.html">Theory</a>
+                    <a href="mysql_programs.html">Programs</a>
+                    <a href="mysql_quiz.html">Quiz</a>
+                </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Java &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="corejava_theory.html">Theory</a>
+                    <a href="corejava_programs.html">Programs</a>
+                    <a href="corejava_quiz.html">Quiz</a>
+                </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">PHP &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="php_theory.html">Theory</a>
+                    <a href="php_programs.html">Programs</a>
+                    <a href="php_quiz.html">Quiz</a>
+                </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link active" onclick="this.parentElement.classList.toggle('open')">Advanced Java &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="advjava_theory.html">Theory</a>
+                    <a href="advjava_programs.html">Programs</a>
+                    <a href="advjava_quiz.html">Quiz</a>
+                </div>
+            </div>
+        </div>
+        <button class="site-hamburger" onclick="document.getElementById('siteNavLinks').classList.toggle('open')">&#9776;</button>
+    </div>
+</nav>
+
+
+
+<!-- ===================================================
+     MAIN
+=================================================== -->
+
+<div class="main">
+
+
+    <!-- =================================================
+         LEFT TOPICS
+    ================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar">
+
+
+        <div class="sidebar-title">
+
+            Advanced Java Topics
+
+        </div>
+
+
+        <button
+            class="topic active"
+            onclick="showTopic('intro', this)">
+
+            Introduction to Advanced Java
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('threads', this)">
+
+            Multithreading Basics
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('threadlifecycle', this)">
+
+            Thread Lifecycle
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('synchronization', this)">
+
+            Synchronization
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('generics', this)">
+
+            Generics
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('collections', this)">
+
+            Collections Framework Deep Dive
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('comparable', this)">
+
+            Comparable and Comparator
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('lambda', this)">
+
+            Lambda Expressions
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('functionalinterfaces', this)">
+
+            Functional Interfaces
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('streams', this)">
+
+            Stream API
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('optional', this)">
+
+            Optional Class
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('iostreams', this)">
+
+            Java I/O Streams
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('nio', this)">
+
+            NIO (New I/O)
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('serialization', this)">
+
+            Serialization
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('annotations', this)">
+
+            Annotations
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('reflection', this)">
+
+            Reflection API
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('enums', this)">
+
+            Enums
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('innerclasses', this)">
+
+            Inner Classes
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('jdbcbasics', this)">
+
+            JDBC Basics
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('jdbccrud', this)">
+
+            JDBC CRUD Operations
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('servlets', this)">
+
+            Servlets Introduction
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('jsp', this)">
+
+            JSP Basics
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('singleton', this)">
+
+            Singleton Design Pattern
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('factory', this)">
+
+            Factory Design Pattern
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('observer', this)">
+
+            Observer Design Pattern
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('customexceptions', this)">
+
+            Custom Exceptions
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('networking', this)">
+
+            Networking with Sockets
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('datetimeapi', this)">
+
+            Date and Time API (java.time)
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('regex', this)">
+
+            Regular Expressions in Java
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('swing', this)">
+
+            GUI with Swing
+
+        </button>
+
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MOBILE OVERLAY
+    ================================================== -->
+
+    <div
+        class="overlay"
+        id="overlay"
+        onclick="closeMenu()">
+    </div>
+
+
+
+    <!-- =================================================
+         RIGHT CONTENT
+    ================================================== -->
+
+    <section class="content-area">
+
+
+        <div
+            class="content"
+            id="content">
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   TOPIC CONTENT
+===================================================== */
+
+const topics = {
+
+/* =====================================================
+   INTRODUCTION
+===================================================== */
+
+intro: `
+
+<h1>
+    Introduction to Advanced Java
+</h1>
+
+<div class="subtitle">
+    Move beyond Core Java syntax and object-oriented basics into the
+    advanced APIs and concepts that professional Java developers use
+    every day - concurrency, generics, functional programming, I/O,
+    databases, and design patterns.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is "Advanced Java"?
+</h2>
+
+<p>
+    Advanced Java refers to the set of libraries, language features,
+    and design techniques built on top of Core Java that let you write
+    concurrent, type-safe, database-driven, and web-enabled applications.
+    While Core Java teaches you syntax, loops, and OOP, Advanced Java
+    focuses on how real-world enterprise software is actually built.
+</p>
+
+<p>
+    This includes multithreading for doing multiple things at once,
+    generics and the Collections Framework for type-safe reusable data
+    structures, lambda expressions and the Stream API for functional-style
+    programming, JDBC for talking to databases, and Servlets/JSP for
+    building web applications.
+</p>
+
+
+<h2>
+    Topics Covered in This Course
+</h2>
+
+<p>
+    This course is organized into several major areas of the Java
+    platform that build on one another:
+</p>
+
+<ul class="topic-list">
+    <li><strong>Concurrency:</strong> Threads, thread lifecycle, and synchronization</li>
+    <li><strong>Generics and Collections:</strong> Type-safe, reusable data structures</li>
+    <li><strong>Functional Programming:</strong> Lambdas, functional interfaces, and Streams</li>
+    <li><strong>I/O and NIO:</strong> Reading and writing files and streams efficiently</li>
+    <li><strong>Reflection and Annotations:</strong> Inspecting and metadata-driving code at runtime</li>
+    <li><strong>Database Programming:</strong> JDBC for connecting Java to relational databases</li>
+    <li><strong>Web Development:</strong> Servlets and JSP for server-side Java</li>
+    <li><strong>Design Patterns:</strong> Singleton, Factory, and Observer</li>
+    <li><strong>Networking:</strong> Sockets for client-server communication</li>
+    <li><strong>GUI Programming:</strong> Building desktop applications with Swing</li>
+</ul>
+
+
+<h2>
+    Prerequisites
+</h2>
+
+<p>
+    Before starting this course, you should already be comfortable with
+    Core Java fundamentals - variables, data types, control flow, arrays,
+    methods, classes, objects, inheritance, polymorphism, and exception
+    handling. If you need a refresher, review the Core Java Theory notes
+    first.
+</p>
+
+${codeBlock(`// A quick reminder of the OOP style this course builds on
+public class Vehicle {
+    private String name;
+
+    public Vehicle(String name) {
+        this.name = name;
+    }
+
+    public void drive() {
+        System.out.println(name + " is driving");
+    }
+
+    public static void main(String[] args) {
+        Vehicle car = new Vehicle("Sedan");
+        car.drive();
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Sedan is driving
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Advanced Java is not a single library - it is a collection of APIs
+that ship with the JDK (like java.util.concurrent, java.util.stream,
+and java.time) plus external specifications like Servlets and JSP that
+require an application server such as Apache Tomcat.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   MULTITHREADING BASICS
+===================================================== */
+
+threads: `
+
+<h1>
+    Multithreading Basics
+</h1>
+
+<div class="subtitle">
+    Learn how Java allows multiple parts of a program to run
+    concurrently using threads, improving performance and responsiveness.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Thread?
+</h2>
+
+<p>
+    A <strong>thread</strong> is the smallest unit of execution within a
+    process. Every Java program has at least one thread of execution
+    called the <strong>main thread</strong>. Multithreading allows a
+    program to perform multiple tasks concurrently, such as downloading
+    a file while updating a progress bar.
+</p>
+
+<p>
+    Java provides built-in support for multithreading through the
+    <strong>Thread</strong> class and the <strong>Runnable</strong>
+    interface, both found in the <strong>java.lang</strong> package.
+</p>
+
+
+<h2>
+    Creating a Thread by Extending Thread
+</h2>
+
+<p>
+    One way to create a thread is to extend the <strong>Thread</strong>
+    class and override its <strong>run()</strong> method.
+</p>
+
+${codeBlock(`class MyThread extends Thread {
+    public void run() {
+        for (int i = 1; i <= 3; i++) {
+            System.out.println("MyThread: " + i);
+        }
+    }
+}
+
+public class ThreadDemo {
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        t1.start(); // starts a new thread, do NOT call run() directly
+        System.out.println("Main thread finished starting t1");
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output (order may vary)
+</div>
+
+<div class="output">
+Main thread finished starting t1<br>
+MyThread: 1<br>
+MyThread: 2<br>
+MyThread: 3
+</div>
+
+
+<h2>
+    Creating a Thread by Implementing Runnable
+</h2>
+
+<p>
+    The preferred approach is to implement the <strong>Runnable</strong>
+    interface, since Java does not support multiple inheritance and this
+    keeps your class free to extend something else.
+</p>
+
+${codeBlock(`class PrintTask implements Runnable {
+    public void run() {
+        for (int i = 1; i <= 3; i++) {
+            System.out.println("PrintTask: " + i);
+        }
+    }
+}
+
+public class RunnableDemo {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(new PrintTask());
+        Thread t2 = new Thread(new PrintTask());
+        t1.start();
+        t2.start();
+    }
+}`, "Java")}
+
+
+<h2>
+    Using Lambda Expressions with Runnable
+</h2>
+
+<p>
+    Since <strong>Runnable</strong> is a functional interface (it has a
+    single abstract method), you can create threads concisely using
+    lambda expressions.
+</p>
+
+${codeBlock(`public class LambdaThreadDemo {
+    public static void main(String[] args) {
+        Thread t = new Thread(() -> {
+            System.out.println("Running in a thread via lambda");
+        });
+        t.start();
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Running in a thread via lambda
+</div>
+
+
+<h2>
+    Common Thread Methods
+</h2>
+
+<ul class="topic-list">
+    <li><strong>start():</strong> Begins execution of the thread on a new call stack</li>
+    <li><strong>run():</strong> Contains the code executed by the thread</li>
+    <li><strong>sleep(ms):</strong> Pauses the current thread for the given milliseconds</li>
+    <li><strong>join():</strong> Waits for a thread to finish before continuing</li>
+    <li><strong>setName() / getName():</strong> Sets or retrieves the thread's name</li>
+    <li><strong>setPriority():</strong> Suggests scheduling priority (1 to 10)</li>
+</ul>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Always start a thread with <strong>start()</strong>, never call
+<strong>run()</strong> directly. Calling run() directly just executes
+the method like a normal function call on the current thread - no new
+thread is created.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   THREAD LIFECYCLE
+===================================================== */
+
+threadlifecycle: `
+
+<h1>
+    Thread Lifecycle
+</h1>
+
+<div class="subtitle">
+    Understand the different states a thread passes through during its
+    life, from creation to termination.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The Six Thread States
+</h2>
+
+<p>
+    Every thread in Java exists in one of six states, defined by the
+    <strong>Thread.State</strong> enum. Understanding these states helps
+    you reason about concurrency bugs and deadlocks.
+</p>
+
+<ul class="topic-list">
+    <li><strong>NEW:</strong> Thread object created but start() has not been called</li>
+    <li><strong>RUNNABLE:</strong> Thread is executing or ready to execute, waiting for CPU time</li>
+    <li><strong>BLOCKED:</strong> Thread is waiting to acquire a lock held by another thread</li>
+    <li><strong>WAITING:</strong> Thread is waiting indefinitely for another thread's action</li>
+    <li><strong>TIMED_WAITING:</strong> Thread is waiting for a specified amount of time</li>
+    <li><strong>TERMINATED:</strong> Thread has completed execution</li>
+</ul>
+
+
+<h2>
+    Observing Thread States
+</h2>
+
+<p>
+    You can inspect a thread's current state using
+    <strong>getState()</strong>, which returns a value from the
+    <strong>Thread.State</strong> enum.
+</p>
+
+${codeBlock(`public class ThreadStateDemo {
+    public static void main(String[] args) throws InterruptedException {
+        Thread t = new Thread(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        System.out.println("Before start: " + t.getState()); // NEW
+        t.start();
+        System.out.println("After start: " + t.getState());  // RUNNABLE
+
+        Thread.sleep(100);
+        System.out.println("While sleeping: " + t.getState()); // TIMED_WAITING
+
+        t.join();
+        System.out.println("After join: " + t.getState()); // TERMINATED
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Before start: NEW<br>
+After start: RUNNABLE<br>
+While sleeping: TIMED_WAITING<br>
+After join: TERMINATED
+</div>
+
+
+<h2>
+    Using join() to Wait for Completion
+</h2>
+
+<p>
+    The <strong>join()</strong> method causes the calling thread to pause
+    until the thread it is called on has finished executing. This is
+    useful when the main thread depends on results from a worker thread.
+</p>
+
+${codeBlock(`public class JoinDemo {
+    public static void main(String[] args) throws InterruptedException {
+        Thread worker = new Thread(() -> {
+            for (int i = 1; i <= 3; i++) {
+                System.out.println("Working... " + i);
+            }
+        });
+
+        worker.start();
+        worker.join(); // main waits here until worker finishes
+        System.out.println("Worker is done, main continues");
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Working... 1<br>
+Working... 2<br>
+Working... 3<br>
+Worker is done, main continues
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+A BLOCKED thread is different from a WAITING thread: BLOCKED means it
+wants a lock (synchronized block/method) that another thread currently
+holds, while WAITING means it called a method like wait() or join()
+and is voluntarily pausing until notified or the awaited thread finishes.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   SYNCHRONIZATION
+===================================================== */
+
+synchronization: `
+
+<h1>
+    Synchronization
+</h1>
+
+<div class="subtitle">
+    Learn how to protect shared data from being corrupted when multiple
+    threads access it at the same time.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The Problem: Race Conditions
+</h2>
+
+<p>
+    When two or more threads access shared mutable data at the same
+    time without coordination, the result can be unpredictable. This is
+    called a <strong>race condition</strong>. A classic example is two
+    threads incrementing the same counter variable.
+</p>
+
+${codeBlock(`class Counter {
+    private int count = 0;
+
+    public void increment() {
+        count++; // NOT atomic: read, add, write
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+
+public class RaceConditionDemo {
+    public static void main(String[] args) throws InterruptedException {
+        Counter counter = new Counter();
+
+        Runnable task = () -> {
+            for (int i = 0; i < 10000; i++) {
+                counter.increment();
+            }
+        };
+
+        Thread t1 = new Thread(task);
+        Thread t2 = new Thread(task);
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+
+        // Expected 20000, but often prints a smaller number
+        System.out.println("Final count: " + counter.getCount());
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output (unreliable without synchronization)
+</div>
+
+<div class="output">
+Final count: 17364 <span class="comment">// varies each run, often less than 20000</span>
+</div>
+
+
+<h2>
+    The Solution: synchronized Keyword
+</h2>
+
+<p>
+    The <strong>synchronized</strong> keyword ensures that only one
+    thread can execute a block or method at a time for a given object
+    lock, eliminating the race condition.
+</p>
+
+${codeBlock(`class SafeCounter {
+    private int count = 0;
+
+    public synchronized void increment() {
+        count++;
+    }
+
+    public synchronized int getCount() {
+        return count;
+    }
+}
+
+public class SynchronizedDemo {
+    public static void main(String[] args) throws InterruptedException {
+        SafeCounter counter = new SafeCounter();
+
+        Runnable task = () -> {
+            for (int i = 0; i < 10000; i++) {
+                counter.increment();
+            }
+        };
+
+        Thread t1 = new Thread(task);
+        Thread t2 = new Thread(task);
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+
+        System.out.println("Final count: " + counter.getCount());
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Final count: 20000
+</div>
+
+
+<h2>
+    Synchronized Blocks
+</h2>
+
+<p>
+    Instead of synchronizing an entire method, you can synchronize only
+    the critical section using a synchronized block, which can improve
+    performance by holding the lock for less time.
+</p>
+
+${codeBlock(`class BankAccount {
+    private double balance = 1000;
+    private final Object lock = new Object();
+
+    public void withdraw(double amount) {
+        synchronized (lock) {
+            if (balance >= amount) {
+                balance -= amount;
+                System.out.println("Withdrew: " + amount + ", Balance: " + balance);
+            } else {
+                System.out.println("Insufficient funds");
+            }
+        }
+    }
+}`, "Java")}
+
+<ul class="topic-list">
+    <li>Every object has an intrinsic lock (monitor) used by synchronized</li>
+    <li>Static synchronized methods lock on the Class object, not an instance</li>
+    <li>Overusing synchronization can lead to poor performance or deadlocks</li>
+    <li>java.util.concurrent.locks.ReentrantLock offers more flexible locking</li>
+</ul>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+A deadlock occurs when two threads each hold a lock the other needs,
+and both wait forever. Avoid deadlocks by always acquiring multiple
+locks in a consistent, agreed-upon order across your codebase.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   GENERICS
+===================================================== */
+
+generics: `
+
+<h1>
+    Generics
+</h1>
+
+<div class="subtitle">
+    Write type-safe, reusable classes and methods that work with any
+    data type while catching type errors at compile time.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Why Generics?
+</h2>
+
+<p>
+    Before generics, collections stored everything as
+    <strong>Object</strong>, requiring manual casting and risking
+    <strong>ClassCastException</strong> at runtime. Generics let you
+    parameterize a class or method with a type, so the compiler enforces
+    type safety and casting becomes unnecessary.
+</p>
+
+${codeBlock(`import java.util.ArrayList;
+
+public class WithoutGenerics {
+    public static void main(String[] args) {
+        ArrayList list = new ArrayList(); // raw type, pre-generics style
+        list.add("Hello");
+        list.add(100); // no compile error, but risky
+
+        String s = (String) list.get(0); // manual cast required
+        System.out.println(s);
+    }
+}`, "Java")}
+
+
+<h2>
+    Generic Classes
+</h2>
+
+<p>
+    A generic class is defined with a type parameter (commonly named
+    <strong>T</strong>) in angle brackets. The actual type is supplied
+    when the object is created.
+</p>
+
+${codeBlock(`class Box<T> {
+    private T value;
+
+    public void set(T value) {
+        this.value = value;
+    }
+
+    public T get() {
+        return value;
+    }
+}
+
+public class GenericClassDemo {
+    public static void main(String[] args) {
+        Box<String> stringBox = new Box<>();
+        stringBox.set("Advanced Java");
+        System.out.println(stringBox.get());
+
+        Box<Integer> intBox = new Box<>();
+        intBox.set(42);
+        System.out.println(intBox.get());
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Advanced Java<br>
+42
+</div>
+
+
+<h2>
+    Generic Methods
+</h2>
+
+<p>
+    A method can declare its own type parameter independent of the
+    class it belongs to, placed before the return type.
+</p>
+
+${codeBlock(`public class GenericMethodDemo {
+
+    public static <T> void printArray(T[] array) {
+        for (T item : array) {
+            System.out.print(item + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Integer[] numbers = {1, 2, 3, 4};
+        String[] words = {"one", "two", "three"};
+
+        printArray(numbers);
+        printArray(words);
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1 2 3 4 <br>
+one two three
+</div>
+
+
+<h2>
+    Bounded Type Parameters
+</h2>
+
+<p>
+    You can restrict a type parameter to a specific type or its
+    subtypes using the <strong>extends</strong> keyword, allowing you to
+    call methods defined on the bound.
+</p>
+
+${codeBlock(`class NumberBox<T extends Number> {
+    private T value;
+
+    public NumberBox(T value) {
+        this.value = value;
+    }
+
+    public double doubled() {
+        return value.doubleValue() * 2;
+    }
+}
+
+public class BoundedTypeDemo {
+    public static void main(String[] args) {
+        NumberBox<Integer> box = new NumberBox<>(10);
+        System.out.println(box.doubled());
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+20.0
+</div>
+
+
+<h2>
+    Wildcards
+</h2>
+
+<ul class="topic-list">
+    <li><strong>&lt;?&gt;:</strong> Unbounded wildcard - accepts any type</li>
+    <li><strong>&lt;? extends T&gt;:</strong> Upper bounded - T or any subclass (read-only, "producer")</li>
+    <li><strong>&lt;? super T&gt;:</strong> Lower bounded - T or any superclass ("consumer")</li>
+</ul>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Generic type information is erased at runtime (type erasure), so you
+cannot create an array of a generic type directly, use instanceof with
+a parameterized type, or overload methods that differ only by generic
+type parameter.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   COLLECTIONS FRAMEWORK DEEP DIVE
+===================================================== */
+
+collections: `
+
+<h1>
+    Collections Framework Deep Dive
+</h1>
+
+<div class="subtitle">
+    Explore the core interfaces and implementations of the Java
+    Collections Framework beyond the basics of ArrayList.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The Collections Hierarchy
+</h2>
+
+<p>
+    The Collections Framework is built around a few key interfaces:
+    <strong>List</strong> (ordered, allows duplicates),
+    <strong>Set</strong> (no duplicates), <strong>Queue</strong>
+    (FIFO-style processing), and <strong>Map</strong> (key-value pairs,
+    technically separate from the Collection interface).
+</p>
+
+<ul class="topic-list">
+    <li><strong>List:</strong> ArrayList, LinkedList, Vector</li>
+    <li><strong>Set:</strong> HashSet, LinkedHashSet, TreeSet</li>
+    <li><strong>Queue/Deque:</strong> LinkedList, ArrayDeque, PriorityQueue</li>
+    <li><strong>Map:</strong> HashMap, LinkedHashMap, TreeMap</li>
+</ul>
+
+
+<h2>
+    HashSet vs LinkedHashSet vs TreeSet
+</h2>
+
+<p>
+    All three implement <strong>Set</strong>, meaning no duplicate
+    elements, but they differ in ordering guarantees.
+</p>
+
+${codeBlock(`import java.util.*;
+
+public class SetDemo {
+    public static void main(String[] args) {
+        Set<String> hashSet = new HashSet<>();
+        hashSet.add("Banana");
+        hashSet.add("Apple");
+        hashSet.add("Cherry");
+        System.out.println("HashSet (no order): " + hashSet);
+
+        Set<String> linkedHashSet = new LinkedHashSet<>();
+        linkedHashSet.add("Banana");
+        linkedHashSet.add("Apple");
+        linkedHashSet.add("Cherry");
+        System.out.println("LinkedHashSet (insertion order): " + linkedHashSet);
+
+        Set<String> treeSet = new TreeSet<>();
+        treeSet.add("Banana");
+        treeSet.add("Apple");
+        treeSet.add("Cherry");
+        System.out.println("TreeSet (sorted order): " + treeSet);
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+HashSet (no order): [Banana, Apple, Cherry]<br>
+LinkedHashSet (insertion order): [Banana, Apple, Cherry]<br>
+TreeSet (sorted order): [Apple, Banana, Cherry]
+</div>
+
+
+<h2>
+    Working with Map
+</h2>
+
+<p>
+    A <strong>Map</strong> stores key-value pairs. <strong>HashMap</strong>
+    is the most commonly used implementation, offering fast average
+    O(1) lookups but no ordering guarantee.
+</p>
+
+${codeBlock(`import java.util.HashMap;
+import java.util.Map;
+
+public class MapDemo {
+    public static void main(String[] args) {
+        Map<String, Integer> ages = new HashMap<>();
+        ages.put("Alice", 25);
+        ages.put("Bob", 30);
+        ages.put("Charlie", 22);
+
+        for (Map.Entry<String, Integer> entry : ages.entrySet()) {
+            System.out.println(entry.getKey() + " is " + entry.getValue());
+        }
+
+        System.out.println("Bob's age: " + ages.getOrDefault("Bob", 0));
+        System.out.println("Unknown: " + ages.getOrDefault("Dave", 0));
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Alice is 25<br>
+Bob is 30<br>
+Charlie is 22<br>
+Bob's age: 30<br>
+Unknown: 0
+</div>
+
+
+<h2>
+    Queues and Deques
+</h2>
+
+<p>
+    A <strong>Queue</strong> processes elements in FIFO (first-in,
+    first-out) order, while a <strong>Deque</strong> (double-ended
+    queue) allows insertion and removal from both ends.
+</p>
+
+${codeBlock(`import java.util.ArrayDeque;
+import java.util.Deque;
+
+public class DequeDemo {
+    public static void main(String[] args) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        System.out.println("Pop: " + stack.pop()); // LIFO like a stack
+
+        Deque<Integer> queue = new ArrayDeque<>();
+        queue.offer(1);
+        queue.offer(2);
+        queue.offer(3);
+        System.out.println("Poll: " + queue.poll()); // FIFO like a queue
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Pop: 3<br>
+Poll: 1
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Prefer coding to the interface (List, Set, Map) rather than the
+concrete class (ArrayList, HashSet, HashMap). This makes it easy to
+swap implementations later without changing the rest of your code.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   COMPARABLE AND COMPARATOR
+===================================================== */
+
+comparable: `
+
+<h1>
+    Comparable and Comparator
+</h1>
+
+<div class="subtitle">
+    Learn the two standard ways to define custom sorting logic for your
+    own objects in Java.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The Comparable Interface
+</h2>
+
+<p>
+    A class implements <strong>Comparable&lt;T&gt;</strong> to define
+    its <strong>natural ordering</strong> by overriding
+    <strong>compareTo()</strong>. This lets objects be sorted directly
+    with <strong>Collections.sort()</strong> or <strong>Arrays.sort()</strong>.
+</p>
+
+${codeBlock(`import java.util.*;
+
+class Student implements Comparable<Student> {
+    String name;
+    int marks;
+
+    Student(String name, int marks) {
+        this.name = name;
+        this.marks = marks;
+    }
+
+    @Override
+    public int compareTo(Student other) {
+        return this.marks - other.marks; // ascending by marks
+    }
+
+    @Override
+    public String toString() {
+        return name + ": " + marks;
+    }
+}
+
+public class ComparableDemo {
+    public static void main(String[] args) {
+        List<Student> students = new ArrayList<>();
+        students.add(new Student("Amit", 85));
+        students.add(new Student("Riya", 92));
+        students.add(new Student("Sam", 70));
+
+        Collections.sort(students);
+        System.out.println(students);
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[Sam: 70, Amit: 85, Riya: 92]
+</div>
+
+
+<h2>
+    The Comparator Interface
+</h2>
+
+<p>
+    <strong>Comparator&lt;T&gt;</strong> defines an external, custom
+    ordering that does not require modifying the class itself. This is
+    useful when you need multiple different sort orders.
+</p>
+
+${codeBlock(`import java.util.*;
+
+public class ComparatorDemo {
+    public static void main(String[] args) {
+        List<Student> students = new ArrayList<>();
+        students.add(new Student("Amit", 85));
+        students.add(new Student("Riya", 92));
+        students.add(new Student("Sam", 70));
+
+        // Sort by name alphabetically using a Comparator
+        Comparator<Student> byName = new Comparator<Student>() {
+            @Override
+            public int compare(Student a, Student b) {
+                return a.name.compareTo(b.name);
+            }
+        };
+
+        Collections.sort(students, byName);
+        System.out.println(students);
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[Amit: 85, Riya: 92, Sam: 70]
+</div>
+
+
+<h2>
+    Comparator with Lambdas and comparing()
+</h2>
+
+<p>
+    Since <strong>Comparator</strong> is a functional interface, it can
+    be written far more concisely using lambda expressions and the
+    static helper method <strong>Comparator.comparing()</strong>.
+</p>
+
+${codeBlock(`import java.util.*;
+
+public class ComparatorLambdaDemo {
+    public static void main(String[] args) {
+        List<Student> students = new ArrayList<>();
+        students.add(new Student("Amit", 85));
+        students.add(new Student("Riya", 92));
+        students.add(new Student("Sam", 70));
+
+        // Sort by marks descending
+        students.sort(Comparator.comparingInt((Student s) -> s.marks).reversed());
+        System.out.println(students);
+
+        // Sort by name using method reference
+        students.sort(Comparator.comparing(s -> s.name));
+        System.out.println(students);
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[Riya: 92, Amit: 85, Sam: 70]<br>
+[Amit: 85, Riya: 92, Sam: 70]
+</div>
+
+<ul class="topic-list">
+    <li>Comparable defines one natural order inside the class (compareTo)</li>
+    <li>Comparator defines external, swappable orders (compare)</li>
+    <li>You can chain comparators using thenComparing()</li>
+</ul>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use Comparable when there is one obvious default ordering for a class
+(like numbers or dates). Use Comparator when you need several different
+sort orders for the same class, or cannot modify the class's source.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   LAMBDA EXPRESSIONS
+===================================================== */
+
+lambda: `
+
+<h1>
+    Lambda Expressions
+</h1>
+
+<div class="subtitle">
+    Write concise, anonymous functions in Java that make functional-style
+    programming possible.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Lambda Expression?
+</h2>
+
+<p>
+    Introduced in Java 8, a <strong>lambda expression</strong> is a
+    short block of code that takes parameters and returns a value,
+    similar to a method but without a name. Lambdas can only be used
+    where a <strong>functional interface</strong> (an interface with
+    exactly one abstract method) is expected.
+</p>
+
+<p>
+    The basic syntax is:
+    <strong>(parameters) -&gt; expression</strong> or
+    <strong>(parameters) -&gt; { statements; }</strong>
+</p>
+
+
+<h2>
+    From Anonymous Class to Lambda
+</h2>
+
+<p>
+    Lambdas were designed to replace verbose anonymous inner classes
+    when implementing simple functional interfaces like
+    <strong>Runnable</strong> or <strong>Comparator</strong>.
+</p>
+
+${codeBlock(`public class LambdaEvolution {
+    public static void main(String[] args) {
+        // Old style: anonymous inner class
+        Runnable r1 = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Running with anonymous class");
+            }
+        };
+
+        // New style: lambda expression
+        Runnable r2 = () -> System.out.println("Running with lambda");
+
+        r1.run();
+        r2.run();
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Running with anonymous class<br>
+Running with lambda
+</div>
+
+
+<h2>
+    Lambda Syntax Variations
+</h2>
+
+${codeBlock(`interface Calculator {
+    int operate(int a, int b);
+}
+
+public class LambdaSyntaxDemo {
+    public static void main(String[] args) {
+        // No parameters
+        Runnable noParams = () -> System.out.println("No parameters");
+
+        // Single parameter, parentheses optional
+        java.util.function.Function<Integer, Integer> square = x -> x * x;
+
+        // Multiple parameters
+        Calculator add = (a, b) -> a + b;
+
+        // Block body with multiple statements
+        Calculator multiply = (a, b) -> {
+            int result = a * b;
+            return result;
+        };
+
+        noParams.run();
+        System.out.println("Square: " + square.apply(5));
+        System.out.println("Add: " + add.operate(3, 4));
+        System.out.println("Multiply: " + multiply.operate(3, 4));
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+No parameters<br>
+Square: 25<br>
+Add: 7<br>
+Multiply: 12
+</div>
+
+
+<h2>
+    Variable Capture in Lambdas
+</h2>
+
+<p>
+    A lambda can access variables from its enclosing scope, but those
+    variables must be <strong>effectively final</strong> (never
+    reassigned after initialization).
+</p>
+
+${codeBlock(`public class VariableCaptureDemo {
+    public static void main(String[] args) {
+        int threshold = 10; // effectively final
+
+        java.util.function.Predicate<Integer> isAboveThreshold =
+            n -> n > threshold;
+
+        System.out.println(isAboveThreshold.test(15));
+        System.out.println(isAboveThreshold.test(5));
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+true<br>
+false
+</div>
+
+
+<h2>
+    Method References
+</h2>
+
+<p>
+    When a lambda simply calls an existing method, you can use an even
+    shorter <strong>method reference</strong> with the <strong>::</strong>
+    syntax.
+</p>
+
+${codeBlock(`import java.util.*;
+
+public class MethodReferenceDemo {
+    public static void main(String[] args) {
+        List<String> names = Arrays.asList("charlie", "alice", "bob");
+
+        // Lambda version
+        names.forEach(n -> System.out.println(n));
+
+        // Method reference version (equivalent)
+        names.forEach(System.out::println);
+    }
+}`, "Java")}
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Lambdas do not introduce a new scope for "this" - inside a lambda,
+"this" refers to the enclosing instance, unlike anonymous inner
+classes where "this" refers to the anonymous class itself.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   FUNCTIONAL INTERFACES
+===================================================== */
+
+functionalinterfaces: `
+
+<h1>
+    Functional Interfaces
+</h1>
+
+<div class="subtitle">
+    Discover the built-in functional interfaces in java.util.function
+    that make lambda expressions truly useful.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Functional Interface?
+</h2>
+
+<p>
+    A <strong>functional interface</strong> is an interface with exactly
+    one abstract method (it may have default and static methods too).
+    The <strong>@FunctionalInterface</strong> annotation is optional but
+    recommended - it tells the compiler to enforce this rule.
+</p>
+
+${codeBlock(`@FunctionalInterface
+interface Greeting {
+    void greet(String name);
+    // Adding a second abstract method here would cause a compile error
+}
+
+public class FunctionalInterfaceDemo {
+    public static void main(String[] args) {
+        Greeting g = name -> System.out.println("Hello, " + name + "!");
+        g.greet("World");
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello, World!
+</div>
+
+
+<h2>
+    Built-in Functional Interfaces
+</h2>
+
+<p>
+    The <strong>java.util.function</strong> package provides general
+    purpose functional interfaces so you rarely need to define your own.
+</p>
+
+<ul class="topic-list">
+    <li><strong>Function&lt;T, R&gt;:</strong> Takes a T, returns an R - apply(T t)</li>
+    <li><strong>Predicate&lt;T&gt;:</strong> Takes a T, returns boolean - test(T t)</li>
+    <li><strong>Consumer&lt;T&gt;:</strong> Takes a T, returns nothing - accept(T t)</li>
+    <li><strong>Supplier&lt;T&gt;:</strong> Takes nothing, returns a T - get()</li>
+    <li><strong>BiFunction&lt;T, U, R&gt;:</strong> Takes two arguments, returns an R</li>
+    <li><strong>UnaryOperator&lt;T&gt;:</strong> Function where input and output are the same type</li>
+</ul>
+
+${codeBlock(`import java.util.function.*;
+
+public class BuiltInFunctionalDemo {
+    public static void main(String[] args) {
+        Function<Integer, Integer> square = x -> x * x;
+        Predicate<Integer> isEven = x -> x % 2 == 0;
+        Consumer<String> printer = s -> System.out.println("Consumed: " + s);
+        Supplier<String> supplier = () -> "Generated value";
+        BiFunction<Integer, Integer, Integer> sum = (a, b) -> a + b;
+
+        System.out.println("Square: " + square.apply(6));
+        System.out.println("Is even: " + isEven.test(6));
+        printer.accept("data");
+        System.out.println("Supplier: " + supplier.get());
+        System.out.println("Sum: " + sum.apply(3, 4));
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Square: 36<br>
+Is even: true<br>
+Consumed: data<br>
+Supplier: Generated value<br>
+Sum: 7
+</div>
+
+
+<h2>
+    Composing Functional Interfaces
+</h2>
+
+<p>
+    Many functional interfaces provide default methods for composition,
+    such as <strong>andThen()</strong>, <strong>compose()</strong>,
+    <strong>and()</strong>, <strong>or()</strong>, and
+    <strong>negate()</strong>.
+</p>
+
+${codeBlock(`import java.util.function.*;
+
+public class ComposingDemo {
+    public static void main(String[] args) {
+        Function<Integer, Integer> addTwo = x -> x + 2;
+        Function<Integer, Integer> timesThree = x -> x * 3;
+
+        Function<Integer, Integer> combined = addTwo.andThen(timesThree);
+        System.out.println(combined.apply(5)); // (5 + 2) * 3 = 21
+
+        Predicate<Integer> isPositive = x -> x > 0;
+        Predicate<Integer> isEven = x -> x % 2 == 0;
+        Predicate<Integer> isPositiveAndEven = isPositive.and(isEven);
+
+        System.out.println(isPositiveAndEven.test(4));  // true
+        System.out.println(isPositiveAndEven.test(-4)); // false
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+21<br>
+true<br>
+false
+</div>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Reach for a built-in functional interface from java.util.function
+before writing your own - it keeps your API consistent with the rest
+of the JDK and the Stream API, which is built entirely on these types.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   STREAM API
+===================================================== */
+
+streams: `
+
+<h1>
+    Stream API
+</h1>
+
+<div class="subtitle">
+    Process collections of data in a declarative, functional style using
+    the Stream API introduced in Java 8.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Stream?
+</h2>
+
+<p>
+    A <strong>Stream</strong> represents a sequence of elements that
+    supports functional-style operations such as filter, map, and
+    reduce. Streams do not store data themselves - they process data
+    from a source (like a Collection) and produce a result without
+    modifying the original source.
+</p>
+
+<p>
+    Stream operations are either <strong>intermediate</strong>
+    (return another stream, e.g. filter, map, sorted) or
+    <strong>terminal</strong> (produce a final result, e.g. collect,
+    forEach, count). Streams are lazy: intermediate operations don't
+    run until a terminal operation is invoked.
+</p>
+
+
+<h2>
+    Filtering and Mapping
+</h2>
+
+${codeBlock(`import java.util.*;
+import java.util.stream.*;
+
+public class FilterMapDemo {
+    public static void main(String[] args) {
+        List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "Dave", "Eve");
+
+        List<String> result = names.stream()
+            .filter(name -> name.length() > 3)
+            .map(String::toUpperCase)
+            .collect(Collectors.toList());
+
+        System.out.println(result);
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+[ALICE, CHARLIE, DAVE]
+</div>
+
+
+<h2>
+    Sorting, Reducing, and Counting
+</h2>
+
+${codeBlock(`import java.util.*;
+import java.util.stream.*;
+
+public class SortReduceDemo {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(5, 3, 8, 1, 9, 2);
+
+        List<Integer> sorted = numbers.stream()
+            .sorted()
+            .collect(Collectors.toList());
+        System.out.println("Sorted: " + sorted);
+
+        int sum = numbers.stream()
+            .reduce(0, Integer::sum);
+        System.out.println("Sum: " + sum);
+
+        long count = numbers.stream()
+            .filter(n -> n > 3)
+            .count();
+        System.out.println("Count > 3: " + count);
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Sorted: [1, 2, 3, 5, 8, 9]<br>
+Sum: 28<br>
+Count &gt; 3: 4
+</div>
+
+
+<h2>
+    Collecting into Maps and Grouping
+</h2>
+
+<p>
+    The <strong>Collectors</strong> utility class provides powerful
+    terminal operations like <strong>groupingBy()</strong> for grouping
+    stream elements by a classifier function.
+</p>
+
+${codeBlock(`import java.util.*;
+import java.util.stream.*;
+
+public class GroupingDemo {
+    public static void main(String[] args) {
+        List<String> words = Arrays.asList("apple", "banana", "avocado", "blueberry", "cherry");
+
+        Map<Character, List<String>> grouped = words.stream()
+            .collect(Collectors.groupingBy(w -> w.charAt(0)));
+
+        System.out.println(grouped);
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+{a=[apple, avocado], b=[banana, blueberry], c=[cherry]}
+</div>
+
+
+<h2>
+    Numeric Streams
+</h2>
+
+<p>
+    Specialized streams like <strong>IntStream</strong>,
+    <strong>LongStream</strong>, and <strong>DoubleStream</strong> avoid
+    boxing overhead and provide numeric helpers like
+    <strong>sum()</strong>, <strong>average()</strong>, and
+    <strong>range()</strong>.
+</p>
+
+${codeBlock(`import java.util.stream.IntStream;
+
+public class IntStreamDemo {
+    public static void main(String[] args) {
+        int sum = IntStream.rangeClosed(1, 10).sum();
+        System.out.println("Sum 1 to 10: " + sum);
+
+        double average = IntStream.of(4, 8, 15, 16, 23, 42).average().orElse(0);
+        System.out.println("Average: " + average);
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Sum 1 to 10: 55<br>
+Average: 18.0
+</div>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+A stream can only be consumed once. Calling a terminal operation twice
+on the same stream throws IllegalStateException - create a new stream
+from the source each time you need to process it again.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   OPTIONAL CLASS
+===================================================== */
+
+optional: `
+
+<h1>
+    Optional Class
+</h1>
+
+<div class="subtitle">
+    Avoid NullPointerException by explicitly modeling the possible
+    absence of a value using java.util.Optional.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Why Optional?
+</h2>
+
+<p>
+    Methods that might not have a result to return traditionally
+    returned <strong>null</strong>, forcing every caller to remember to
+    null-check. <strong>Optional&lt;T&gt;</strong> is a container object
+    that either holds a non-null value or is empty, making the
+    possibility of "no value" explicit in the method signature.
+</p>
+
+
+<h2>
+    Creating and Checking Optionals
+</h2>
+
+${codeBlock(`import java.util.Optional;
+
+public class OptionalBasicsDemo {
+    public static void main(String[] args) {
+        Optional<String> present = Optional.of("Hello");
+        Optional<String> empty = Optional.empty();
+        Optional<String> nullable = Optional.ofNullable(null);
+
+        System.out.println(present.isPresent()); // true
+        System.out.println(empty.isPresent());    // false
+        System.out.println(nullable.isEmpty());   // true
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+true<br>
+false<br>
+true
+</div>
+
+
+<h2>
+    Safely Retrieving Values
+</h2>
+
+${codeBlock(`import java.util.Optional;
+
+public class OptionalRetrieveDemo {
+    public static void main(String[] args) {
+        Optional<String> name = Optional.ofNullable(null);
+
+        // orElse: provide a default value
+        System.out.println(name.orElse("Default Name"));
+
+        // orElseGet: provide a default via a Supplier (lazy)
+        System.out.println(name.orElseGet(() -> "Generated Default"));
+
+        // ifPresent: run code only if a value exists
+        Optional.of("Alice").ifPresent(n -> System.out.println("Found: " + n));
+
+        // orElseThrow: throw a custom exception if empty
+        try {
+            name.orElseThrow(() -> new IllegalStateException("No name found"));
+        } catch (IllegalStateException e) {
+            System.out.println("Caught: " + e.getMessage());
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Default Name<br>
+Generated Default<br>
+Found: Alice<br>
+Caught: No name found
+</div>
+
+
+<h2>
+    Chaining with map() and filter()
+</h2>
+
+${codeBlock(`import java.util.Optional;
+
+public class OptionalChainDemo {
+    public static void main(String[] args) {
+        Optional<String> email = Optional.of("user@example.com");
+
+        String domain = email
+            .filter(e -> e.contains("@"))
+            .map(e -> e.split("@")[1])
+            .orElse("unknown");
+
+        System.out.println("Domain: " + domain);
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Domain: example.com
+</div>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Never call get() on an Optional without checking isPresent() first -
+it throws NoSuchElementException if the Optional is empty. Prefer
+orElse(), orElseGet(), or ifPresent() instead, and avoid using Optional
+as a field type or method parameter - it is designed for return types.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   JAVA I/O STREAMS
+===================================================== */
+
+iostreams: `
+
+<h1>
+    Java I/O Streams
+</h1>
+
+<div class="subtitle">
+    Learn how Java reads and writes data to files and other sources
+    using the classes in java.io.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Byte Streams vs Character Streams
+</h2>
+
+<p>
+    Java's I/O system is split into two families:
+    <strong>byte streams</strong> (InputStream/OutputStream) for raw
+    binary data, and <strong>character streams</strong>
+    (Reader/Writer) for text, which handle character encoding
+    automatically.
+</p>
+
+<ul class="topic-list">
+    <li><strong>InputStream / OutputStream:</strong> Base classes for byte-based I/O</li>
+    <li><strong>FileInputStream / FileOutputStream:</strong> Read/write raw bytes from files</li>
+    <li><strong>Reader / Writer:</strong> Base classes for character-based I/O</li>
+    <li><strong>FileReader / FileWriter:</strong> Read/write text files</li>
+    <li><strong>BufferedReader / BufferedWriter:</strong> Add buffering for efficiency</li>
+</ul>
+
+
+<h2>
+    Writing to a File
+</h2>
+
+${codeBlock(`import java.io.FileWriter;
+import java.io.IOException;
+
+public class FileWriteDemo {
+    public static void main(String[] args) {
+        try (FileWriter writer = new FileWriter("notes.txt")) {
+            writer.write("Advanced Java I/O\\n");
+            writer.write("Second line of text\\n");
+            System.out.println("File written successfully");
+        } catch (IOException e) {
+            System.out.println("Error writing file: " + e.getMessage());
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+File written successfully
+</div>
+
+
+<h2>
+    Reading from a File with BufferedReader
+</h2>
+
+<p>
+    Wrapping a <strong>FileReader</strong> in a
+    <strong>BufferedReader</strong> lets you read a file line by line
+    efficiently using <strong>readLine()</strong>.
+</p>
+
+${codeBlock(`import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class FileReadDemo {
+    public static void main(String[] args) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("notes.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Advanced Java I/O<br>
+Second line of text
+</div>
+
+
+<h2>
+    try-with-resources
+</h2>
+
+<p>
+    Both examples above use <strong>try-with-resources</strong>, which
+    automatically closes any resource implementing
+    <strong>AutoCloseable</strong> when the block exits, even if an
+    exception occurs. This eliminates the need for manual
+    <strong>finally</strong> blocks to close streams.
+</p>
+
+${codeBlock(`// Equivalent pre-Java-7 style, shown for comparison
+BufferedReader reader = null;
+try {
+    reader = new BufferedReader(new FileReader("notes.txt"));
+    System.out.println(reader.readLine());
+} catch (IOException e) {
+    System.out.println("Error: " + e.getMessage());
+} finally {
+    if (reader != null) {
+        try {
+            reader.close();
+        } catch (IOException e) {
+            // ignore
+        }
+    }
+}`, "Java")}
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Always prefer try-with-resources over manual close() calls in a
+finally block. It is shorter, less error-prone, and correctly closes
+multiple resources in reverse order if you declare more than one.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   NIO (NEW I/O)
+===================================================== */
+
+nio: `
+
+<h1>
+    NIO (New I/O)
+</h1>
+
+<div class="subtitle">
+    Explore java.nio.file, the modern API for working with files and
+    directories introduced in Java 7.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Path and Files
+</h2>
+
+<p>
+    The NIO.2 API centers on two classes: <strong>Path</strong>, which
+    represents a location in the file system (replacing the older
+    <strong>File</strong> class), and <strong>Files</strong>, a utility
+    class with static methods for reading, writing, copying, and
+    inspecting files.
+</p>
+
+${codeBlock(`import java.nio.file.*;
+import java.io.IOException;
+import java.util.List;
+
+public class NioBasicsDemo {
+    public static void main(String[] args) throws IOException {
+        Path path = Paths.get("nio-notes.txt");
+
+        // Write all lines at once
+        Files.write(path, List.of("Line one", "Line two", "Line three"));
+
+        System.out.println("Exists: " + Files.exists(path));
+        System.out.println("Size in bytes: " + Files.size(path));
+
+        // Read all lines at once
+        List<String> lines = Files.readAllLines(path);
+        lines.forEach(System.out::println);
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Exists: true<br>
+Size in bytes: 32<br>
+Line one<br>
+Line two<br>
+Line three
+</div>
+
+
+<h2>
+    Copying, Moving, and Deleting Files
+</h2>
+
+${codeBlock(`import java.nio.file.*;
+import java.io.IOException;
+
+public class NioFileOpsDemo {
+    public static void main(String[] args) throws IOException {
+        Path source = Paths.get("nio-notes.txt");
+        Path copy = Paths.get("nio-notes-copy.txt");
+
+        Files.copy(source, copy, StandardCopyOption.REPLACE_EXISTING);
+        System.out.println("Copied to: " + copy);
+
+        Files.deleteIfExists(copy);
+        System.out.println("Copy deleted: " + !Files.exists(copy));
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Copied to: nio-notes-copy.txt<br>
+Copy deleted: true
+</div>
+
+
+<h2>
+    Streaming Files with Files.lines()
+</h2>
+
+<p>
+    <strong>Files.lines()</strong> returns a <strong>Stream&lt;String&gt;</strong>,
+    letting you combine file reading directly with the Stream API for
+    filtering and processing large files efficiently.
+</p>
+
+${codeBlock(`import java.nio.file.*;
+import java.io.IOException;
+import java.util.stream.Stream;
+
+public class NioStreamDemo {
+    public static void main(String[] args) throws IOException {
+        Path path = Paths.get("nio-notes.txt");
+
+        try (Stream<String> lines = Files.lines(path)) {
+            long count = lines.filter(l -> l.contains("Line")).count();
+            System.out.println("Matching lines: " + count);
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Matching lines: 3
+</div>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Prefer java.nio.file over the legacy java.io.File class in new code -
+it provides better exception messages, symbolic link support, and
+integrates cleanly with the Stream API for processing file contents.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   SERIALIZATION
+===================================================== */
+
+serialization: `
+
+<h1>
+    Serialization
+</h1>
+
+<div class="subtitle">
+    Convert Java objects into a byte stream so they can be saved to a
+    file or sent over a network, and reconstruct them later.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The Serializable Interface
+</h2>
+
+<p>
+    A class becomes serializable by implementing the marker interface
+    <strong>java.io.Serializable</strong>, which has no methods. It
+    simply signals to the JVM that instances of this class may be
+    converted to a byte stream.
+</p>
+
+${codeBlock(`import java.io.Serializable;
+
+class Employee implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    String name;
+    int id;
+    transient String password; // transient fields are NOT serialized
+
+    Employee(String name, int id, String password) {
+        this.name = name;
+        this.id = id;
+        this.password = password;
+    }
+}`, "Java")}
+
+
+<h2>
+    Writing an Object (Serializing)
+</h2>
+
+${codeBlock(`import java.io.*;
+
+public class SerializeDemo {
+    public static void main(String[] args) {
+        Employee emp = new Employee("Priya", 101, "secret123");
+
+        try (ObjectOutputStream out =
+                new ObjectOutputStream(new FileOutputStream("employee.ser"))) {
+            out.writeObject(emp);
+            System.out.println("Employee serialized successfully");
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Employee serialized successfully
+</div>
+
+
+<h2>
+    Reading an Object (Deserializing)
+</h2>
+
+${codeBlock(`import java.io.*;
+
+public class DeserializeDemo {
+    public static void main(String[] args) {
+        try (ObjectInputStream in =
+                new ObjectInputStream(new FileInputStream("employee.ser"))) {
+            Employee emp = (Employee) in.readObject();
+            System.out.println("Name: " + emp.name);
+            System.out.println("ID: " + emp.id);
+            System.out.println("Password: " + emp.password); // null, was transient
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Name: Priya<br>
+ID: 101<br>
+Password: null
+</div>
+
+<ul class="topic-list">
+    <li><strong>transient</strong> fields are skipped during serialization</li>
+    <li><strong>static</strong> fields belong to the class, not the instance, so they are never serialized</li>
+    <li><strong>serialVersionUID</strong> versions your class for compatibility across changes</li>
+    <li>All fields in the object graph must also be Serializable, or the operation fails</li>
+</ul>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Always declare an explicit serialVersionUID. If you omit it, the JVM
+generates one based on class details, and even a minor code change can
+alter it, causing InvalidClassException when reading old serialized data.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   ANNOTATIONS
+===================================================== */
+
+annotations: `
+
+<h1>
+    Annotations
+</h1>
+
+<div class="subtitle">
+    Learn how Java annotations attach metadata to code that tools,
+    frameworks, and the compiler can read and act upon.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What are Annotations?
+</h2>
+
+<p>
+    An <strong>annotation</strong> is metadata added to code using the
+    <strong>@</strong> symbol. Annotations do not change program logic
+    directly, but they can be read by the compiler, build tools, or at
+    runtime via reflection to drive behavior - this is heavily used by
+    frameworks like Spring and Hibernate.
+</p>
+
+
+<h2>
+    Built-in Annotations
+</h2>
+
+<ul class="topic-list">
+    <li><strong>@Override:</strong> Verifies a method overrides a superclass method</li>
+    <li><strong>@Deprecated:</strong> Marks a method or class as outdated</li>
+    <li><strong>@SuppressWarnings:</strong> Tells the compiler to ignore specific warnings</li>
+    <li><strong>@FunctionalInterface:</strong> Enforces that an interface has one abstract method</li>
+</ul>
+
+${codeBlock(`public class BuiltInAnnotationDemo {
+
+    @Deprecated
+    static void oldMethod() {
+        System.out.println("This method is outdated");
+    }
+
+    static class Animal {
+        void speak() { System.out.println("..."); }
+    }
+
+    static class Dog extends Animal {
+        @Override
+        void speak() {
+            System.out.println("Woof!");
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public static void main(String[] args) {
+        oldMethod();
+        new Dog().speak();
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+This method is outdated<br>
+Woof!
+</div>
+
+
+<h2>
+    Creating a Custom Annotation
+</h2>
+
+<p>
+    Custom annotations are defined with <strong>@interface</strong>.
+    Meta-annotations like <strong>@Retention</strong> and
+    <strong>@Target</strong> control how long the annotation is kept
+    and where it can be applied.
+</p>
+
+${codeBlock(`import java.lang.annotation.*;
+
+@Retention(RetentionPolicy.RUNTIME) // available at runtime via reflection
+@Target(ElementType.METHOD)         // can only be applied to methods
+@interface Testable {
+    String author() default "Unknown";
+}
+
+class Calculator {
+    @Testable(author = "Priya")
+    public int add(int a, int b) {
+        return a + b;
+    }
+}`, "Java")}
+
+
+<h2>
+    Reading Annotations with Reflection
+</h2>
+
+${codeBlock(`import java.lang.reflect.Method;
+
+public class ReadAnnotationDemo {
+    public static void main(String[] args) throws Exception {
+        Method method = Calculator.class.getMethod("add", int.class, int.class);
+
+        if (method.isAnnotationPresent(Testable.class)) {
+            Testable info = method.getAnnotation(Testable.class);
+            System.out.println("Method is testable, written by: " + info.author());
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Method is testable, written by: Priya
+</div>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+An annotation with RetentionPolicy.SOURCE is discarded by the compiler
+(like @Override), CLASS is kept in the .class file but not visible at
+runtime, and RUNTIME is kept and readable via reflection - use RUNTIME
+whenever a framework needs to inspect it while the program is running.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   REFLECTION API
+===================================================== */
+
+reflection: `
+
+<h1>
+    Reflection API
+</h1>
+
+<div class="subtitle">
+    Inspect and manipulate classes, methods, and fields at runtime using
+    java.lang.reflect - the technology behind most Java frameworks.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is Reflection?
+</h2>
+
+<p>
+    <strong>Reflection</strong> allows a running Java program to
+    examine or modify its own structure - classes, methods, fields, and
+    constructors - even without knowing their names at compile time.
+    Frameworks like Spring and JUnit use reflection extensively to
+    instantiate classes and invoke methods based on annotations.
+</p>
+
+
+<h2>
+    Getting Class Information
+</h2>
+
+${codeBlock(`class Person {
+    private String name = "Anonymous";
+    public int age = 0;
+
+    public Person() {}
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public void greet() {
+        System.out.println("Hi, I'm " + name);
+    }
+
+    private void secret() {
+        System.out.println("This is private");
+    }
+}
+
+public class ClassInfoDemo {
+    public static void main(String[] args) {
+        Class<?> clazz = Person.class;
+
+        System.out.println("Class name: " + clazz.getName());
+        System.out.println("Simple name: " + clazz.getSimpleName());
+
+        System.out.println("Methods:");
+        for (var method : clazz.getDeclaredMethods()) {
+            System.out.println("  " + method.getName());
+        }
+
+        System.out.println("Fields:");
+        for (var field : clazz.getDeclaredFields()) {
+            System.out.println("  " + field.getName());
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Class name: Person<br>
+Simple name: Person<br>
+Methods:<br>
+&nbsp;&nbsp;greet<br>
+&nbsp;&nbsp;secret<br>
+Fields:<br>
+&nbsp;&nbsp;name<br>
+&nbsp;&nbsp;age
+</div>
+
+
+<h2>
+    Creating Objects and Invoking Methods Dynamically
+</h2>
+
+${codeBlock(`import java.lang.reflect.*;
+
+public class ReflectionInvokeDemo {
+    public static void main(String[] args) throws Exception {
+        Class<?> clazz = Class.forName("Person");
+
+        // Create an instance using the no-arg constructor
+        Object person = clazz.getDeclaredConstructor().newInstance();
+
+        // Invoke the public greet() method dynamically
+        Method greetMethod = clazz.getMethod("greet");
+        greetMethod.invoke(person);
+
+        // Access and modify a private field
+        Field nameField = clazz.getDeclaredField("name");
+        nameField.setAccessible(true); // bypass private access
+        nameField.set(person, "Reflected Name");
+
+        greetMethod.invoke(person);
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hi, I'm Anonymous<br>
+Hi, I'm Reflected Name
+</div>
+
+<ul class="topic-list">
+    <li>Reflection can access and modify private fields via setAccessible(true)</li>
+    <li>It is slower than direct code because of runtime type checks</li>
+    <li>Heavily used by frameworks, dependency injection, and testing tools</li>
+    <li>Overusing reflection in application code makes it harder to read and maintain</li>
+</ul>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use reflection sparingly in your own application code. It bypasses
+compile-time type checking, so mistakes only surface at runtime.
+Reflection shines when building frameworks, not everyday business logic.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   ENUMS
+===================================================== */
+
+enums: `
+
+<h1>
+    Enums
+</h1>
+
+<div class="subtitle">
+    Model a fixed set of constants in a type-safe way using Java's
+    enum type, which is far more powerful than simple constants.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Basic Enum Declaration
+</h2>
+
+<p>
+    An <strong>enum</strong> defines a type with a fixed set of named
+    constant values. Unlike plain integer constants, enums are
+    type-safe - the compiler prevents assigning any other value.
+</p>
+
+${codeBlock(`enum Day {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+}
+
+public class EnumBasicsDemo {
+    public static void main(String[] args) {
+        Day today = Day.WEDNESDAY;
+
+        System.out.println("Today is: " + today);
+
+        if (today == Day.SATURDAY || today == Day.SUNDAY) {
+            System.out.println("It's the weekend!");
+        } else {
+            System.out.println("It's a weekday");
+        }
+
+        // Iterate over all enum constants
+        for (Day d : Day.values()) {
+            System.out.print(d + " ");
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Today is: WEDNESDAY<br>
+It's a weekday<br>
+MONDAY TUESDAY WEDNESDAY THURSDAY FRIDAY SATURDAY SUNDAY
+</div>
+
+
+<h2>
+    Enums with Fields, Constructors, and Methods
+</h2>
+
+<p>
+    Enums are full classes in Java - they can have fields, constructors,
+    and methods, and even implement interfaces.
+</p>
+
+${codeBlock(`enum Planet {
+    MERCURY(3.303e+23, 2.4397e6),
+    VENUS(4.869e+24, 6.0518e6),
+    EARTH(5.976e+24, 6.37814e6);
+
+    private final double mass;
+    private final double radius;
+
+    Planet(double mass, double radius) {
+        this.mass = mass;
+        this.radius = radius;
+    }
+
+    double surfaceGravity() {
+        final double G = 6.67300E-11;
+        return G * mass / (radius * radius);
+    }
+}
+
+public class EnumWithDataDemo {
+    public static void main(String[] args) {
+        for (Planet p : Planet.values()) {
+            System.out.printf("%s gravity: %.2f%n", p, p.surfaceGravity());
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+MERCURY gravity: 3.70<br>
+VENUS gravity: 8.87<br>
+EARTH gravity: 9.80
+</div>
+
+
+<h2>
+    Using Enums in a switch Statement
+</h2>
+
+${codeBlock(`public class EnumSwitchDemo {
+    enum TrafficLight { RED, YELLOW, GREEN }
+
+    public static void main(String[] args) {
+        TrafficLight light = TrafficLight.YELLOW;
+
+        switch (light) {
+            case RED:
+                System.out.println("Stop");
+                break;
+            case YELLOW:
+                System.out.println("Slow down");
+                break;
+            case GREEN:
+                System.out.println("Go");
+                break;
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Slow down
+</div>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use enum.valueOf("NAME") to convert a String to an enum constant, and
+ordinal() to get its position (starting at 0). Avoid relying on
+ordinal() for business logic though - reordering constants would
+silently break it.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   INNER CLASSES
+===================================================== */
+
+innerclasses: `
+
+<h1>
+    Inner Classes
+</h1>
+
+<div class="subtitle">
+    Learn the four types of nested classes in Java and when to use each
+    one to model tightly coupled relationships.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Types of Nested Classes
+</h2>
+
+<ul class="topic-list">
+    <li><strong>Member (Inner) Class:</strong> Non-static class defined inside another class</li>
+    <li><strong>Static Nested Class:</strong> Static class defined inside another class</li>
+    <li><strong>Local Class:</strong> Class defined inside a method body</li>
+    <li><strong>Anonymous Class:</strong> Class with no name, defined and instantiated in one expression</li>
+</ul>
+
+
+<h2>
+    Member (Inner) Class
+</h2>
+
+<p>
+    A non-static inner class has access to all members of its enclosing
+    class, including private ones, and requires an instance of the
+    outer class to be created.
+</p>
+
+${codeBlock(`class Outer {
+    private String message = "Hello from Outer";
+
+    class Inner {
+        void display() {
+            System.out.println(message); // accesses outer's private field
+        }
+    }
+}
+
+public class InnerClassDemo {
+    public static void main(String[] args) {
+        Outer outer = new Outer();
+        Outer.Inner inner = outer.new Inner(); // note the syntax
+        inner.display();
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello from Outer
+</div>
+
+
+<h2>
+    Static Nested Class
+</h2>
+
+<p>
+    A static nested class does not need an instance of the outer class
+    and cannot access its non-static members directly. It behaves like
+    a regular top-level class that happens to be namespaced inside another.
+</p>
+
+${codeBlock(`class Building {
+    static class Room {
+        String name;
+        Room(String name) { this.name = name; }
+        void describe() { System.out.println("Room: " + name); }
+    }
+}
+
+public class StaticNestedDemo {
+    public static void main(String[] args) {
+        Building.Room room = new Building.Room("Conference Hall");
+        room.describe();
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Room: Conference Hall
+</div>
+
+
+<h2>
+    Local and Anonymous Classes
+</h2>
+
+${codeBlock(`interface Greeter {
+    void greet();
+}
+
+public class LocalAnonymousDemo {
+    public static void main(String[] args) {
+        // Local class, defined inside a method
+        class LocalGreeter implements Greeter {
+            public void greet() {
+                System.out.println("Hello from a local class");
+            }
+        }
+        new LocalGreeter().greet();
+
+        // Anonymous class, no name at all
+        Greeter anon = new Greeter() {
+            public void greet() {
+                System.out.println("Hello from an anonymous class");
+            }
+        };
+        anon.greet();
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello from a local class<br>
+Hello from an anonymous class
+</div>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Since Java 8, lambda expressions replace most anonymous classes that
+implement a functional interface, resulting in far more concise code.
+Reserve anonymous classes for interfaces with more than one abstract
+method.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   JDBC BASICS
+===================================================== */
+
+jdbcbasics: `
+
+<h1>
+    JDBC Basics
+</h1>
+
+<div class="subtitle">
+    Learn how Java applications connect to and communicate with
+    relational databases using JDBC (Java Database Connectivity).
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is JDBC?
+</h2>
+
+<p>
+    <strong>JDBC</strong> is a standard Java API in the
+    <strong>java.sql</strong> package that lets Java programs execute
+    SQL statements against a relational database such as MySQL,
+    PostgreSQL, or Oracle. A database-specific <strong>driver</strong>
+    (a JAR file) implements the JDBC interfaces for that database.
+</p>
+
+
+<h2>
+    The Five Steps of JDBC
+</h2>
+
+<ul class="topic-list">
+    <li>Load the JDBC driver (usually automatic since JDBC 4.0)</li>
+    <li>Establish a Connection to the database</li>
+    <li>Create a Statement or PreparedStatement</li>
+    <li>Execute the SQL and process the ResultSet</li>
+    <li>Close the Connection and related resources</li>
+</ul>
+
+
+<h2>
+    Connecting to a Database
+</h2>
+
+${codeBlock(`import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class JdbcConnectionDemo {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/school";
+        String user = "root";
+        String password = "password";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+            System.out.println("Connected to database successfully!");
+        } catch (SQLException e) {
+            System.out.println("Connection failed: " + e.getMessage());
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Connected to database successfully!
+</div>
+
+
+<h2>
+    Running a Simple Query
+</h2>
+
+${codeBlock(`import java.sql.*;
+
+public class JdbcQueryDemo {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/school";
+
+        try (Connection conn = DriverManager.getConnection(url, "root", "password");
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT id, name, grade FROM students")) {
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String grade = rs.getString("grade");
+                System.out.println(id + " - " + name + " - " + grade);
+            }
+        } catch (SQLException e) {
+            System.out.println("Query failed: " + e.getMessage());
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1 - Alice - A<br>
+2 - Bob - B<br>
+3 - Charlie - A
+</div>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Always use try-with-resources for Connection, Statement, and ResultSet
+objects. They hold expensive database and network resources that must
+be released promptly, and try-with-resources guarantees this even if
+an exception occurs.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   JDBC CRUD OPERATIONS
+===================================================== */
+
+jdbccrud: `
+
+<h1>
+    JDBC CRUD Operations
+</h1>
+
+<div class="subtitle">
+    Perform Create, Read, Update, and Delete operations against a
+    database safely using PreparedStatement.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Why PreparedStatement?
+</h2>
+
+<p>
+    <strong>PreparedStatement</strong> precompiles SQL with placeholders
+    (<strong>?</strong>) for parameters. Unlike a plain
+    <strong>Statement</strong> with string-concatenated values, it
+    protects against <strong>SQL injection</strong> and is more
+    efficient when the same query runs multiple times.
+</p>
+
+
+<h2>
+    Create (INSERT)
+</h2>
+
+${codeBlock(`import java.sql.*;
+
+public class InsertDemo {
+    public static void main(String[] args) {
+        String sql = "INSERT INTO students (name, grade) VALUES (?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/school", "root", "password");
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, "Diana");
+            ps.setString(2, "A");
+
+            int rows = ps.executeUpdate();
+            System.out.println(rows + " row(s) inserted");
+        } catch (SQLException e) {
+            System.out.println("Insert failed: " + e.getMessage());
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1 row(s) inserted
+</div>
+
+
+<h2>
+    Read (SELECT with Parameters)
+</h2>
+
+${codeBlock(`import java.sql.*;
+
+public class SelectDemo {
+    public static void main(String[] args) {
+        String sql = "SELECT name, grade FROM students WHERE grade = ?";
+
+        try (Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/school", "root", "password");
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, "A");
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    System.out.println(rs.getString("name") + " - " + rs.getString("grade"));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Query failed: " + e.getMessage());
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Alice - A<br>
+Diana - A
+</div>
+
+
+<h2>
+    Update and Delete
+</h2>
+
+${codeBlock(`import java.sql.*;
+
+public class UpdateDeleteDemo {
+    public static void main(String[] args) {
+        String updateSql = "UPDATE students SET grade = ? WHERE name = ?";
+        String deleteSql = "DELETE FROM students WHERE name = ?";
+
+        try (Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/school", "root", "password")) {
+
+            try (PreparedStatement ps = conn.prepareStatement(updateSql)) {
+                ps.setString(1, "B");
+                ps.setString(2, "Bob");
+                System.out.println(ps.executeUpdate() + " row(s) updated");
+            }
+
+            try (PreparedStatement ps = conn.prepareStatement(deleteSql)) {
+                ps.setString(1, "Charlie");
+                System.out.println(ps.executeUpdate() + " row(s) deleted");
+            }
+        } catch (SQLException e) {
+            System.out.println("Operation failed: " + e.getMessage());
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1 row(s) updated<br>
+1 row(s) deleted
+</div>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Never build SQL by concatenating user input directly into a query
+string - it opens the door to SQL injection attacks. Always use
+PreparedStatement with placeholders and setX() methods instead.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   SERVLETS INTRODUCTION
+===================================================== */
+
+servlets: `
+
+<h1>
+    Servlets Introduction
+</h1>
+
+<div class="subtitle">
+    Understand how Servlets let Java handle HTTP requests and generate
+    dynamic web page responses on the server side.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Servlet?
+</h2>
+
+<p>
+    A <strong>Servlet</strong> is a Java class that runs inside a web
+    server (called a <strong>servlet container</strong>, such as
+    Apache Tomcat) and handles HTTP requests and responses. Servlets
+    are the foundation of server-side Java web development, and
+    frameworks like Spring MVC are built on top of them.
+</p>
+
+
+<h2>
+    The Servlet Lifecycle
+</h2>
+
+<ul class="topic-list">
+    <li><strong>init():</strong> Called once when the servlet is first loaded</li>
+    <li><strong>service():</strong> Called for every request, dispatches to doGet/doPost</li>
+    <li><strong>doGet() / doPost():</strong> Handle specific HTTP methods</li>
+    <li><strong>destroy():</strong> Called once when the servlet is being removed</li>
+</ul>
+
+
+<h2>
+    A Simple Servlet
+</h2>
+
+<p>
+    A servlet extends <strong>HttpServlet</strong> and overrides
+    methods for the HTTP verbs it needs to handle.
+</p>
+
+${codeBlock(`import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet("/hello")
+public class HelloServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        out.println("<html><body>");
+        out.println("<h1>Hello from a Servlet!</h1>");
+        out.println("</body></html>");
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Rendered in Browser (visiting /hello)
+</div>
+
+<div class="output">
+Hello from a Servlet!
+</div>
+
+
+<h2>
+    Reading Request Parameters
+</h2>
+
+${codeBlock(`import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.http.*;
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet("/greet")
+public class GreetServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+
+        String name = request.getParameter("name");
+        if (name == null || name.isEmpty()) {
+            name = "Guest";
+        }
+
+        response.setContentType("text/plain");
+        PrintWriter out = response.getWriter();
+        out.println("Hello, " + name + "!");
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output (visiting /greet?name=Priya)
+</div>
+
+<div class="output">
+Hello, Priya!
+</div>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Servlets are typically deployed as part of a WAR (Web Application
+Archive) file to a servlet container like Tomcat. The @WebServlet
+annotation maps a URL pattern to the servlet class, replacing the
+older web.xml configuration approach.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   JSP BASICS
+===================================================== */
+
+jsp: `
+
+<h1>
+    JSP Basics
+</h1>
+
+<div class="subtitle">
+    Learn JavaServer Pages (JSP), which let you embed Java code directly
+    inside HTML to generate dynamic web content.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is JSP?
+</h2>
+
+<p>
+    <strong>JSP</strong> (JavaServer Pages) is a technology that lets
+    you write HTML pages with embedded Java code. Behind the scenes,
+    the servlet container compiles each JSP file into a Servlet the
+    first time it is requested. JSP is often better suited for the view
+    layer, while Servlets handle request logic.
+</p>
+
+
+<h2>
+    JSP Scriptlets and Expressions
+</h2>
+
+<ul class="topic-list">
+    <li><strong>&lt;% code %&gt;:</strong> Scriptlet - a block of Java code</li>
+    <li><strong>&lt;%= expression %&gt;:</strong> Expression - prints a value directly</li>
+    <li><strong>&lt;%! declaration %&gt;:</strong> Declaration - defines methods or fields</li>
+    <li><strong>&lt;%@ page ... %&gt;:</strong> Page directive - sets page-level attributes</li>
+</ul>
+
+${codeBlock(`<%@ page language="java" contentType="text/html" %>
+<html>
+<body>
+    <h2>Welcome to JSP</h2>
+
+    <%
+        String username = request.getParameter("user");
+        if (username == null) username = "Guest";
+    %>
+
+    <p>Hello, <%= username %>!</p>
+
+    <p>Current time: <%= new java.util.Date() %></p>
+</body>
+</html>`, "JSP")}
+
+<div class="output-title">
+    Rendered Output (visiting page.jsp?user=Amit)
+</div>
+
+<div class="output">
+Welcome to JSP<br>
+Hello, Amit!<br>
+Current time: Thu Sep 10 2026 10:15:00
+</div>
+
+
+<h2>
+    JSP Implicit Objects
+</h2>
+
+<p>
+    JSP automatically provides several objects without you needing to
+    create them, since the compiled servlet declares them for you.
+</p>
+
+<ul class="topic-list">
+    <li><strong>request:</strong> The HttpServletRequest object</li>
+    <li><strong>response:</strong> The HttpServletResponse object</li>
+    <li><strong>session:</strong> The HttpSession for the current user</li>
+    <li><strong>out:</strong> The JspWriter used to write output to the page</li>
+    <li><strong>application:</strong> The ServletContext, shared across the whole app</li>
+</ul>
+
+${codeBlock(`<%
+    session.setAttribute("visitCount",
+        (Integer) (session.getAttribute("visitCount") == null
+            ? 1
+            : (Integer) session.getAttribute("visitCount") + 1));
+%>
+
+<p>You have visited this page
+   <%= session.getAttribute("visitCount") %> time(s).</p>`, "JSP")}
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Avoid putting heavy business logic directly inside JSP scriptlets - it
+mixes Java and HTML, making pages hard to maintain. Modern JSP
+development favors JSTL tags and Expression Language (EL) such as
+${'${'}user.name${'}'} instead of raw Java scriptlets.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   SINGLETON DESIGN PATTERN
+===================================================== */
+
+singleton: `
+
+<h1>
+    Singleton Design Pattern
+</h1>
+
+<div class="subtitle">
+    Ensure a class has only one instance and provide a single global
+    point of access to it.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Why Use a Singleton?
+</h2>
+
+<p>
+    Some objects should exist exactly once throughout an application's
+    lifetime - a configuration manager, a logging service, or a
+    connection pool, for example. The <strong>Singleton pattern</strong>
+    guarantees this by making the constructor private and controlling
+    instance creation through a static method.
+</p>
+
+
+<h2>
+    Eager Initialization
+</h2>
+
+<p>
+    The simplest form creates the instance immediately when the class
+    is loaded. It is thread-safe by default, but creates the object
+    even if it is never used.
+</p>
+
+${codeBlock(`class ConfigManager {
+    private static final ConfigManager INSTANCE = new ConfigManager();
+
+    private ConfigManager() {
+        System.out.println("ConfigManager created");
+    }
+
+    public static ConfigManager getInstance() {
+        return INSTANCE;
+    }
+
+    public void showConfig() {
+        System.out.println("App running in production mode");
+    }
+}
+
+public class EagerSingletonDemo {
+    public static void main(String[] args) {
+        ConfigManager c1 = ConfigManager.getInstance();
+        ConfigManager c2 = ConfigManager.getInstance();
+
+        c1.showConfig();
+        System.out.println("Same instance: " + (c1 == c2));
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+ConfigManager created<br>
+App running in production mode<br>
+Same instance: true
+</div>
+
+
+<h2>
+    Lazy Initialization with Double-Checked Locking
+</h2>
+
+<p>
+    A lazy singleton delays creation until first use, and needs careful
+    synchronization to remain thread-safe without paying the locking
+    cost on every call.
+</p>
+
+${codeBlock(`class Logger {
+    private static volatile Logger instance;
+
+    private Logger() {
+        System.out.println("Logger created");
+    }
+
+    public static Logger getInstance() {
+        if (instance == null) {
+            synchronized (Logger.class) {
+                if (instance == null) {
+                    instance = new Logger();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public void log(String message) {
+        System.out.println("[LOG] " + message);
+    }
+}
+
+public class LazySingletonDemo {
+    public static void main(String[] args) {
+        Logger logger = Logger.getInstance();
+        logger.log("Application started");
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Logger created<br>
+[LOG] Application started
+</div>
+
+
+<h2>
+    Enum Singleton
+</h2>
+
+<p>
+    Using an <strong>enum</strong> with a single constant is considered
+    the most robust way to implement a singleton in Java - it is
+    thread-safe automatically and immune to reflection and
+    serialization attacks that can break other approaches.
+</p>
+
+${codeBlock(`enum AppSettings {
+    INSTANCE;
+
+    private String theme = "dark";
+
+    public String getTheme() {
+        return theme;
+    }
+}
+
+public class EnumSingletonDemo {
+    public static void main(String[] args) {
+        System.out.println("Theme: " + AppSettings.INSTANCE.getTheme());
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Theme: dark
+</div>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Prefer the enum singleton approach when possible - Joshua Bloch
+recommends it in Effective Java because it handles serialization and
+reflection edge cases automatically, which the classic private
+constructor approach does not.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   FACTORY DESIGN PATTERN
+===================================================== */
+
+factory: `
+
+<h1>
+    Factory Design Pattern
+</h1>
+
+<div class="subtitle">
+    Delegate object creation to a factory method so client code depends
+    on interfaces rather than concrete classes.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The Problem Factory Solves
+</h2>
+
+<p>
+    When object creation logic involves conditionals or varies based on
+    input, scattering <strong>new</strong> calls throughout your code
+    makes it hard to maintain. The <strong>Factory pattern</strong>
+    centralizes this decision in one place, returning objects through a
+    common interface or superclass.
+</p>
+
+
+<h2>
+    Simple Factory Example
+</h2>
+
+${codeBlock(`interface Shape {
+    void draw();
+}
+
+class Circle implements Shape {
+    public void draw() { System.out.println("Drawing a Circle"); }
+}
+
+class Square implements Shape {
+    public void draw() { System.out.println("Drawing a Square"); }
+}
+
+class Triangle implements Shape {
+    public void draw() { System.out.println("Drawing a Triangle"); }
+}
+
+class ShapeFactory {
+    public static Shape createShape(String type) {
+        switch (type.toLowerCase()) {
+            case "circle": return new Circle();
+            case "square": return new Square();
+            case "triangle": return new Triangle();
+            default: throw new IllegalArgumentException("Unknown shape: " + type);
+        }
+    }
+}`, "Java")}
+
+${codeBlock(`public class FactoryDemo {
+    public static void main(String[] args) {
+        Shape s1 = ShapeFactory.createShape("circle");
+        Shape s2 = ShapeFactory.createShape("square");
+        Shape s3 = ShapeFactory.createShape("triangle");
+
+        s1.draw();
+        s2.draw();
+        s3.draw();
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Drawing a Circle<br>
+Drawing a Square<br>
+Drawing a Triangle
+</div>
+
+
+<h2>
+    Benefits of the Factory Pattern
+</h2>
+
+<ul class="topic-list">
+    <li>Client code depends only on the Shape interface, not concrete classes</li>
+    <li>Adding a new shape only requires changing the factory, not every caller</li>
+    <li>Object creation logic is centralized and easy to test</li>
+    <li>Supports the Open/Closed Principle - open for extension, closed for modification</li>
+</ul>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+The Factory pattern pairs naturally with polymorphism. If you find
+yourself writing the same switch statement based on a type string in
+multiple places, that is a strong signal to extract a Factory class.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   OBSERVER DESIGN PATTERN
+===================================================== */
+
+observer: `
+
+<h1>
+    Observer Design Pattern
+</h1>
+
+<div class="subtitle">
+    Define a one-to-many dependency so that when one object changes
+    state, all its dependents are notified automatically.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What Problem Does Observer Solve?
+</h2>
+
+<p>
+    The <strong>Observer pattern</strong> lets an object (the
+    <strong>subject</strong>) maintain a list of dependents
+    (<strong>observers</strong>) and notify them automatically of any
+    state changes, without the subject needing to know the concrete
+    class of its observers. This is the foundation of event-driven
+    programming and GUI event listeners.
+</p>
+
+
+<h2>
+    Defining the Observer Interface
+</h2>
+
+${codeBlock(`import java.util.ArrayList;
+import java.util.List;
+
+interface Observer {
+    void update(String event);
+}
+
+class NewsPublisher {
+    private List<Observer> subscribers = new ArrayList<>();
+
+    public void subscribe(Observer o) {
+        subscribers.add(o);
+    }
+
+    public void unsubscribe(Observer o) {
+        subscribers.remove(o);
+    }
+
+    public void publish(String headline) {
+        System.out.println("Publishing: " + headline);
+        for (Observer o : subscribers) {
+            o.update(headline);
+        }
+    }
+}`, "Java")}
+
+
+<h2>
+    Implementing Concrete Observers
+</h2>
+
+${codeBlock(`class EmailSubscriber implements Observer {
+    private String email;
+
+    EmailSubscriber(String email) { this.email = email; }
+
+    public void update(String event) {
+        System.out.println("Emailing " + email + ": " + event);
+    }
+}
+
+class SmsSubscriber implements Observer {
+    private String phone;
+
+    SmsSubscriber(String phone) { this.phone = phone; }
+
+    public void update(String event) {
+        System.out.println("Texting " + phone + ": " + event);
+    }
+}
+
+public class ObserverDemo {
+    public static void main(String[] args) {
+        NewsPublisher publisher = new NewsPublisher();
+
+        publisher.subscribe(new EmailSubscriber("alice@example.com"));
+        publisher.subscribe(new SmsSubscriber("555-1234"));
+
+        publisher.publish("Breaking News: Java 21 Released!");
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Publishing: Breaking News: Java 21 Released!<br>
+Emailing alice@example.com: Breaking News: Java 21 Released!<br>
+Texting 555-1234: Breaking News: Java 21 Released!
+</div>
+
+
+<h2>
+    Observer in the JDK
+</h2>
+
+<p>
+    Java's own GUI toolkits use the Observer pattern extensively - for
+    example, adding an <strong>ActionListener</strong> to a Swing
+    <strong>JButton</strong> registers an observer that is notified
+    whenever the button is clicked.
+</p>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Be careful about memory leaks with the Observer pattern - if a subject
+outlives its observers but never calls unsubscribe(), the observers
+cannot be garbage collected. This is called a "lapsed listener" problem.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   CUSTOM EXCEPTIONS
+===================================================== */
+
+customexceptions: `
+
+<h1>
+    Custom Exceptions
+</h1>
+
+<div class="subtitle">
+    Create your own exception classes to represent specific error
+    conditions in your application domain.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Why Create Custom Exceptions?
+</h2>
+
+<p>
+    Built-in exceptions like <strong>IllegalArgumentException</strong>
+    are generic. A custom exception, such as
+    <strong>InsufficientFundsException</strong>, communicates the exact
+    business rule that was violated and can carry extra data relevant
+    to that failure.
+</p>
+
+
+<h2>
+    Checked vs Unchecked Custom Exceptions
+</h2>
+
+<p>
+    Extend <strong>Exception</strong> to create a
+    <strong>checked</strong> exception (callers must handle or declare
+    it), or extend <strong>RuntimeException</strong> to create an
+    <strong>unchecked</strong> exception (no compile-time enforcement).
+</p>
+
+${codeBlock(`// Checked exception - must be declared with throws or caught
+class InsufficientFundsException extends Exception {
+    private double shortfall;
+
+    public InsufficientFundsException(String message, double shortfall) {
+        super(message);
+        this.shortfall = shortfall;
+    }
+
+    public double getShortfall() {
+        return shortfall;
+    }
+}
+
+// Unchecked exception - no forced handling
+class InvalidAccountException extends RuntimeException {
+    public InvalidAccountException(String message) {
+        super(message);
+    }
+}`, "Java")}
+
+
+<h2>
+    Using a Custom Exception
+</h2>
+
+${codeBlock(`class BankAccount {
+    private double balance;
+
+    BankAccount(double balance) {
+        this.balance = balance;
+    }
+
+    void withdraw(double amount) throws InsufficientFundsException {
+        if (amount > balance) {
+            double shortfall = amount - balance;
+            throw new InsufficientFundsException(
+                "Cannot withdraw " + amount + ", balance is " + balance, shortfall);
+        }
+        balance -= amount;
+        System.out.println("Withdrew " + amount + ", new balance: " + balance);
+    }
+}
+
+public class CustomExceptionDemo {
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount(500);
+
+        try {
+            account.withdraw(200);
+            account.withdraw(1000);
+        } catch (InsufficientFundsException e) {
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("Shortfall: " + e.getShortfall());
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Withdrew 200.0, new balance: 300.0<br>
+Error: Cannot withdraw 1000.0, balance is 300.0<br>
+Shortfall: 700.0
+</div>
+
+
+<h2>
+    Exception Chaining
+</h2>
+
+<p>
+    You can preserve the original cause of an error while throwing a
+    more meaningful custom exception by passing the original exception
+    to the constructor.
+</p>
+
+${codeBlock(`class DataProcessingException extends RuntimeException {
+    public DataProcessingException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}
+
+public class ExceptionChainingDemo {
+    public static void main(String[] args) {
+        try {
+            int result = Integer.parseInt("not a number");
+        } catch (NumberFormatException e) {
+            throw new DataProcessingException("Failed to process input row", e);
+        }
+    }
+}`, "Java")}
+
+<ul class="topic-list">
+    <li>Custom exception names should end in "Exception" by convention</li>
+    <li>Always provide a constructor that accepts a message, and ideally a cause</li>
+    <li>Prefer unchecked exceptions for programming errors, checked for recoverable conditions</li>
+</ul>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Do not overuse checked exceptions - they force every caller up the
+call stack to handle or declare them, which can lead to boilerplate
+catch blocks that just rethrow or log. Reserve checked exceptions for
+conditions the caller can reasonably be expected to recover from.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   NETWORKING WITH SOCKETS
+===================================================== */
+
+networking: `
+
+<h1>
+    Networking with Sockets
+</h1>
+
+<div class="subtitle">
+    Learn how Java programs communicate over a network using TCP
+    sockets in the java.net package.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Client-Server Basics
+</h2>
+
+<p>
+    A <strong>socket</strong> is an endpoint for communication between
+    two machines. A server uses a <strong>ServerSocket</strong> to
+    listen on a port and accept incoming connections, while a client
+    uses a <strong>Socket</strong> to connect to that server.
+</p>
+
+
+<h2>
+    Building a Simple Server
+</h2>
+
+${codeBlock(`import java.io.*;
+import java.net.*;
+
+public class EchoServer {
+    public static void main(String[] args) throws IOException {
+        try (ServerSocket serverSocket = new ServerSocket(5000)) {
+            System.out.println("Server listening on port 5000...");
+
+            try (Socket clientSocket = serverSocket.accept();
+                 BufferedReader in = new BufferedReader(
+                     new InputStreamReader(clientSocket.getInputStream()));
+                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
+
+                String message = in.readLine();
+                System.out.println("Received: " + message);
+                out.println("Echo: " + message);
+            }
+        }
+    }
+}`, "Java")}
+
+
+<h2>
+    Building a Simple Client
+</h2>
+
+${codeBlock(`import java.io.*;
+import java.net.*;
+
+public class EchoClient {
+    public static void main(String[] args) throws IOException {
+        try (Socket socket = new Socket("localhost", 5000);
+             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+             BufferedReader in = new BufferedReader(
+                 new InputStreamReader(socket.getInputStream()))) {
+
+            out.println("Hello, Server!");
+            String response = in.readLine();
+            System.out.println("Server replied: " + response);
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output (Client console)
+</div>
+
+<div class="output">
+Server replied: Echo: Hello, Server!
+</div>
+
+
+<h2>
+    Handling Multiple Clients
+</h2>
+
+<p>
+    A real server usually spawns a new thread for each accepted
+    connection so it can serve multiple clients concurrently rather
+    than blocking on one at a time.
+</p>
+
+${codeBlock(`import java.io.*;
+import java.net.*;
+
+public class MultiClientServer {
+    public static void main(String[] args) throws IOException {
+        try (ServerSocket serverSocket = new ServerSocket(5000)) {
+            System.out.println("Server ready for multiple clients...");
+
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
+                new Thread(() -> handleClient(clientSocket)).start();
+            }
+        }
+    }
+
+    private static void handleClient(Socket socket) {
+        try (socket;
+             BufferedReader in = new BufferedReader(
+                 new InputStreamReader(socket.getInputStream()))) {
+            System.out.println("Client says: " + in.readLine());
+        } catch (IOException e) {
+            System.out.println("Client error: " + e.getMessage());
+        }
+    }
+}`, "Java")}
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+TCP sockets (Socket/ServerSocket) guarantee reliable, ordered delivery,
+while UDP sockets (DatagramSocket) are faster but do not guarantee
+delivery or order. Choose TCP for things like file transfer and UDP
+for latency-sensitive use cases like live video streaming.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   DATE AND TIME API
+===================================================== */
+
+datetimeapi: `
+
+<h1>
+    Date and Time API (java.time)
+</h1>
+
+<div class="subtitle">
+    Work with dates and times using the modern, immutable java.time API
+    introduced in Java 8, which replaced the flawed old Date and
+    Calendar classes.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Core Classes
+</h2>
+
+<ul class="topic-list">
+    <li><strong>LocalDate:</strong> A date without time, e.g. 2026-09-10</li>
+    <li><strong>LocalTime:</strong> A time without date, e.g. 14:30:00</li>
+    <li><strong>LocalDateTime:</strong> Combined date and time, no time zone</li>
+    <li><strong>ZonedDateTime:</strong> Date and time with a specific time zone</li>
+    <li><strong>Duration:</strong> A time-based amount, e.g. "34.5 seconds"</li>
+    <li><strong>Period:</strong> A date-based amount, e.g. "2 years, 3 months"</li>
+</ul>
+
+
+<h2>
+    Working with LocalDate
+</h2>
+
+${codeBlock(`import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class LocalDateDemo {
+    public static void main(String[] args) {
+        LocalDate today = LocalDate.now();
+        LocalDate birthday = LocalDate.of(2000, 5, 15);
+
+        System.out.println("Today: " + today);
+        System.out.println("Birthday: " + birthday);
+        System.out.println("Day of week: " + birthday.getDayOfWeek());
+
+        LocalDate nextWeek = today.plusWeeks(1);
+        System.out.println("Next week: " + nextWeek);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.println("Formatted: " + today.format(formatter));
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Today: 2026-09-10<br>
+Birthday: 2000-05-15<br>
+Day of week: MONDAY<br>
+Next week: 2026-09-17<br>
+Formatted: 10/09/2026
+</div>
+
+
+<h2>
+    Calculating Differences: Period and Duration
+</h2>
+
+${codeBlock(`import java.time.*;
+
+public class PeriodDurationDemo {
+    public static void main(String[] args) {
+        LocalDate start = LocalDate.of(2020, 1, 1);
+        LocalDate end = LocalDate.of(2026, 9, 10);
+
+        Period period = Period.between(start, end);
+        System.out.println("Years: " + period.getYears() +
+            ", Months: " + period.getMonths() + ", Days: " + period.getDays());
+
+        LocalTime t1 = LocalTime.of(9, 0);
+        LocalTime t2 = LocalTime.of(17, 30);
+
+        Duration duration = Duration.between(t1, t2);
+        System.out.println("Hours worked: " + duration.toHours() + "h " +
+            (duration.toMinutes() % 60) + "m");
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Years: 6, Months: 8, Days: 9<br>
+Hours worked: 8h 30m
+</div>
+
+
+<h2>
+    Time Zones with ZonedDateTime
+</h2>
+
+${codeBlock(`import java.time.ZonedDateTime;
+import java.time.ZoneId;
+
+public class ZonedDateTimeDemo {
+    public static void main(String[] args) {
+        ZonedDateTime indiaTime = ZonedDateTime.now(ZoneId.of("Asia/Kolkata"));
+        ZonedDateTime nyTime = indiaTime.withZoneSameInstant(ZoneId.of("America/New_York"));
+
+        System.out.println("India: " + indiaTime);
+        System.out.println("New York: " + nyTime);
+    }
+}`, "Java")}
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+All classes in java.time are immutable and thread-safe - methods like
+plusDays() or withZoneSameInstant() return a new object rather than
+modifying the original. Avoid the legacy java.util.Date and
+java.util.Calendar classes in new code.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   REGULAR EXPRESSIONS IN JAVA
+===================================================== */
+
+regex: `
+
+<h1>
+    Regular Expressions in Java
+</h1>
+
+<div class="subtitle">
+    Use the java.util.regex package to search, match, and manipulate
+    text using powerful pattern matching.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Pattern and Matcher
+</h2>
+
+<p>
+    Java's regex support centers on two classes:
+    <strong>Pattern</strong>, a compiled representation of a regular
+    expression, and <strong>Matcher</strong>, an engine that performs
+    match operations on a given input using that pattern.
+</p>
+
+${codeBlock(`import java.util.regex.*;
+
+public class PatternMatcherDemo {
+    public static void main(String[] args) {
+        String text = "My phone numbers are 987-654-3210 and 123-456-7890";
+        Pattern pattern = Pattern.compile("\\\\d{3}-\\\\d{3}-\\\\d{4}");
+        Matcher matcher = pattern.matcher(text);
+
+        while (matcher.find()) {
+            System.out.println("Found: " + matcher.group());
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Found: 987-654-3210<br>
+Found: 123-456-7890
+</div>
+
+
+<h2>
+    Quick Matching with String Methods
+</h2>
+
+<p>
+    For simple one-off checks, <strong>String</strong> provides
+    convenience methods that use regex internally, so you don't always
+    need to work with Pattern and Matcher directly.
+</p>
+
+${codeBlock(`public class StringRegexDemo {
+    public static void main(String[] args) {
+        String email = "user@example.com";
+
+        boolean valid = email.matches("^[\\\\w.+-]+@[\\\\w-]+\\\\.[a-zA-Z]{2,}$");
+        System.out.println("Valid email: " + valid);
+
+        String csv = "apple, banana,  cherry ,date";
+        String[] items = csv.split("\\\\s*,\\\\s*");
+        for (String item : items) {
+            System.out.println("Item: [" + item + "]");
+        }
+
+        String cleaned = "Hello   World   from   Java".replaceAll("\\\\s+", " ");
+        System.out.println("Cleaned: " + cleaned);
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Valid email: true<br>
+Item: [apple]<br>
+Item: [banana]<br>
+Item: [cherry]<br>
+Item: [date]<br>
+Cleaned: Hello World from Java
+</div>
+
+
+<h2>
+    Capturing Groups
+</h2>
+
+<p>
+    Parentheses in a regex create <strong>capturing groups</strong>,
+    letting you extract specific parts of a match rather than the
+    whole thing.
+</p>
+
+${codeBlock(`import java.util.regex.*;
+
+public class GroupsDemo {
+    public static void main(String[] args) {
+        String log = "2026-09-10 ERROR Connection timed out";
+        Pattern pattern = Pattern.compile("(\\\\d{4}-\\\\d{2}-\\\\d{2}) (\\\\w+) (.+)");
+        Matcher matcher = pattern.matcher(log);
+
+        if (matcher.matches()) {
+            System.out.println("Date: " + matcher.group(1));
+            System.out.println("Level: " + matcher.group(2));
+            System.out.println("Message: " + matcher.group(3));
+        }
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Date: 2026-09-10<br>
+Level: ERROR<br>
+Message: Connection timed out
+</div>
+
+<ul class="topic-list">
+    <li><strong>\\\\d</strong> - any digit, <strong>\\\\w</strong> - word character, <strong>\\\\s</strong> - whitespace</li>
+    <li><strong>*</strong> zero or more, <strong>+</strong> one or more, <strong>?</strong> zero or one</li>
+    <li><strong>{n,m}</strong> between n and m repetitions</li>
+    <li><strong>^</strong> start of string, <strong>$</strong> end of string</li>
+</ul>
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+In a Java string literal, a single backslash must be written as two
+backslashes because backslash is also the Java string escape
+character. So the regex \\d matches a digit, but written in Java source
+code it appears as "\\\\d".
+
+</div>
+
+`,
+
+
+/* =====================================================
+   GUI WITH SWING
+===================================================== */
+
+swing: `
+
+<h1>
+    GUI with Swing
+</h1>
+
+<div class="subtitle">
+    Build desktop graphical user interfaces in Java using the Swing
+    toolkit, part of the javax.swing package.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is Swing?
+</h2>
+
+<p>
+    <strong>Swing</strong> is Java's classic GUI toolkit for building
+    desktop applications with windows, buttons, text fields, and other
+    controls. It is built on top of the older AWT (Abstract Window
+    Toolkit) but provides lightweight, pluggable-look-and-feel
+    components.
+</p>
+
+
+<h2>
+    Creating a Basic Window
+</h2>
+
+${codeBlock(`import javax.swing.*;
+
+public class BasicWindowDemo {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("My First Swing App");
+        frame.setSize(400, 300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JLabel label = new JLabel("Hello, Swing!", SwingConstants.CENTER);
+        frame.add(label);
+
+        frame.setVisible(true);
+    }
+}`, "Java")}
+
+<div class="output-title">
+    Result
+</div>
+
+<div class="output">
+A 400x300 desktop window titled "My First Swing App" appears,
+displaying the centered text "Hello, Swing!"
+</div>
+
+
+<h2>
+    Handling Button Clicks
+</h2>
+
+<p>
+    Swing uses the <strong>Observer pattern</strong> (event listeners)
+    to respond to user actions. An <strong>ActionListener</strong> is
+    registered on a button and its <strong>actionPerformed()</strong>
+    method runs when the button is clicked.
+</p>
+
+${codeBlock(`import javax.swing.*;
+import java.awt.event.*;
+import java.awt.FlowLayout;
+
+public class ButtonClickDemo {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Click Counter");
+        frame.setSize(300, 150);
+        frame.setLayout(new FlowLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JLabel countLabel = new JLabel("Clicks: 0");
+        JButton button = new JButton("Click Me");
+
+        int[] count = {0}; // effectively final workaround for lambda
+
+        button.addActionListener(e -> {
+            count[0]++;
+            countLabel.setText("Clicks: " + count[0]);
+        });
+
+        frame.add(button);
+        frame.add(countLabel);
+        frame.setVisible(true);
+    }
+}`, "Java")}
+
+
+<h2>
+    Common Swing Components
+</h2>
+
+<ul class="topic-list">
+    <li><strong>JFrame:</strong> The top-level window container</li>
+    <li><strong>JPanel:</strong> A generic container for grouping components</li>
+    <li><strong>JLabel:</strong> Displays text or an icon</li>
+    <li><strong>JButton:</strong> A clickable push button</li>
+    <li><strong>JTextField / JTextArea:</strong> Single-line and multi-line text input</li>
+    <li><strong>JCheckBox / JRadioButton:</strong> Boolean and single-choice selection controls</li>
+    <li><strong>JComboBox:</strong> A dropdown selection list</li>
+</ul>
+
+
+<h2>
+    Layout Managers
+</h2>
+
+<p>
+    A <strong>layout manager</strong> controls how components are
+    arranged within a container. Common choices include
+    <strong>FlowLayout</strong> (left-to-right, wrapping), 
+    <strong>BorderLayout</strong> (five regions: north, south, east,
+    west, center), and <strong>GridLayout</strong> (fixed rows and
+    columns).
+</p>
+
+${codeBlock(`import javax.swing.*;
+import java.awt.*;
+
+public class LayoutDemo {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("BorderLayout Demo");
+        frame.setSize(300, 200);
+        frame.setLayout(new BorderLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.add(new JButton("North"), BorderLayout.NORTH);
+        frame.add(new JButton("South"), BorderLayout.SOUTH);
+        frame.add(new JButton("East"), BorderLayout.EAST);
+        frame.add(new JButton("West"), BorderLayout.WEST);
+        frame.add(new JButton("Center"), BorderLayout.CENTER);
+
+        frame.setVisible(true);
+    }
+}`, "Java")}
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+All Swing components must be created and modified on the Event
+Dispatch Thread (EDT). Wrap your startup code in
+SwingUtilities.invokeLater(() -&gt; { ... }) to ensure thread safety,
+especially in larger applications.
+
+</div>
+
+`
+
+
+
+
+};
+
+
+/* =====================================================
+   CREATE CODE BLOCK
+===================================================== */
+
+function codeBlock(code, language) {
+
+    const id =
+        "code_" +
+        Math.random()
+        .toString(36)
+        .substring(2, 9);
+
+
+    return `
+
+        <div class="code-header">
+
+            <span>
+                ${language}
+            </span>
+
+            <button
+                class="copy-btn"
+                onclick="copyCode('${id}', this)">
+
+                Copy
+
+            </button>
+
+        </div>
+
+
+        <div class="code-box">
+
+            <pre id="${id}">${escapeHTML(code.trim())}</pre>
+
+        </div>
+
+    `;
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text) {
+
+    return text
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;");
+
+}
+
+
+/* =====================================================
+   SHOW TOPIC
+===================================================== */
+
+function showTopic(topic, button) {
+
+
+    document.getElementById("content").innerHTML =
+        topics[topic];
+
+
+    /* Remove active class */
+
+    document
+        .querySelectorAll(".topic")
+        .forEach(function(item) {
+
+            item.classList.remove("active");
+
+        });
+
+
+    /* Add active class */
+
+    button.classList.add("active");
+
+
+    /* Scroll content to top */
+
+    document
+        .querySelector(".content-area")
+        .scrollTop = 0;
+
+
+    /* Close mobile menu */
+
+    if (window.innerWidth <= 700) {
+
+        closeMenu();
+
+    }
+
+}
+
+
+/* =====================================================
+   COPY CODE
+===================================================== */
+
+function copyCode(id, button) {
+
+    const code =
+        document.getElementById(id).innerText;
+
+
+    navigator.clipboard.writeText(code);
+
+
+    button.innerText = "Copied!";
+
+
+    setTimeout(function() {
+
+        button.innerText = "Copy";
+
+    }, 1500);
+
+}
+
+
+/* =====================================================
+   OPEN / CLOSE MOBILE MENU
+===================================================== */
+
+function toggleMenu() {
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const overlay =
+        document.getElementById("overlay");
+
+
+    sidebar.classList.toggle("open");
+
+    overlay.classList.toggle("show");
+
+}
+
+
+function closeMenu() {
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const overlay =
+        document.getElementById("overlay");
+
+
+    sidebar.classList.remove("open");
+
+    overlay.classList.remove("show");
+
+}
+
+
+/* =====================================================
+   LOAD FIRST TOPIC
+===================================================== */
+
+showTopic("intro", document.querySelector(".topic"));
+
+</script>
+
+
+</body>
+</html>

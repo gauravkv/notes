@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Core Java Quiz - Cursor Computers Academy</title>
+    <title>PHP Quiz - Cursor Computers Academy</title>
 
     <style>
         * {
@@ -402,7 +402,7 @@
 
 <header>
     <h1>Cursor Computers Academy</h1>
-    <p>Core Java Programming</p>
+    <p>PHP Programming</p>
 </header>
 
 <nav class="site-nav">
@@ -426,29 +426,29 @@
                 </div>
             </div>
             <div class="site-nav-dropdown">
-                <span class="site-nav-link active" onclick="this.parentElement.classList.toggle('open')">Java &#9662;</span>
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Java ▾</span>
                 <div class="site-nav-menu">
                     <a href="corejava_theory.html">Theory</a>
                     <a href="corejava_programs.html">Programs</a>
                     <a href="corejava_quiz.html">Quiz</a>
                 </div>
             </div>
-                <div class="site-nav-dropdown">
-                    <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">PHP &#9662;</span>
-                    <div class="site-nav-menu">
-                        <a href="php_theory.html">Theory</a>
-                        <a href="php_programs.html">Programs</a>
-                        <a href="php_quiz.html">Quiz</a>
-                    </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link active" onclick="this.parentElement.classList.toggle('open')">PHP &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="php_theory.html">Theory</a>
+                    <a href="php_programs.html">Programs</a>
+                    <a href="php_quiz.html">Quiz</a>
                 </div>
-                <div class="site-nav-dropdown">
-                    <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Advanced Java &#9662;</span>
-                    <div class="site-nav-menu">
-                        <a href="advjava_theory.html">Theory</a>
-                        <a href="advjava_programs.html">Programs</a>
-                        <a href="advjava_quiz.html">Quiz</a>
-                    </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Advanced Java ▾</span>
+                <div class="site-nav-menu">
+                    <a href="advjava_theory.html">Theory</a>
+                    <a href="advjava_programs.html">Programs</a>
+                    <a href="advjava_quiz.html">Quiz</a>
                 </div>
+            </div>
         </div>
         <button class="site-hamburger" onclick="document.getElementById('siteNavLinks').classList.toggle('open')">☰</button>
     </div>
@@ -457,8 +457,8 @@
 <main>
 
     <div class="page-title">
-        <h2>Core Java Quiz</h2>
-        <p>Test your Core Java knowledge with 25 multiple choice questions.</p>
+        <h2>PHP Quiz</h2>
+        <p>Test your PHP knowledge with 25 multiple choice questions.</p>
     </div>
 
     <div class="quiz-card">
@@ -520,128 +520,128 @@
 
     const questions = [
         {
-            question: "Which of the following is the correct way to declare the main method in Java?",
-            options: ["public void main(String[] args)", "public static void main(String[] args)", "static public main(String args[])", "void main(String args)"],
+            question: "Which symbol is used to declare a variable in PHP?",
+            options: ["&", "$", "@", "#"],
             answer: 1
         },
         {
-            question: "Which data type is used to store a single character in Java?",
-            options: ["String", "char", "Character", "letter"],
+            question: "Which of the following is the correct PHP opening tag?",
+            options: ["<php>", "<?php", "<script php>", "<%php"],
             answer: 1
         },
         {
-            question: "What is the size of an int data type in Java?",
-            options: ["2 bytes", "4 bytes", "8 bytes", "Depends on the platform"],
-            answer: 1
-        },
-        {
-            question: "Which keyword is used to declare a constant variable in Java?",
-            options: ["const", "final", "static", "constant"],
-            answer: 1
-        },
-        {
-            question: "What is the default value of a boolean variable in Java?",
-            options: ["true", "false", "0", "null"],
-            answer: 1
-        },
-        {
-            question: "Which operator is used to compare two values for equality in Java?",
-            options: ["=", "==", "equals()", "!="],
-            answer: 1
-        },
-        {
-            question: "What is the output of: System.out.println(10 % 3);?",
-            options: ["3", "1", "0", "3.33"],
-            answer: 1
-        },
-        {
-            question: "Which control statement is used for multi-way branching in Java?",
-            options: ["if-else", "switch", "for", "do-while"],
-            answer: 1
-        },
-        {
-            question: "What is the correct syntax of a for loop in Java?",
-            options: ["for (int i = 0; i < 10; i++)", "for i in range(10)", "for (i = 0; i < 10)", "foreach (int i = 0; i < 10)"],
+            question: "PHP variables are:",
+            options: ["Case-sensitive", "Case-insensitive", "Only lowercase allowed", "Only uppercase allowed"],
             answer: 0
         },
         {
-            question: "Which loop guarantees at least one execution of its body?",
-            options: ["for loop", "while loop", "do-while loop", "enhanced for loop"],
+            question: "Which function is used to find the length of a string in PHP?",
+            options: ["length()", "strlen()", "count()", "sizeof()"],
+            answer: 1
+        },
+        {
+            question: "What will strtoupper(\"hello\") return?",
+            options: ["hello", "Hello", "HELLO", "hELLO"],
             answer: 2
         },
         {
-            question: "How do you declare an array of integers in Java?",
-            options: ["int arr[] = new int[5];", "array int arr = new int(5);", "int arr = new int[5];", "int[] arr = int[5];"],
-            answer: 0
-        },
-        {
-            question: "What is the index of the first element in a Java array?",
-            options: ["1", "0", "-1", "Depends on the array"],
-            answer: 1
-        },
-        {
-            question: "Which method is used to find the length of a String in Java?",
-            options: ["size()", "length()", "getLength()", "count()"],
-            answer: 1
-        },
-        {
-            question: "What does the method charAt(0) return for the string \"Java\"?",
-            options: ["J", "a", "v", "Java"],
-            answer: 0
-        },
-        {
-            question: "What is a method in Java?",
-            options: ["A variable that stores data", "A block of code that performs a specific task", "A class that contains objects", "A keyword used for loops"],
-            answer: 1
-        },
-        {
-            question: "Which keyword is used to create an object in Java?",
-            options: ["class", "object", "new", "create"],
-            answer: 2
-        },
-        {
-            question: "What is a constructor in Java?",
-            options: ["A method that returns a value", "A special method called when an object is created", "A static method of a class", "A method used to destroy objects"],
-            answer: 1
-        },
-        {
-            question: "Which keyword is used for inheritance in Java?",
-            options: ["inherits", "implements", "extends", "super"],
-            answer: 2
-        },
-        {
-            question: "What is polymorphism in Java?",
-            options: ["The ability to hide data", "The ability of an object to take many forms", "Creating multiple classes", "Using multiple constructors"],
-            answer: 1
-        },
-        {
-            question: "Which access modifier makes a member accessible only within the same class?",
-            options: ["public", "protected", "default", "private"],
+            question: "Which function is used to combine two or more strings in PHP?",
+            options: ["merge()", "concat()", "combine()", "The . operator or concat via .= "],
             answer: 3
         },
         {
-            question: "Which keyword is used to handle exceptions in Java?",
-            options: ["try", "throw", "catch", "All of the above"],
-            answer: 3
+            question: "How do you create an indexed array in PHP?",
+            options: ["$arr = array(1, 2, 3);", "$arr = {1, 2, 3};", "$arr = list(1, 2, 3);", "$arr = set(1, 2, 3);"],
+            answer: 0
         },
         {
-            question: "What is an interface in Java?",
-            options: ["A class with all implemented methods", "A blueprint with abstract methods that a class can implement", "A type of variable", "A package in Java"],
-            answer: 1
-        },
-        {
-            question: "Which keyword is used to declare an abstract class?",
-            options: ["interface", "abstract", "virtual", "static"],
-            answer: 1
-        },
-        {
-            question: "Which collection class in Java stores elements as key-value pairs?",
-            options: ["ArrayList", "HashSet", "HashMap", "LinkedList"],
+            question: "How do you access the value 'blue' from $colors = array(\"fav\" => \"blue\");?",
+            options: ["$colors[0]", "$colors->fav", "$colors[\"fav\"]", "$colors.fav"],
             answer: 2
         },
         {
-            question: "What is the parent class of all classes in Java?",
-            options: ["Main", "Object", "Class", "System"],
+            question: "Which function adds an element to the end of an array in PHP?",
+            options: ["array_push()", "push()", "add_array()", "array_add()"],
+            answer: 0
+        },
+        {
+            question: "Which operator is used for string concatenation in PHP?",
+            options: ["+", "&", ".", "-"],
+            answer: 2
+        },
+        {
+            question: "What does the === operator check in PHP?",
+            options: ["Value only", "Type only", "Value and type", "Neither value nor type"],
+            answer: 2
+        },
+        {
+            question: "Which control structure is best suited for testing a variable against many possible values?",
+            options: ["if-else", "switch", "while", "for"],
+            answer: 1
+        },
+        {
+            question: "Which loop is guaranteed to execute its body at least once in PHP?",
+            options: ["for", "while", "do-while", "foreach"],
+            answer: 2
+        },
+        {
+            question: "Which loop is specifically designed to iterate over arrays in PHP?",
+            options: ["for", "while", "do-while", "foreach"],
+            answer: 3
+        },
+        {
+            question: "How do you define a function in PHP?",
+            options: ["function myFunc() {}", "def myFunc() {}", "func myFunc() {}", "void myFunc() {}"],
+            answer: 0
+        },
+        {
+            question: "How do you pass a parameter by reference to a PHP function?",
+            options: ["function myFunc($x)", "function myFunc(&$x)", "function myFunc(*$x)", "function myFunc(ref $x)"],
+            answer: 1
+        },
+        {
+            question: "Which superglobal array is used to collect form data sent with the HTTP GET method?",
+            options: ["$_POST", "$_GET", "$_REQUEST", "$_FORM"],
+            answer: 1
+        },
+        {
+            question: "Which superglobal is used to store data across multiple pages for a single user session?",
+            options: ["$_COOKIE", "$_SESSION", "$_SERVER", "$_ENV"],
+            answer: 1
+        },
+        {
+            question: "Which function must be called before using $_SESSION in a PHP script?",
+            options: ["session_init()", "session_start()", "start_session()", "session_open()"],
+            answer: 1
+        },
+        {
+            question: "Which keyword is used to create a class in PHP?",
+            options: ["class", "Class", "object", "new"],
+            answer: 0
+        },
+        {
+            question: "What is the name of the constructor method in a PHP class?",
+            options: ["__construct()", "__init__()", "construct()", "ClassName()"],
+            answer: 0
+        },
+        {
+            question: "Which keyword allows a PHP class to inherit from another class?",
+            options: ["implements", "inherits", "extends", "uses"],
+            answer: 2
+        },
+        {
+            question: "What does an interface in PHP define?",
+            options: ["Fully implemented methods", "A set of method signatures a class must implement", "Only private properties", "A final class that cannot be extended"],
+            answer: 1
+        },
+        {
+            question: "Which block of code is used to catch an exception thrown in a try block?",
+            options: ["catch", "except", "handle", "rescue"],
+            answer: 0
+        },
+        {
+            question: "Which PHP extension provides an object-oriented, database-agnostic way to connect to a MySQL database?",
+            options: ["MySQLi only", "PDO", "cURL", "GD"],
             answer: 1
         }
     ];

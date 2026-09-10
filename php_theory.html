@@ -1,0 +1,4814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>PHP Theory - Cursor Computers Academy</title>
+
+
+<style>
+
+/* SITE NAV */
+.site-nav {
+    background: #ffffff; border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.site-nav-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    position: relative;
+}
+.site-nav-links {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+.site-nav-link {
+    color: #374151;
+    text-decoration: none;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+.site-nav-link:hover, .site-nav-link.active {
+    color: #4f46e5;
+    background: #f0f5ff;
+}
+.site-nav-dropdown {
+    position: relative;
+}
+.site-nav-menu {
+    display: none; border: 1px solid #e5e7eb;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #ffffff;
+    min-width: 160px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 0 0 8px 8px;
+    z-index: 1001;
+}
+.site-nav-dropdown:hover .site-nav-menu {
+    display: block;
+}
+.site-nav-menu a { border-bottom: 1px solid #f3f4f6;
+    display: block;
+    color: #374151;
+    text-decoration: none;
+    padding: 11px 18px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+.site-nav-menu a:hover {
+    background: #f0f5ff;
+    color: #4f46e5;
+}
+.site-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: #374151;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 12px;
+    margin-left: auto;
+}
+@media (max-width: 600px) {
+    .site-hamburger { display: block; }
+    .site-nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #ffffff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        z-index: 1002;
+    }
+    .site-nav-links.open { display: flex; }
+    .site-nav-link { text-align: left; width: 100%; display: block; border-bottom: 1px solid #e5e7eb; }
+    .site-nav-menu {
+        position: static;
+        box-shadow: none;
+        border-radius: 0;
+    }
+    .site-nav-menu a { border-bottom: 1px solid #f3f4f6; padding-left: 36px; }
+    .site-nav-dropdown { width: 100%; } .site-nav-dropdown:hover .site-nav-menu { display: none; }
+    .site-nav-dropdown.open .site-nav-menu { display: block; }
+}
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+
+    background: #f5f7fa;
+
+    color: #252a34;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+
+    height: 64px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e2e6ed;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    position: sticky;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 100;
+}
+
+
+.logo {
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    color: #252a34;
+}
+
+
+.language {
+
+    font-size: 14px;
+
+    color: #687386;
+}
+
+
+/* =====================================================
+   MOBILE MENU BUTTON
+===================================================== */
+
+.menu-btn {
+
+    display: none;
+
+    border: none;
+
+    background: #eef0ff;
+
+    color: #4f46e5;
+
+    padding: 8px 12px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   MAIN LAYOUT
+===================================================== */
+
+.main {
+
+    display: flex;
+
+    position: fixed;
+
+    top: 64px;
+
+    bottom: 0;
+
+    left: 0;
+
+    right: 0;
+}
+
+
+/* =====================================================
+   LEFT SIDEBAR
+===================================================== */
+
+.sidebar {
+
+    width: 18%;
+
+    min-width: 150px;
+
+    background: #ffffff;
+
+    border-right: 1px solid #e2e6ed;
+
+    overflow-y: auto;
+
+    padding: 25px 15px;
+}
+
+
+.sidebar-title {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #8a93a3;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    padding: 0 12px;
+
+    margin-bottom: 12px;
+}
+
+
+/* =====================================================
+   TOPIC BUTTON
+===================================================== */
+
+.topic {
+
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    text-align: left;
+
+    padding: 12px 14px;
+
+    margin-bottom: 4px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    color: #505866;
+
+    font-size: 14px;
+
+    transition: all 0.2s;
+}
+
+
+.topic:hover {
+
+    background: #f3f4ff;
+
+    color: #4f46e5;
+}
+
+
+.topic.active {
+
+    background: #eef0ff;
+
+    color: #4f46e5;
+
+
+}
+
+
+/* =====================================================
+   RIGHT CONTENT AREA
+===================================================== */
+
+.content-area {
+
+    width: 82%;
+
+    overflow-y: auto;
+
+    padding: 2px;
+}
+
+
+/* =====================================================
+   CONTENT CARD
+===================================================== */
+
+.content {
+
+    width: min(1600px, 100%);
+
+    margin: 0 10;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e6ed;
+
+    border-radius: 14px;
+
+    padding: 45px;
+
+    box-shadow:
+        0 8px 30px rgba(30, 36, 48, 0.06);
+}
+
+
+/* =====================================================
+   TYPOGRAPHY
+===================================================== */
+
+h1 {
+
+    margin: 0;
+
+    font-size: 36px;
+
+    line-height: 1.2;
+
+    color: #202532;
+}
+
+
+.subtitle {
+
+    margin-top: 10px;
+
+    color: #687386;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+
+.divider {
+
+    height: 1px;
+
+    background: #e5e8ee;
+
+    margin: 28px 0;
+}
+
+
+h2 {
+
+    font-size: 24px;
+
+    margin-top: 32px;
+
+    margin-bottom: 10px;
+
+    color: #252a34;
+}
+
+
+p {
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    color: #3f4652;
+
+    margin: 12px 0;
+}
+
+
+strong {
+
+    color: #303744;
+}
+
+
+/* =====================================================
+   LIST
+===================================================== */
+
+.topic-list {
+
+    padding-left: 22px;
+
+    color: #3f4652;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+
+.topic-list li {
+
+    margin-bottom: 2px;
+}
+
+
+/* =====================================================
+   CODE HEADER
+===================================================== */
+
+.code-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: #171b24;
+
+    color: #aeb6c5;
+
+    padding: 10px 15px;
+
+    border-radius: 9px 9px 0 0;
+
+    font-size: 13px;
+
+    margin-top: 20px;
+}
+
+
+/* =====================================================
+   COPY BUTTON
+===================================================== */
+
+.copy-btn {
+
+    border: none;
+
+    background: #292f3c;
+
+    color: #dce1ea;
+
+    padding: 6px 11px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    transition: 0.2s;
+}
+
+
+.copy-btn:hover {
+
+    background: #3a4252;
+}
+
+
+/* =====================================================
+   CODE BOX
+===================================================== */
+
+.code-box {
+
+    background: #1e2430;
+
+    padding: 20px;
+
+    border-radius: 0 0 9px 9px;
+
+    overflow-x: auto;
+
+    box-shadow:
+        0 8px 20px rgba(20, 25, 35, 0.12);
+}
+
+
+.code-box pre {
+
+    margin: 0;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    color: #e6eaf0;
+
+    white-space: pre;
+}
+
+
+/* =====================================================
+   SYNTAX COLORS
+===================================================== */
+
+.keyword {
+    color: #c792ea;
+}
+
+.function {
+    color: #82aaff;
+}
+
+.string {
+    color: #c3e88d;
+}
+
+.number {
+    color: #f78c6c;
+}
+
+.comment {
+    color: #697386;
+}
+
+
+/* =====================================================
+   OUTPUT
+===================================================== */
+
+.output-title {
+
+    margin-top: 25px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #687386;
+}
+
+
+.output {
+
+    margin-top: 8px;
+
+    background: #f8f9fb;
+
+    border: 1px solid #e2e6ed;
+
+    border-radius: 8px;
+
+    padding: 14px 18px;
+
+    font-family:
+        Consolas,
+        monospace;
+
+    font-size: 14px;
+
+    color: #303744;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   INFO BOX
+===================================================== */
+
+.info {
+
+    margin-top: 25px;
+
+    padding: 17px 20px;
+
+    background: #f3f4ff;
+
+    border-left: 4px solid #6366f1;
+
+    border-radius: 6px;
+
+    color: #454a65;
+
+    line-height: 1.6;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   MOBILE OVERLAY
+===================================================== */
+
+.overlay {
+
+    display: none;
+}
+
+
+/* =====================================================
+   MOBILE DESIGN
+===================================================== */
+
+@media (max-width: 700px) {
+
+
+    /* ---------------------------------------------
+       NAVBAR
+    --------------------------------------------- */
+
+    .navbar {
+
+        padding: 0 16px;
+    }
+
+
+    .menu-btn {
+
+        display: block;
+    }
+
+
+    .language {
+
+        display: none;
+    }
+
+
+    /* ---------------------------------------------
+       MAIN
+    --------------------------------------------- */
+
+    .main {
+
+        position: static;
+
+        display: block;
+
+        margin-top: 0;
+    }
+
+
+    /* ---------------------------------------------
+       SIDEBAR / DRAWER
+    --------------------------------------------- */
+
+    .sidebar {
+
+        position: fixed;
+
+        top: 64px;
+
+        left: 0;
+
+        bottom: 0;
+
+        width: 280px;
+
+        min-width: 0;
+
+        z-index: 200;
+
+        transform: translateX(-100%);
+
+        transition:
+            transform 0.25s ease;
+
+        box-shadow:
+            5px 0 25px rgba(0,0,0,0.12);
+
+        overflow-y: auto;
+
+        padding: 22px 15px;
+    }
+
+
+    .sidebar.open {
+
+        transform: translateX(0);
+    }
+
+
+    /* ---------------------------------------------
+       DARK OVERLAY
+    --------------------------------------------- */
+
+    .overlay {
+
+        position: fixed;
+
+        display: none;
+
+        top: 64px;
+
+        left: 0;
+
+        right: 0;
+
+        bottom: 0;
+
+        background:
+            rgba(0,0,0,0.35);
+
+        z-index: 150;
+    }
+
+
+    .overlay.show {
+
+        display: block;
+    }
+
+
+    /* ---------------------------------------------
+       CONTENT
+    --------------------------------------------- */
+
+    .content-area {
+
+        width: 100%;
+
+        padding: 20px 12px;
+
+        overflow: visible;
+    }
+
+
+    .content {
+
+        width: 100%;
+
+        padding: 28px 20px;
+
+        border-radius: 10px;
+    }
+
+
+    h1 {
+
+        font-size: 30px;
+    }
+
+
+    h2 {
+
+        font-size: 22px;
+    }
+
+
+    p {
+
+        font-size: 16px;
+
+        line-height: 1.7;
+    }
+
+
+    .code-box {
+
+        padding: 15px;
+    }
+
+
+    .code-box pre {
+
+        font-size: 13px;
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .logo {
+
+        font-size: 17px;
+    }
+
+
+    .menu-btn {
+
+        font-size: 12px;
+
+        padding: 7px 10px;
+    }
+
+
+    .content {
+
+        padding: 24px 16px;
+    }
+
+
+    h1 {
+
+        font-size: 27px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<!-- ===================================================
+     NAVBAR
+=================================================== -->
+
+<nav class="navbar">
+
+
+    <div class="logo">
+
+        Coding Notes
+
+    </div>
+
+
+    <!-- Mobile only -->
+
+    <button
+        class="menu-btn"
+        onclick="toggleMenu()">
+
+        ☰ Topics
+
+    </button>
+
+
+    <div class="language">
+
+        PHP
+
+    </div>
+
+
+</nav>
+
+<nav class="site-nav">
+    <div class="site-nav-inner">
+        <div class="site-nav-links" id="siteNavLinks">
+            <a href="index.html" class="site-nav-link">Home</a>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Python &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="python_theory.html">Theory</a>
+                    <a href="python_programs.html">Programs</a>
+                    <a href="python_quiz.html">Quiz</a>
+                </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">MySQL &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="mysql_theory.html">Theory</a>
+                    <a href="mysql_programs.html">Programs</a>
+                    <a href="mysql_quiz.html">Quiz</a>
+                </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Java &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="corejava_theory.html">Theory</a>
+                    <a href="corejava_programs.html">Programs</a>
+                    <a href="corejava_quiz.html">Quiz</a>
+                </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link active" onclick="this.parentElement.classList.toggle('open')">PHP &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="php_theory.html">Theory</a>
+                    <a href="php_programs.html">Programs</a>
+                    <a href="php_quiz.html">Quiz</a>
+                </div>
+            </div>
+            <div class="site-nav-dropdown">
+                <span class="site-nav-link" onclick="this.parentElement.classList.toggle('open')">Advanced Java &#9662;</span>
+                <div class="site-nav-menu">
+                    <a href="advjava_theory.html">Theory</a>
+                    <a href="advjava_programs.html">Programs</a>
+                    <a href="advjava_quiz.html">Quiz</a>
+                </div>
+            </div>
+        </div>
+        <button class="site-hamburger" onclick="document.getElementById('siteNavLinks').classList.toggle('open')">&#9776;</button>
+    </div>
+</nav>
+
+
+
+<!-- ===================================================
+     MAIN
+=================================================== -->
+
+<div class="main">
+
+
+    <!-- =================================================
+         LEFT TOPICS
+    ================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar">
+
+
+        <div class="sidebar-title">
+
+            PHP Topics
+
+        </div>
+
+
+        <button
+            class="topic active"
+            onclick="showTopic('intro', this)">
+
+            Introduction to PHP
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('installing', this)">
+
+            Installing PHP
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('syntax', this)">
+
+            PHP Syntax Basics
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('variables', this)">
+
+            Variables
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('datatypes', this)">
+
+            Data Types
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('constants', this)">
+
+            Constants
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('operators', this)">
+
+            Operators
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('comments', this)">
+
+            Comments
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('ifelse', this)">
+
+            If...Else
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('switchcase', this)">
+
+            Switch Statement
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('whileloop', this)">
+
+            While Loop
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('forloop', this)">
+
+            For Loop
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('foreachloop', this)">
+
+            Foreach Loop
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('breakcontinue', this)">
+
+            Break and Continue
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('functions', this)">
+
+            Functions
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('functionargs', this)">
+
+            Function Arguments &amp; Return Values
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('arrays', this)">
+
+            Indexed Arrays
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('assocarrays', this)">
+
+            Associative Arrays
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('multiarrays', this)">
+
+            Multidimensional Arrays
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('stringfunctions', this)">
+
+            String Functions
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('superglobals', this)">
+
+            Superglobals ($_GET, $_POST, $_SESSION)
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('forms', this)">
+
+            Forms Handling
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('filehandling', this)">
+
+            File Handling
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('include', this)">
+
+            Include and Require
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('classes', this)">
+
+            Classes and Objects
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('constructors', this)">
+
+            Constructors and Destructors
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('inheritance', this)">
+
+            Inheritance
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('interfaces', this)">
+
+            Interfaces and Abstract Classes
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('exceptions', this)">
+
+            Exception Handling
+
+        </button>
+
+
+        <button
+            class="topic"
+            onclick="showTopic('phpmysql', this)">
+
+            PHP with MySQL (PDO / MySQLi)
+
+        </button>
+
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MOBILE OVERLAY
+    ================================================== -->
+
+    <div
+        class="overlay"
+        id="overlay"
+        onclick="closeMenu()">
+    </div>
+
+
+
+    <!-- =================================================
+         RIGHT CONTENT
+    ================================================== -->
+
+    <section class="content-area">
+
+
+        <div
+            class="content"
+            id="content">
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   TOPIC CONTENT
+===================================================== */
+
+const topics = {
+
+
+/* =====================================================
+   INTRODUCTION
+===================================================== */
+
+intro: `
+
+<h1>
+    Introduction to PHP
+</h1>
+
+<div class="subtitle">
+    Learn what PHP is, why it is used, and where it fits into
+    modern web development.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is PHP?
+</h2>
+
+<p>
+    PHP (recursive acronym for <strong>PHP: Hypertext Preprocessor</strong>)
+    is a widely used, open-source, server-side scripting language
+    designed primarily for web development. PHP code is executed on
+    the server, and the result (usually plain HTML) is sent to the
+    client's browser.
+</p>
+
+<p>
+    PHP was created by Rasmus Lerdorf in 1994 and has since grown
+    into one of the most popular server-side languages, powering a
+    huge portion of the web, including platforms like WordPress,
+    Facebook (in its early years), and countless custom web
+    applications.
+</p>
+
+
+<h2>
+    Why Learn PHP?
+</h2>
+
+<p>
+    PHP is easy to learn for beginners, yet powerful enough to build
+    large, complex, database-driven websites and applications. It
+    integrates seamlessly with HTML and works especially well with
+    MySQL databases.
+</p>
+
+<ul class="topic-list">
+    <li>Free and open-source</li>
+    <li>Runs on almost every operating system and web server</li>
+    <li>Easy to embed directly inside HTML pages</li>
+    <li>Excellent database support (MySQL, PostgreSQL, SQLite, etc.)</li>
+    <li>Huge ecosystem of frameworks (Laravel, Symfony, CodeIgniter)</li>
+    <li>Large community and abundant learning resources</li>
+</ul>
+
+
+<h2>
+    A Simple PHP Example
+</h2>
+
+<p>
+    PHP code is placed inside special tags <strong>&lt;?php ... ?&gt;</strong>
+    and can be mixed freely with HTML markup.
+</p>
+
+${codeBlock(`<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My First PHP Page</h1>
+
+<?php
+    echo "Hello, World! This text was generated by PHP.";
+?>
+
+</body>
+</html>`, "PHP")}
+
+<div class="output-title">
+    Output (rendered in browser)
+</div>
+
+<div class="output">
+My First PHP Page<br>
+Hello, World! This text was generated by PHP.
+</div>
+
+
+<div class="info">
+
+<strong>Where is PHP used?</strong><br><br>
+
+Content Management Systems (WordPress, Joomla, Drupal) &bull;
+E-commerce platforms &bull; Web APIs &bull; Server-side form
+processing &bull; Dynamic, database-driven websites
+
+</div>
+
+`,
+
+
+/* =====================================================
+   INSTALLING PHP
+===================================================== */
+
+installing: `
+
+<h1>
+    Installing PHP
+</h1>
+
+<div class="subtitle">
+    Set up a PHP development environment on your computer so you can
+    write and run PHP scripts locally.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Ways to Install PHP
+</h2>
+
+<p>
+    Because PHP is a server-side language, you need a way to run a
+    web server alongside the PHP interpreter. The most common options
+    are:
+</p>
+
+<ul class="topic-list">
+    <li><strong>XAMPP:</strong> A free package that bundles Apache, MySQL, and PHP together (Windows, macOS, Linux)</li>
+    <li><strong>WAMP:</strong> Similar bundle, but Windows only</li>
+    <li><strong>MAMP:</strong> Similar bundle, popular on macOS</li>
+    <li><strong>Native install:</strong> Installing PHP directly via a package manager</li>
+</ul>
+
+
+<h2>
+    Installing on macOS / Linux (via package manager)
+</h2>
+
+<p>
+    On macOS with Homebrew, or on most Linux distributions, PHP can
+    be installed directly from the command line.
+</p>
+
+${codeBlock(`# macOS (Homebrew)
+brew install php
+
+# Ubuntu / Debian
+sudo apt update
+sudo apt install php
+
+# Verify installation
+php -v`, "Bash")}
+
+
+<h2>
+    Running PHP's Built-in Development Server
+</h2>
+
+<p>
+    PHP ships with a lightweight built-in web server that is perfect
+    for local development and testing. No Apache or Nginx setup is
+    required.
+</p>
+
+${codeBlock(`# Navigate to your project folder
+cd my-php-project
+
+# Start the built-in server on port 8000
+php -S localhost:8000`, "Bash")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+PHP 8.3.0 Development Server (http://localhost:8000) started
+</div>
+
+<p>
+    Once the server is running, open
+    <strong>http://localhost:8000</strong> in your browser to view
+    your PHP files.
+</p>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+PHP files must be saved with the <strong>.php</strong> extension.
+A file cannot be opened by double-clicking it in a browser and
+expected to run &mdash; it must be served through a web server (or
+the built-in PHP server) so the PHP interpreter can process it.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   SYNTAX BASICS
+===================================================== */
+
+syntax: `
+
+<h1>
+    PHP Syntax Basics
+</h1>
+
+<div class="subtitle">
+    Understand the basic structure of a PHP script, including tags,
+    statements, and how PHP blends with HTML.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    PHP Tags
+</h2>
+
+<p>
+    A PHP script starts with <strong>&lt;?php</strong> and ends with
+    <strong>?&gt;</strong>. Everything between these tags is
+    interpreted as PHP code; everything outside is treated as plain
+    HTML and sent straight to the browser.
+</p>
+
+${codeBlock(`<?php
+    echo "This line is PHP code";
+?>
+
+<p>This line is plain HTML.</p>
+
+<?php
+    echo "PHP code again";
+?>`, "PHP")}
+
+
+<h2>
+    Statements and Semicolons
+</h2>
+
+<p>
+    Every PHP statement must end with a semicolon <strong>;</strong>.
+    PHP is case-sensitive for variable names, but keywords and
+    function names (like <strong>echo</strong>, <strong>IF</strong>,
+    <strong>if</strong>) are not case-sensitive.
+</p>
+
+${codeBlock(`<?php
+    echo "Statement one";
+    echo "Statement two";
+
+    // Function names are case-insensitive
+    ECHO "This also works, but is not best practice";
+?>`, "PHP")}
+
+
+<h2>
+    Whitespace and Line Breaks
+</h2>
+
+<p>
+    PHP ignores extra whitespace, tabs, and blank lines between
+    statements, so you are free to format your code for readability.
+</p>
+
+${codeBlock(`<?php
+    $name    = "Alex";
+    $age     = 21;
+
+    echo "Name: " . $name . ", Age: " . $age;
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Name: Alex, Age: 21
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+The closing <strong>?&gt;</strong> tag is optional if the file
+contains only PHP code and nothing after it. Many developers omit it
+in pure-PHP files to avoid accidental whitespace being sent to the
+browser after the tag.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+variables: `
+
+<h1>
+    Variables
+</h1>
+
+<div class="subtitle">
+    Learn how to declare, assign, and use variables to store data in
+    PHP.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Declaring Variables
+</h2>
+
+<p>
+    In PHP, variables start with a <strong>$</strong> sign followed
+    by the variable name. PHP is a loosely typed language, so you do
+    not need to declare a data type &mdash; it is determined
+    automatically based on the assigned value.
+</p>
+
+${codeBlock(`<?php
+    $name = "John";
+    $age = 25;
+    $height = 5.9;
+    $isStudent = true;
+
+    echo $name;
+    echo $age;
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+John25
+</div>
+
+
+<h2>
+    Variable Naming Rules
+</h2>
+
+<ul class="topic-list">
+    <li>Must start with a letter or an underscore ( _ )</li>
+    <li>Cannot start with a number</li>
+    <li>Can only contain letters, numbers, and underscores (A-z, 0-9, _)</li>
+    <li>Variable names are case-sensitive ($age and $Age are different)</li>
+</ul>
+
+
+<h2>
+    Variable Scope
+</h2>
+
+<p>
+    PHP variables have different scopes: <strong>local</strong>
+    (inside a function), <strong>global</strong> (outside all
+    functions), and <strong>static</strong> (retains its value
+    between function calls).
+</p>
+
+${codeBlock(`<?php
+    $x = 10; // global scope
+
+    function myFunction() {
+        $y = 5; // local scope
+        echo $y;
+    }
+
+    myFunction();
+
+    function counter() {
+        static $count = 0;
+        $count++;
+        echo $count . " ";
+    }
+
+    counter();
+    counter();
+    counter();
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+5 1 2 3
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use the <strong>global</strong> keyword inside a function to access a
+variable defined outside it, e.g. <strong>global $x;</strong>.
+Relying on globals too heavily is usually considered poor practice.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   DATA TYPES
+===================================================== */
+
+datatypes: `
+
+<h1>
+    Data Types
+</h1>
+
+<div class="subtitle">
+    Explore the data types PHP supports and how to inspect and
+    convert between them.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    PHP Data Types
+</h2>
+
+<p>
+    PHP supports several data types used to store different kinds of
+    data.
+</p>
+
+<ul class="topic-list">
+    <li><strong>String:</strong> A sequence of characters, e.g. "Hello"</li>
+    <li><strong>Integer:</strong> A whole number without decimals, e.g. 42</li>
+    <li><strong>Float (double):</strong> A number with decimals, e.g. 3.14</li>
+    <li><strong>Boolean:</strong> true or false</li>
+    <li><strong>Array:</strong> Stores multiple values in one variable</li>
+    <li><strong>Object:</strong> An instance of a class</li>
+    <li><strong>NULL:</strong> A variable with no value</li>
+</ul>
+
+${codeBlock(`<?php
+    $str  = "Hello World";
+    $int  = 100;
+    $flt  = 3.14;
+    $bool = true;
+    $arr  = ["red", "green", "blue"];
+    $nul  = null;
+
+    var_dump($str);
+    var_dump($int);
+    var_dump($flt);
+    var_dump($bool);
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+string(11) "Hello World"<br>
+int(100)<br>
+float(3.14)<br>
+bool(true)
+</div>
+
+
+<h2>
+    Checking and Converting Types
+</h2>
+
+<p>
+    PHP provides functions to check a variable's type and to convert
+    values between types (type casting).
+</p>
+
+${codeBlock(`<?php
+    $value = "123";
+
+    echo gettype($value); // string
+
+    $number = (int) $value; // cast to integer
+    echo gettype($number); // integer
+
+    var_dump(is_string($value));
+    var_dump(is_int($number));
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+string<br>
+integer<br>
+bool(true)<br>
+bool(true)
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Because PHP is loosely typed, it automatically converts types as
+needed during operations (type juggling). Use
+<strong>===</strong> instead of <strong>==</strong> when you also
+want to compare the data type, not just the value.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   CONSTANTS
+===================================================== */
+
+constants: `
+
+<h1>
+    Constants
+</h1>
+
+<div class="subtitle">
+    Learn how to define values that cannot change during script
+    execution.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What is a Constant?
+</h2>
+
+<p>
+    A constant is an identifier for a value that cannot be changed
+    during script execution. Unlike variables, constants do not use
+    a <strong>$</strong> prefix and are, by convention, written in
+    uppercase.
+</p>
+
+${codeBlock(`<?php
+    define("SITE_NAME", "Cursor Computers Academy");
+    define("MAX_USERS", 100);
+
+    echo SITE_NAME;
+    echo MAX_USERS;
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Cursor Computers Academy100
+</div>
+
+
+<h2>
+    The const Keyword
+</h2>
+
+<p>
+    Since PHP 5.3, constants can also be defined using the
+    <strong>const</strong> keyword, which works at compile time and
+    is commonly used inside classes.
+</p>
+
+${codeBlock(`<?php
+    const PI = 3.14159;
+
+    class Circle {
+        const MAX_RADIUS = 1000;
+    }
+
+    echo PI;
+    echo Circle::MAX_RADIUS;
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+3.141591000
+</div>
+
+
+<h2>
+    Built-in Constants
+</h2>
+
+<p>
+    PHP provides several predefined "magic constants" that give
+    information about the current file, line, and function.
+</p>
+
+${codeBlock(`<?php
+    echo __LINE__;  // current line number
+    echo PHP_VERSION;
+    echo PHP_EOL;   // platform-correct end of line
+?>`, "PHP")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Once defined, a constant's value cannot be changed or undefined
+anywhere in the script. Attempting to redefine it will trigger an
+error.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   OPERATORS
+===================================================== */
+
+operators: `
+
+<h1>
+    Operators
+</h1>
+
+<div class="subtitle">
+    Learn about arithmetic, assignment, comparison, and logical
+    operators in PHP.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Arithmetic Operators
+</h2>
+
+${codeBlock(`<?php
+    $a = 10;
+    $b = 3;
+
+    echo $a + $b; // 13
+    echo $a - $b; // 7
+    echo $a * $b; // 30
+    echo $a / $b; // 3.3333...
+    echo $a % $b; // 1 (modulus)
+    echo $a ** $b; // 1000 (exponentiation)
+?>`, "PHP")}
+
+
+<h2>
+    Comparison Operators
+</h2>
+
+<p>
+    PHP has both loose (<strong>==</strong>) and strict
+    (<strong>===</strong>) comparison operators. The strict version
+    also checks that the data types match.
+</p>
+
+${codeBlock(`<?php
+    $x = "5";
+    $y = 5;
+
+    var_dump($x == $y);  // true  (values match)
+    var_dump($x === $y); // false (types differ: string vs int)
+    var_dump($x != $y);  // false
+    var_dump($x !== $y); // true
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+bool(true)<br>
+bool(false)<br>
+bool(false)<br>
+bool(true)
+</div>
+
+
+<h2>
+    Logical Operators
+</h2>
+
+${codeBlock(`<?php
+    $age = 20;
+    $hasID = true;
+
+    if ($age >= 18 && $hasID) {
+        echo "Entry allowed";
+    }
+
+    if ($age < 18 || !$hasID) {
+        echo "Entry denied";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Entry allowed
+</div>
+
+
+<h2>
+    Assignment and String Operators
+</h2>
+
+${codeBlock(`<?php
+    $count = 5;
+    $count += 3; // $count = $count + 3
+    echo $count; // 8
+
+    $greeting = "Hello";
+    $greeting .= " World"; // string concatenation assignment
+    echo $greeting; // Hello World
+?>`, "PHP")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use the <strong>.</strong> (dot) operator to concatenate strings in
+PHP &mdash; it is different from most other languages, which use
+<strong>+</strong> for string concatenation.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   COMMENTS
+===================================================== */
+
+comments: `
+
+<h1>
+    Comments
+</h1>
+
+<div class="subtitle">
+    Learn how to write comments in PHP to document and explain your
+    code.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Why Use Comments?
+</h2>
+
+<p>
+    Comments are ignored by the PHP interpreter and are used purely
+    to explain code to human readers &mdash; including your future
+    self.
+</p>
+
+
+<h2>
+    Single-Line Comments
+</h2>
+
+<p>
+    PHP supports two styles of single-line comments:
+    <strong>//</strong> and <strong>#</strong>.
+</p>
+
+${codeBlock(`<?php
+    // This is a single-line comment
+    echo "Hello"; // Comment after a statement
+
+    # This is also a single-line comment
+    echo "World";
+?>`, "PHP")}
+
+
+<h2>
+    Multi-Line Comments
+</h2>
+
+<p>
+    Multi-line comments start with <strong>/*</strong> and end with
+    <strong>*/</strong>. They can span multiple lines and are often
+    used for documentation blocks.
+</p>
+
+${codeBlock(`<?php
+    /*
+        This function calculates the area
+        of a rectangle given its width
+        and height.
+    */
+    function area($width, $height) {
+        return $width * $height;
+    }
+?>`, "PHP")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Good comments explain <strong>why</strong> code does something, not
+just what it does &mdash; the code itself usually already shows the
+"what". Avoid over-commenting obvious lines.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   IF ELSE
+===================================================== */
+
+ifelse: `
+
+<h1>
+    If...Else
+</h1>
+
+<div class="subtitle">
+    Control the flow of your program using conditional statements.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The if Statement
+</h2>
+
+${codeBlock(`<?php
+    $age = 20;
+
+    if ($age >= 18) {
+        echo "You are an adult.";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+You are an adult.
+</div>
+
+
+<h2>
+    if...else
+</h2>
+
+${codeBlock(`<?php
+    $marks = 40;
+
+    if ($marks >= 50) {
+        echo "You passed!";
+    } else {
+        echo "You failed.";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+You failed.
+</div>
+
+
+<h2>
+    if...elseif...else
+</h2>
+
+${codeBlock(`<?php
+    $grade = 75;
+
+    if ($grade >= 90) {
+        echo "Grade: A";
+    } elseif ($grade >= 75) {
+        echo "Grade: B";
+    } elseif ($grade >= 60) {
+        echo "Grade: C";
+    } else {
+        echo "Grade: F";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Grade: B
+</div>
+
+
+<h2>
+    Ternary and Null Coalescing Operators
+</h2>
+
+<p>
+    The ternary operator provides a compact way to write simple
+    if...else statements, and the null coalescing operator
+    (<strong>??</strong>) is a shortcut for checking if a value is
+    set and not null.
+</p>
+
+${codeBlock(`<?php
+    $age = 16;
+    $status = ($age >= 18) ? "Adult" : "Minor";
+    echo $status; // Minor
+
+    $username = $_GET['user'] ?? "Guest";
+    echo $username; // Guest, if 'user' is not set
+?>`, "PHP")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Always use curly braces <strong>{ }</strong> around conditional
+blocks, even for single statements, to keep your code readable and
+avoid bugs when adding more lines later.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   SWITCH CASE
+===================================================== */
+
+switchcase: `
+
+<h1>
+    Switch Statement
+</h1>
+
+<div class="subtitle">
+    Use the switch statement to compare a value against multiple
+    possible cases.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Basic Switch Syntax
+</h2>
+
+<p>
+    The <strong>switch</strong> statement evaluates an expression
+    once and compares it against several <strong>case</strong>
+    values using loose comparison. Each case should end with a
+    <strong>break</strong> to prevent fall-through.
+</p>
+
+${codeBlock(`<?php
+    $day = "Wed";
+
+    switch ($day) {
+        case "Mon":
+            echo "Monday";
+            break;
+        case "Tue":
+            echo "Tuesday";
+            break;
+        case "Wed":
+            echo "Wednesday";
+            break;
+        default:
+            echo "Unknown day";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Wednesday
+</div>
+
+
+<h2>
+    Fall-Through Behavior
+</h2>
+
+<p>
+    Omitting <strong>break</strong> intentionally allows multiple
+    cases to share the same code block.
+</p>
+
+${codeBlock(`<?php
+    $month = 2;
+
+    switch ($month) {
+        case 12:
+        case 1:
+        case 2:
+            echo "Winter";
+            break;
+        case 3:
+        case 4:
+        case 5:
+            echo "Spring";
+            break;
+        default:
+            echo "Some other season";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Winter
+</div>
+
+
+<h2>
+    match Expression (PHP 8+)
+</h2>
+
+<p>
+    PHP 8 introduced <strong>match</strong>, a more concise and
+    strict alternative to switch that uses strict comparison and
+    returns a value directly.
+</p>
+
+${codeBlock(`<?php
+    $status = 2;
+
+    $result = match ($status) {
+        1 => "Pending",
+        2 => "Approved",
+        3 => "Rejected",
+        default => "Unknown",
+    };
+
+    echo $result;
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Approved
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Forgetting a <strong>break</strong> is one of the most common bugs
+with switch statements &mdash; execution "falls through" into the
+next case unless you break explicitly (or intend the fall-through).
+
+</div>
+
+`,
+
+
+/* =====================================================
+   WHILE LOOP
+===================================================== */
+
+whileloop: `
+
+<h1>
+    While Loop
+</h1>
+
+<div class="subtitle">
+    Repeat a block of code as long as a condition remains true.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The while Loop
+</h2>
+
+${codeBlock(`<?php
+    $i = 1;
+
+    while ($i <= 5) {
+        echo "Count: " . $i . "<br>";
+        $i++;
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Count: 1<br>
+Count: 2<br>
+Count: 3<br>
+Count: 4<br>
+Count: 5
+</div>
+
+
+<h2>
+    The do...while Loop
+</h2>
+
+<p>
+    A <strong>do...while</strong> loop always runs its body at least
+    once, because the condition is checked after the first
+    iteration.
+</p>
+
+${codeBlock(`<?php
+    $num = 10;
+
+    do {
+        echo "This runs at least once. Num = " . $num . "<br>";
+        $num++;
+    } while ($num < 5);
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+This runs at least once. Num = 10
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Always make sure the loop's condition eventually becomes false, or
+update the controlling variable inside the loop body &mdash;
+otherwise you will create an infinite loop that never terminates.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   FOR LOOP
+===================================================== */
+
+forloop: `
+
+<h1>
+    For Loop
+</h1>
+
+<div class="subtitle">
+    Use the for loop when you know in advance how many times you
+    need to repeat a block of code.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The for Loop
+</h2>
+
+<p>
+    A <strong>for</strong> loop has three parts separated by
+    semicolons: initialization, condition, and increment/decrement.
+</p>
+
+${codeBlock(`<?php
+    for ($i = 1; $i <= 5; $i++) {
+        echo "Iteration: " . $i . "<br>";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Iteration: 1<br>
+Iteration: 2<br>
+Iteration: 3<br>
+Iteration: 4<br>
+Iteration: 5
+</div>
+
+
+<h2>
+    Nested for Loops
+</h2>
+
+${codeBlock(`<?php
+    for ($row = 1; $row <= 3; $row++) {
+        for ($col = 1; $col <= 3; $col++) {
+            echo $row * $col . " ";
+        }
+        echo "<br>";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1 2 3<br>
+2 4 6<br>
+3 6 9
+</div>
+
+
+<h2>
+    Looping Backwards
+</h2>
+
+${codeBlock(`<?php
+    for ($i = 5; $i >= 1; $i--) {
+        echo $i . " ";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+5 4 3 2 1
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use a <strong>for</strong> loop when the number of iterations is
+known ahead of time (e.g. looping through array indices), and a
+<strong>while</strong> loop when it depends on a condition evaluated
+at runtime.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   FOREACH LOOP
+===================================================== */
+
+foreachloop: `
+
+<h1>
+    Foreach Loop
+</h1>
+
+<div class="subtitle">
+    The foreach loop is designed specifically for iterating over
+    arrays in PHP.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Looping Over Indexed Arrays
+</h2>
+
+${codeBlock(`<?php
+    $fruits = ["Apple", "Banana", "Cherry"];
+
+    foreach ($fruits as $fruit) {
+        echo $fruit . "<br>";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Apple<br>
+Banana<br>
+Cherry
+</div>
+
+
+<h2>
+    Looping Over Associative Arrays
+</h2>
+
+<p>
+    Using <strong>as $key => $value</strong> lets you access both the
+    key and the value of each element.
+</p>
+
+${codeBlock(`<?php
+    $person = [
+        "name" => "Sarah",
+        "age"  => 28,
+        "city" => "Mumbai"
+    ];
+
+    foreach ($person as $key => $value) {
+        echo $key . ": " . $value . "<br>";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+name: Sarah<br>
+age: 28<br>
+city: Mumbai
+</div>
+
+
+<h2>
+    Modifying Array Values by Reference
+</h2>
+
+<p>
+    Adding <strong>&amp;</strong> before the value variable lets you
+    modify the original array directly during iteration.
+</p>
+
+${codeBlock(`<?php
+    $numbers = [1, 2, 3, 4];
+
+    foreach ($numbers as &$num) {
+        $num = $num * 10;
+    }
+    unset($num); // good practice: break the reference
+
+    print_r($numbers);
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Array ( [0] => 10 [1] => 20 [2] => 30 [3] => 40 )
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Always <strong>unset()</strong> a reference variable created with
+<strong>&amp;</strong> in a foreach loop right after the loop ends,
+to avoid unexpected bugs if the variable name is reused later.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   BREAK AND CONTINUE
+===================================================== */
+
+breakcontinue: `
+
+<h1>
+    Break and Continue
+</h1>
+
+<div class="subtitle">
+    Control loop execution precisely using the break and continue
+    statements.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The break Statement
+</h2>
+
+<p>
+    <strong>break</strong> immediately exits the loop (or switch)
+    it is inside, regardless of the loop's condition.
+</p>
+
+${codeBlock(`<?php
+    for ($i = 1; $i <= 10; $i++) {
+        if ($i == 5) {
+            break;
+        }
+        echo $i . " ";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1 2 3 4
+</div>
+
+
+<h2>
+    The continue Statement
+</h2>
+
+<p>
+    <strong>continue</strong> skips the rest of the current
+    iteration and moves on to the next one.
+</p>
+
+${codeBlock(`<?php
+    for ($i = 1; $i <= 10; $i++) {
+        if ($i % 2 == 0) {
+            continue; // skip even numbers
+        }
+        echo $i . " ";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1 3 5 7 9
+</div>
+
+
+<h2>
+    Breaking Out of Nested Loops
+</h2>
+
+<p>
+    Both <strong>break</strong> and <strong>continue</strong> accept
+    an optional numeric argument specifying how many nested loop
+    levels to break out of or continue.
+</p>
+
+${codeBlock(`<?php
+    for ($i = 1; $i <= 3; $i++) {
+        for ($j = 1; $j <= 3; $j++) {
+            if ($j == 2) {
+                break 2; // breaks out of BOTH loops
+            }
+            echo "i=$i j=$j ";
+        }
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+i=1 j=1
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use <strong>break</strong> and <strong>continue</strong> sparingly
+&mdash; overusing them can make loops harder to follow. Prefer clear
+conditions in the loop header when possible.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   FUNCTIONS
+===================================================== */
+
+functions: `
+
+<h1>
+    Functions
+</h1>
+
+<div class="subtitle">
+    Group reusable blocks of code into functions to keep your
+    programs organized and DRY.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Defining and Calling a Function
+</h2>
+
+<p>
+    A function is defined with the <strong>function</strong> keyword,
+    followed by a name and a pair of parentheses.
+</p>
+
+${codeBlock(`<?php
+    function greet() {
+        echo "Hello, welcome to PHP!";
+    }
+
+    greet(); // calling the function
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello, welcome to PHP!
+</div>
+
+
+<h2>
+    Function Naming Rules
+</h2>
+
+<ul class="topic-list">
+    <li>Must start with a letter or underscore</li>
+    <li>Can contain letters, numbers, and underscores</li>
+    <li>Function names are NOT case-sensitive</li>
+    <li>Should be descriptive of what the function does</li>
+</ul>
+
+
+<h2>
+    Anonymous Functions and Arrow Functions
+</h2>
+
+<p>
+    PHP also supports anonymous functions (closures) and, since PHP
+    7.4, concise arrow functions.
+</p>
+
+${codeBlock(`<?php
+    // Anonymous function assigned to a variable
+    $square = function ($n) {
+        return $n * $n;
+    };
+    echo $square(5); // 25
+
+    // Arrow function (implicitly captures outer variables)
+    $cube = fn($n) => $n * $n * $n;
+    echo $cube(3); // 27
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+2527
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Functions should ideally do one thing well. Keeping functions small
+and focused makes your code easier to test, reuse, and debug.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   FUNCTION ARGUMENTS
+===================================================== */
+
+functionargs: `
+
+<h1>
+    Function Arguments &amp; Return Values
+</h1>
+
+<div class="subtitle">
+    Pass data into functions and get results back out using
+    parameters and the return statement.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Parameters and Arguments
+</h2>
+
+${codeBlock(`<?php
+    function greetUser($name) {
+        echo "Hello, " . $name . "!<br>";
+    }
+
+    greetUser("Aditi");
+    greetUser("Rohan");
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello, Aditi!<br>
+Hello, Rohan!
+</div>
+
+
+<h2>
+    Default Parameter Values
+</h2>
+
+${codeBlock(`<?php
+    function greet($name = "Guest") {
+        echo "Hello, " . $name . "!<br>";
+    }
+
+    greet();          // uses the default
+    greet("Priya");   // overrides the default
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello, Guest!<br>
+Hello, Priya!
+</div>
+
+
+<h2>
+    Returning Values
+</h2>
+
+<p>
+    Use the <strong>return</strong> statement to send a value back to
+    the caller. Execution of the function stops immediately at the
+    return statement.
+</p>
+
+${codeBlock(`<?php
+    function add($a, $b) {
+        return $a + $b;
+    }
+
+    $sum = add(4, 7);
+    echo "Sum: " . $sum;
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Sum: 11
+</div>
+
+
+<h2>
+    Type Declarations and Variadic Functions
+</h2>
+
+<p>
+    PHP allows optional type hints for parameters and return values,
+    and supports variable-length argument lists using
+    <strong>...</strong>.
+</p>
+
+${codeBlock(`<?php
+    function multiply(int $a, int $b): int {
+        return $a * $b;
+    }
+    echo multiply(3, 4); // 12
+
+    function sumAll(...$numbers) {
+        return array_sum($numbers);
+    }
+    echo sumAll(1, 2, 3, 4, 5); // 15
+?>`, "PHP")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Type declarations help catch bugs early by enforcing expected
+parameter and return types. Enable strict typing per file with
+<strong>declare(strict_types=1);</strong> at the top of the script.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   INDEXED ARRAYS
+===================================================== */
+
+arrays: `
+
+<h1>
+    Indexed Arrays
+</h1>
+
+<div class="subtitle">
+    Store and work with ordered lists of values using PHP's indexed
+    arrays.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Creating an Array
+</h2>
+
+<p>
+    Indexed arrays use numeric keys starting from 0. PHP offers two
+    equivalent syntaxes for creating them.
+</p>
+
+${codeBlock(`<?php
+    $colors = array("Red", "Green", "Blue"); // old syntax
+    $fruits = ["Apple", "Banana", "Cherry"]; // modern short syntax
+
+    echo $colors[0]; // Red
+    echo $fruits[2]; // Cherry
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+RedCherry
+</div>
+
+
+<h2>
+    Modifying Arrays
+</h2>
+
+${codeBlock(`<?php
+    $numbers = [10, 20, 30];
+
+    $numbers[1] = 25;      // update an element
+    $numbers[] = 40;       // append a new element
+    unset($numbers[0]);    // remove an element
+
+    print_r($numbers);
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Array ( [1] => 25 [2] => 30 [3] => 40 )
+</div>
+
+
+<h2>
+    Common Array Functions
+</h2>
+
+${codeBlock(`<?php
+    $nums = [5, 3, 8, 1, 9];
+
+    echo count($nums);        // 5
+    sort($nums);
+    print_r($nums);           // sorted ascending
+    echo array_sum($nums);    // 26
+    echo max($nums);          // 9
+    array_push($nums, 12);    // add to end
+    array_pop($nums);         // remove from end
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+5<br>
+Array ( [0] => 1 [1] => 3 [2] => 5 [3] => 8 [4] => 9 )<br>
+26<br>
+9
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use <strong>print_r()</strong> or <strong>var_dump()</strong> while
+debugging arrays &mdash; they display the full structure and keys,
+which <strong>echo</strong> cannot do directly.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   ASSOCIATIVE ARRAYS
+===================================================== */
+
+assocarrays: `
+
+<h1>
+    Associative Arrays
+</h1>
+
+<div class="subtitle">
+    Use named keys instead of numeric indexes to make your data more
+    descriptive.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Creating an Associative Array
+</h2>
+
+${codeBlock(`<?php
+    $student = [
+        "name"  => "Meera",
+        "age"   => 21,
+        "grade" => "A"
+    ];
+
+    echo $student["name"];  // Meera
+    echo $student["grade"]; // A
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+MeeraA
+</div>
+
+
+<h2>
+    Adding and Checking Keys
+</h2>
+
+${codeBlock(`<?php
+    $student = ["name" => "Meera", "age" => 21];
+
+    $student["city"] = "Pune"; // add a new key
+
+    if (array_key_exists("age", $student)) {
+        echo "Age is set: " . $student["age"];
+    }
+
+    print_r($student);
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Age is set: 21<br>
+Array ( [name] => Meera [age] => 21 [city] => Pune )
+</div>
+
+
+<h2>
+    Sorting Associative Arrays
+</h2>
+
+<p>
+    Because keys matter in associative arrays, PHP provides special
+    sorting functions like <strong>asort()</strong> and
+    <strong>ksort()</strong> that preserve key-value pairs.
+</p>
+
+${codeBlock(`<?php
+    $scores = ["Bob" => 82, "Alice" => 95, "Charlie" => 74];
+
+    asort($scores);  // sort by value, keep keys
+    print_r($scores);
+
+    ksort($scores);  // sort by key
+    print_r($scores);
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Array ( [Charlie] => 74 [Bob] => 82 [Alice] => 95 )<br>
+Array ( [Alice] => 95 [Bob] => 82 [Charlie] => 74 )
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Regular <strong>sort()</strong> re-indexes an associative array
+numerically and discards the original keys. Use <strong>asort()</strong>,
+<strong>arsort()</strong>, <strong>ksort()</strong>, or
+<strong>krsort()</strong> to keep the key-value relationship intact.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   MULTIDIMENSIONAL ARRAYS
+===================================================== */
+
+multiarrays: `
+
+<h1>
+    Multidimensional Arrays
+</h1>
+
+<div class="subtitle">
+    Store arrays inside arrays to represent tables, grids, and
+    nested data structures.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Creating a Multidimensional Array
+</h2>
+
+${codeBlock(`<?php
+    $students = [
+        ["name" => "Amit",  "marks" => 88],
+        ["name" => "Neha",  "marks" => 92],
+        ["name" => "Karan", "marks" => 75]
+    ];
+
+    echo $students[1]["name"];  // Neha
+    echo $students[1]["marks"]; // 92
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Neha92
+</div>
+
+
+<h2>
+    Looping Through a Multidimensional Array
+</h2>
+
+${codeBlock(`<?php
+    $students = [
+        ["name" => "Amit",  "marks" => 88],
+        ["name" => "Neha",  "marks" => 92],
+        ["name" => "Karan", "marks" => 75]
+    ];
+
+    foreach ($students as $student) {
+        echo $student["name"] . ": " . $student["marks"] . "<br>";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Amit: 88<br>
+Neha: 92<br>
+Karan: 75
+</div>
+
+
+<h2>
+    A 2D Numeric Array (Matrix)
+</h2>
+
+${codeBlock(`<?php
+    $matrix = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]
+    ];
+
+    for ($row = 0; $row < 3; $row++) {
+        for ($col = 0; $col < 3; $col++) {
+            echo $matrix[$row][$col] . " ";
+        }
+        echo "<br>";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1 2 3<br>
+4 5 6<br>
+7 8 9
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Multidimensional arrays are commonly used to represent rows fetched
+from a database, where each row is an associative array of column
+name to value.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   STRING FUNCTIONS
+===================================================== */
+
+stringfunctions: `
+
+<h1>
+    String Functions
+</h1>
+
+<div class="subtitle">
+    PHP includes a huge library of built-in functions for working
+    with strings.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Length, Case, and Trimming
+</h2>
+
+${codeBlock(`<?php
+    $text = "  Hello PHP World  ";
+
+    echo strlen($text);          // 20 (including spaces)
+    echo strtoupper($text);      //   HELLO PHP WORLD
+    echo strtolower($text);      //   hello php world
+    echo trim($text);            // "Hello PHP World" (no leading/trailing spaces)
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+20<br>
+  HELLO PHP WORLD  <br>
+  hello php world  <br>
+Hello PHP World
+</div>
+
+
+<h2>
+    Searching and Replacing
+</h2>
+
+${codeBlock(`<?php
+    $sentence = "PHP is fun and PHP is powerful";
+
+    echo strpos($sentence, "fun");             // 8 (position found)
+    echo str_replace("PHP", "JavaScript", $sentence);
+    var_dump(str_contains($sentence, "powerful")); // PHP 8+
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+8<br>
+JavaScript is fun and JavaScript is powerful<br>
+bool(true)
+</div>
+
+
+<h2>
+    Substrings and Splitting
+</h2>
+
+${codeBlock(`<?php
+    $str = "Learning PHP is fun";
+
+    echo substr($str, 9, 3);  // PHP
+
+    $words = explode(" ", $str);
+    print_r($words);
+
+    echo implode("-", $words); // Learning-PHP-is-fun
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+PHP<br>
+Array ( [0] => Learning [1] => PHP [2] => is [3] => fun )<br>
+Learning-PHP-is-fun
+</div>
+
+
+<h2>
+    Formatting Strings
+</h2>
+
+${codeBlock(`<?php
+    $name = "Ravi";
+    $age  = 30;
+
+    echo sprintf("Name: %s, Age: %d", $name, $age);
+    printf("Pi rounded: %.2f", 3.14159);
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Name: Ravi, Age: 30<br>
+Pi rounded: 3.14
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+When displaying user-supplied strings inside HTML, always run them
+through <strong>htmlspecialchars()</strong> first to prevent
+Cross-Site Scripting (XSS) attacks.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   SUPERGLOBALS
+===================================================== */
+
+superglobals: `
+
+<h1>
+    Superglobals ($_GET, $_POST, $_SESSION)
+</h1>
+
+<div class="subtitle">
+    Superglobals are built-in PHP arrays that are always accessible,
+    in any scope, throughout a script.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    What are Superglobals?
+</h2>
+
+<p>
+    PHP provides several predefined superglobal arrays that carry
+    data from the browser, the server, and between requests. Some of
+    the most important ones are <strong>$_GET</strong>,
+    <strong>$_POST</strong>, <strong>$_SESSION</strong>,
+    <strong>$_COOKIE</strong>, and <strong>$_SERVER</strong>.
+</p>
+
+
+<h2>
+    $_GET
+</h2>
+
+<p>
+    <strong>$_GET</strong> holds data sent via the URL query string,
+    for example after a link like
+    <strong>page.php?id=5&amp;name=test</strong>.
+</p>
+
+${codeBlock(`<?php
+    // URL: profile.php?id=5&name=Rahul
+    $id   = $_GET['id'] ?? null;
+    $name = $_GET['name'] ?? "Unknown";
+
+    echo "Viewing profile #$id for $name";
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Viewing profile #5 for Rahul
+</div>
+
+
+<h2>
+    $_POST
+</h2>
+
+<p>
+    <strong>$_POST</strong> holds data submitted via an HTML form
+    using <strong>method="post"</strong>. Unlike GET, POST data is
+    not visible in the URL, making it better suited for sensitive or
+    large data.
+</p>
+
+${codeBlock(`<?php
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $username = $_POST['username'] ?? '';
+        echo "Welcome, " . htmlspecialchars($username);
+    }
+?>`, "PHP")}
+
+
+<h2>
+    $_SESSION
+</h2>
+
+<p>
+    Sessions let you store data on the server across multiple page
+    requests for the same visitor, such as login state. You must
+    call <strong>session_start()</strong> before using
+    <strong>$_SESSION</strong>.
+</p>
+
+${codeBlock(`<?php
+    session_start();
+
+    $_SESSION['username'] = "Divya";
+    $_SESSION['logged_in'] = true;
+
+    // On another page (after session_start() again):
+    if (!empty($_SESSION['logged_in'])) {
+        echo "Hello again, " . $_SESSION['username'];
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello again, Divya
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Never trust data coming from <strong>$_GET</strong> or
+<strong>$_POST</strong> directly. Always validate, sanitize, and
+escape user input before using it in queries or displaying it back
+on the page.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   FORMS
+===================================================== */
+
+forms: `
+
+<h1>
+    Forms Handling
+</h1>
+
+<div class="subtitle">
+    Learn how to collect user input through HTML forms and process
+    it safely with PHP.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    A Simple HTML Form
+</h2>
+
+<p>
+    An HTML form's <strong>action</strong> attribute specifies which
+    PHP script processes the submitted data, and
+    <strong>method</strong> determines whether it is sent via GET or
+    POST.
+</p>
+
+${codeBlock(`<form action="process.php" method="post">
+    Name: <input type="text" name="name">
+    Email: <input type="email" name="email">
+    <input type="submit" value="Submit">
+</form>`, "HTML")}
+
+
+<h2>
+    Processing the Form (process.php)
+</h2>
+
+${codeBlock(`<?php
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $name  = htmlspecialchars(trim($_POST['name'] ?? ''));
+        $email = htmlspecialchars(trim($_POST['email'] ?? ''));
+
+        if (empty($name) || empty($email)) {
+            echo "Please fill in all fields.";
+        } else {
+            echo "Thank you, $name! We will contact you at $email.";
+        }
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output (example)
+</div>
+
+<div class="output">
+Thank you, Kabir! We will contact you at kabir@example.com.
+</div>
+
+
+<h2>
+    Validating Input
+</h2>
+
+<p>
+    PHP's <strong>filter_var()</strong> function is a convenient way
+    to validate common formats such as email addresses.
+</p>
+
+${codeBlock(`<?php
+    $email = "user@example.com";
+
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Valid email address.";
+    } else {
+        echo "Invalid email address.";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Valid email address.
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Always validate form data on the server side, even if you also
+validate it in JavaScript on the client side &mdash; client-side
+validation can always be bypassed.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   FILE HANDLING
+===================================================== */
+
+filehandling: `
+
+<h1>
+    File Handling
+</h1>
+
+<div class="subtitle">
+    Read from and write to files on the server's filesystem using
+    PHP's file functions.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Writing to a File
+</h2>
+
+<p>
+    <strong>file_put_contents()</strong> is the simplest way to write
+    a string to a file, creating it if it does not already exist.
+</p>
+
+${codeBlock(`<?php
+    $content = "Hello, this is saved to a file.\\n";
+
+    file_put_contents("notes.txt", $content);
+
+    echo "File written successfully.";
+?>`, "PHP")}
+
+
+<h2>
+    Reading From a File
+</h2>
+
+${codeBlock(`<?php
+    if (file_exists("notes.txt")) {
+        $data = file_get_contents("notes.txt");
+        echo $data;
+    } else {
+        echo "File not found.";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Hello, this is saved to a file.
+</div>
+
+
+<h2>
+    Using fopen, fwrite, and fclose
+</h2>
+
+<p>
+    For more control &mdash; such as appending data or reading line
+    by line &mdash; use the lower-level
+    <strong>fopen()</strong>/<strong>fwrite()</strong>/<strong>fclose()</strong>
+    functions.
+</p>
+
+${codeBlock(`<?php
+    $file = fopen("log.txt", "a"); // "a" = append mode
+
+    fwrite($file, "New log entry\\n");
+
+    fclose($file);
+
+    echo "Log entry added.";
+?>`, "PHP")}
+
+
+<h2>
+    Reading Line by Line
+</h2>
+
+${codeBlock(`<?php
+    $handle = fopen("notes.txt", "r");
+
+    if ($handle) {
+        while (($line = fgets($handle)) !== false) {
+            echo $line . "<br>";
+        }
+        fclose($handle);
+    }
+?>`, "PHP")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Always check that a file operation succeeded (e.g.
+<strong>file_exists()</strong> before reading) and remember to close
+files with <strong>fclose()</strong> when using
+<strong>fopen()</strong> to free system resources.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   INCLUDE AND REQUIRE
+===================================================== */
+
+include: `
+
+<h1>
+    Include and Require
+</h1>
+
+<div class="subtitle">
+    Split your PHP code across multiple files and reuse it easily
+    with include and require.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    include vs require
+</h2>
+
+<p>
+    Both <strong>include</strong> and <strong>require</strong> insert
+    and execute the contents of another PHP file. The difference is
+    how they handle a missing file:
+</p>
+
+<ul class="topic-list">
+    <li><strong>include:</strong> Produces a warning but the script continues running</li>
+    <li><strong>require:</strong> Produces a fatal error and the script stops immediately</li>
+    <li><strong>include_once / require_once:</strong> Same behavior, but only include the file if it hasn't been included already</li>
+</ul>
+
+
+<h2>
+    Example: header.php
+</h2>
+
+${codeBlock(`<?php
+    // header.php
+    echo "<header><h1>My Website</h1></header>";
+?>`, "PHP")}
+
+
+<h2>
+    Example: footer.php
+</h2>
+
+${codeBlock(`<?php
+    // footer.php
+    echo "<footer>&copy; 2026 Cursor Computers Academy</footer>";
+?>`, "PHP")}
+
+
+<h2>
+    Using include/require in a Page
+</h2>
+
+${codeBlock(`<?php
+    require "header.php";
+
+    echo "<main><p>Welcome to the homepage!</p></main>";
+
+    require "footer.php";
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+&lt;header&gt;&lt;h1&gt;My Website&lt;/h1&gt;&lt;/header&gt;<br>
+&lt;main&gt;&lt;p&gt;Welcome to the homepage!&lt;/p&gt;&lt;/main&gt;<br>
+&lt;footer&gt;&copy; 2026 Cursor Computers Academy&lt;/footer&gt;
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Use <strong>require_once</strong> for critical files such as
+database configuration or class definitions, so your script fails
+fast if a required file is missing, and to avoid re-declaring
+classes or functions.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   CLASSES AND OBJECTS
+===================================================== */
+
+classes: `
+
+<h1>
+    Classes and Objects
+</h1>
+
+<div class="subtitle">
+    PHP is an object-oriented language. Learn how to define classes
+    and create objects from them.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Defining a Class
+</h2>
+
+<p>
+    A class is a blueprint for objects. It groups properties
+    (variables) and methods (functions) that describe and control
+    the behavior of the objects created from it.
+</p>
+
+${codeBlock(`<?php
+    class Car {
+        public $brand;
+        public $color;
+
+        public function describe() {
+            echo "This is a " . $this->color . " " . $this->brand . "<br>";
+        }
+    }
+
+    $car1 = new Car();
+    $car1->brand = "Toyota";
+    $car1->color = "Red";
+    $car1->describe();
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+This is a Red Toyota
+</div>
+
+
+<h2>
+    The $this Keyword
+</h2>
+
+<p>
+    Inside a class, <strong>$this</strong> refers to the current
+    object instance, allowing methods to access the object's own
+    properties and other methods.
+</p>
+
+
+<h2>
+    Access Modifiers
+</h2>
+
+<ul class="topic-list">
+    <li><strong>public:</strong> Accessible from anywhere</li>
+    <li><strong>protected:</strong> Accessible within the class and its subclasses</li>
+    <li><strong>private:</strong> Accessible only within the class itself</li>
+</ul>
+
+${codeBlock(`<?php
+    class BankAccount {
+        private $balance = 0;
+
+        public function deposit($amount) {
+            $this->balance += $amount;
+        }
+
+        public function getBalance() {
+            return $this->balance;
+        }
+    }
+
+    $account = new BankAccount();
+    $account->deposit(500);
+    $account->deposit(250);
+
+    echo "Balance: " . $account->getBalance();
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Balance: 750
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Keep properties <strong>private</strong> or <strong>protected</strong>
+whenever possible, and expose controlled access through public
+methods (getters/setters). This is known as encapsulation.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   CONSTRUCTORS AND DESTRUCTORS
+===================================================== */
+
+constructors: `
+
+<h1>
+    Constructors and Destructors
+</h1>
+
+<div class="subtitle">
+    Automatically initialize and clean up objects using special
+    magic methods.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The Constructor: __construct()
+</h2>
+
+<p>
+    A constructor is a special method called automatically whenever
+    a new object is created from the class. It is typically used to
+    initialize properties.
+</p>
+
+${codeBlock(`<?php
+    class Student {
+        public $name;
+        public $age;
+
+        public function __construct($name, $age) {
+            $this->name = $name;
+            $this->age = $age;
+            echo "New student created: $name<br>";
+        }
+    }
+
+    $s1 = new Student("Ishaan", 20);
+    $s2 = new Student("Tanya", 22);
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+New student created: Ishaan<br>
+New student created: Tanya
+</div>
+
+
+<h2>
+    Default Parameter Values in Constructors
+</h2>
+
+${codeBlock(`<?php
+    class Product {
+        public $name;
+        public $price;
+
+        public function __construct($name, $price = 0.0) {
+            $this->name = $name;
+            $this->price = $price;
+        }
+    }
+
+    $item = new Product("Notebook");
+    echo $item->name . ": $" . $item->price;
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Notebook: $0
+</div>
+
+
+<h2>
+    The Destructor: __destruct()
+</h2>
+
+<p>
+    A destructor is called automatically when an object is destroyed
+    or when the script ends. It is often used to release resources
+    such as file handles or database connections.
+</p>
+
+${codeBlock(`<?php
+    class Logger {
+        public function __construct() {
+            echo "Logger started<br>";
+        }
+
+        public function __destruct() {
+            echo "Logger closed<br>";
+        }
+    }
+
+    $log = new Logger();
+    echo "Doing some work...<br>";
+    unset($log); // triggers the destructor
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Logger started<br>
+Doing some work...<br>
+Logger closed
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+You rarely need to call the destructor manually &mdash; PHP invokes
+it automatically for you, either when an object goes out of scope or
+when the script finishes executing.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   INHERITANCE
+===================================================== */
+
+inheritance: `
+
+<h1>
+    Inheritance
+</h1>
+
+<div class="subtitle">
+    Allow one class to reuse and extend the properties and methods
+    of another class.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    The extends Keyword
+</h2>
+
+<p>
+    A child class inherits all public and protected properties and
+    methods of its parent class using the <strong>extends</strong>
+    keyword.
+</p>
+
+${codeBlock(`<?php
+    class Animal {
+        public $name;
+
+        public function __construct($name) {
+            $this->name = $name;
+        }
+
+        public function makeSound() {
+            echo "$this->name makes a sound<br>";
+        }
+    }
+
+    class Dog extends Animal {
+        public function makeSound() {
+            echo "$this->name barks<br>";
+        }
+    }
+
+    $generic = new Animal("Some creature");
+    $generic->makeSound();
+
+    $dog = new Dog("Rex");
+    $dog->makeSound();
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Some creature makes a sound<br>
+Rex barks
+</div>
+
+
+<h2>
+    Calling the Parent's Method with parent::
+</h2>
+
+${codeBlock(`<?php
+    class Employee {
+        public function work() {
+            echo "Working on general tasks<br>";
+        }
+    }
+
+    class Manager extends Employee {
+        public function work() {
+            parent::work(); // call the parent version too
+            echo "Also managing the team<br>";
+        }
+    }
+
+    $m = new Manager();
+    $m->work();
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Working on general tasks<br>
+Also managing the team
+</div>
+
+
+<h2>
+    Method Overriding
+</h2>
+
+<p>
+    A child class can redefine (override) a method inherited from its
+    parent to provide specialized behavior, as shown by
+    <strong>Dog::makeSound()</strong> above.
+</p>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+PHP supports only single inheritance (one parent class), but a class
+can implement multiple interfaces and use multiple traits to share
+behavior across unrelated class hierarchies.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   INTERFACES AND ABSTRACT CLASSES
+===================================================== */
+
+interfaces: `
+
+<h1>
+    Interfaces and Abstract Classes
+</h1>
+
+<div class="subtitle">
+    Define contracts and partially implemented base classes to
+    enforce consistent structure across related classes.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Interfaces
+</h2>
+
+<p>
+    An interface defines a contract of methods that implementing
+    classes must provide, but it contains no implementation itself.
+    A class can implement multiple interfaces.
+</p>
+
+${codeBlock(`<?php
+    interface Shape {
+        public function area(): float;
+    }
+
+    class Circle implements Shape {
+        private $radius;
+
+        public function __construct($radius) {
+            $this->radius = $radius;
+        }
+
+        public function area(): float {
+            return pi() * $this->radius ** 2;
+        }
+    }
+
+    $c = new Circle(5);
+    echo "Area: " . round($c->area(), 2);
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Area: 78.54
+</div>
+
+
+<h2>
+    Abstract Classes
+</h2>
+
+<p>
+    An abstract class cannot be instantiated directly and may mix
+    fully implemented methods with abstract methods that
+    subclasses must implement.
+</p>
+
+${codeBlock(`<?php
+    abstract class Vehicle {
+        abstract public function move(): string;
+
+        public function describe() {
+            echo "This vehicle moves by: " . $this->move() . "<br>";
+        }
+    }
+
+    class Boat extends Vehicle {
+        public function move(): string {
+            return "sailing";
+        }
+    }
+
+    $boat = new Boat();
+    $boat->describe();
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+This vehicle moves by: sailing
+</div>
+
+
+<h2>
+    Interface vs Abstract Class
+</h2>
+
+<ul class="topic-list">
+    <li>An interface has no implemented methods; an abstract class can mix both</li>
+    <li>A class can implement multiple interfaces, but extend only one abstract class</li>
+    <li>Interfaces define "can-do" contracts; abstract classes define "is-a" relationships</li>
+</ul>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Attempting to create an object directly from an abstract class or an
+interface (e.g. <strong>new Shape()</strong>) will trigger a fatal
+error &mdash; only concrete classes can be instantiated.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   EXCEPTION HANDLING
+===================================================== */
+
+exceptions: `
+
+<h1>
+    Exception Handling
+</h1>
+
+<div class="subtitle">
+    Handle runtime errors gracefully using try, catch, throw, and
+    finally.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    try, catch, and throw
+</h2>
+
+<p>
+    Code that might fail is placed inside a <strong>try</strong>
+    block. If an error occurs, an exception is <strong>throw</strong>n
+    and caught by a matching <strong>catch</strong> block, preventing
+    the script from crashing.
+</p>
+
+${codeBlock(`<?php
+    function divide($a, $b) {
+        if ($b == 0) {
+            throw new Exception("Division by zero is not allowed.");
+        }
+        return $a / $b;
+    }
+
+    try {
+        echo divide(10, 2) . "<br>";
+        echo divide(5, 0) . "<br>";
+    } catch (Exception $e) {
+        echo "Error caught: " . $e->getMessage();
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+5<br>
+Error caught: Division by zero is not allowed.
+</div>
+
+
+<h2>
+    The finally Block
+</h2>
+
+<p>
+    Code inside <strong>finally</strong> always runs, whether an
+    exception was thrown or not &mdash; useful for cleanup such as
+    closing files or database connections.
+</p>
+
+${codeBlock(`<?php
+    try {
+        echo "Trying something risky...<br>";
+        throw new Exception("Something went wrong!");
+    } catch (Exception $e) {
+        echo "Caught: " . $e->getMessage() . "<br>";
+    } finally {
+        echo "Cleanup always runs here.<br>";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Trying something risky...<br>
+Caught: Something went wrong!<br>
+Cleanup always runs here.
+</div>
+
+
+<h2>
+    Custom Exception Classes
+</h2>
+
+${codeBlock(`<?php
+    class InvalidAgeException extends Exception {}
+
+    function checkAge($age) {
+        if ($age < 0) {
+            throw new InvalidAgeException("Age cannot be negative.");
+        }
+        return "Valid age: $age";
+    }
+
+    try {
+        echo checkAge(-5);
+    } catch (InvalidAgeException $e) {
+        echo "Custom exception caught: " . $e->getMessage();
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Custom exception caught: Age cannot be negative.
+</div>
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Create custom exception classes by extending PHP's built-in
+<strong>Exception</strong> class when you need to distinguish
+between different kinds of errors in a <strong>catch</strong> block.
+
+</div>
+
+`,
+
+
+/* =====================================================
+   PHP WITH MYSQL
+===================================================== */
+
+phpmysql: `
+
+<h1>
+    PHP with MySQL (PDO / MySQLi)
+</h1>
+
+<div class="subtitle">
+    Connect PHP to a MySQL database and perform queries safely using
+    PDO or MySQLi.
+</div>
+
+<div class="divider"></div>
+
+
+<h2>
+    Connecting with PDO
+</h2>
+
+<p>
+    PDO (PHP Data Objects) provides a consistent interface for
+    accessing multiple database types and is the recommended way to
+    work with databases in modern PHP.
+</p>
+
+${codeBlock(`<?php
+    $host = "localhost";
+    $db   = "school";
+    $user = "root";
+    $pass = "";
+
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        echo "Connected successfully!";
+    } catch (PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+Connected successfully!
+</div>
+
+
+<h2>
+    Inserting Data Safely with Prepared Statements
+</h2>
+
+<p>
+    Prepared statements protect your application against SQL
+    injection by separating the SQL structure from the actual data
+    values.
+</p>
+
+${codeBlock(`<?php
+    $stmt = $pdo->prepare("INSERT INTO students (name, age) VALUES (:name, :age)");
+    $stmt->execute([
+        "name" => "Farhan",
+        "age"  => 19
+    ]);
+
+    echo "New student added with ID: " . $pdo->lastInsertId();
+?>`, "PHP")}
+
+
+<h2>
+    Fetching Data
+</h2>
+
+${codeBlock(`<?php
+    $stmt = $pdo->query("SELECT id, name, age FROM students");
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo $row['id'] . ": " . $row['name'] . " (" . $row['age'] . ")<br>";
+    }
+?>`, "PHP")}
+
+<div class="output-title">
+    Output
+</div>
+
+<div class="output">
+1: Farhan (19)<br>
+2: Priya (21)
+</div>
+
+
+<h2>
+    Using MySQLi (Object-Oriented)
+</h2>
+
+<p>
+    MySQLi is another popular extension for connecting to MySQL,
+    offering both procedural and object-oriented styles. It only
+    supports MySQL, unlike PDO.
+</p>
+
+${codeBlock(`<?php
+    $conn = new mysqli("localhost", "root", "", "school");
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $stmt = $conn->prepare("SELECT name FROM students WHERE age > ?");
+    $minAge = 18;
+    $stmt->bind_param("i", $minAge);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while ($row = $result->fetch_assoc()) {
+        echo $row['name'] . "<br>";
+    }
+
+    $conn->close();
+?>`, "PHP")}
+
+
+<div class="info">
+
+<strong>Tip:</strong><br>
+Always use prepared statements (with PDO or MySQLi) instead of
+concatenating user input directly into SQL strings. This is the
+single most important defense against SQL injection attacks.
+
+</div>
+
+`,
+
+
+};
+
+
+/* =====================================================
+   CREATE CODE BLOCK
+===================================================== */
+
+function codeBlock(code, language) {
+
+    const id =
+        "code_" +
+        Math.random()
+        .toString(36)
+        .substring(2, 9);
+
+
+    return `
+
+        <div class="code-header">
+
+            <span>
+                ${language}
+            </span>
+
+            <button
+                class="copy-btn"
+                onclick="copyCode('${id}', this)">
+
+                Copy
+
+            </button>
+
+        </div>
+
+
+        <div class="code-box">
+
+            <pre id="${id}">${escapeHTML(code.trim())}</pre>
+
+        </div>
+
+    `;
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text) {
+
+    return text
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;");
+
+}
+
+
+/* =====================================================
+   SHOW TOPIC
+===================================================== */
+
+function showTopic(topic, button) {
+
+
+    document.getElementById("content").innerHTML =
+        topics[topic];
+
+
+    /* Remove active class */
+
+    document
+        .querySelectorAll(".topic")
+        .forEach(function(item) {
+
+            item.classList.remove("active");
+
+        });
+
+
+    /* Add active class */
+
+    button.classList.add("active");
+
+
+    /* Scroll content to top */
+
+    document
+        .querySelector(".content-area")
+        .scrollTop = 0;
+
+
+    /* Close mobile menu */
+
+    if (window.innerWidth <= 700) {
+
+        closeMenu();
+
+    }
+
+}
+
+
+/* =====================================================
+   COPY CODE
+===================================================== */
+
+function copyCode(id, button) {
+
+    const code =
+        document.getElementById(id).innerText;
+
+
+    navigator.clipboard.writeText(code);
+
+
+    button.innerText = "Copied!";
+
+
+    setTimeout(function() {
+
+        button.innerText = "Copy";
+
+    }, 1500);
+
+}
+
+
+/* =====================================================
+   OPEN / CLOSE MOBILE MENU
+===================================================== */
+
+function toggleMenu() {
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const overlay =
+        document.getElementById("overlay");
+
+
+    sidebar.classList.toggle("open");
+
+    overlay.classList.toggle("show");
+
+}
+
+
+function closeMenu() {
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const overlay =
+        document.getElementById("overlay");
+
+
+    sidebar.classList.remove("open");
+
+    overlay.classList.remove("show");
+
+}
+
+
+/* =====================================================
+   LOAD FIRST TOPIC
+===================================================== */
+
+showTopic("intro", document.querySelector(".topic"));
+
+</script>
+
+
+</body>
+</html>
